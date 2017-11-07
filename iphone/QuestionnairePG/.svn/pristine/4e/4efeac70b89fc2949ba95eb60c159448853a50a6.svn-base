@@ -1,0 +1,76 @@
+
+/*
+ 2017年10月13日
+ zzy
+ 后台楼宇信息和房间信息
+ * */
+var express = require('express');
+var router = express.Router();
+var baseQuestionService = require('../../service/base_question/baseQuestionService');
+//添加问卷
+router.get("/insertQuestionnaire", function (req, res, next) {
+    baseQuestionService.insertQuestionnaire(req, res, next);
+});
+//修改问卷
+router.get("/updateQuestionnaire", function (req, res, next) {
+    baseQuestionService.updateQuestionnaire(req, res, next);
+});
+//删除问卷
+router.get("/deleteQuestionnaire", function (req, res, next) {
+    baseQuestionService.deleteQuestionnaire(req, res, next);
+});
+//问卷详情
+router.get("/selectQuestionnaireInfo", function (req, res, next) {
+    baseQuestionService.selectQuestionnaireInfo(req, res, next);
+});
+//问卷列表
+router.get("/selectQuestionnaireList", function (req, res, next) {
+    baseQuestionService.selectQuestionnaireList(req, res, next);
+});
+
+
+
+
+//添加问卷题目
+router.get("/insertQuestion", function (req, res, next) {
+    baseQuestionService.insertQuestion(req, res, next);
+});
+//修改问卷题目
+router.get("/updateQuestion", function (req, res, next) {
+    baseQuestionService.updateQuestion(req, res, next);
+});
+//删除问卷题目
+router.get("/deleteQuestion", function (req, res, next) {
+    baseQuestionService.deleteQuestion(req, res, next);
+});
+//问卷题目详情
+router.get("/selectQuestionInfo", function (req, res, next) {
+    baseQuestionService.selectQuestionInfo(req, res, next);
+});
+//问卷题目列表
+router.get("/selectQuestionList", function (req, res, next) {
+    baseQuestionService.selectQuestionList(req, res, next);
+});
+
+
+//添加问卷题目选项
+router.get("/insertQuestionOption", function (req, res, next) {
+    baseQuestionService.insertQuestionOption(req, res, next);
+});
+//修改问卷题目选项
+router.get("/updateQuestionOption", function (req, res, next) {
+    baseQuestionService.updateQuestionOption(req, res, next);
+});
+//删除问卷题目选项
+router.get("/deleteQuestionOption", function (req, res, next) {
+    baseQuestionService.deleteQuestionOption(req, res, next);
+});
+
+//问卷题目所有选项
+router.get("/selectQuestionOptionList", function (req, res, next) {
+    baseQuestionService.selectQuestionOptionList(req, res, next);
+});
+
+
+module.exports = router;
+

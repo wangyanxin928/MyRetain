@@ -1,0 +1,76 @@
+{
+  "_args": [
+    [
+      "crc-32@https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz",
+      "D:\\axyr\\开发框架\\Node-Demo"
+    ]
+  ],
+  "_from": "crc-32@https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz",
+  "_id": "crc-32@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-CVB5hO6bzOO9G4hh8N6KsQroGH0=",
+  "_location": "/node-xlsx/crc-32",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "crc-32@https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz",
+    "name": "crc-32",
+    "escapedName": "crc-32",
+    "rawSpec": "https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz",
+    "saveSpec": "https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz",
+    "fetchSpec": "https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz"
+  },
+  "_requiredBy": [],
+  "_spec": "https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz",
+  "_where": "D:\\axyr\\开发框架\\Node-Demo",
+  "author": {
+    "name": "sheetjs"
+  },
+  "bin": {
+    "crc32": "./bin/crc32.njs"
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/js-crc32/issues"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "crc32.js"
+    }
+  },
+  "dependencies": {
+    "exit-on-epipe": "",
+    "printj": ""
+  },
+  "description": "Pure-JS CRC-32",
+  "devDependencies": {
+    "codepage": "",
+    "mocha": ""
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "files": [
+    "crc32.js",
+    "bin/crc32.njs",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "https://github.com/SheetJS/js-crc32#readme",
+  "keywords": [
+    "crc32",
+    "checksum",
+    "crc"
+  ],
+  "license": "Apache-2.0",
+  "main": "./crc32",
+  "name": "crc-32",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/js-crc32.git"
+  },
+  "scripts": {
+    "pretest": "git submodule init && git submodule update",
+    "test": "make test"
+  },
+  "version": "https://registry.npmjs.org/crc-32/-/crc-32-1.0.2.tgz"
+}

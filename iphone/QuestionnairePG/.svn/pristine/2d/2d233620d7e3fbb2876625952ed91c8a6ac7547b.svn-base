@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>问卷</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/common.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<form class="answerContainer">
+
+    <div class="answerBox">
+        <div class="answerHeader">
+        </div>
+        <div class="answerTitle">
+            <div class="titleCenter">
+                顺义区体育卫生发展情况家长调查
+            </div>
+        </div>
+    </div>
+
+    <div class="answerMain">
+        <p class="answerTxt">
+            据韩联社报道，青瓦台方面表示，本次所拟定的特使人选熟悉新政府的外交规划和理念，在访问期间或向相关国家转交总统文在寅的亲笔信函，传达新政府加强合作的意愿。特使还计划与相关国家高级官员会面，介绍新政府政策，就发展双边关系的方案交换意见。</p>
+        <div class="septalLine"></div>
+        <!--进度条-->
+        <div class="progressBar">
+
+            <div class="div1">
+                <div class="sumNum">99</div>
+                <div class="div2">
+                    <div class="div3">
+                        <div class="reticule">
+                            <div class="thisNum">21</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="baseNum">0</div>
+            </div>
+        </div>
+        <!--问卷-->
+        <div class="problemList">
+            <div class="problem">
+                <div class="problemBor">
+                    <div class="problemNum">
+                        001
+                    </div>
+                </div>
+                <div class="problemTitle">本次所拟定的特使人选熟悉新政府的外交规划和理念本次所拟定的特使人选熟悉新政府的外交规划和理念本次所拟定的特使人选熟悉新政府的外交规划和理念
+                    <div class="questionbconc noUniformWidth">
+                        <ul class="qula radio " gjsz="" gjszcontent="">
+                            <li class="singlestli  radio-pitch">
+                                <input type="hidden" name="" value=""><span class="radios"></span>女
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>男
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉新政府的外交所拟定的特使人选熟悉新政府的外交
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉新政府的外交所拟定的特使人选熟悉新政府的外交
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem">
+                <div class="problemBor">
+                    <div class="problemNum">
+                        001
+                    </div>
+                </div>
+                <div class="problemTitle">本次所拟定的特使人选熟悉新政府的外交规划和理念本次所拟定的特使人选熟悉新政府的外交规划和理念本次所拟定的特使人选熟悉新政府的外交规划和理念
+                    <div class="questionbconc uniformWidth ">
+                        <ul class="qula radio " gjsz="" gjszcontent="">
+                            <li class="singlestli  radio-pitch">
+                                <input type="hidden" name="" value=""><span class="radios"></span>女
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>男
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉新
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉新
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                            <li class="singlestli">
+                                <input type="hidden" name="" value=""><span class="radios"></span>所拟定的特使人选熟悉
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem">
+                <!--未填写状态-->
+                <div class="problemBorNOt">
+                    <div class="problemNum">
+                        002
+                    </div>
+                </div>
+                <div class="problemTitle">学校名称
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入学校名称"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="problem">
+                <div class="problemBor">
+                    <div class="problemNum">
+                        003
+                    </div>
+                </div>
+                <div class="problemTitle">学校名称
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入学校名称"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="problem">
+                <div class="problemBor">
+                    <div class="problemNum">
+                        004
+                    </div>
+                </div>
+                <div class="layui-form-item" pane="">
+                    <div class="problemTitle">学校名称
+                        <div class="questionbconc noUniformWidth ">
+                            <ul class="qula  " gjsz="" gjszcontent="">
+                                <li class="singlestli checkbox-pitch" xxvalue="1519"><input type="hidden" name=""
+                                                                                            value=""><span
+                                        class="checkbox"></span>男
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>女
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>特使人选熟悉新政府的外交规划
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>女特使人选熟悉新政府的外交规划
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>女特使人选熟悉新政府的外交规划
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="problem">
+                <div class="problemBor">
+                    <div class="problemNum">
+                        004
+                    </div>
+                </div>
+                <div class="layui-form-item" pane="">
+                    <div class="problemTitle">学校名称
+                        <div class="questionbconc uniformWidth ">
+                            <ul class="qula  " gjsz="" gjszcontent="">
+                                <li class="singlestli checkbox-pitch" xxvalue="1519"><input type="hidden" name=""
+                                                                                            value=""><span
+                                        class="checkbox"></span>男
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>女
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>特使人选熟悉新政府的外交
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>女特使人选熟悉新政府的外
+                                </li>
+                                <li class="singlestli  " xxvalue="1520">
+                                    <input type="hidden" name="" value="1520"><span class="checkbox"></span>女特使人选熟悉新政府的
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btnBox">
+            <!--<a class="preservedBtn">保存</a>-->
+            <a class="submitBtn">提交</a>
+        </div>
+    </div>
+</form>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/flexible.debug.js"></script>
+<script src="js/flexible_css.debug.js"></script>
+<!--引入layer提示框-->
+<script src="js/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="js/question.js"></script>
+</body>
+</html>

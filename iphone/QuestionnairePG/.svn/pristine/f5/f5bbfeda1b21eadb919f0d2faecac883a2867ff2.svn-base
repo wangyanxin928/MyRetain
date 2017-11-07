@@ -1,0 +1,43 @@
+{
+  "_from": "content-disposition@0.5.0",
+  "_id": "content-disposition@0.5.0",
+  "_inBundle": false,
+  "_integrity": "sha1-QoT+auBjCHRjnkToCkGMKTQTXp4=",
+  "_location": "/content-disposition",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "content-disposition@0.5.0",
+    "name": "content-disposition",
+    "escapedName": "content-disposition",
+    "rawSpec": "0.5.0",
+    "saveSpec": null,
+    "fetchSpec": "0.5.0"
+  },
+  "_requiredBy": [
+    "/express"
+  ],
+  "_resolved": "https://registry.npmjs.org/content-disposition/-/content-disposition-0.5.0.tgz",
+  "_shasum": "4284fe6ae0630874639e44e80a418c2934135e9e",
+  "_shrinkwrap": null,
+  "_spec": "content-disposition@0.5.0",
+  "_where": "D:\\axyr\\开发框架\\Node-Demo\\node_modules\\express",
+  "bin": null,
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "[![NPM Version][npm-image]][npm-url] [![NPM Downloads][downloads-image]][downloads-url] [![Node.js Version][node-version-image]][node-version-url] [![Build Status][travis-image]][travis-url] [![Test Coverage][coveralls-image]][coveralls-url]",
+  "devDependencies": {
+    "istanbul": "0.3.2",
+    "mocha": "~1.21.4"
+  },
+  "engines": {
+    "node": ">= 0.6"
+  },
+  "name": "content-disposition",
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "scripts": {},
+  "version": "0.5.0"
+}

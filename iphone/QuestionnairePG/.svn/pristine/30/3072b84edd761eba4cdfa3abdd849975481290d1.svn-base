@@ -1,0 +1,352 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2017/07/28
+//  description: 海南项目--问卷填报的业务js
+//  ===============================================================
+var answerId="";
+var progress=0;//答题进度，默认为0
+$(window).on("load",function(){
+    //提莫属性tmtype：   single = "单选题", mutil = "多选题"(valType=1,选择一个就给分；valType=2，选择的答案大于一个时才给分),right_wrong = "是非题", blank = "填空题"（valType=1整数,2小数保留一位,3小数保留两位,4日期）
+    //authority权限写入url:0未填写，显示问卷；\1未提交，显示问卷，显示答案；\2已提交，显示问卷，显示答案，保存、提交按钮不显示；\3可查看，只显示问卷就好，保存、提交按钮不显示；
+    var authority=getUrlPara("authority");
+    //不能答题：按钮不显示；答案回显
+    if(authority==2){
+        $("#submitQuestionnaire").remove();
+        //请求答案数据，并显示
+        answerId = answersRender();
+        $(".progressBar .thisNum").html($(".progressBar .sumNum").html());
+        $(".progressBar .reticule").css("height","100%");
+    }//可以答题：初始化按钮点击事件，答题事件
+    if(authority==1){
+        initControlEvent();
+
+        $("#submitQuestionnaire").on("click",function(){
+            //查找未填写的题目
+            /*var hasNoAnswer=$(".problem:visible").find(".problemBorNOt");
+            if(hasNoAnswer.length!=0){
+                var noAnswerStr="";
+                for(var i=0;i<hasNoAnswer.length;i++){
+                    if(noAnswerStr){
+                        noAnswerStr+=",";
+                    }
+                    noAnswerStr+=$(hasNoAnswer[i]).text().format();
+                }
+                var contentText="题目:"+noAnswerStr+"还未填写，不能提交!";
+                layer.msg(contentText, {
+                    icon: 0,
+                    time: 3000
+                });
+                return;
+            }*/
+            //保存答案
+            saveAnswer();
+        });
+    }
+});
+//页面控件相关事件
+var initControlEvent=function(){
+    //单选、多选按钮的点击事件
+    //复选框事件
+    $("body").delegate(".mutilstli", "click", function (_event) {
+        _event.stopPropagation();
+        var _event = _event || event;
+        var row = _event.srcElement?_event.srcElement:_event.target;
+        var $event=$(row);
+        if(!$event.hasClass("mutilstli")){
+            $event=$event.parents("li");
+        }
+        if($event.hasClass("checkbox-pitch")){
+            $event.removeClass("checkbox-pitch");
+
+        }else{
+            $event.addClass("checkbox-pitch");
+        }
+
+        //修改题目的已做状态
+        var checkedList=$event.parent().children(".checkbox-pitch");
+        if(checkedList.length>0){
+            if($event.parents(".problem").find(".problemBorNOt")){
+                $event.parents(".problem").find(".problemBorNOt").removeClass("problemBorNOt").addClass("problemBor");
+                changeProgressBar();
+            }
+        }else{
+            if($event.parents(".problem").find(".problemBor")){
+                $event.parents(".problem").find(".problemBor").removeClass("problemBor").addClass("problemBorNOt");
+                changeProgressBar();
+            }
+        }
+
+    });
+    // 单选框事件
+    $("body").delegate(".singlestli", "click", function (_event) {
+        _event.stopPropagation();
+        var _event = _event || event;
+        var row = _event.srcElement?_event.srcElement:_event.target;
+        var $event=$(row);
+        if(!$event.hasClass("singlestli")){
+            $event=$event.parents("li");//触发事件的有可能是li里的span
+        }
+        $event.addClass("radio-pitch").siblings().removeClass("radio-pitch");
+        //以下代码是跳转题的业务逻辑，现在报错，先注释掉
+        /*var gjszcontentv=$event.parent().attr("gjszcontent");
+        if(gjszcontentv!="undefined"&&gjszcontentv!=""){
+            gjszcontentv=eval(gjszcontentv);
+            gaojishezhi($event.find("input").val(),gjszcontentv);
+        }*/
+
+        //修改题目的已做状态
+        if($event.parents(".problem").find(".problemBorNOt")){
+            $event.parents(".problem").find(".problemBorNOt").removeClass("problemBorNOt").addClass("problemBor");
+            changeProgressBar();
+        }
+    });
+    //input的失去焦点事件
+    $("body").delegate('input[type="text"]', "blur", function (_event) {
+        _event.stopPropagation();
+        var _event = _event || event;
+        var eventobj = _event.srcElement?_event.srcElement:_event.target;
+        var $this=$(eventobj);
+
+        //验证值是否有效
+        var $event=$this;
+        var qValue;
+        if($event.val()){
+            if(isNaN($event.val())){
+                var contentText="请输入正确的数据类型";
+                layer.msg(contentText, {
+                    icon: 0,
+                    time: 2000
+                });
+                $this.val("");
+                $this.focus();
+                return;
+            }
+            qValue=Number($event.val());
+        }else{
+            if($event.parents(".problem").find(".problemBor")){
+                $event.parents(".problem").find(".problemBor").removeClass("problemBor").addClass("problemBorNOt");
+                changeProgressBar();
+            }
+            return;
+        }
+
+        var valueType=$event.parents(".problem").attr("valType");
+        switch(valueType){//valType=1整数,2小数保留一位,3小数保留两位,4日期
+            case "1":
+                if(qValue%1 != 0){
+                    $event.val(qValue.toFixed(0));
+                    var contentText="整数有效";
+                    layer.msg(contentText, {
+                        icon: 0,
+                        time: 2000
+                    });
+                }
+                break;
+            case "2":
+                if((qValue*10)%1 != 0){
+                    $event.val(qValue.toFixed(1));
+                    var contentText="一位小数有效";
+                    layer.msg(contentText, {
+                        icon: 0,
+                        time: 2000
+                    });
+                }
+                break;
+            case "3":
+                if((qValue*100)%1 != 0){
+                    $event.val(qValue.toFixed(2));
+                    var contentText="两位小数有效";
+                    layer.msg(contentText, {
+                        icon: 0,
+                        time: 2000
+                    });
+                }
+                break;
+        }
+        //修改题目的已做状态
+        if($event.parents(".problem").find(".problemBorNOt")){
+            $event.parents(".problem").find(".problemBorNOt").removeClass("problemBorNOt").addClass("problemBor");
+            changeProgressBar();
+        }
+    });
+};
+//修改进度条的显示
+var changeProgressBar=function(){
+    var quesTotal=$(".problem:visible").length;
+    var hasAnswer=$(".problem:visible").find(".problemBor").length;
+    $(".progressBar .sumNum").html(quesTotal);
+    $(".progressBar .thisNum").html(hasAnswer);
+    progress=hasAnswer/quesTotal*100;
+    //原进度条修改
+    $(".progressBar .reticule").css("height",progress+"%");
+};
+//从数据库获取并渲染答案
+var answersRender=function(){
+    var ajaxobj = {
+        itype: "get",
+        iname: "client/questionnaireController/getQuestionnaireAnswer"
+    };
+    var actobj = {
+        "project_id": "",
+        "task_id": "",
+        "questionnaire_id": "问卷ID实际参数值",
+        "page_num": 1,
+        "user_id": "用户ID实际参数值",
+        "server_id":  ""
+    };
+    var layerIndex = layer.load(0, {shade: false});
+    getdata(ajaxobj, actobj, function (data) {
+        layer.close(layerIndex);
+        if (data.resultnum != "0000") {
+            layer.msg("数据获取失败", {
+                icon: 2,
+                time: 3000
+            });
+            return;
+        }else{
+            //正常情况下应该获取一条数据，但是返回的是一个list，所以就取第一条解析吧
+            answerId=data.resultdata[0].answer_id;//"5eea0d12-220d-03b3-8a3b-70a15c3794f6"
+            var answerContent=JSON.parse(data.resultdata[0].content);
+            //渲染答案
+            for(var i=0;i<answerContent.length;i++){
+                var tmid=answerContent[i].tmid;
+                var standid=answerContent[i].standid;
+                var optionids=answerContent[i].optionids;
+                var score=answerContent[i].score;
+                var currentQues = $('.problem[tmid="'+tmid+'"]');
+                var tmtype=currentQues.attr("tmtype");
+                //修改题目的已填状态样式
+                if(currentQues.find(".problemBorNOt")){
+                    currentQues.find(".problemBorNOt").removeClass("problemBorNOt").addClass("problemBor");
+                }
+                switch(tmtype){
+                    case 'single'://单选
+                        currentQues.find('input[optionid="'+optionids[0]+'"]').parent().addClass("radio-pitch");
+                        break;
+                    case 'mutil'://多选
+                        for(var j=0;j<optionids.length;j++){
+                            currentQues.find('input[optionid="'+optionids[j]+'"]').parent().addClass("checkbox-pitch");
+                        }
+                        break;
+                    //其他题型未处理
+                    //right_wrong = "是非题", blank = "填空题",question_answer = "问答题",range = "区间题",blank_date = "0_0_199"; //日期类型填空题
+                }
+            }
+
+            changeProgressBar();
+        }
+    });
+};
+//获取页面中的答案
+var getAnswer=function(){
+    var answerList=[];
+    var proList=$(".problemBor").parent(".problem:visible");//$(".problem:visible");//获取页面中已填写问题的答案 20170620 by文霞
+    for(var i=0;i<proList.length;i++){
+        //{tmid,optionids,standid,score}
+        var currentQues = $(proList[i]);
+        var tmid=currentQues.attr("tmid");
+        var standid=currentQues.attr("standid");
+        var optionids=[],score=0;
+        //获取选中项
+        var tmtype=currentQues.attr("tmtype");
+        switch(tmtype){
+            case 'single'://单选
+                optionids.push(currentQues.find(".radio-pitch input").attr("optionid"));
+                score=currentQues.find(".radio-pitch input").attr("score");
+                break;
+            case 'mutil'://多选
+                var checkList=currentQues.find(".checkbox-pitch input");
+                //根据计算方式的不同，计算分数结果：valType=2时，只选择一个答案不给分
+                var valType=currentQues.attr("valType");
+                if(valType=="2"||checkList.length==1){
+                    for(var j=0;j<checkList.length;j++){
+                        optionids.push($(checkList[j]).attr("optionid"));
+                    }
+                }else{
+                    for(var j=0;j<checkList.length;j++){
+                        optionids.push($(checkList[j]).attr("optionid"));
+                        score+=$(checkList[j]).attr("score");
+                    }
+                }
+                break;
+            //其他题型未处理
+            //right_wrong = "是非题", blank = "填空题",question_answer = "问答题",range = "区间题",blank_date = "0_0_199"; //日期类型填空题
+        }
+        var item={
+            tmid:tmid,
+            standid:standid,
+            optionids:optionids,
+            score:score
+        };
+        answerList.push(item);
+    }
+    return answerList;
+};
+//保存答案
+var saveAnswer=function(callback){
+    var hasAnswer=$(".problem:visible").find(".problemBor").length;
+    if(hasAnswer==0){
+        layer.msg("没有可保存的数据", {
+            icon: 0,
+            time: 2000
+        });
+        return;
+    }
+    var content=getAnswer();//[];//每个item包含的key:{tmid,optionids,standid,score}
+    var ajaxobj = {
+        itype: "get",
+        iname: "submitQuestionnaire"//"client/questionnaireController/saveAnswer"submitQuestionnaire
+    };
+    var actobj = {//url中需要的key ：authority,project_id，task_id，questionnaire_id,uid,serid,role
+        "answer_id": "",
+        "user_id": "201707311134",//"用户ID实际参数值",
+        "server_id": "",
+        "user_role": "校长",//"用户角色实际参数值",//_UserObject.user_role,
+        "project_id": "",
+        "task_id": "",
+        "questionnaire_id": "201707311134",//"问卷ID实际参数值",
+        "content": content,//"答案内容实际参数值",//"",//问卷答案
+        "page_num": 1
+    };
+    var layerIndex = layer.load(0, {shade: false});
+    getdata(ajaxobj, actobj, function (data) {
+        layer.close(layerIndex);
+        if (data.resultnum != "0000") {
+            layer.msg("数据保存失败", {
+                icon: 2,
+                time: 3000
+            });
+            return;
+        }else{
+            answerId=data.resultdata.answer_id;//"5eea0d12-220d-03b3-8a3b-70a15c3794f6"
+            layer.msg("数据保存成功", {
+                icon: 1,
+                time: 2000
+            });
+        }
+        if(callback){
+            callback();
+        }
+    });
+};
+var baseUrl ="http://192.168.1.69/QHPG-HN/";//"http://192.168.1.73/QHPG-HN/";
+var getdata = function (iter, p, _callback) {
+    var obj;
+    if (p) {
+        obj = {JSONPARAM: JSON.stringify(p)};
+    }
+    $.ajax({
+        type: iter.itype,
+        url: baseUrl + iter.iname+"?_n="+Date.parse(new Date())/1000,
+        data: obj,
+        datatype:"JSON",
+        success: function (res) {
+            //后台返回的是json
+            //res = JSON.parse(res);
+            _callback(res);
+        },
+        error: function (e) {
+        }
+    });
+};
+

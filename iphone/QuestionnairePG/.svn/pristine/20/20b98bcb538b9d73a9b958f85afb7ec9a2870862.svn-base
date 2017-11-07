@@ -1,0 +1,1952 @@
+{
+  "questionnaire_name": "这是一个问卷",
+  "descript": "1111111",
+  "load_user_id": "1",
+  "use_role": "学生",
+  "xueduan_items": [
+    "小学",
+    "初中"
+  ],
+  "questionnaire_questoin": [
+    {
+      "question_id": "6f40cc4d-14d6-e3d9-14f1-d55e324f6a19",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001001,
+      "q_order": 1,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的办学宗旨？",
+      "question_options": [
+        {
+          "option_id": "d800a583-6be7-26e7-35fa-753932978d67",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "6f40cc4d-14d6-e3d9-14f1-d55e324f6a19",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "301dee95-de6a-cf42-4ba2-625859980840",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "6f40cc4d-14d6-e3d9-14f1-d55e324f6a19",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "c0c4fb9b-0b02-c8cb-572d-731f4e6c6b5b",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001002,
+      "q_order": 2,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的办学思想？",
+      "question_options": [
+        {
+          "option_id": "66d7ba18-f647-6e20-8c8c-6488f9f69638",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "c0c4fb9b-0b02-c8cb-572d-731f4e6c6b5b",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "726ec855-56e2-54e4-fa34-16ec9d850b91",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "c0c4fb9b-0b02-c8cb-572d-731f4e6c6b5b",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "ec7d28f0-c694-9bff-b548-71092378ffc7",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001003,
+      "q_order": 3,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的校训？",
+      "question_options": [
+        {
+          "option_id": "5628c290-63f2-56fc-2cdd-37d0aef10a7b",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ec7d28f0-c694-9bff-b548-71092378ffc7",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "117e949e-fea4-b81a-5a56-3a044042aa9a",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ec7d28f0-c694-9bff-b548-71092378ffc7",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "44dd358d-77d2-c9b1-a354-3a1ecd6dd65c",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001004,
+      "q_order": 4,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的校徽？",
+      "question_options": [
+        {
+          "option_id": "933be6a5-a548-3625-464c-d87b74402896",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "44dd358d-77d2-c9b1-a354-3a1ecd6dd65c",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "73a1e162-4f99-8ddc-c0fa-6c3a6d4009fb",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "44dd358d-77d2-c9b1-a354-3a1ecd6dd65c",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "3dee0382-1a70-cfcf-a061-7ca4cc705721",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001005,
+      "q_order": 5,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的校歌？",
+      "question_options": [
+        {
+          "option_id": "ef167d63-0d5a-a65e-9796-e6083b6738ec",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "3dee0382-1a70-cfcf-a061-7ca4cc705721",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "68b3a295-bc80-9d6c-3dfa-8a3f42cf733b",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "3dee0382-1a70-cfcf-a061-7ca4cc705721",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "0e286ab0-b996-7be7-4065-ec41aa54da53",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001006,
+      "q_order": 6,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的校风？",
+      "question_options": [
+        {
+          "option_id": "8b4a312e-5911-e4f7-8ed3-1c656f5b8ab0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0e286ab0-b996-7be7-4065-ec41aa54da53",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "14fe46e8-ebd3-d0c4-1f7d-497dcbd2f974",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0e286ab0-b996-7be7-4065-ec41aa54da53",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "f24a7377-7e2a-fbd6-9243-31e97a4a74b1",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001007,
+      "q_order": 7,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的教风？",
+      "question_options": [
+        {
+          "option_id": "0aa391ce-cf44-7c0f-c881-424fb531f93e",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f24a7377-7e2a-fbd6-9243-31e97a4a74b1",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "8caa4288-4895-4fd0-9bdb-5cea2e9804cf",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f24a7377-7e2a-fbd6-9243-31e97a4a74b1",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "113889d7-7660-732b-8e0b-d365386cc2b4",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": 1010001008,
+      "q_order": 8,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您是否清楚的了解本校的学风？",
+      "question_options": [
+        {
+          "option_id": "7449cfaa-4559-d998-ad47-df0467b988d1",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "113889d7-7660-732b-8e0b-d365386cc2b4",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "bac21827-4911-b03f-3894-43868e1ab90d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "113889d7-7660-732b-8e0b-d365386cc2b4",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "af56b9c6-cd7a-824a-2741-f8a3e2797cce",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 9,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "我校对教师的评价是公正的",
+      "question_options": [
+        {
+          "option_id": "1d3d911e-16b5-d91a-48b0-35d2e6901d1b",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "af56b9c6-cd7a-824a-2741-f8a3e2797cce",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "0f07ccdb-3b1c-c6d6-f9c3-ab15a43282ff",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "af56b9c6-cd7a-824a-2741-f8a3e2797cce",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "d74088db-a975-c813-4e2c-8842ebc381e9",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "af56b9c6-cd7a-824a-2741-f8a3e2797cce",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "f2553880-66cf-dd5a-5ed6-ad3d50c9a3e6",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "af56b9c6-cd7a-824a-2741-f8a3e2797cce",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "ea607637-b224-81de-9cba-3edb968ead63",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "af56b9c6-cd7a-824a-2741-f8a3e2797cce",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "1eec8cdf-f44e-e911-cc25-6938591ffd83",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 10,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "教师工作使我有成功的感觉。",
+      "question_options": [
+        {
+          "option_id": "61a301ef-0c16-d7bc-3970-46ed03b29c62",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "1eec8cdf-f44e-e911-cc25-6938591ffd83",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "822d419b-ab6a-4c06-266b-342629c67836",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "1eec8cdf-f44e-e911-cc25-6938591ffd83",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "8baa4e98-a4fb-41b2-372d-3a97af1703a9",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "1eec8cdf-f44e-e911-cc25-6938591ffd83",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "08bec9e2-7ecb-ac45-d0a7-4018ba08e3e5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "1eec8cdf-f44e-e911-cc25-6938591ffd83",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "b65e41f9-039e-e359-df7d-33c62aba2eda",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "1eec8cdf-f44e-e911-cc25-6938591ffd83",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "286b83a3-c7f3-95a3-7a1b-658320fbe699",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 11,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "学校的晋升制度是公平的",
+      "question_options": [
+        {
+          "option_id": "c82cd935-9e77-a0af-b8c3-eebfba1904c9",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "286b83a3-c7f3-95a3-7a1b-658320fbe699",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "9aca374f-26a9-39b3-c7fc-1354cbef02e5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "286b83a3-c7f3-95a3-7a1b-658320fbe699",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "3cb71434-667c-26d4-44ab-1ed69d16b71c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "286b83a3-c7f3-95a3-7a1b-658320fbe699",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "1446719d-cbef-2ac1-a6a0-3617ad3d6dc2",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "286b83a3-c7f3-95a3-7a1b-658320fbe699",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "12c85015-093e-e92e-a1f3-c9449e36378d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "286b83a3-c7f3-95a3-7a1b-658320fbe699",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "99791688-b041-be5c-b1c8-206ec7a904b9",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 12,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "工作收入足以满足我正常支出",
+      "question_options": [
+        {
+          "option_id": "6d61158d-a381-903e-4d47-90f03bb92ef2",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "99791688-b041-be5c-b1c8-206ec7a904b9",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "0dd91311-6d9f-6842-a4d5-321eca4b36a0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "99791688-b041-be5c-b1c8-206ec7a904b9",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "7da6dc89-c012-7382-0451-b33b0d705b33",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "99791688-b041-be5c-b1c8-206ec7a904b9",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "63c573cc-20e9-15ec-eadc-68bbf558b2cd",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "99791688-b041-be5c-b1c8-206ec7a904b9",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "2bf14b58-1fef-13d0-65c9-272e57ab8549",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "99791688-b041-be5c-b1c8-206ec7a904b9",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "f0f8a491-930b-3c9d-e977-cb3e11d94efd",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 13,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "后勤工作完善，服务意识高。",
+      "question_options": [
+        {
+          "option_id": "1ac1e8fb-1e4c-c873-fec6-75034232d4f2",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f0f8a491-930b-3c9d-e977-cb3e11d94efd",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "4e061382-fa85-6b00-ad13-201cc1182f42",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f0f8a491-930b-3c9d-e977-cb3e11d94efd",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "9ca6e883-ec10-fac1-1a76-3bd33f832cbf",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f0f8a491-930b-3c9d-e977-cb3e11d94efd",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "bf9e222b-0fd2-454e-4baa-1aca0c2bed6d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f0f8a491-930b-3c9d-e977-cb3e11d94efd",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "34ba9fe0-064a-de82-97d5-5cf43aae8d03",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f0f8a491-930b-3c9d-e977-cb3e11d94efd",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "e0025a37-1a6d-02e5-25e0-4e5759784860",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 14,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "校园环境优美，令人心情愉悦",
+      "question_options": [
+        {
+          "option_id": "dcb8b036-d12b-f68d-5ab1-7ebb068d8266",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "e0025a37-1a6d-02e5-25e0-4e5759784860",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "fae8705c-3457-f037-2040-d67baad336e4",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "e0025a37-1a6d-02e5-25e0-4e5759784860",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "f9139a89-c2de-8b2a-63eb-de8f5d4f41f4",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "e0025a37-1a6d-02e5-25e0-4e5759784860",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "e2176096-8c5e-d43d-05b7-945b23875342",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "e0025a37-1a6d-02e5-25e0-4e5759784860",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "70c58321-5f39-07bd-0ea0-27b0750aa274",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "e0025a37-1a6d-02e5-25e0-4e5759784860",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "dc7d2f64-4093-a1c1-861d-7347875c4e39",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 15,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "领导对教师评价很具体很客观。",
+      "question_options": [
+        {
+          "option_id": "9f70ef1e-89a4-f78d-0cd0-fc87467362ae",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "dc7d2f64-4093-a1c1-861d-7347875c4e39",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "cc14163f-95d2-f422-93b5-9fac9b4f4ae0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "dc7d2f64-4093-a1c1-861d-7347875c4e39",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "f5e66afa-b914-1f78-a5fb-da036231d731",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "dc7d2f64-4093-a1c1-861d-7347875c4e39",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "d23a6599-81ca-4fb0-9903-d7a20169c50e",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "dc7d2f64-4093-a1c1-861d-7347875c4e39",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "939ee1d2-8247-c75c-485b-acfbb9d10d97",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "dc7d2f64-4093-a1c1-861d-7347875c4e39",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "cb9c7f51-f8f3-6704-c398-fee7b09714de",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 16,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "在我困难的时候，同事能帮忙。",
+      "question_options": [
+        {
+          "option_id": "1c837356-506a-7629-da06-d8af1039535c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "cb9c7f51-f8f3-6704-c398-fee7b09714de",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "9b987f49-3323-ddd0-c91e-dd1e555d02d1",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "cb9c7f51-f8f3-6704-c398-fee7b09714de",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "3738ce52-64d0-1ca5-27e1-3bcd3c37ecb5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "cb9c7f51-f8f3-6704-c398-fee7b09714de",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "7a8913a9-3b7b-5c6c-5307-ea8c22cb7cec",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "cb9c7f51-f8f3-6704-c398-fee7b09714de",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "d6c56279-90ee-1829-f80b-151862ac6943",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "cb9c7f51-f8f3-6704-c398-fee7b09714de",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "f29a1779-3bfb-1914-bac2-8b03898221ae",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 17,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "工作经常让我感到疲惫不堪，不堪重负。",
+      "question_options": [
+        {
+          "option_id": "ad28df8d-91c6-d90c-dcda-067654f50cf3",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f29a1779-3bfb-1914-bac2-8b03898221ae",
+          "option_content": "非常赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "49fce0fc-4684-743a-4ffc-ec08ebf0a70f",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f29a1779-3bfb-1914-bac2-8b03898221ae",
+          "option_content": "比较赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "71558e42-fc7c-02f1-9bb4-90d0f0f32410",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f29a1779-3bfb-1914-bac2-8b03898221ae",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "214a5314-f14a-291c-6454-7477d6d6920f",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f29a1779-3bfb-1914-bac2-8b03898221ae",
+          "option_content": "不赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "58a7b993-5510-7dbc-4ff9-7a1765a48a9d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f29a1779-3bfb-1914-bac2-8b03898221ae",
+          "option_content": "非常不赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "bf7540e6-5ef1-dc2f-c38e-db69e91fe5fe",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1002001001002",
+      "q_order": 18,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "总的来说，我对我的工作还是比较满意的。",
+      "question_options": [
+        {
+          "option_id": "263397ba-e78e-a2db-ba59-b509d73178c5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bf7540e6-5ef1-dc2f-c38e-db69e91fe5fe",
+          "option_content": "非常不赞成",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "81598574-779b-7b0b-f916-cf2dc92e79b5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bf7540e6-5ef1-dc2f-c38e-db69e91fe5fe",
+          "option_content": "不赞成",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "5d74b1d1-6ef7-1ef7-d105-7a2bc0731cf8",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bf7540e6-5ef1-dc2f-c38e-db69e91fe5fe",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "0f1aeb09-4bda-7d53-b164-7042f37bac54",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bf7540e6-5ef1-dc2f-c38e-db69e91fe5fe",
+          "option_content": "比较赞成",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "2cdee9e8-8e73-6b7b-afa6-180c7540e910",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bf7540e6-5ef1-dc2f-c38e-db69e91fe5fe",
+          "option_content": "非常赞成",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "edc6a007-2a07-96c2-35c3-9127af148e0c",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "无",
+      "stand_id": "1002002005001",
+      "q_order": 19,
+      "option_order": "1",
+      "rule": "2",
+      "q_type": "多选题",
+      "content": "学校评价您工作的依据是什么？",
+      "question_options": [
+        {
+          "option_id": "bfc25e0b-661f-c511-cd63-a78a91d6611a",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "edc6a007-2a07-96c2-35c3-9127af148e0c",
+          "option_content": "学生考试成绩",
+          "option_order": 8,
+          "option_score": "1"
+        },
+        {
+          "option_id": "12f13898-7cf8-377e-45a9-30e4d38e93c0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "edc6a007-2a07-96c2-35c3-9127af148e0c",
+          "option_content": "升学率",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "e6dd44b6-bd63-9379-81a7-7cdcce83de33",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "edc6a007-2a07-96c2-35c3-9127af148e0c",
+          "option_content": "学生艺体能素养",
+          "option_order": 10,
+          "option_score": "1"
+        }
+      ]
+    },
+    {
+      "question_id": "319e61be-0b41-0663-c9d6-f79ecd6980c0",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "无",
+      "stand_id": "1002002006002",
+      "q_order": 20,
+      "option_order": "1",
+      "rule": "2",
+      "q_type": "多选题",
+      "content": "您是如何评价学生的学习情况？",
+      "question_options": [
+        {
+          "option_id": "16885f9b-0a9f-181d-a2bd-deee33355846",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "319e61be-0b41-0663-c9d6-f79ecd6980c0",
+          "option_content": "考试成绩",
+          "option_order": 8,
+          "option_score": "1"
+        },
+        {
+          "option_id": "20638710-52a4-46b4-e45e-f5ea31688028",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "319e61be-0b41-0663-c9d6-f79ecd6980c0",
+          "option_content": "平时表现",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "065dc01e-95c5-9d8e-8f13-531a1757bebd",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "319e61be-0b41-0663-c9d6-f79ecd6980c0",
+          "option_content": "艺体能素质",
+          "option_order": 10,
+          "option_score": "1"
+        }
+      ]
+    },
+    {
+      "question_id": "ff7ce7bf-28f8-1a60-a97c-d0b456971bb2",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 21,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您认为贵校领导班子坚强有力和团结协作的程度如何",
+      "question_options": [
+        {
+          "option_id": "c0f3eb43-a539-0c16-3123-7796f0215ff8",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ff7ce7bf-28f8-1a60-a97c-d0b456971bb2",
+          "option_content": "非常低",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "cf56439e-05df-ff53-26c6-d8c0c5f1c45c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ff7ce7bf-28f8-1a60-a97c-d0b456971bb2",
+          "option_content": "比较低",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "fcaee002-8e5d-9a8d-e238-dd8079e49011",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ff7ce7bf-28f8-1a60-a97c-d0b456971bb2",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "acd226b6-57ef-0929-0fa7-1bf9a57b4dba",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ff7ce7bf-28f8-1a60-a97c-d0b456971bb2",
+          "option_content": "比较高",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "afb55ce3-1bf9-9946-4be3-643241776dfa",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "ff7ce7bf-28f8-1a60-a97c-d0b456971bb2",
+          "option_content": "非常高",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "f9852a74-e068-ee01-a357-9e7972f86440",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 22,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子政治坚定、行动自觉",
+      "question_options": [
+        {
+          "option_id": "9898b4ba-1cb8-1941-6e68-ea5bf11bd5e9",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f9852a74-e068-ee01-a357-9e7972f86440",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "7ba5eec3-875d-3e6b-be41-c7624fe474b1",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f9852a74-e068-ee01-a357-9e7972f86440",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "22f75dd2-757c-c6a0-b32e-c2ec78814de5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f9852a74-e068-ee01-a357-9e7972f86440",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "04c1f471-908f-d9f6-7613-f53a405dafa2",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f9852a74-e068-ee01-a357-9e7972f86440",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "2bf518ff-0467-6ce1-4ca2-0a88e21c429a",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "f9852a74-e068-ee01-a357-9e7972f86440",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "63f37286-2b7d-9e28-7ef1-88d6d291c3f0",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 23,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子民主团结、有序高效",
+      "question_options": [
+        {
+          "option_id": "e9988595-61f7-a446-68fb-a73954b2000e",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "63f37286-2b7d-9e28-7ef1-88d6d291c3f0",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "f91d9bcc-5555-927c-e0f9-aaeee5ff2c3a",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "63f37286-2b7d-9e28-7ef1-88d6d291c3f0",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "63047fc8-1688-28d8-f3c4-dd092d517bdc",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "63f37286-2b7d-9e28-7ef1-88d6d291c3f0",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "3f80acbd-5632-19fe-8411-65fb1515cda0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "63f37286-2b7d-9e28-7ef1-88d6d291c3f0",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "c2530f97-671a-2e29-0184-fbe1832eb0da",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "63f37286-2b7d-9e28-7ef1-88d6d291c3f0",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "0d1a11cb-1dcb-cf20-be70-d53cf721150b",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 24,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子重德尚才、任人唯贤",
+      "question_options": [
+        {
+          "option_id": "3ad7b30a-2cfe-08c6-e7fb-d34413054b97",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0d1a11cb-1dcb-cf20-be70-d53cf721150b",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "6b7ac171-a324-a3ce-599a-cdc165398318",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0d1a11cb-1dcb-cf20-be70-d53cf721150b",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "dc923ff5-ed17-96f8-cdf9-8be3d75ec8d1",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0d1a11cb-1dcb-cf20-be70-d53cf721150b",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "c5d4135d-9721-52da-28cc-dbc0952d932c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0d1a11cb-1dcb-cf20-be70-d53cf721150b",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "1048aa24-fd4d-08d2-b52c-f8c3861662e3",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0d1a11cb-1dcb-cf20-be70-d53cf721150b",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "2af52aef-04cd-e69b-fd0a-5a4865edac16",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 25,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子敬业奉献、品行高尚、清正廉洁",
+      "question_options": [
+        {
+          "option_id": "fc1f09b8-f7c3-0ccc-f224-3668ab69d80d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "2af52aef-04cd-e69b-fd0a-5a4865edac16",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "ae680689-9239-5dab-210e-6b79110fd303",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "2af52aef-04cd-e69b-fd0a-5a4865edac16",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "7c7bc132-c4ad-c616-6949-2589839e3946",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "2af52aef-04cd-e69b-fd0a-5a4865edac16",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "e3df5d2e-03dd-4e32-82ec-55f96833d841",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "2af52aef-04cd-e69b-fd0a-5a4865edac16",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "41e4492d-c106-75c8-037a-d30a804bd433",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "2af52aef-04cd-e69b-fd0a-5a4865edac16",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "a122d0cf-7939-d238-ea3d-6d07b64b0353",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 26,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子能合力高效工作",
+      "question_options": [
+        {
+          "option_id": "2852ff37-fb12-21a8-ec0f-e9fb0fef3a93",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "a122d0cf-7939-d238-ea3d-6d07b64b0353",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "e1c2564b-16c3-916e-72f3-d7282d1f42ab",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "a122d0cf-7939-d238-ea3d-6d07b64b0353",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "e69b92f7-c931-00f0-71f6-6ad08e6f4525",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "a122d0cf-7939-d238-ea3d-6d07b64b0353",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "3481d5f4-d96c-1095-10e0-901ddb82a43e",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "a122d0cf-7939-d238-ea3d-6d07b64b0353",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "07977e23-2281-7b47-2802-175cc01d0da2",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "a122d0cf-7939-d238-ea3d-6d07b64b0353",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "53dc2c71-0331-6471-c0d2-3cb2632cec3b",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 27,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子能够互相信任、互相尊重、互相理解、互相支持、互相补台",
+      "question_options": [
+        {
+          "option_id": "efab1498-efc4-9c06-b9a3-86686e3f0e04",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "53dc2c71-0331-6471-c0d2-3cb2632cec3b",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "f99c78ca-b24c-1b41-c19f-d2247b1e1761",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "53dc2c71-0331-6471-c0d2-3cb2632cec3b",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "3e174b06-6197-0367-c2df-b7efb328c259",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "53dc2c71-0331-6471-c0d2-3cb2632cec3b",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "cbee5262-24b0-42aa-c554-8737335a4912",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "53dc2c71-0331-6471-c0d2-3cb2632cec3b",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "93c3137b-5166-3872-e174-5dc2499cd903",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "53dc2c71-0331-6471-c0d2-3cb2632cec3b",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "5b2c4ea2-e9ca-3330-4732-ebb817547b6e",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": 1003001003,
+      "q_order": 28,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校领导班子注重构通的途径和方式，成员之间主动交心通气、主动出主意、主动支持配合",
+      "question_options": [
+        {
+          "option_id": "7ea27ca9-e72a-6f26-6d25-784ae255d853",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5b2c4ea2-e9ca-3330-4732-ebb817547b6e",
+          "option_content": "不同意",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "0de506e0-eef4-be1e-6648-c383794f756d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5b2c4ea2-e9ca-3330-4732-ebb817547b6e",
+          "option_content": "有些不同意",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "e3b2c075-5c55-9236-4262-843d8219ee59",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5b2c4ea2-e9ca-3330-4732-ebb817547b6e",
+          "option_content": "不确定",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "1158810d-727a-c588-9bd3-8a07aaacac94",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5b2c4ea2-e9ca-3330-4732-ebb817547b6e",
+          "option_content": "有些同意",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "9cd67de2-1a05-b911-5d22-41a42e5a20cd",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5b2c4ea2-e9ca-3330-4732-ebb817547b6e",
+          "option_content": "同意",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "98623916-3293-c03e-2011-206f4a6231d5",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": "1005001001001",
+      "q_order": 29,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校体育卫生工作是否贯彻《学校体育工作条例》和《学校卫生工作条例》",
+      "question_options": [
+        {
+          "option_id": "a808e640-f780-40d5-2d3c-81631ebd8f32",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "98623916-3293-c03e-2011-206f4a6231d5",
+          "option_content": "落实",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "f316c04f-f1fe-52ed-079c-c7a7293919bf",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "98623916-3293-c03e-2011-206f4a6231d5",
+          "option_content": "尚未落实",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "40f13c82-92a8-cdc3-6967-2f54f8f0b4c3",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": "1005001002002",
+      "q_order": 30,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "学校每年是否开展全校性体育运动会",
+      "question_options": [
+        {
+          "option_id": "ffc721d3-1494-fe96-5210-c15c1d8e43ad",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "40f13c82-92a8-cdc3-6967-2f54f8f0b4c3",
+          "option_content": "是",
+          "option_order": 8,
+          "option_score": "5"
+        },
+        {
+          "option_id": "6f39b453-ef3d-1e11-bc6c-d4626a2ce5d0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "40f13c82-92a8-cdc3-6967-2f54f8f0b4c3",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "77574029-8f52-6ef4-8ad0-cbbb45728975",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1006001001001",
+      "q_order": 31,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您认为贵校教研教改制度是否健全？",
+      "question_options": [
+        {
+          "option_id": "af47fe76-bd26-16cd-f871-064109461772",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "77574029-8f52-6ef4-8ad0-cbbb45728975",
+          "option_content": "不健全",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "0ac50916-2dcc-e133-bd4e-1318971af17c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "77574029-8f52-6ef4-8ad0-cbbb45728975",
+          "option_content": "一般",
+          "option_order": 9,
+          "option_score": "3"
+        },
+        {
+          "option_id": "66055373-b4f5-9616-4678-8c7474205ee8",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "77574029-8f52-6ef4-8ad0-cbbb45728975",
+          "option_content": "健全",
+          "option_order": 10,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "876f69c7-764d-d5fc-d94b-2819d1484304",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1006001001002",
+      "q_order": 32,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "您认为贵校教研教改所落实的学科是否齐全？",
+      "question_options": [
+        {
+          "option_id": "851973c1-717a-28bf-e304-18d33b9ab4e0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "876f69c7-764d-d5fc-d94b-2819d1484304",
+          "option_content": "不齐全",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "cebb83c8-17ad-8708-5b0e-cb3c9c7aadbc",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "876f69c7-764d-d5fc-d94b-2819d1484304",
+          "option_content": "一般",
+          "option_order": 9,
+          "option_score": "3"
+        },
+        {
+          "option_id": "61ec4f99-215d-d36d-0c39-f289bab35069",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "876f69c7-764d-d5fc-d94b-2819d1484304",
+          "option_content": "齐全",
+          "option_order": 10,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "6df5d496-2e37-ada0-09cb-778249f002dc",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1006001001003",
+      "q_order": 33,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校教研活动频率如何？",
+      "question_options": [
+        {
+          "option_id": "9d569174-e404-5a79-f77b-64fa53c5c1d4",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "6df5d496-2e37-ada0-09cb-778249f002dc",
+          "option_content": "每学期一次",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "55265ae9-564a-e3ea-fd00-d4ea51503a39",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "6df5d496-2e37-ada0-09cb-778249f002dc",
+          "option_content": "一月一次",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "00b77d66-ba0f-2d2a-1b8a-0e9f94b32a11",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "6df5d496-2e37-ada0-09cb-778249f002dc",
+          "option_content": "一周一次",
+          "option_order": 10,
+          "option_score": "5"
+        },
+        {
+          "option_id": "e86b310c-76f9-3fc2-9618-dc63f2960f01",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "6df5d496-2e37-ada0-09cb-778249f002dc",
+          "option_content": "一周两次及以上",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "4e6f0cbc-0b50-76a6-eb8b-e99bf1c0c135",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "无",
+      "stand_id": "1006001002",
+      "q_order": 34,
+      "option_order": "1",
+      "rule": "2",
+      "q_type": "多选题",
+      "content": "贵校教研教改活动包括以下哪种形式？",
+      "question_options": [
+        {
+          "option_id": "f2f854aa-25db-68e5-0920-a24cd78a1047",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e6f0cbc-0b50-76a6-eb8b-e99bf1c0c135",
+          "option_content": "校本学习培训",
+          "option_order": 8,
+          "option_score": "1"
+        },
+        {
+          "option_id": "42397b0f-cbdd-bdeb-4c48-e8c44aae1615",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e6f0cbc-0b50-76a6-eb8b-e99bf1c0c135",
+          "option_content": "主题研讨",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "2e2be311-0e21-7a5e-a5a7-166a0ae41088",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e6f0cbc-0b50-76a6-eb8b-e99bf1c0c135",
+          "option_content": "问题解决",
+          "option_order": 10,
+          "option_score": "1"
+        },
+        {
+          "option_id": "b38e606b-6061-4867-0bac-d277b0bfc77c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e6f0cbc-0b50-76a6-eb8b-e99bf1c0c135",
+          "option_content": "课题研究",
+          "option_order": 11,
+          "option_score": "1"
+        }
+      ]
+    },
+    {
+      "question_id": "bc87a94a-a03f-d32f-de57-c8c37384893e",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1006001003001",
+      "q_order": 35,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校能认真完成县以上教研部门下达的教研、教改或科研课题研讨工作。",
+      "question_options": [
+        {
+          "option_id": "a0ddf469-4f51-efb4-83c7-f7519f2130ef",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bc87a94a-a03f-d32f-de57-c8c37384893e",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "23868fd8-a985-fc9b-b1e8-1ea949306375",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bc87a94a-a03f-d32f-de57-c8c37384893e",
+          "option_content": "不太符合",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "9a953707-91e6-d0d5-4069-ec99bb3b37f0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bc87a94a-a03f-d32f-de57-c8c37384893e",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "ed5dbfbc-97c4-5fb6-99b5-b8813b3be847",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bc87a94a-a03f-d32f-de57-c8c37384893e",
+          "option_content": "比较符合",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "49f5ce41-fe9b-5182-5743-1a2998d93929",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "bc87a94a-a03f-d32f-de57-c8c37384893e",
+          "option_content": "符合",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "8ab2b86c-345a-a203-17fe-337c79fc4c7d",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1006001003002",
+      "q_order": 36,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校教研教改工作成果显著。",
+      "question_options": [
+        {
+          "option_id": "080f66cc-b69c-f258-91a1-7606536231e9",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8ab2b86c-345a-a203-17fe-337c79fc4c7d",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "b175d076-3424-6e2c-c46b-cd4491e0ba1e",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8ab2b86c-345a-a203-17fe-337c79fc4c7d",
+          "option_content": "不太符合",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "ef579f82-1aa4-6bff-b410-8d4a5051289d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8ab2b86c-345a-a203-17fe-337c79fc4c7d",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "4c1aa4f4-51c1-1a59-c2a9-4dc906d86645",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8ab2b86c-345a-a203-17fe-337c79fc4c7d",
+          "option_content": "比较符合",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "b1d9c5ef-2ea1-ab0f-c753-87d7d50ccd63",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8ab2b86c-345a-a203-17fe-337c79fc4c7d",
+          "option_content": "符合",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "4e35e22e-bde4-0640-456f-50a897f12a42",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1006001004",
+      "q_order": 37,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "贵校教师参与教研教改活动的积极性如何？",
+      "question_options": [
+        {
+          "option_id": "2a93951d-21d7-68b8-13e0-d23d6eef6e5d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e35e22e-bde4-0640-456f-50a897f12a42",
+          "option_content": "非常不积极",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "9a9506e3-fc39-5a52-fc1f-2652264763a0",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e35e22e-bde4-0640-456f-50a897f12a42",
+          "option_content": "比较不积极",
+          "option_order": 9,
+          "option_score": "1"
+        },
+        {
+          "option_id": "e57affef-d41f-036b-bc85-d0dc6c6dc7d5",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e35e22e-bde4-0640-456f-50a897f12a42",
+          "option_content": "一般",
+          "option_order": 10,
+          "option_score": "2"
+        },
+        {
+          "option_id": "e9be40f6-9849-20b3-2bb1-681b2fef34bf",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e35e22e-bde4-0640-456f-50a897f12a42",
+          "option_content": "比较积极",
+          "option_order": 11,
+          "option_score": "3"
+        },
+        {
+          "option_id": "b45de7ba-2638-988b-02fd-50bb0f192e26",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "4e35e22e-bde4-0640-456f-50a897f12a42",
+          "option_content": "非常积极",
+          "option_order": 12,
+          "option_score": "4"
+        }
+      ]
+    },
+    {
+      "question_id": "8923a81c-42c6-1aa6-4401-54e2f23acbb0",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "负",
+      "stand_id": "1006002003",
+      "q_order": 38,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "计算机、多媒体、校校通的电脑和远程教育设备是否有专人负责管理使用？",
+      "question_options": [
+        {
+          "option_id": "ae40d0b3-6fdd-dfd9-5a4a-d403671c99d8",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8923a81c-42c6-1aa6-4401-54e2f23acbb0",
+          "option_content": "5",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "9a23de01-4c2f-0a0e-3fdd-a6bc655e49cc",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8923a81c-42c6-1aa6-4401-54e2f23acbb0",
+          "option_content": "否",
+          "option_order": 9,
+          "option_score": "0"
+        }
+      ]
+    },
+    {
+      "question_id": "5c10511c-0f69-8017-2869-c26e9d641d68",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1007004001",
+      "q_order": 39,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "学校有健全的物资财产管理岗位责任制度",
+      "question_options": [
+        {
+          "option_id": "5509a91d-f17e-f1c3-7b12-1e6aa4bba074",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5c10511c-0f69-8017-2869-c26e9d641d68",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "857ff2d3-5517-68c0-bfac-89da381282ad",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5c10511c-0f69-8017-2869-c26e9d641d68",
+          "option_content": "有些不符合",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "a1d4f188-907b-204d-c9e0-3bc113d5b4e8",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5c10511c-0f69-8017-2869-c26e9d641d68",
+          "option_content": "有些符合",
+          "option_order": 10,
+          "option_score": "0"
+        },
+        {
+          "option_id": "8a8dc75a-3c29-8474-e40f-2db3f58fed09",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "5c10511c-0f69-8017-2869-c26e9d641d68",
+          "option_content": "符合",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "0c48579e-e5be-7f47-5496-b60752098123",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1007004001",
+      "q_order": 40,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "学校有专人管理学校的教学、生活财产物资",
+      "question_options": [
+        {
+          "option_id": "906c9473-3fa1-3d77-d6d1-136a49aee3d3",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0c48579e-e5be-7f47-5496-b60752098123",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "056a613b-441a-3dae-0b42-b9507da6c22f",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0c48579e-e5be-7f47-5496-b60752098123",
+          "option_content": "有些不符合",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "fcade4d6-be07-d725-5d2b-c690f156c0b6",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0c48579e-e5be-7f47-5496-b60752098123",
+          "option_content": "有些符合",
+          "option_order": 10,
+          "option_score": "0"
+        },
+        {
+          "option_id": "ea084f65-306b-6613-c2a2-050646815363",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0c48579e-e5be-7f47-5496-b60752098123",
+          "option_content": "符合",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "8619a863-7c9e-8d35-4661-4ba21106fa72",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1007004002",
+      "q_order": 41,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "学校有用以登记核算固定资产的分类明细账",
+      "question_options": [
+        {
+          "option_id": "336dd56f-71b0-2bc3-496b-b019c620fefb",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8619a863-7c9e-8d35-4661-4ba21106fa72",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "1c5fe701-5f85-d3a7-5d38-606979116783",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8619a863-7c9e-8d35-4661-4ba21106fa72",
+          "option_content": "有些不符合",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "efaec0fe-95ad-06a5-8687-dd8c2d5ae1c6",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8619a863-7c9e-8d35-4661-4ba21106fa72",
+          "option_content": "有些符合",
+          "option_order": 10,
+          "option_score": "0"
+        },
+        {
+          "option_id": "2252cee6-3163-7d70-6b0a-4ea6aad8c5c8",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "8619a863-7c9e-8d35-4661-4ba21106fa72",
+          "option_content": "符合",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "0dd1b094-ac77-6b49-e4a7-504aa323f025",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1007004002",
+      "q_order": 42,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "学校有健全的领用偿还制度",
+      "question_options": [
+        {
+          "option_id": "ed1e92c2-e9b8-b6ba-93e9-05c705196767",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0dd1b094-ac77-6b49-e4a7-504aa323f025",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "d237985a-a7a3-1545-3eb8-8edf3a06727a",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0dd1b094-ac77-6b49-e4a7-504aa323f025",
+          "option_content": "有些不符合",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "1dfaf01c-14fd-ac10-56ed-8d98f6f8e76c",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0dd1b094-ac77-6b49-e4a7-504aa323f025",
+          "option_content": "有些符合",
+          "option_order": 10,
+          "option_score": "0"
+        },
+        {
+          "option_id": "3e626a72-2399-4fb3-f58d-b5124e3f959e",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "0dd1b094-ac77-6b49-e4a7-504aa323f025",
+          "option_content": "符合",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "d3b9b152-7dfa-2d41-b841-119680000216",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1007004003",
+      "q_order": 43,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "对新增加和报废的固定资产，学校能做到及时登记入帐",
+      "question_options": [
+        {
+          "option_id": "6498c2be-0141-a1d2-8291-d24dc6ee6086",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "d3b9b152-7dfa-2d41-b841-119680000216",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "ff685573-9710-905e-7ec2-631eb5136186",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "d3b9b152-7dfa-2d41-b841-119680000216",
+          "option_content": "有些不符合",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "ce3b6d95-f0ad-826e-cdc2-9785aa320349",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "d3b9b152-7dfa-2d41-b841-119680000216",
+          "option_content": "有些符合",
+          "option_order": 10,
+          "option_score": "0"
+        },
+        {
+          "option_id": "cc182983-aae4-36f7-efde-68a607a5a37d",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "d3b9b152-7dfa-2d41-b841-119680000216",
+          "option_content": "符合",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    },
+    {
+      "question_id": "c76b739b-f128-3250-3d99-1554b90b6ac8",
+      "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+      "option_direction": "正",
+      "stand_id": "1007004003",
+      "q_order": 44,
+      "option_order": "1",
+      "rule": "0",
+      "q_type": "单选题",
+      "content": "对新增加和报废的固定资产，学校能做到定期盘点核对，做到账账相符，账实相符",
+      "question_options": [
+        {
+          "option_id": "853f70e0-afd8-dbc0-f49e-3f6ba9f36d27",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "c76b739b-f128-3250-3d99-1554b90b6ac8",
+          "option_content": "不符合",
+          "option_order": 8,
+          "option_score": "0"
+        },
+        {
+          "option_id": "94107dbf-ce70-6ae3-c793-4cafd4708924",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "c76b739b-f128-3250-3d99-1554b90b6ac8",
+          "option_content": "有些不符合",
+          "option_order": 9,
+          "option_score": "0"
+        },
+        {
+          "option_id": "cf1a7fa8-0d3d-afe3-3338-6c65ec288ffd",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "c76b739b-f128-3250-3d99-1554b90b6ac8",
+          "option_content": "有些符合",
+          "option_order": 10,
+          "option_score": "0"
+        },
+        {
+          "option_id": "a600fd02-1afa-27b3-40f0-e349174f4b82",
+          "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",
+          "question_id": "c76b739b-f128-3250-3d99-1554b90b6ac8",
+          "option_content": "符合",
+          "option_order": 11,
+          "option_score": "5"
+        }
+      ]
+    }
+  ]
+}

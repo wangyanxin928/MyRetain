@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>新问卷</title>
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="page">
+    <div class="content">
+        <div class="survey-img"><img src="images/student1.jpg"/></div>
+        <div class="survey-content">
+            <div class="problemList">
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">1.</span>
+                            <span class="problemWord">您的性别？</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>男</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">2.</span>
+                            <span class="problemWord">您的年龄？____周岁(请填写整数)</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList">
+                                <li>
+                                    <div class="problemAnswerInfo">
+                                        <input type="text" placeholder="请输入正确的答案...">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">3.</span>
+                            <span class="problemWord">您所在的学段是？</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>A.小学</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>B.初中</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>C.高中</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>D.大学</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">4.</span>
+                            <span class="problemWord">您的学龄 ____年（请填写整数）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList">
+                                <li>
+                                    <div class="problemAnswerInfo">
+                                        <input type="text" placeholder="请输入正确的答案...">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">5.</span>
+                            <span class="problemWord">您的职称？</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>A.无</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>B.三级教师</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>C.二级教师</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>D.一级教师</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>E.高级教师</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">6.</span>
+                            <span class="problemWord">您的专业？</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>A.英语专业</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>B.非英语专业</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">7.</span>
+                            <span class="problemWord">您所处的地区/省份？</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>A.西部</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>B.中部</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>B.东部</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="surveySubmitFooter">
+        <div class="problemProgressBar"></div>
+        <!--<span class="btnBlueDark" >提&nbsp;&nbsp;交</span>-->
+        <div class="upperProblem">上一题</div>
+        <div class="alightProblem">下一题</div>
+    </div>
+    <!--<div class="survey-footer">-->
+
+    <!--</div>-->
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/flexible.debug.js"></script>
+<script src="js/flexible_css.debug.js"></script>
+<!--引入layer提示框-->
+<script src="js/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="js/question.js"></script>
+</body>
+</html>

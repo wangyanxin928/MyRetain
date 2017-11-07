@@ -1,0 +1,365 @@
+/**
+ * Created by byx on 17/5/16.
+ * 问卷填报模块 业务处理层
+ */
+var $util = require('../../util/util');
+
+var questionnaireDao = require('../../dao/client_dao/questionnaireDao');
+var async = require('async');
+
+module.exports = {
+    //问卷填报：向questionnaire_answer表中存储答案数据【暂时未使用】
+    saveAnswer: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var answerInfo = {};
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            answerInfo.answer_id = param.answer_id.length == 0 ? $util.GUID() : param.answer_id;
+            answerInfo.user_id = param.user_id;
+            answerInfo.server_id = param.server_id;
+            answerInfo.user_role = param.user_role;
+            answerInfo.project_id = param.project_id;
+            answerInfo.task_id = param.task_id;
+            answerInfo.questionnaire_id = param.questionnaire_id;
+            answerInfo.content = param.content;
+            answerInfo.page_num = param.page_num;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        questionnaireDao.saveAnswer(answerInfo, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = {answer_id: answerInfo.answer_id};
+            res.json($util.resJSON);
+        });
+    },
+    //获取问卷答案：从questionnaire_answer表中获取问卷答案
+    getQuestionnaireAnswer: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var answerInfo = {};
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            answerInfo.project_id = param.project_id;
+            answerInfo.task_id = param.task_id;
+            answerInfo.questionnaire_id = param.questionnaire_id;
+            answerInfo.page_num = param.page_num;
+            answerInfo.user_id = param.user_id;
+            answerInfo.server_id = param.server_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+        questionnaireDao.getQuestionnaireAnswer(answerInfo, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    },
+
+    //提交问卷：向questionnaire_submit、score_result、questionnaire_answer、  questionnaire_single_answer表中存储答案数据
+    submitQuestionnaire:function(req, res, next){
+        try {
+            // 获取前台页面传过来的参数
+            var answerInfo = {};
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            answerInfo.server_id = param.server_id;
+            answerInfo.user_id = param.user_id;
+            answerInfo.project_id = param.project_id;
+            answerInfo.task_id = param.task_id;
+            answerInfo.user_role = param.user_role;
+            answerInfo.questionnaire_id = param.questionnaire_id;
+            answerInfo.answer_id = $util.GUID();
+            answerInfo.content = param.content;
+            answerInfo.page_num = param.page_num;
+            answerInfo.isanonymous = param.isanonymous;
+            answerInfo.sub_sourcetype = param.sub_sourcetype;
+
+            answerInfo.answer_items = param.answer_items;//用于存储指标分数信息
+            answerInfo.user_name = param.user_name;
+            answerInfo.school_name = param.school_name;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        async.series([
+            //保存问卷提交记录，提交数据到questionnaire_submit表
+            function(done) {
+                questionnaireDao.submitQuestionnaire(answerInfo, function (err, result) {
+                    if (err != null) {
+                        $util.resJSONError(err, res);
+                        done(err,null);
+                    }
+                    else{
+                        done(null,result);
+                    }
+                });
+            },
+            //保存分数信息到score_result表:计算部分的结果添加到sr表
+            function(done){
+                questionnaireDao.calculateScore(answerInfo.project_id,answerInfo.task_id,answerInfo.questionnaire_id,answerInfo.user_id,function(calculateScoreErr, calculateScoreResult){
+                    if (calculateScoreErr != null) {
+                        $util.resJSONError(calculateScoreErr, res);
+                        done(calculateScoreErr,null);
+                    }
+                    var standScoreResultList =[];//{stand_id,score,count_score}
+                    var synthesizeScoreResult={};//综合指标对象
+                    var synthesizeScore = 0;//计算综合分数
+                    for(var i=0;i<calculateScoreResult.length;i++){
+                        if(calculateScoreResult[i].type==1){//是实际指标
+                            standScoreResultList.push({
+                                stand_id:calculateScoreResult[i].stand_id,
+                                score:calculateScoreResult[i].score,
+                                count_score:calculateScoreResult[i].count_score
+                            });
+                            synthesizeScore = synthesizeScore+ calculateScoreResult[i].count_score*result[i].weight;
+                        }
+                        else{
+                            synthesizeScoreResult.stand_id =calculateScoreResult[i].stand_id;
+                            synthesizeScoreResult.score =0;
+                        }
+                    }
+                    synthesizeScoreResult.count_score = synthesizeScore;
+                    standScoreResultList.push(synthesizeScoreResult);
+                    questionnaireDao.calculateResultIntoScoreResult(answerInfo.user_id,answerInfo.user_name,answerInfo.server_id,answerInfo.school_name,answerInfo.project_id,answerInfo.task_id,answerInfo.questionnaire_id,standScoreResultList,function(intoScoreResultErr, intoScoreResultResult){
+                        if (intoScoreResultErr != null) {
+                            $util.resJSONError(intoScoreResultErr, res);
+                            done(intoScoreResultErr,null);
+                        }
+                        else{
+                            done(null,intoScoreResultResult);
+                        }
+                    });
+                });
+            },
+            //保存答案数据到questionnaire_answer表
+            function(done) {
+                questionnaireDao.saveAnswer(answerInfo, function (answer_err, answer_result) {
+                    if (answer_err != null) {
+                        $util.resJSONError(answer_err, res);
+                        done(answer_err,null);
+                    }
+                    else{
+                        done(null,answer_result);
+                    }
+                });
+            },
+            //保存答案数据到questionnaire_single_answer表
+            function(done){
+                //将数据添加到questionnaire_single_answer表中  20170926 by 文霞
+                //解析content字段
+                var quesAnswerList = JSON.parse(answerInfo.content);
+                var quesAnswerListNew=[];
+                for(var j=0;j<quesAnswerList.length;j++){
+                    var tmid=quesAnswerList[j].tmid;
+                    var optionids=quesAnswerList[j].optionids;
+                    for(var k=0;k<optionids.length;k++){
+                        var tmdan=optionids[k];
+                        var quesAnswerObj={
+                            user_id:answerInfo.user_id,
+                            server_id:answerInfo.server_id,
+                            user_role:answerInfo.user_role,
+                            project_id:answerInfo.project_id,
+                            task_id:answerInfo.task_id,
+                            questionnaire_id:answerInfo.questionnaire_id,
+                            tmid:tmid,
+                            create_time:$util.getDateTime(),
+                            page_num:answerInfo.page_num,
+                            tmdan:tmdan,
+                            answer_id:answerInfo.answer_id,
+                            course_id:answerInfo.course_id
+                        }
+                        quesAnswerListNew.push(quesAnswerObj);
+                    }
+                }
+                questionnaireDao.insertQuesSingleAnswer(quesAnswerListNew, function (quesSingleAns_err, quesSingleAns_result) {
+                    if (quesSingleAns_err != null) {
+                        $util.resJSONError(quesSingleAns_err, res);
+                        done(quesSingleAns_err,null);
+                    }
+                    else{
+                        done(null,quesSingleAns_result);
+                    }
+                });
+            }
+        ],function(err, values){
+            if (err) {
+                //异常处理
+                console.log("异常处理");
+                $util.resJSONError(err, res);
+                return;
+            } else {
+                console.log("处理成功");
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = values[3];//取最后一步，保存答案数据到questionnaire_single_answer表的结果作为最终结果
+                res.json($util.resJSON);
+            }
+        });
+    },
+    /*submitQuestionnaire: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var answerInfo = {};
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            answerInfo.server_id = param.server_id;
+            answerInfo.user_id = param.user_id;
+            answerInfo.project_id = param.project_id;
+            answerInfo.task_id = param.task_id;
+            answerInfo.user_role = param.user_role;
+            answerInfo.questionnaire_id = param.questionnaire_id;
+            answerInfo.answer_id = $util.GUID();
+            answerInfo.content = param.content;
+            answerInfo.page_num = param.page_num;
+            answerInfo.isanonymous = param.isanonymous;
+            answerInfo.sub_sourcetype = param.sub_sourcetype;
+
+            answerInfo.answer_items = param.answer_items;//用于存储指标分数信息
+            answerInfo.user_name = param.user_name;
+            answerInfo.school_name = param.school_name;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        questionnaireDao.submitQuestionnaire(answerInfo, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            questionnaireDao.saveAnswer(answerInfo, function (answer_err, answer_result) {
+                if (answer_err != null) {
+                    $util.resJSONError(answer_err, res);
+                    return;
+                }
+                //将数据添加到questionnaire_single_answer表中  20170926 by 文霞
+                //解析content字段
+                var quesAnswerList = JSON.parse(answerInfo.content);
+                var quesAnswerListNew=[];
+                for(var j=0;j<quesAnswerList.length;j++){
+                    var tmid=quesAnswerList[j].tmid;
+                    var optionids=quesAnswerList[j].optionids;
+                    for(var k=0;k<optionids.length;k++){
+                        var tmdan=optionids[k];
+                        var quesAnswerObj={
+                            user_id:answerInfo.user_id,
+                            server_id:answerInfo.server_id,
+                            user_role:answerInfo.user_role,
+                            project_id:answerInfo.project_id,
+                            task_id:answerInfo.task_id,
+                            questionnaire_id:answerInfo.questionnaire_id,
+                            tmid:tmid,
+                            create_time:$util.getDateTime(),
+                            page_num:answerInfo.page_num,
+                            tmdan:tmdan,
+                            answer_id:answerInfo.answer_id,
+                            course_id:answerInfo.course_id
+                        }
+                        quesAnswerListNew.push(quesAnswerObj);
+                    }
+                }
+                questionnaireDao.insertQuesSingleAnswer(quesAnswerListNew, function (quesSingleAns_err, quesSingleAns_result) {
+                    if (quesSingleAns_err != null) {
+                        $util.resJSONError(quesSingleAns_err, res);
+                        return;
+                        //$writelog.helper.writeInfo("插入答案数据出现异常：" + quesSingleAns_err.stack);
+                        //done(quesSingleAns_err,null);
+                    }
+                    if (quesSingleAns_result != undefined && quesSingleAns_result != null ) {
+                        console.log("答案数据转存成功！");
+                        $util.resJSON.resultnum = $util.resConfig.ok;
+                        $util.resJSON.resultdata = quesSingleAns_result;
+                        res.json($util.resJSON);
+                    }
+                });
+            });
+        });
+    },*/
+
+    //根据任务id获取任务下的问卷列表 by 文霞 20171103(显示的信息还不确定先查询task_questionnaire表)
+    getQuesByTask:function(req, res, next){
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var task_id = param.task_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        questionnaireDao.getQuesByTask(task_id,function(err, result){
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    },
+
+    //获取移动端问卷首页的信息，无通用性 by 文霞 20171103
+    getQuestionnaireHomePageData:function(req, res, next){
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var task_id = param.task_id;
+            var questionnaire_id = param.questionnaire_id;
+            var user_id = param.user_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        questionnaireDao.getQuestionnaireHomePageData(task_id,questionnaire_id,user_id,function(err, result){
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    },
+    //获取指标分数信息 by 文霞 20171103
+    getStandScore:function(req, res, next){
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var task_id = param.task_id;
+            var questionnaire_id = param.questionnaire_id;
+            var user_id = param.user_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        questionnaireDao.getStandScore(task_id,questionnaire_id,user_id,function(err, result){
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    }
+};
+ 

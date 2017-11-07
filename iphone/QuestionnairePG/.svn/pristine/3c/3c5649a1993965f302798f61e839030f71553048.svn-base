@@ -1,0 +1,30 @@
+/*
+ 2017年6月26日 09:02:08
+ zzy
+ 登录的个人信息返回
+ * */
+
+var mysql = require('mysql');
+var $conf = require('../../conf/db');
+var $util = require('../../util/util');
+
+
+module.exports = {
+    //获取登录人的角色类型
+    userLogin: function (userInfo, callback) {
+        var sql = "INSERT INTO bd_userinfo (user_id, user_name, true_name, role_name, server_id) "
+            + "VALUES ('"
+            + userInfo.phone + "', '"
+            + userInfo.phone + "', '"
+            + userInfo.user_name + "', '"
+            + userInfo.role_name + "',  '"
+            + userInfo.organ_name + "') "
+            + " ON DUPLICATE KEY UPDATE " +
+            "user_id = '" + userInfo.phone
+            + "',user_name = '" + userInfo.phone
+            + "',true_name = '" + userInfo.user_name
+            + "',role_name = '" + userInfo.role_name
+            + "',server_id = '" + userInfo.organ_name + "';"
+        return sql;
+    }
+};

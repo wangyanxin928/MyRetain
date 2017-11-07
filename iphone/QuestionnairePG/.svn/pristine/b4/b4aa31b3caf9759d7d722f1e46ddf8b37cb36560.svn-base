@@ -1,0 +1,257 @@
+
+define(function (require) {
+    "use strict";
+    //导入列表模板
+    var tpl = require('text!tpl/questionnaireManagement/questionManageList.html'),
+        template = _.template(tpl), _this;
+
+    //引入datatable
+    var DataTable = require('plugins/DataTableView/DataTable');
+
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            //加载datatable中数据
+            this.initData();
+            //调用删除
+            this.initDeleteModal();
+
+            //初始化下拉框
+            backStageUTIL.initSelect();
+            //初始化复选框
+            backStageUTIL.initCheck();
+
+
+            //删除文件
+            $("#fileListWrapper ul").delegate("a>i","click",function(e){
+                e.stopPropagation();
+                if($($(e.target)).parents("#fileListWrapper").find("ul>li").length==1){
+                    $($(e.target)).parents("#fileListWrapper").hide();
+                }
+                $(e.target).closest("li").remove();
+            });
+        },
+        events: {
+            "click #quesNameSearchBtn":"quesNameSearchBtn",//搜索问卷
+            "click #importQuestionnair":"importQuestionnair",//弹出导入问卷的弹框
+            "click #addQuestion":"addQuestion",//创建问卷
+        },
+
+
+        addQuestion:function () {
+            location.href = "#foundQuestion";
+        },
+
+        //弹出问卷的框
+        importQuestionnair:function () {
+            var me = this;
+            /* 点击弹出层事件显示页面已有的弹出层。*/
+            $('#showQuestionModel').modal("show");
+            //点击删除后，弹出层删除按钮事件
+            $("#yesCheck").unbind("click").bind("click", function (e) {
+                //保存问卷结果
+                me.quesSave();
+            });
+            //点击删除后，弹出层取消按钮事件
+            $("#noCheck").unbind("click").bind("click", function () {
+            });
+
+            //上传文件
+            $("#fileUpload").change(function (e) {
+                backStageUTIL.UploadFile(e, function (result, file) {
+
+                    var JSONPARAM = {filename: file.name, datajson: result};
+                    PublicAjax.ajaxPost(PublicAjax.ajaxUrl.fileUpload, JSON.stringify(JSONPARAM), function (_d) {
+                        $("#fileUpload").attr("filePath", _d.resultdata.filePath);
+
+                        //成功之后回显方法
+                        var currLi = $('<li>');
+                        var currA = $('<a>');
+                        currA.attr("src", result);
+                        currA.html(file.name + '<i class="fa fa-times"></i>');
+                        currLi.html(currA);
+                        $("#fileListWrapper ul").append(currLi);
+                        if ($("#fileListWrapper ul>li").length == 1) {
+                            $("#fileListWrapper").show();
+                        }
+                    });
+
+                });
+
+
+            });
+
+        },
+        //搜索问卷
+        quesNameSearchBtn:function () {
+            this.initData();
+        },
+        //初始化列表
+        initData: function () {
+            var me = this;
+            var options = {
+                // 数据来源方法
+                data: {
+                    // 异步数据源
+                    sync: function (syncOptions, callback) {
+                        //获取问卷名称的值
+                        var quesNameSearch = $("#quesNameSearch").val();
+                        //获取自己创建的问卷
+                        var JSONPARAM = {page_num: syncOptions.data.page, page_size: syncOptions.data.rows};
+                        JSONPARAM.use_role = "";
+                        JSONPARAM.questionnaire_name = quesNameSearch;
+                        JSONPARAM.load_user_id = "user1"; //测试数据
+                        JSONPARAM.use_xueduan_items = "";
+                        require(['btcommon/ajax'], function () {
+                            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.getQuestionnaireList, JSON.stringify(JSONPARAM), function (_d) {
+                                callback && callback({rows: _d.resultdata, total: _d.rows});
+                            })
+                        });
+
+                    },
+                    // 数据列表的索引
+                    dataArrayIndex: 'rows',
+                    // 分页参数
+                    paging: {
+                        enable: true,
+                        // 每页数据条数
+                        pageSize: 10
+                    },
+                    collection: Backbone.Collection//DataSourceCollection
+                },
+                //显示序号列
+                displayIndex: true,
+                //列显示循序：
+                columns: [
+                    {
+                        text: "问卷名称",
+                        dataIndex: "questionnaire_name",
+                    },
+
+                    {
+                        text: "问卷创建时间",
+                        dataIndex: "create_time",
+                        render: function (value, row) {
+                            return value.substr(0,10);
+                        }
+                    },
+
+                    {
+                        text: "问卷是否使用",
+                        dataIndex: "p_state",
+                        render: function (value, row) {
+                            if(value == 0){
+                                return "否";
+                            }else {
+                                return "是";
+                            }
+                        }
+                    },
+
+                    {
+                        text: "操作",
+                        render: function (value, row) {
+                            if(row["p_state"] == 0){
+                                //<a data-id='+row["questionnaire_id"]+' id="editData" class="editData btn btn-outline btn btn-xs green" style="width:50px;">编辑 </a>
+                                return '<a data-id='+row["questionnaire_id"]+'  id="editData" class="editData btn btn-outline btn btn-xs green" style="width:50px;">编辑</a><a data-id='+row["questionnaire_id"]+' id="editData" class="editData btn btn-outline btn btn-xs green" style="width:50px;">复制</a><a data-id='+row["questionnaire_id"]+' id="deleteData" class="deleteData btn btn-outline btn btn-xs green" style="width:50px;">删除</a><a data-id='+row["questionnaire_id"]+' id="showTemple" class="showTemple btn btn-outline btn btn-xs green" style="width:50px;">预览</a>';
+                            }else {
+                                return '<a data-id='+row["questionnaire_id"]+'   class="btn btn-outline btn btn-xs grey" style="width:50px;">编辑</a><a data-id='+row["questionnaire_id"]+' id="editData" class="editData btn btn-outline btn btn-xs green" style="width:50px;">复制</a><a data-id='+row["questionnaire_id"]+'  class="btn btn-outline btn btn-xs grey" style="width:50px;">删除</a><a data-id='+row["questionnaire_id"]+' id="showTemple" class="showTemple btn btn-outline btn btn-xs green" style="width:50px;">预览</a>';
+                            }
+                        }
+                    },
+
+
+
+                ],
+                // 默认多选模式
+                "selModel": {
+                    mode: "",
+                    // 是否显示行的checkbox
+                    checkbox: false,
+                },
+                //表头、表数据初始化完成后调用
+                initTableEventsCall: function () {
+                    //为table中的删除按钮添加事件：
+                    me.$(".deleteData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.needDeleteId = $this.attr("data-id");
+                        _this.$('#confirm').modal('show');
+                    });
+
+                    //showTemple
+                    me.$(".showTemple").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.needDeleteId = $this.attr("data-id");
+                       /* _this.$('#confirm').modal('show');*/
+                       //pc问卷弹出
+                       //  var qhtml = require('../Client/questionnaire.html?project_id=project_id20171031&task_id=task_id20171031&questionnaire_id='+me.needDeleteId+'&authority=0');
+                        var qhtml =  require('text!tpl/questionnaireManagement/phoneModel.html');
+                        //var qhtml = $("#div").load("../Client/questionnaire.html #page");
+                        $("#questionContent").append(qhtml);
+                        _this.$("#showTempleModel").modal('show');
+                    });
+                }
+            };
+            this.dataTable = new DataTable(options);
+            // 渲染至页面
+            this.$("#dataTableWrapper").html(this.dataTable.$el);
+        },
+        //问卷保存
+        quesSave:function(){
+            var me=this;
+            //判断是否有文件上传
+            if(!$("#fileListWrapper").html().trim()){
+                backStageUTIL.toastrAlert("success","请上传问卷Excel");
+                return false;
+            }
+            var quesGradeList=[];
+            var quesGradeCheck = $("#xueduan").find('input[name="xueduan"]:checked');
+            for(var i=0;i<quesGradeCheck.length;i++){
+                quesGradeList.push($(quesGradeCheck[i]).val());
+            }
+            var JSONPARAM={
+                "qPath": $("#fileUpload").attr("filepath"),
+                "questionnaire_name": $("#questionnair_name").val(),
+                "descript": $("#descript").val(),
+                "load_user_id": "user1",//测试数据
+                "use_role": $("#use_role").val(),
+                "xueduan_items": quesGradeList
+            };
+            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.insertQuestionnaire,JSON.stringify(JSONPARAM),function(data){
+                me.dataTable.render();
+            });
+        },
+        //问卷删除
+        //删除学生
+        initDeleteModal: function () {
+            var me = this;
+            this.$('#confirm').on('shown.bs.modal', function () {
+                //点击确定按钮事件
+                $("#yesserl").unbind('click').bind("click", function () {
+                    require(['btcommon/ajax'], function () {
+                        var JSONPARAM = {questionnaire_id: me.needDeleteId};
+                        PublicAjax.ajaxGet(PublicAjax.ajaxUrl.deleteQuestoinnaire, JSON.stringify(JSONPARAM), function (_d) {
+                            me.initData();
+                        })
+                    });
+
+                });
+            })
+        },
+
+    });
+});

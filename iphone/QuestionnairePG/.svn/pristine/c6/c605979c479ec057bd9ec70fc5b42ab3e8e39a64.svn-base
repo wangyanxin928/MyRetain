@@ -1,0 +1,49 @@
+/*
+ 2017年6月26日 09:02:08
+ zzy
+ 登录的个人信息返回
+ * */
+
+var mysql = require('mysql');
+var $conf = require('../../conf/db');
+var $util = require('../../util/util');
+
+
+module.exports = {
+    //获取登录人的角色类型
+    userLogin: function (userInfo, callback) {
+        var sql = "INSERT INTO bd_userinfo (user_id, user_name, true_name, role_name, server_id) "
+            + "VALUES ('"
+            + userInfo.phone + "', '"
+            + userInfo.phone + "', '"
+            + userInfo.user_name + "', '"
+            + userInfo.role_name + "',  '"
+            + userInfo.organ_name + "') "
+            + " ON DUPLICATE KEY UPDATE " +
+            "user_id = '" + userInfo.phone
+            + "',user_name = '" + userInfo.phone
+            + "',true_name = '" + userInfo.user_name
+            + "',role_name = '" + userInfo.role_name
+            + "',server_id = '" + userInfo.organ_name + "';"
+        return sql;
+    },
+    /**
+     * 验证用户信息  by 文霞 20171103
+     * @param validateValue  //待验证的字段值
+     * @param validateKey   //验证的字段key
+     */
+    validateUser:function(validateValue,validateKey){
+        var sql= "SELECT * FROM bd_userinfo WHERE "+validateKey+" = '"+validateValue+"';";
+        return sql;
+    },
+    /**
+     * 添加用户信息  by 文霞 20171103
+     * @param userId  用户id
+     * @param validateValue   //待验证的字段值
+     * @param validateKey  //验证的字段key
+     */
+    addUser:function(userId,validateValue,validateKey){
+        var sql= "INSERT INTO bd_userinfo(user_id,"+validateKey+") VALUES('"+userId+"','"+validateValue+"');";
+        return sql;
+    }
+};

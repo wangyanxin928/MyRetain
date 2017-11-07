@@ -1,0 +1,132 @@
+/*
+ 2017年6月5日
+ byx
+ 用户登录模块的业务处理层
+ * */
+var $util = require('../../util/util');
+var $sentMsg = require("../../libs/sentMsg");
+var userLoginDao = require('../../dao/bdmanage_dao/userLoginDao');
+var $writelog = require('../../libs/logHelper');
+
+module.exports = {
+    //用户登录
+    userLogin: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var role_name = param.role_name;
+            var user_name = param.user_name;
+            var phone = param.phone;
+            var organ_name = param.organ_name;
+        } catch (e) {
+            $util.resJSONError(e, res);
+            return;
+        }
+        var wj_rlt_role_list = [
+            {
+                roleName: "校长",
+                wjId: "xz1"
+            },
+            {
+                roleName: "园长",
+                wjId: "yz1"
+            },
+            {
+                roleName: "教育局",
+                wjId: "jyj1"
+            }
+        ];
+        userLoginDao.userLogin(param, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            var o_result = {
+                user_id: phone,
+                has_submit: 0,
+                questionnaire_id: ""
+            };
+            for (var i = 0; i < wj_rlt_role_list.length; i++) {
+                o_result.questionnaire_id = wj_rlt_role_list[i].wjId;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = o_result;
+            res.json($util.resJSON);
+        });
+
+    },
+    //发送登录验证短信
+    sentMsg: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var role_name = param.role_name;
+            var user_name = param.user_name;
+            var phone = param.phone;
+        } catch (e) {
+            $util.resJSONError(e, res);
+            return;
+        }
+        var yzm = $util.random(6);
+        $sentMsg.sendMessage(phone, 'SMS_80220047', '{"yzm":"' + yzm + '"}', function (result) {
+            if (result != null) {
+                $util.resJSONError(result, res);
+                return;
+            }
+
+            $writelog.helper.writeInfo("发送短信给手机号：" + phone);
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = {"yzm": yzm};
+            res.json($util.resJSON);
+        });
+
+    },
+    //验证用户信息  by 文霞 20171103
+    validateUser:function(req, res, next){
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var validateValue = param.validate_value;//待验证的字段值
+            var validateType = param.validate_type;//验证的类型：1-微信，2-邮箱 （可扩展）
+            var validateKey ="";
+            switch(validateType){
+                case 1:
+                    validateKey = "wechat_number";
+                    break;
+                case 2:
+                    validateKey = "email";
+                    break;
+            }
+        } catch (e) {
+            $util.resJSONError(e, res);
+            return;
+        }
+        userLoginDao.validateUser(validateValue,validateKey,function(err, result){
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            if(result.length==0){
+                var userId = $util.GUID();
+                userLoginDao.addUser(userId,validateValue,validateKey,function(addUserErr, addUserResult){
+                    if (addUserErr != null) {
+                        $util.resJSONError(err, res);
+                        return;
+                    }
+                    addUserResult.userId = userId;
+                    $util.resJSON.resultnum = $util.resConfig.ok;
+                    $util.resJSON.resultdata = addUserResult;
+                    res.json($util.resJSON);
+                })
+            }else{
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = result;
+                res.json($util.resJSON);
+            }
+        });
+    }
+
+};

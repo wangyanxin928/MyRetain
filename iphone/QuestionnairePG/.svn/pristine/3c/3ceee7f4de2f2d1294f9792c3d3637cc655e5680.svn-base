@@ -1,0 +1,229 @@
+/*
+ 2017年5月4日 16:40:50
+ byx
+ 评估管理-问卷模块的dao层,sql语句
+ * */
+
+var baseProject = {
+    //保存项目信息
+    saveProjectInfo: function (projectInfo) {
+        var sql = "INSERT INTO project (project_id, project_name, descript, start_time, end_time, sync, create_user_id, state,school_year_id) "
+            + "VALUES ('"
+            + projectInfo.project_id + "', '"
+            + projectInfo.project_name + "', '"
+            + projectInfo.descript + "', '"
+            + projectInfo.start_time + "', '"
+            + projectInfo.end_time + "',  '"
+            + projectInfo.sync + "', '"
+            + projectInfo.create_user_id + "', '"
+            + projectInfo.state + "', '"
+            + global.__currentSchoolYear + "') "
+            + " ON DUPLICATE KEY UPDATE " +
+            "project_name = '" + projectInfo.project_name
+            + "',descript = '" + projectInfo.descript
+            + "',start_time = '" + projectInfo.start_time
+            + "',end_time = '" + projectInfo.end_time
+            + "',sync = '" + projectInfo.sync
+            + "',create_user_id = '" + projectInfo.create_user_id
+            + "',state = '" + projectInfo.state
+            + "',school_year_id = '" + global.__currentSchoolYear + "';"
+        return sql;
+    },
+    //保存任务信息
+    saveTaskInfo: function (projectTaskInfo) {
+        var sql = "INSERT INTO task (task_id, task_name, descript, project_id, in_role, share_method,send_method,xueduans) "
+            + "VALUES ('"
+            + projectTaskInfo.task_item.task_id + "', '"
+            + projectTaskInfo.task_item.task_name + "', '"
+            + projectTaskInfo.task_item.description + "', '"
+            + projectTaskInfo.project_id + "', '"
+            + projectTaskInfo.task_item.in_role + "',  '"
+            + projectTaskInfo.task_item.share_method + "',  '"
+            + projectTaskInfo.task_item.send_method + "',  '"
+            + projectTaskInfo.task_item.task_xueduans + "') "
+            + " ON DUPLICATE KEY UPDATE " +
+            "task_name = '" + projectTaskInfo.task_item.task_name
+            + "',descript = '" + projectTaskInfo.task_item.description
+            + "',project_id = '" + projectTaskInfo.project_id
+            + "',in_role = '" + projectTaskInfo.task_item.in_role
+            + "',share_method = '" + projectTaskInfo.task_item.share_method
+            + "',send_method = '" + projectTaskInfo.task_item.send_method
+            + "',xueduans = '" + projectTaskInfo.task_item.task_xueduans + "';"
+        return sql;
+    },
+    //保存任务与年纪的关系
+    saveTaskGrade: function (task_grade_item) {
+        var arrTaskGrade = [];
+        arrTaskGrade = task_grade_item;
+        var arrLength = arrTaskGrade.length;
+        var sql = "";
+        sql += "INSERT INTO task_grade (project_id, task_id, school_id, school_name, grade_id, grade_name, in_role) "
+            + "VALUES ";
+        arrTaskGrade.forEach(function (item, index) {
+            sql += "('"
+                + item.project_id + "', '"
+                + item.task_id + "', '"
+                + item.school_id + "', '"
+                + item.school_name + "', '"
+                + item.grade_id + "',  '"
+                + item.grade_name + "',  '"
+                + item.in_role + "') ";
+            if ((index + 1) < arrLength) {
+                sql += ",";
+            }
+        })
+        return sql;
+    },
+    //保存任务和问卷的关系
+    saveTaskQuestionnaire: function (task_questionnaire_item) {
+        var arrTaskQ = [];
+        arrTaskQ = task_questionnaire_item;
+        var arrLength = arrTaskQ.length;
+        var sql = "INSERT INTO task_questionnaire (project_id, task_id, questionnaire_id, questionnaire_name) "
+            + "VALUES ";
+        arrTaskQ.forEach(function (item, index) {
+            sql += "('"
+                + item.project_id + "', '"
+                + item.task_id + "', '"
+                + item.questionnaire_id + "', '"
+                + item.questionnaire_name + "') ";
+            if ((index + 1) < arrLength) {
+                sql += ",";
+            }
+        })
+        return sql;
+    },
+
+    //删除项目任务信息
+    deleteTaskInfo: function (project_id, task_id) {
+        var sql = "DELETE FROM task WHERE project_id='" + project_id + "' AND task_id = '" + task_id + "';  ";
+        return sql;
+    },
+    //删除项目年级信息
+    deleteTaskGrade: function (project_id, task_id) {
+        var sql = "DELETE FROM task_grade WHERE project_id='" + project_id + "' AND task_id = '" + task_id + "';  ";
+        return sql;
+    },
+    //删除项目问卷信息
+    deleteTaskQuestionnaire: function (project_id, task_id) {
+        var sql = "DELETE FROM task_questionnaire WHERE project_id='" + project_id + "' AND task_id = '" + task_id + "';  ";
+        return sql;
+    },
+    //删除项目量表信息
+    deleteTaskScale: function (project_id, task_id) {
+        var sql = "DELETE FROM task_scale WHERE project_id='" + project_id + "' AND task_id = '" + task_id + "';  ";
+        return sql;
+    },
+    //删除项目附件信息
+    deleteTaskAttachment: function (project_id, task_id) {
+        var sql = "DELETE FROM task_attachment WHERE project_id='" + project_id + "' AND task_id = '" + task_id + "';  ";
+        return sql;
+    },
+
+
+    //获取问卷列表-创建项目
+    getQuestionnaireList: function (use_role, use_xueduan_items,load_user_id,questionnaire_name, pagesize, pagenum) {
+        var sql = "SELECT DISTINCT questionnaire_id, questionnaire_name, descript, load_user_id, create_time, use_role,p_state ";
+        sql += "FROM questionnaire WHERE 1=1 ";
+
+        if (load_user_id != "-1") {
+            sql += " AND load_user_id = '" + load_user_id + "'";
+        }
+
+        if (questionnaire_name != "-1") {
+            sql += " AND questionnaire_name LIKE '%" + questionnaire_name + "%'";
+        }
+        sql += " LIMIT " + pagenum + ", " + pagesize;
+        return sql;
+    },
+    //获取问卷列表-创建项目-行数
+    getQuestionnaireListRows: function (use_role, use_xueduan_items,load_user_id,questionnaire_name) {
+        var sql = "SELECT DISTINCT questionnaire_id, count(questionnaire_id) as rows  ";
+        sql += "FROM questionnaire WHERE 1=1 ";
+
+        if (load_user_id != "-1") {
+            sql += " AND load_user_id = '" + load_user_id + "'";
+        }
+
+        if (questionnaire_name != "-1") {
+            sql += " AND questionnaire_name LIKE '%" + questionnaire_name + "%'";
+        }
+        return sql;
+    },
+
+    //获取项目列表
+    getProjectList: function (project_name,create_user_id, pagesize, pagenum) {
+        var sql = "SELECT p.project_id,p.project_name,p.descript,p.start_time,p.end_time,p.create_time,p.state,p.create_user_id FROM project p  ";
+
+        sql += " WHERE state != 2 ";
+        if (project_name != '-1') {
+            sql += "AND p.project_name LIKE '%" + project_name + "%'";
+        }
+        if (create_user_id != '-1') {
+            sql += "AND p.create_user_id = '" + create_user_id + "'";
+        }
+        sql += " ORDER BY p.sync DESC ";
+        sql += " LIMIT " + pagenum + ", " + pagesize;
+        return sql;
+    },
+    //获取项目列表-总数
+    getProjectNum: function (project_name,create_user_id) {
+        var sql = "SELECT count(p.project_id) as project_num FROM project p  ";
+
+        sql += " WHERE state != 2 ";
+        if (project_name != '-1') {
+            sql += "AND p.project_name LIKE '%" + project_name + "%'";
+        }
+
+        if (create_user_id != '-1') {
+            sql += "AND p.create_user_id = '" + create_user_id + "'";
+        }
+
+        return sql;
+    },
+
+
+    //获取项目基本信息
+    getProjectInfo: function (project_id) {
+        var sql = "SELECT 	project_id, project_name, descript, start_time, end_time, create_time, sync, create_user_id, state FROM project where project_id = '" + project_id + "' ";
+        return sql;
+    },
+    //根据项目获取所有任务列表
+    getTaskListByProject_id: function (project_id) {
+        var sql = "SELECT 	task_id,send_method,share_method, task_name, descript, create_time, project_id, in_role, xueduans FROM task WHERE project_id = '" + project_id + "'  ORDER BY create_time DESC ";
+        return sql;
+    },
+    //根据任务ID获取所有任务问卷列表
+    getTaskQuestionnaireListByTask_id: function (task_id) {
+        var sql = "SELECT 	id, project_id, task_id, questionnaire_id, questionnaire_name, create_time FROM task_questionnaire  WHERE task_id = '" + task_id + "' ";
+        return sql;
+    },
+
+    //根据任务ID获取所有任务学校列表
+    getTaskSchoolListByTask_id: function (task_id) {
+        var sql = "SELECT g.*,sch.p_organ_id,sch.p_organ_name " +
+            "FROM (SELECT school_id,school_name FROM task_grade WHERE  task_id = '" + task_id + "' GROUP BY school_id ) AS g " +
+            "LEFT JOIN bd_schoolinfo sch ON g.school_id = sch.school_id ";
+        return sql;
+    },
+    //根据任务ID获取所有任务年级列表
+    getTaskGradeListByTask_id: function (task_id) {
+        var sql = "SELECT grade_id,grade_name FROM task_grade  WHERE task_id = '" + task_id + "' GROUP BY grade_id";
+        return sql;
+    },
+
+    //删除项目发布项目
+    setProjectState: function (projectInfo) {
+        var sql = "UPDATE project SET  state = '" + projectInfo.state + "' WHERE project_id = '" + projectInfo.project_id + "' ; ";
+        return sql;
+    },
+    
+    //设置问卷为已使用状态
+    setQuestionnairState:function (p_state,questionnaire_id) {
+        var sql = "UPDATE questionnaire SET  p_state = " + p_state + " WHERE questionnaire_id = '" + questionnaire_id + "' ; ";
+        return sql;
+    }
+
+};
+
+module.exports = baseProject;

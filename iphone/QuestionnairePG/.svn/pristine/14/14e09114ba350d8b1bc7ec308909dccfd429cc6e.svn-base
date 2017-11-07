@@ -1,0 +1,2012 @@
+{
+	"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+	"questionnaire_name": "英语老师自评",
+	"descript": "",
+	"load_user_id": "user1",
+	"create_time": "2017-11-03 11:49:04",
+	"use_role": "教师",
+	"json": null,
+	"type": 1,
+	"style_json": null,
+	"endingmode": null,
+	"p_state": 0,
+	"progresstype": 0,
+	"pagejson": null,
+	"pagesize": 1,
+	"paragraphjson": null,
+	"xueduan_items": [],
+	"questionnaire_questoin": [
+		{
+			"question_id": "9ffed270-24d3-88ef-e89e-881d9e201d1e",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 1,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您的性别",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "66fb1e00-6e77-29d8-a743-e81cb1ff1f50",
+					"option_content": "男  ",
+					"option_order": 8,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9ffed270-24d3-88ef-e89e-881d9e201d1e",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "6c552f1b-7bdf-eb5f-6ed8-778b700be0b5",
+					"option_content": "女",
+					"option_order": 9,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9ffed270-24d3-88ef-e89e-881d9e201d1e",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "cf44baf5-1800-0f1b-65ec-3dd870585d3c",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 2,
+			"q_score": null,
+			"q_type": "填空题",
+			"content": "您的年龄（请填写整数）",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":1}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": []
+		},
+		{
+			"question_id": "fbb9fd52-b5d8-ee71-10f5-64f8ba72943d",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 3,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您教授的学段",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "057442a1-ed0e-c3b2-b6aa-c6767972e3b5",
+					"option_content": "初中",
+					"option_order": 9,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "fbb9fd52-b5d8-ee71-10f5-64f8ba72943d",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "2cf8ae0c-6ef3-c3b6-b33f-8d4443ba7488",
+					"option_content": "高中",
+					"option_order": 10,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "fbb9fd52-b5d8-ee71-10f5-64f8ba72943d",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7fdb3dc0-fb48-1d71-3c5a-4aae426603ac",
+					"option_content": "小学",
+					"option_order": 8,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "fbb9fd52-b5d8-ee71-10f5-64f8ba72943d",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "9aab8ce0-c134-34bb-68b5-bb5ef35f33ab",
+					"option_content": "大学",
+					"option_order": 11,
+					"option_score": "4",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "fbb9fd52-b5d8-ee71-10f5-64f8ba72943d",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "7c3b97ee-3d0c-c42e-1ebc-790804fc1eca",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 4,
+			"q_score": null,
+			"q_type": "填空题",
+			"content": "您的教龄（请填写整数）",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":1}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": []
+		},
+		{
+			"question_id": "e05c0385-bb2f-6c1b-6209-2f478b25bd30",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 5,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您的职称",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "0f923a80-e2cb-2c84-c99b-ec53c9954c5f",
+					"option_content": "二级教师",
+					"option_order": 10,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e05c0385-bb2f-6c1b-6209-2f478b25bd30",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "3fda517b-6836-0c34-ba06-a66fb5b47855",
+					"option_content": "三级教师",
+					"option_order": 9,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e05c0385-bb2f-6c1b-6209-2f478b25bd30",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "573ccacb-a100-6936-a049-75f9b879c0e3",
+					"option_content": "高级教师",
+					"option_order": 12,
+					"option_score": "5",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e05c0385-bb2f-6c1b-6209-2f478b25bd30",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "a4fff230-83e8-a864-4c2f-ff2af821959b",
+					"option_content": "一级教师",
+					"option_order": 11,
+					"option_score": "4",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e05c0385-bb2f-6c1b-6209-2f478b25bd30",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b38d6167-0d42-4100-7f0c-730d23c56fdc",
+					"option_content": "无",
+					"option_order": 8,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e05c0385-bb2f-6c1b-6209-2f478b25bd30",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "eee7fa59-2204-6f11-a91b-94a5a631c73a",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 6,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您的专业",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "c1f8aba4-9827-f95d-54f4-8c09ee5bf788",
+					"option_content": "非英语专业",
+					"option_order": 9,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "eee7fa59-2204-6f11-a91b-94a5a631c73a",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f7d49945-df35-098a-15f1-5aee0b9e23a2",
+					"option_content": "英语专业",
+					"option_order": 8,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "eee7fa59-2204-6f11-a91b-94a5a631c73a",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "90100802-d74d-1a1f-f831-1fe4dc450cf7",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 7,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您学校的所在地",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "undefined",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "d8987802-04f4-3f89-6416-69b75b7eb595",
+					"option_content": "农村",
+					"option_order": 9,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "90100802-d74d-1a1f-f831-1fe4dc450cf7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e43d7452-9ef2-e7e5-463e-d6e570162e11",
+					"option_content": "城市",
+					"option_order": 8,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "90100802-d74d-1a1f-f831-1fe4dc450cf7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "8a2b60aa-d700-a9f9-f4e5-5a35c1f8d762",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 8,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对语言学习理论的了解程度为",
+			"create_time": "2017-11-03 11:48:59",
+			"stand_id": "101",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "24f21e23-f572-1cd0-e1e8-d3249188252d",
+					"option_content": "合理的理解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "8a2b60aa-d700-a9f9-f4e5-5a35c1f8d762",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7297fbb0-993e-59b9-016a-1349dfe284d4",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "8a2b60aa-d700-a9f9-f4e5-5a35c1f8d762",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "98b94435-6cfe-0ae6-77df-8f88874d0595",
+					"option_content": "熟练掌握",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "8a2b60aa-d700-a9f9-f4e5-5a35c1f8d762",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "ad4a07b4-ffd7-3f09-e6e2-48a701f19c90",
+					"option_content": "很好的理解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "8a2b60aa-d700-a9f9-f4e5-5a35c1f8d762",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "4532dd58-9843-db6c-c32f-4820518a160b",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 9,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对语言学习概念的了解程度为",
+			"create_time": "2017-11-03 11:49:00",
+			"stand_id": "101",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "0b307143-11fc-0516-4a6d-17830f1f6ec8",
+					"option_content": "深入理解",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4532dd58-9843-db6c-c32f-4820518a160b",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "2338d9de-b149-ae4b-a659-ca74f81ccc51",
+					"option_content": "一定的了解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4532dd58-9843-db6c-c32f-4820518a160b",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "4b42999f-bba2-d228-01d9-ba9e413c40c1",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4532dd58-9843-db6c-c32f-4820518a160b",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "dd493fd2-a827-e581-9cc6-a73770e37a50",
+					"option_content": "非常了解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4532dd58-9843-db6c-c32f-4820518a160b",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "81777dce-549f-9dbd-f72c-8f357827d054",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 10,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "课堂上您对语言学习理论和概念的应用情况",
+			"create_time": "2017-11-03 11:49:00",
+			"stand_id": "101",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "0c8fc540-11dc-8afb-d516-25bf7321be5d",
+					"option_content": "总是应用",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "81777dce-549f-9dbd-f72c-8f357827d054",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7758ea7c-1207-4caa-7b21-19b597f9168c",
+					"option_content": "很少应用",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "81777dce-549f-9dbd-f72c-8f357827d054",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7cd947d2-0fe3-f1ce-3dc8-16baf565a0a2",
+					"option_content": "应用一些",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "81777dce-549f-9dbd-f72c-8f357827d054",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "c1aedc79-d9b2-f70e-a2ef-07827fbee0d7",
+					"option_content": "经常应用",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "81777dce-549f-9dbd-f72c-8f357827d054",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "4206a44b-3331-6579-66ec-a91296da30b8",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 11,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对语言教学方法的掌握程度为",
+			"create_time": "2017-11-03 11:49:00",
+			"stand_id": "101",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "11289842-da3f-d804-2693-16f2cdf658ba",
+					"option_content": "合理的理解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4206a44b-3331-6579-66ec-a91296da30b8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "1d3b57b3-860d-cc8a-d775-6e8535b6c159",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4206a44b-3331-6579-66ec-a91296da30b8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7e758174-cf8e-9ff5-5db0-5aa9e846e94c",
+					"option_content": "很好的理解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4206a44b-3331-6579-66ec-a91296da30b8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "874e824b-49c0-e522-2fd5-ed5e200b1d8d",
+					"option_content": "熟练掌握",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4206a44b-3331-6579-66ec-a91296da30b8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "e83f77f3-2e11-ff90-8c91-08fb6425eab8",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 12,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对语言教学方法的应用情况为",
+			"create_time": "2017-11-03 11:49:00",
+			"stand_id": "101",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "66dc9bcd-455c-40e3-2802-c7bb43d5b51f",
+					"option_content": "在教案和课堂实践中展现出一些语言教学方法",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e83f77f3-2e11-ff90-8c91-08fb6425eab8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b141ebf8-8f8f-d42d-d258-c28e1a046890",
+					"option_content": "在教案和课堂实践中掌握了部分语言教学方法和学生之间的联系",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e83f77f3-2e11-ff90-8c91-08fb6425eab8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b1ccb460-e042-bd9e-7463-8a96a8e88104",
+					"option_content": "在教案和课堂实践中经常使用语言教学方法，并思考与学生学习之间的联系",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e83f77f3-2e11-ff90-8c91-08fb6425eab8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "d33c902b-1079-065d-c17d-cba1a66cb233",
+					"option_content": "在教案和课堂实践中表现出对语言教学方法的高度理解，并且设计了个人教学方法",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "e83f77f3-2e11-ff90-8c91-08fb6425eab8",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "6e058393-8e1b-b36e-eef6-2928bd189562",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 13,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "对学习者的了解（包括跨文化能力、学习风格、学习策略、特殊需求、学习者类型和教学背景）程度为",
+			"create_time": "2017-11-03 11:49:00",
+			"stand_id": "101",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "6201f70b-ab03-8987-4d35-b8a7a63055ea",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6e058393-8e1b-b36e-eef6-2928bd189562",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "64790a36-d1df-821c-a8a1-58cbc602654f",
+					"option_content": "非常了解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6e058393-8e1b-b36e-eef6-2928bd189562",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b024a5f8-2127-2216-9c2d-71400f2e3046",
+					"option_content": "深入了解",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6e058393-8e1b-b36e-eef6-2928bd189562",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f1cdecf6-66f4-a2e1-0afa-abff04da24b5",
+					"option_content": "一定的了解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6e058393-8e1b-b36e-eef6-2928bd189562",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "4c135aa6-11aa-7a26-5f0e-8d45fc510ab7",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 14,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对教学、学习和测评关键原则的了解程度为",
+			"create_time": "2017-11-03 11:49:00",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "752d1f1b-6fdc-ae83-b13f-6534305a92d2",
+					"option_content": "深入理解",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4c135aa6-11aa-7a26-5f0e-8d45fc510ab7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "c624d751-bb45-5e82-5e25-fa90e527083c",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4c135aa6-11aa-7a26-5f0e-8d45fc510ab7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e47b22c2-f194-c708-bd93-17c19dab1146",
+					"option_content": "非常了解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4c135aa6-11aa-7a26-5f0e-8d45fc510ab7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "fb0da066-7088-a127-d981-adb13c248431",
+					"option_content": "一定的了解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "4c135aa6-11aa-7a26-5f0e-8d45fc510ab7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "b2b1a6a6-478d-c373-7cd6-151eb55283f6",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 15,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在课程规划方面属于",
+			"create_time": "2017-11-03 11:49:01",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "6fe937e1-07dc-6f09-e877-a28269d9cde6",
+					"option_content": "能够规划符合课程规定要求的一系列课程或整个课程",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "b2b1a6a6-478d-c373-7cd6-151eb55283f6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "8d9a4a1b-fa9b-ea94-00e1-f1d4bcb3fb91",
+					"option_content": "能够通过明确的联系来规划一系列的课程",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "b2b1a6a6-478d-c373-7cd6-151eb55283f6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "9cad8e8c-b535-8220-558c-d3e082ab8815",
+					"option_content": "能够通过简单的联系来规划一系列简短的课程",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "b2b1a6a6-478d-c373-7cd6-151eb55283f6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "aa12b745-1985-8983-7b43-6f7c05bd2be4",
+					"option_content": "能够以创造性和复杂的方式规划一系列课程",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "b2b1a6a6-478d-c373-7cd6-151eb55283f6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "cca8bef8-af7d-6d8b-be5b-cdc58fd1c510",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 16,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对学生学习方面需求的认识程度为",
+			"create_time": "2017-11-03 11:49:01",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "2b4459a5-86af-5545-a115-b682744aa08d",
+					"option_content": "一些认识",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "cca8bef8-af7d-6d8b-be5b-cdc58fd1c510",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e5b13f32-dc2f-ade9-0017-c6e38d7fc3ed",
+					"option_content": "较强的认识",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "cca8bef8-af7d-6d8b-be5b-cdc58fd1c510",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f63ace2f-35f8-9d0a-119c-1118923c62dd",
+					"option_content": "基本认识",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "cca8bef8-af7d-6d8b-be5b-cdc58fd1c510",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "fe9c9f65-8797-81c0-0830-fcedd3426f8f",
+					"option_content": "深入的了解",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "cca8bef8-af7d-6d8b-be5b-cdc58fd1c510",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "6ecbcb78-66a3-f65f-fce8-a449ff414baa",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 17,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对语言学习资源的使用情况",
+			"create_time": "2017-11-03 11:49:01",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "2c433fe2-d9b5-2e5d-b484-33ae115bb531",
+					"option_content": "开始思考如何将其应用到日常教学中",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6ecbcb78-66a3-f65f-fce8-a449ff414baa",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "51287466-9ec0-c3de-61c5-97884e5997f2",
+					"option_content": "展示了如何将其应用到日常教学中",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6ecbcb78-66a3-f65f-fce8-a449ff414baa",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "a16b0391-03b2-8eb9-7109-cae782d768af",
+					"option_content": "展示了如何将其应用到日常教学中，并进行即时创作",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6ecbcb78-66a3-f65f-fce8-a449ff414baa",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "d2339442-8f1c-9331-60ab-c23426f5fa4d",
+					"option_content": "很少使用",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6ecbcb78-66a3-f65f-fce8-a449ff414baa",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "75f323fe-ea83-3374-b111-4d637742f7b6",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 18,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在管理学生学习环境方面属于",
+			"create_time": "2017-11-03 11:49:01",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "0a9f9e2e-2362-e6a6-1486-85424dc941e0",
+					"option_content": "掌握有效的课堂管理技巧",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "75f323fe-ea83-3374-b111-4d637742f7b6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "8e682ee1-1c83-3096-54a8-48c1b9c52993",
+					"option_content": "始终如一的表现出有效的课堂管理技巧，使学生持续学习",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "75f323fe-ea83-3374-b111-4d637742f7b6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "c31d451e-a4f9-1c54-234f-9346b0b01dbc",
+					"option_content": "掌握合理的课堂管理技巧",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "75f323fe-ea83-3374-b111-4d637742f7b6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "dd412e08-5111-e288-d306-591d91a8fd32",
+					"option_content": "掌握基本的课堂管理技巧",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "75f323fe-ea83-3374-b111-4d637742f7b6",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "3af82617-5265-9afb-8a71-3c34a9b8c6fd",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 19,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对语言教学系统（包括词汇、语法、语音和话语）的了解程度为",
+			"create_time": "2017-11-03 11:49:01",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "32dd2a5b-98a3-9941-d64f-b828af10da12",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3af82617-5265-9afb-8a71-3c34a9b8c6fd",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "6ed1ee6b-7a45-aa28-dfd9-687c8b3f9619",
+					"option_content": "合理的理解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3af82617-5265-9afb-8a71-3c34a9b8c6fd",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7527b009-fe95-aed4-0d81-56fbd8c7c336",
+					"option_content": "很好的理解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3af82617-5265-9afb-8a71-3c34a9b8c6fd",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "988a1970-4414-68fc-57f6-b0a161eb4878",
+					"option_content": "深入的理解",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3af82617-5265-9afb-8a71-3c34a9b8c6fd",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "f89cd5ee-95ae-6b56-39ba-2fb4862814cb",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 20,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在课堂上教学语言技能（包括听力教学、口语教学、阅读教学、写作教学）的展示情况为",
+			"create_time": "2017-11-03 11:49:01",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "1c3abde1-21c3-035e-3811-24b78819eef1",
+					"option_content": "展示了一些自主开发相应技能的技巧和活动",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "f89cd5ee-95ae-6b56-39ba-2fb4862814cb",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "96e9ae1b-4729-ffa1-4804-9c82ca1135e5",
+					"option_content": "展示了使用简单模板开发相应技能的技巧和活动",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "f89cd5ee-95ae-6b56-39ba-2fb4862814cb",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b3a81855-98d3-6f92-ea61-eac5a172a68d",
+					"option_content": "展示了广泛的技能，一贯使用，根据学习者的需求与其他技能相结合",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "f89cd5ee-95ae-6b56-39ba-2fb4862814cb",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "c010addc-31a3-765d-621a-e0f259a160ad",
+					"option_content": "展示了分期培养语言技能的各种技巧",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "f89cd5ee-95ae-6b56-39ba-2fb4862814cb",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "3ecb8a0e-d810-abcf-45db-4fc1ef1fb2d2",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 21,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您如何评估学习者学习",
+			"create_time": "2017-11-03 11:49:02",
+			"stand_id": "102",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "432fd5a2-ca84-4d29-8c7d-0636aad48449",
+					"option_content": "选择和设计有效的口头和书面测试及定期使用多种评估程序来帮助、促进学习",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ecb8a0e-d810-abcf-45db-4fc1ef1fb2d2",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "802f542e-af9b-8f32-bedf-eb8a4b1dd54a",
+					"option_content": "设计简单的测验及使用一些评估程序来帮助、促进学习",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ecb8a0e-d810-abcf-45db-4fc1ef1fb2d2",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "949fdc2a-44ed-580f-a357-c93f118ec3ee",
+					"option_content": "设计多种有效的口头和书面测验及使用个性化评估程序不断帮助、促进学习",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ecb8a0e-d810-abcf-45db-4fc1ef1fb2d2",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e7721671-ad1b-6da7-4150-d8c7362118b1",
+					"option_content": "利用现有的测验和基本评估程序来帮助、促进学习",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ecb8a0e-d810-abcf-45db-4fc1ef1fb2d2",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "49512179-1541-2177-50ce-98a252e47c7c",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 22,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对课堂语言的掌握程度为",
+			"create_time": "2017-11-03 11:49:02",
+			"stand_id": "103",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "09624eba-bb5c-16f2-228c-79ea2f51b9db",
+					"option_content": "可以使用基本课堂语言，绝大部分准确",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "49512179-1541-2177-50ce-98a252e47c7c",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "3dc7a46a-0805-a488-486c-489a5a99da96",
+					"option_content": "整堂课使用课堂语言，从头至尾准确",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "49512179-1541-2177-50ce-98a252e47c7c",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "53f26925-12eb-225a-d0ce-16a0559017eb",
+					"option_content": "整堂课使用课堂语言，绝大部分准确",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "49512179-1541-2177-50ce-98a252e47c7c",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e38aba54-f00b-374c-5e14-a820aebb68d9",
+					"option_content": "整堂课使用多种课堂语言，从头至尾准确",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "49512179-1541-2177-50ce-98a252e47c7c",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "3ca28083-08d1-74d1-ec8d-28a84a3da851",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 23,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在认识学习者的错误方面属于",
+			"create_time": "2017-11-03 11:49:02",
+			"stand_id": "103",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "13243016-95a7-01a8-2e76-a3a8e2b0b275",
+					"option_content": "认识到学习所犯的大多数错误",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ca28083-08d1-74d1-ec8d-28a84a3da851",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "6a1c9706-2651-0141-af5c-46063ea7b032",
+					"option_content": "认识到学习者犯的所有错误",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ca28083-08d1-74d1-ec8d-28a84a3da851",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "6c03ab30-7107-cf20-3270-dc749b276b6d",
+					"option_content": "认识到学习者所犯的基本错误",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ca28083-08d1-74d1-ec8d-28a84a3da851",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "74bebd4c-7296-96e6-3510-6ff334f1adb5",
+					"option_content": "认识到学习者犯的几乎所有错误",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3ca28083-08d1-74d1-ec8d-28a84a3da851",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "9e9908e8-d1c3-d0f7-0665-23f0eaff9852",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 24,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您与其他专业人士沟通情况为",
+			"create_time": "2017-11-03 11:49:02",
+			"stand_id": "103",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "065e9a95-6d5b-7bff-a2a8-9741b8580f02",
+					"option_content": "与所有专业背景下的其他教师进行适当的交流",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9e9908e8-d1c3-d0f7-0665-23f0eaff9852",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "682635d2-0f74-bbeb-9e5d-5fdbe8d0fb2b",
+					"option_content": "在大多数职业背景下，与其他教师进行适当的交流",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9e9908e8-d1c3-d0f7-0665-23f0eaff9852",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "83c2fded-08ad-1a25-3240-0d5c453d6226",
+					"option_content": "在简单和常规以及一些不熟悉的专业背景下进行适当的交流",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9e9908e8-d1c3-d0f7-0665-23f0eaff9852",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f99bd24c-63e1-06ac-009f-48831098f9e6",
+					"option_content": "在简单和常规的职业背景下进行交流",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9e9908e8-d1c3-d0f7-0665-23f0eaff9852",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "7d87db39-b382-5fc6-e9e4-ea5da4e6481a",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 25,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您的英语能力等级属于",
+			"create_time": "2017-11-03 11:49:02",
+			"stand_id": "103",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "071e1882-b98f-0d89-2d12-78c26302e06d",
+					"option_content": "初步掌握语言，对所熟悉的主题能够理解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "7d87db39-b382-5fc6-e9e4-ea5da4e6481a",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "410f1a97-0c9d-4132-053e-df61c202fcb4",
+					"option_content": "对语言有总体性和自然的掌握，能够理解复杂文章的中心思想",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "7d87db39-b382-5fc6-e9e4-ea5da4e6481a",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b43906d3-a5f0-ea92-0e53-5914204738b6",
+					"option_content": "有效但有限地掌握了语言，在所熟悉的领域能够理解清晰的、标准的语言",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "7d87db39-b382-5fc6-e9e4-ea5da4e6481a",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "ff816ca4-58e0-d913-1331-8ee193709c9b",
+					"option_content": "很好的掌握了语言，能够理解大量篇幅长、要求高、并且带有深层含义的文章",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "7d87db39-b382-5fc6-e9e4-ea5da4e6481a",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "2e286975-7b82-f563-b554-9a3fe99352ef",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 26,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您的语言认知情况为",
+			"create_time": "2017-11-03 11:49:03",
+			"stand_id": "104",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "174f402e-6b1a-e766-d8c8-371b96835924",
+					"option_content": "一贯使用策略来有效的检查和发展自己的语言意识",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "2e286975-7b82-f563-b554-9a3fe99352ef",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "870d796a-fac8-32e8-ea3d-88e3caffccd2",
+					"option_content": "尚未制定检查和发展自己语言意识的策略",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "2e286975-7b82-f563-b554-9a3fe99352ef",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "d532b6bb-9623-ed8c-0dfd-c4dc9107725f",
+					"option_content": "已经开始制定策略来检查和发展自己的语言意识",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "2e286975-7b82-f563-b554-9a3fe99352ef",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f1fea3e4-5705-ff59-9b41-de3a01f51b87",
+					"option_content": "采用策略来定期检查和发展自己的语言意识",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "2e286975-7b82-f563-b554-9a3fe99352ef",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "0db5168d-8446-4668-88e3-c2b676449e39",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 27,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在回答学习者问题方面属于",
+			"create_time": "2017-11-03 11:49:03",
+			"stand_id": "104",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "2e435dac-5b96-ea53-f91c-1ff71af80931",
+					"option_content": "尽可能少地借助参考资料回答问题",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "0db5168d-8446-4668-88e3-c2b676449e39",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "4cea94db-195c-97c1-ce73-b693bb5e0b93",
+					"option_content": "无需参考资料回答问题",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "0db5168d-8446-4668-88e3-c2b676449e39",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "56daaccf-57f1-5670-1430-055bab7ff068",
+					"option_content": "借助参考资料回答简单问题",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "0db5168d-8446-4668-88e3-c2b676449e39",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f1dee701-7ee6-64e0-bf85-866d6a7c61dd",
+					"option_content": "借助参考资料回答大多数问题",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "0db5168d-8446-4668-88e3-c2b676449e39",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "6c862f3d-35f8-0398-2d54-5fc03d566c29",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 28,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对术语描述语言的了解程度为",
+			"create_time": "2017-11-03 11:49:03",
+			"stand_id": "104",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "0dc2671f-ca8c-6f15-7b2b-786dda54ebe7",
+					"option_content": "熟练掌握",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6c862f3d-35f8-0398-2d54-5fc03d566c29",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "91c2f98e-0f3c-91b7-23ed-717caa22d2b4",
+					"option_content": "合理的理解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6c862f3d-35f8-0398-2d54-5fc03d566c29",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "d8f78457-288a-cab9-2bcd-990769e81522",
+					"option_content": "了解一些",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6c862f3d-35f8-0398-2d54-5fc03d566c29",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "fc0af885-c55e-4558-6cbf-707c736a57b4",
+					"option_content": "很好的理解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "6c862f3d-35f8-0398-2d54-5fc03d566c29",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "be5051dc-6061-fcfb-c9a8-8380ec9232d7",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 29,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对参考资料的了解程度为",
+			"create_time": "2017-11-03 11:49:03",
+			"stand_id": "104",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "1a038c51-e615-e5a9-9f00-1e0b0845c5a2",
+					"option_content": "一定的了解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "be5051dc-6061-fcfb-c9a8-8380ec9232d7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "df6c9fd9-dd29-d50b-b843-d8cda5dafb7e",
+					"option_content": "很好的了解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "be5051dc-6061-fcfb-c9a8-8380ec9232d7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e2842f44-3f3d-209d-2f33-1ae3b82a01fe",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "be5051dc-6061-fcfb-c9a8-8380ec9232d7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e743164f-22a0-dffa-6a50-a0d082cd4820",
+					"option_content": "熟练掌握",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "be5051dc-6061-fcfb-c9a8-8380ec9232d7",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "ef779aa3-0b6c-3a17-2ad9-e7b2e36c6bf1",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 30,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在课堂观察方面属于",
+			"create_time": "2017-11-03 11:49:03",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "226899ce-7833-8acb-d72e-fb7d21481d75",
+					"option_content": "认识到课堂观察和接收反馈的重要性，了解自己的长处和弱点",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "ef779aa3-0b6c-3a17-2ad9-e7b2e36c6bf1",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "37a9632d-5526-c6ba-4478-685ab970d78f",
+					"option_content": "充分认识课堂观察和反馈意见的重要性，并高度重视自我完善",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "ef779aa3-0b6c-3a17-2ad9-e7b2e36c6bf1",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "57dedb5e-396b-91b7-5ed5-d0661e17fa4d",
+					"option_content": "开始对课堂观察价值和接收反馈有基本的了解，且已经开始从观察反馈中学习",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "ef779aa3-0b6c-3a17-2ad9-e7b2e36c6bf1",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "81699722-6e40-7250-cf39-a37cfe49d357",
+					"option_content": "意识到课堂观察和接收反馈意见的重要性，积极寻求对自己教学的观察和反馈，并在观察后对建议性反馈进行回应",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "ef779aa3-0b6c-3a17-2ad9-e7b2e36c6bf1",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "3615e618-c39e-5201-f9ed-2aa78bfdae79",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 31,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您的课程反思情况为",
+			"create_time": "2017-11-03 11:49:03",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "2baa82a8-d947-df4d-0336-5465c2a611c0",
+					"option_content": "始终从批判角度反思，观摩其他同事授课，专心致力于专业发展",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3615e618-c39e-5201-f9ed-2aa78bfdae79",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "c965d314-1f49-78da-d870-8fa730bb127c",
+					"option_content": "可在指导下反思课程，从反馈中学习",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3615e618-c39e-5201-f9ed-2aa78bfdae79",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "cb22e339-1c89-c69d-ce10-4cff3be9c4c7",
+					"option_content": "可在无指导的情况下反思课程，并积极回应反馈",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3615e618-c39e-5201-f9ed-2aa78bfdae79",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e4baa627-8ba7-5771-292c-f380e41bb86b",
+					"option_content": "可从批判角度反思，并积极寻求反馈，愿意让同事观摩授课",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "3615e618-c39e-5201-f9ed-2aa78bfdae79",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "bbc6043f-cb63-6a1f-b327-bbe69f7a042f",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 32,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在评估自身需求方面属于",
+			"create_time": "2017-11-03 11:49:04",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "74d4dbf9-231c-0030-8e96-8b42beb33243",
+					"option_content": "可自行评估自身需求，并确定一些需要改进的领域",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "bbc6043f-cb63-6a1f-b327-bbe69f7a042f",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "7c47cf04-ab9a-c141-d5f9-4978f1b33fb1",
+					"option_content": "可认识到自己作为教师的优点和弱点，可帮助其他教师",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "bbc6043f-cb63-6a1f-b327-bbe69f7a042f",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "b51a29b3-b821-07b4-080d-3d7291bd541d",
+					"option_content": "非常了解自身的优点和弱点，积极帮助其他教师提升",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "bbc6043f-cb63-6a1f-b327-bbe69f7a042f",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "bb2537a2-79ae-d2cd-7e92-ea3de2065eed",
+					"option_content": "在自我评估自身需求时需要指导",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "bbc6043f-cb63-6a1f-b327-bbe69f7a042f",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "134ec920-cbd3-9003-d957-cc7d15b9bc34",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 33,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您在规划自己的发展方面属于",
+			"create_time": "2017-11-03 11:49:04",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "40558917-eb57-bfad-58fd-6eb93bf2f090",
+					"option_content": "不断了解可用的专业发展选择和活动",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "134ec920-cbd3-9003-d957-cc7d15b9bc34",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "532c7be8-4bfb-405c-439e-19c9fd51a7d4",
+					"option_content": "意识到一些可用的专业发展选择和活动",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "134ec920-cbd3-9003-d957-cc7d15b9bc34",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "6fd19e6f-e690-9c0b-f1e0-30b7a32e2e3b",
+					"option_content": "非常了解可用的专业发展选择和活动",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "134ec920-cbd3-9003-d957-cc7d15b9bc34",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "96d0968e-3aa2-bd1b-3a91-0ce791869c64",
+					"option_content": "了解可用的专业发展选择和活动",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "134ec920-cbd3-9003-d957-cc7d15b9bc34",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "9ce6f8bc-2e51-22fa-32c7-20127bded889",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 34,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "您对教师研究的了解程度为",
+			"create_time": "2017-11-03 11:49:04",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "a23b6da6-d120-ec9a-6093-cca2d94bc777",
+					"option_content": "基本了解",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9ce6f8bc-2e51-22fa-32c7-20127bded889",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "d13686ce-2745-97aa-704a-c71c9bd165c7",
+					"option_content": "深入理解",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9ce6f8bc-2e51-22fa-32c7-20127bded889",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "dc3b3cb7-a1e0-c411-d74a-9044ec5b110a",
+					"option_content": "一定的了解",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9ce6f8bc-2e51-22fa-32c7-20127bded889",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f3778b95-a718-1257-1baf-fa2e1cd59958",
+					"option_content": "非常了解",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "9ce6f8bc-2e51-22fa-32c7-20127bded889",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "69733633-949d-31de-ed7b-43cb7b43bb48",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 35,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "在团队合作方面，您属于",
+			"create_time": "2017-11-03 11:49:04",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "53a4deb3-3d82-154c-b1d7-28bb91e367e6",
+					"option_content": "通过领导团队促进协作和团队合作，并在需要时为经验较少的同事提供支持或指导",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "69733633-949d-31de-ed7b-43cb7b43bb48",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "d7c1d7ac-505f-467b-23c4-a5fb77de3659",
+					"option_content": "开展协作和团队合作，积极寻求更多的有经验的同事的支持或指导，并向其他同事提供非正式指导",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "69733633-949d-31de-ed7b-43cb7b43bb48",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "e635f5e9-6c81-daa9-277e-41f5b8509709",
+					"option_content": "与同事交流课程规划和讨论学生时，寻求更有经验的同事的支持或指导",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "69733633-949d-31de-ed7b-43cb7b43bb48",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "f75466a9-5889-8542-05b7-6b52a5d427e8",
+					"option_content": "在课程规划和讨论学生时，寻求同事的建议",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "69733633-949d-31de-ed7b-43cb7b43bb48",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		},
+		{
+			"question_id": "d03aff9f-f89c-31db-ded1-e181e84daaab",
+			"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+			"q_order": 36,
+			"q_score": null,
+			"q_type": "单选题",
+			"content": "在专业角色和责任方面，您属于",
+			"create_time": "2017-11-03 11:49:04",
+			"stand_id": "105",
+			"rule": null,
+			"option_order": 2,
+			"q_imgurl": null,
+			"q_turn": null,
+			"q_logicjson": "{\"required\":1,\"rule\":0}",
+			"q_displayset": null,
+			"isbaseinfo": null,
+			"question_options": [
+				{
+					"option_id": "07c70247-1e16-d90c-4c15-19a9fcc610ad",
+					"option_content": "表现出良好的职业行为，在工作中积极承担不同的角色和责任",
+					"option_order": 10,
+					"option_score": "2",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "d03aff9f-f89c-31db-ded1-e181e84daaab",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "11dc4508-6fa3-a960-f0bb-cb86212a5199",
+					"option_content": "一贯表现出良好的职业行为，在工作场所内积极发挥不同的作用和职责",
+					"option_order": 11,
+					"option_score": "3",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "d03aff9f-f89c-31db-ded1-e181e84daaab",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "2bac8ec4-d4c5-bfec-1be6-df3893b92475",
+					"option_content": "履行课堂内外的与工作有关的职责",
+					"option_order": 8,
+					"option_score": "0",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "d03aff9f-f89c-31db-ded1-e181e84daaab",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				},
+				{
+					"option_id": "ca0fc1e2-5b88-13f3-7d83-03594da653d4",
+					"option_content": "了解课堂外的教师责任，并根据需要承担其他角色",
+					"option_order": 9,
+					"option_score": "1",
+					"questionnaire_id": "d8911f47-9064-5c95-74c4-fedf9b234f41",
+					"question_id": "d03aff9f-f89c-31db-ded1-e181e84daaab",
+					"option_imgurl": null,
+					"option_toquestnum": null
+				}
+			]
+		}
+	]
+}

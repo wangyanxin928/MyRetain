@@ -1,0 +1,856 @@
+<style>
+    /* 隐藏作为模板的内容块 */
+    #moduleContent {
+        display: none;
+    }
+</style>
+<div style="visibility: visible;">
+    <div>
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="#questionManageList"> 问卷列表</a>
+                <!--<i class="fa fa-circle"></i>-->
+            </li>
+            <li>
+                <span class="active">创建问卷</span>
+            </li>
+        </ul>
+        <div class="portlet light  ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold font-grey-gallery uppercase"> 创建问卷 </span>
+                </div>
+
+                <div class="tools">
+                    <span class="caption-helper"><a>   </a></span>
+                    <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                </div>
+
+            </div>
+            <div class="portlet-body ">
+                <div class=" text-right">
+                    <form class="form-inline">
+                        <a class="btn btn-outline green-haze" id="searcherPosition">选择模板</a>
+                    </form>
+                </div>
+
+                <div class="page-actions">
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true" id="radio" name="radio">
+                            <span class="hidden-sm hidden-xs">单选&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true" id="checkbox" name="checkbox">
+                            <span class="hidden-sm hidden-xs">多选&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true" id="blank" name="blank">
+                            <span class="hidden-sm hidden-xs">填空&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a id="singleblank" name="singleblank" href="javascript:;">
+                                    <i class="icon-docs"></i> 单项填空 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-tag"></i>多项填空 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>矩阵填空 </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">文件&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">分页&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">下拉框&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">排序&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">个人信息&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-docs"></i> 姓名 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-tag"></i>性别 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>年龄段 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>省市 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>手机 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>日期 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>Email </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>职业 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>行业 </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light  ">
+                <div class="portlet light  " id="htmlTab">
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <form class="form-horizontal" id="myForm1" novalidate="novalidate">
+                            <div class="form-body">
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-8">
+                                                <input datakey="task_name" type="text"
+                                                       class="form-control  input-circle"
+                                                       placeholder="请输入问卷标题" id="paper_title"
+                                                       name="paper_title"
+                                                       style="border: 0px;font-size: 25px;color: #333;text-align: center">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-8">
+                                                <input datakey="task_name" type="text"
+                                                       class="form-control  input-circle"
+                                                       placeholder="请输入问卷说明" id="paper_describe"
+                                                       name="paper_describe"
+                                                       style="font-size: 18px;color: #333;border: 0px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                                <hr style="border:1px dashed #ccc"/>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                        <div id="moduleListWrapper" name="moduleListWrapper">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-6">
+                                <div class="form-group">
+                                    <div class="row text-center">
+                                                <a class="btn btn-success btnSaveData">保存问卷</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--所有类型问题组件 start -->
+<div style="display: none;">
+    <!--单选 start -->
+    <div class="singlequestiondiv portlet light bordered" name="radioContent" id="radioContent">
+        <div class="portlet-title">
+            <div class="portlet-body form">
+                <div class="full-height-content-body" question_type="单选题">
+                    <!-- BEGIN FORM-->
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12"><font
+                                            class="questionnum">1.</font><font
+                                            class="questiontitle">请在此输入问题标题</font></label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="icheck-inline" style="margin-left: 35px" score="1">
+                                                <label >
+                                                    <input type="radio" style="font-size: 50px">
+                                                </label>
+                                                <span>选项1</span>
+                                                <!--<img class="answerImg" src="images/logo.png" alt="">-->
+
+                                            </div>
+                                            <div class="icheck-inline" style="margin-left: 35px" score="2">
+                                                <label >
+                                                    <input type="radio" style="font-size: 50px">
+                                                </label>
+                                                <span>选项2</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+        <div class="questionButtonList">
+            <span></span>
+            <button type="button" class="btn_update btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-check"></i>&nbsp;编辑</font></font>
+            </button>
+            <button type="button" class="btn_copy btn btn-outline green-haze addModule"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-copy"></i>&nbsp;复制</font></font>
+            </button>
+            <button type="button" class="btn_delete btn btn-outline green-haze removeModule"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-trash-o"></i>&nbsp;删除</font></font>
+            </button>
+            <button type="button" class="btn_moveup btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-arrow-up"></i>&nbsp;上移</font></font>
+            </button>
+            <button type="button" class="btn_movedown btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-arrow-down"></i>&nbsp;下移</font></font>
+            </button>
+            <button type="button" class="btn_movefirst btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-angle-double-up"></i>&nbsp;最前</font></font>
+            </button>
+            <button type="button" class="btn_movelast btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-angle-double-down"></i>&nbsp;最后</font></font>
+            </button>
+        </div>
+        <div style="display: none;" class="questionModify">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="questionModifyTitle">
+                        <span>标题</span>
+                        <a class="titleuploadimg">插入图片</a>
+                    </div>
+                                                <textarea placeholder="请在此输入问题标题" class="questiontitle_textarea" name="" cols="30"
+                                                          rows="10"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <div>当前提醒：<strong>单选题</strong>&nbsp;&nbsp;<select class="conversion_type"
+                                                                      style="width:90px; height: 20px;font-size: 12px;">
+                        <option value="0">转换题型</option>
+                        <option value="下拉框">下拉框单选题</option>
+                        <option value="多选题">多选题</option>
+                        <option value="量表题">量表题</option>
+                        <option value="排序题">排序题</option>
+                        <option value="投票单选题">投票单选题</option>
+                        <option value="评分单选题">评分单选题</option>
+                        <option value="问答题">问答题</option>
+                    </select></div>
+
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <div class="icheck-list">
+                                    <label>
+                                        <input type="checkbox" checked class="required"> 必答题
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="fill_in">
+                                        填写提示 </label>
+                                    <label>
+                                        <input type="checkbox" class="jump_title">无条件跳题
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="association">关联逻辑
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th width="150"><span>选项文字&nbsp;<i class="fa fa-sort-amount-asc"></i></span>
+                            </th>
+                            <th width="50"><span>分值</span></th>
+                            <th width="50"><span>图片</span></th>
+
+                            <!-- <th width="50"><span>说明</span></th>-->
+                            <!--<th width="100" align="center"><span>允许填空</span></th>-->
+                            <!--<th width="100" align="center"><span>选项互斥</span></th>
+                            <th width="50"><span>默认</span></th>
+                            <th width="100"><span>分组</span></th>-->
+                            <th width="150"><span>操作</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="text" style="width: 100%;" placeholder="选项1" value="选项1"></td>
+                            <td><input type="int_input text" placeholder="填写整数" value="1"></td>
+                            <td><span class="fileImg"><i
+                                    class="fa fa-file-photo-o"></i></span></td>
+
+                            <!--<td><span class="fileImg"><i
+                                    class="fa fa-file-text-o"></i></span></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td></td>
+                            <td><span>分组</span></td>-->
+                            <td>
+                                                            <span class="xm_nextnew questionModifyHandle" title="在此选项下面插入一个新的选项"><i
+                                                                    class="fa fa-plus"></i></span>
+                                                            <span class="xm_delete questionModifyHandle" title="删除当前选项（最少保留2个选项）"><i
+                                                                    class="fa fa-minus"></i></span>
+                                                            <span class="xmup questionModifyHandle" title="将当前选项上移一个位置"><i
+                                                                    class="fa fa-arrow-up"></i></span>
+                                                            <span class="xmdown questionModifyHandle" title="将当前选项下移一个位置"><i
+                                                                    class="fa fa-arrow-down"></i></span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="text" style="width: 100%;" placeholder="选项2" value="选项2"></td>
+                            <td><input type="int_input text" placeholder="填写整数" value="2"></td>
+                            <td><span class="fileImg"><i
+                                    class="fa fa-file-photo-o"></i></span></td>
+
+                            <!--<td><span class="fileImg"><i
+                                    class="fa fa-file-text-o"></i></span></td>
+                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox"></td>
+                            <td></td>
+                            <td><span>分组</span></td>-->
+                            <td>
+                                                            <span class="xm_nextnew questionModifyHandle" title="在此选项下面插入一个新的选项"><i
+                                                                    class="fa fa-plus"></i></span>
+                                                            <span class="xm_delete questionModifyHandle" title="删除当前选项（最少保留2个选项）"><i
+                                                                    class="fa fa-minus"></i></span>
+                                                            <span class="xmup questionModifyHandle" title="将当前选项上移一个位置"><i
+                                                                    class="fa fa-arrow-up"></i></span>
+                                                            <span class="xmdown questionModifyHandle" title="将当前选项下移一个位置"><i
+                                                                    class="fa fa-arrow-down"></i></span>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="questionModifyHandle addQuestionOption">
+                                                    <i class="fa fa-plus"></i><span>&nbsp;添加选项</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                               <!-- <div class="handleBatchBtn">
+                                                    <i class="fa fa-list"></i><span>&nbsp;批量添加</span>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <input type="checkbox"><span>&nbsp;选项随机&nbsp;</span><select
+                                            style="width:90px; height: 20px;font-size: 12px;">
+                                        <option value="1">横向排列</option>
+                                        <option value="2">纵向排列</option>
+
+                                        <!-- <optgroup label="横向排列">
+                                             <option value="2">每行2列</option>
+                                             <option value="3">每行3列</option>
+                                             <option value="4">每行4列</option>
+                                             <option value="5">每行5列</option>
+                                             <option value="6">每行6列</option>
+                                             <option value="7">每行7列</option>
+                                             <option value="8">每行8列</option>
+                                             <option value="9">每行9列</option>
+                                             <option value="10">每行10列</option>
+                                             <option value="11">每行11列</option>
+                                             <option value="12">每行12列</option>
+                                             <option value="15">每行15列</option>
+                                             <option value="20">每行20列</option>
+                                             <option value="30">每行30列</option>
+                                         </optgroup>-->
+                                    </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                <div class="btn blue btn-block  dropdown-toggle">完成编辑</div>
+                            </td>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--单选 end -->
+    <!--单个填空题 start -->
+    <div class="singlequestiondiv portlet light bordered" name="singleblankContent" id="singleblankContent">
+        <div class="portlet-title">
+            <div class="portlet-body form">
+                <div class="full-height-content-body" question_type="填空题">
+                    <!-- BEGIN FORM-->
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12"><font
+                                            class="questionnum">1.</font><font
+                                            class="questiontitle">请在此输入问题标题</font></label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                          <input type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+        <div class="questionButtonList">
+            <span></span>
+            <button type="button" class="btn_update btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-check"></i>&nbsp;编辑</font></font>
+            </button>
+            <button type="button" class="btn_copy btn btn-outline green-haze addModule"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-copy"></i>&nbsp;复制</font></font>
+            </button>
+            <button type="button" class="btn_delete btn btn-outline green-haze removeModule"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-trash-o"></i>&nbsp;删除</font></font>
+            </button>
+            <button type="button" class="btn_moveup btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-arrow-up"></i>&nbsp;上移</font></font>
+            </button>
+            <button type="button" class="btn_movedown btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-arrow-down"></i>&nbsp;下移</font></font>
+            </button>
+            <button type="button" class="btn_movefirst btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-angle-double-up"></i>&nbsp;最前</font></font>
+            </button>
+            <button type="button" class="btn_movelast btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-angle-double-down"></i>&nbsp;最后</font></font>
+            </button>
+        </div>
+        <div style="display: none;" class="questionModify">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="questionModifyTitle">
+                        <span>标题</span>
+                        <a class="titleuploadimg">插入图片</a>
+                    </div>
+                                                <textarea placeholder="请在此输入问题标题" class="questiontitle_textarea" name="" cols="30"
+                                                          rows="10"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <div>当前提醒：<strong>单选题</strong>&nbsp;&nbsp;<select class="conversion_type"
+                                                                      style="width:90px; height: 20px;font-size: 12px;">
+                        <option value="0">转换题型</option>
+                        <option value="单选题">单选题</option>
+                        <option value="下拉框">下拉框单选题</option>
+                        <option value="多选题">多选题</option>
+                        <option value="量表题">量表题</option>
+                        <option value="排序题">排序题</option>
+                        <option value="投票单选题">投票单选题</option>
+                        <option value="评分单选题">评分单选题</option>
+                        <option value="问答题">问答题</option>
+                    </select></div>
+
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <div class="icheck-list">
+                                    <label>
+                                        <input type="checkbox" checked class="required"> 必答题
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="fill_in">
+                                        填写提示 </label>
+                                    <label>
+                                        <input type="checkbox" class="jump_title">无条件跳题
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="association">关联逻辑
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <table>
+                        <tr>
+                            <td colspan="3">验证：
+                                <select class="conversion_type" style="width:120px; height: 20px;font-size: 12px;">
+                                    <option value="">无</option>
+                                    <option value="整数"></option>
+                                    <option value="小数"></option>
+                                    <option value="日期"></option>
+                                    <option value="手机"></option>
+                                    <option value="固定电话"></option>
+                                    <option value="手机或固化"></option>
+                                    <option value="邮箱"></option>
+                                    <option value="英文"></option>
+                                </select>
+                            </td>
+                            <td colspan="3">最小值：<input type="text" class="mininputv"></td>
+                            <td colspan="3">最大值：<input type="text" class="maxinputv"></td>
+                            <td colspan="3"></td>
+                        </tr>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="btn blue btn-block  dropdown-toggle">完成编辑</div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--单个填空题 end -->
+    <!--多选 start -->
+    <div class="singlequestiondiv portlet light bordered" name="checkboxContent" id="checkboxContent">
+        <div class="portlet-title">
+            <div class="portlet-body form">
+                <div class="full-height-content-body" question_type="多选题">
+                    <!-- BEGIN FORM-->
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12"><font
+                                            class="questionnum">1.</font><font
+                                            class="questiontitle">请在此输入问题标题</font></label>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <div class="icheck-inline" style="margin-left: 35px" score="1">
+                                                <label >
+                                                    <input type="checkbox" style="font-size: 50px">
+                                                </label>
+                                                <span>选项1</span>
+                                                <!--<img class="answerImg" src="images/logo.png" alt="">-->
+                                            </div>
+                                            <div class="icheck-inline" style="margin-left: 35px" score="2">
+                                                <label>
+                                                    <input type="checkbox" style="font-size: 50px"></label>
+                                                <span>选项2</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+        <div class="questionButtonList">
+            <span></span>
+            <button type="button" class="btn_update btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-check"></i>&nbsp;编辑</font></font>
+            </button>
+            <button type="button" class="btn_copy btn btn-outline green-haze addModule"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-copy"></i>&nbsp;复制</font></font>
+            </button>
+            <button type="button" class="btn_delete btn btn-outline green-haze removeModule"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-trash-o"></i>&nbsp;删除</font></font>
+            </button>
+            <button type="button" class="btn_moveup btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-arrow-up"></i>&nbsp;上移</font></font>
+            </button>
+            <button type="button" class="btn_movedown btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-arrow-down"></i>&nbsp;下移</font></font>
+            </button>
+            <button type="button" class="btn_movefirst btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-angle-double-up"></i>&nbsp;最前</font></font>
+            </button>
+            <button type="button" class="btn_movelast btn btn-outline green-haze"><font
+                    style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i
+                    class="fa fa-angle-double-down"></i>&nbsp;最后</font></font>
+            </button>
+        </div>
+        <div style="display: none;" class="questionModify">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="questionModifyTitle">
+                        <span>标题</span>
+                        <a class="titleuploadimg">插入图片</a>
+                    </div>
+                                                <textarea placeholder="请在此输入问题标题" class="questiontitle_textarea" name="" cols="30"
+                                                          rows="10"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <div>当前提醒：<strong>单选题</strong>&nbsp;&nbsp;<select class="conversion_type"
+                                                                      style="width:90px; height: 20px;font-size: 12px;">
+                        <option value="0">转换题型</option>
+                        <option value="下拉框">下拉框单选题</option>
+                        <option value="单选题">单选题</option>
+                        <option value="量表题">量表题</option>
+                        <option value="排序题">排序题</option>
+                        <option value="投票单选题">投票单选题</option>
+                        <option value="评分单选题">评分单选题</option>
+                        <option value="问答题">问答题</option>
+                    </select></div>
+
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <div class="icheck-list">
+                                    <label>
+                                        <input type="checkbox" checked class="required"> 必答题
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="fill_in">
+                                        填写提示 </label>
+                                    <label>
+                                        <input type="checkbox" class="jump_title">无条件跳题
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" class="association">关联逻辑
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th width="150"><span>选项文字&nbsp;<i class="fa fa-sort-amount-asc"></i></span>
+                            </th>
+                            <th width="50"><span>分值</span></th>
+                            <th width="50"><span>图片</span></th>
+                            <th width="150"><span>操作</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="text" style="width: 100%;" placeholder="选项1" value="选项1"></td>
+                            <td><input type="int_input text" placeholder="填写整数" value="1"></td>
+                            <td><span class="fileImg"><i class="fa fa-file-photo-o"></i></span></td>
+                            <td>
+                                                            <span class="xm_nextnew questionModifyHandle" title="在此选项下面插入一个新的选项"><i
+                                                                    class="fa fa-plus"></i></span>
+                                                            <span class="xm_delete questionModifyHandle" title="删除当前选项（最少保留2个选项）"><i
+                                                                    class="fa fa-minus"></i></span>
+                                                            <span class="xmup questionModifyHandle" title="将当前选项上移一个位置"><i
+                                                                    class="fa fa-arrow-up"></i></span>
+                                                            <span class="xmdown questionModifyHandle" title="将当前选项下移一个位置"><i
+                                                                    class="fa fa-arrow-down"></i></span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="text" style="width: 100%;" placeholder="选项2" value="选项2"></td>
+                            <td><input type="int_input text" placeholder="填写整数" value="2"></td>
+                            <td><span class="fileImg"><i class="fa fa-file-photo-o"></i></span></td>
+                            <td>
+                                                            <span class="xm_nextnew questionModifyHandle" title="在此选项下面插入一个新的选项"><i
+                                                                    class="fa fa-plus"></i></span>
+                                                            <span class="xm_delete questionModifyHandle" title="删除当前选项（最少保留2个选项）"><i
+                                                                    class="fa fa-minus"></i></span>
+                                                            <span class="xmup questionModifyHandle" title="将当前选项上移一个位置"><i
+                                                                    class="fa fa-arrow-up"></i></span>
+                                                            <span class="xmdown questionModifyHandle" title="将当前选项下移一个位置"><i
+                                                                    class="fa fa-arrow-down"></i></span>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="questionModifyHandle addQuestionOption">
+                                                    <i class="fa fa-plus"></i><span>&nbsp;添加选项</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <!--<div class="handleBatchBtn">
+                                                    <i class="fa fa-list"></i><span>&nbsp;批量添加</span>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <input type="checkbox"><span>&nbsp;选项随机&nbsp;</span><select
+                                            style="width:90px; height: 20px;font-size: 12px;">
+                                        <option value="1">横向排列</option>
+                                        <option value="2">纵向排列</option>
+                                    </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                <div class="btn blue btn-block  dropdown-toggle">完成编辑</div>
+                            </td>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--多选  end -->
+</div>
+<!--所有类型问题组件 start -->
+<div id="moban" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">模板列表</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="col-md-12 text-right">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input datakey="classNameSearch" type="text" class="form-control  input-circle"
+                               placeholder="模板名称..." id="classNameSearch" name="classNameSearch">
+                    </div>
+                    <a class="btn btn-outline green-haze" id="search">搜索</a>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="dataTableWrapper" style="margin-top: 16px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+        <button type="button" data-dismiss="modal" class="btn btn-success">确定</button>
+    </div>
+</div>
+
+<div id="confirm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <h4 class="modal-title">确认删除此数据?</h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="noCheck">取消</button>
+        <button type="button" data-dismiss="modal" class="btn btn-success" id="yesCheck">确定</button>
+    </div>
+</div>
+
+
+
+
+

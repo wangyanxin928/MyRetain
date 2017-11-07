@@ -1,0 +1,35 @@
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+
+//声明页面路由
+var routes = require('./routes/index');
+//声明接口路由
+var questionnaireRoute = require('./routes/pgmanage_route/questionnaireRoute');//评估管理-问卷模块路由
+var questionnaireRoute_Client = require('./routes/client_route/questionnaireRoute');//客户端-问卷填报报模块路由 by shn
+var userRoute = require('./routes/bdmanage_route/userRoute');//基础数据-平台登陆 by byx
+var baseQuestionRoutes = require('./routes/base_question/baseQuestionRoutes');//评估管理-问卷模块路由
+
+var app = express();
+// 关于首页的设置
+app.use(express.static(path.join(__dirname, 'views')));
+
+//定义页面路由访问名称
+app.use('/', routes);
+
+//设置跨域访问接口，放到页面声明之后
+app.all('*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By", ' 3.2.1');
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+//定义接口路由访问名称
+app.use('/QHPG-HN/pgmanage/questionnaireController', questionnaireRoute); // 自定义cgi路径
+app.use('/QHPG-HN', questionnaireRoute_Client); // 评估管理-问卷管理模块自定义cgi路径 by byx
+app.use('/QHPG-HN', userRoute);  //基础数据-平台登陆 by byx
+app.use('/QHPG-HN/baseQuestion/baseQuestionController', baseQuestionRoutes); // 问卷相关基本信息
+
+module.exports = app;

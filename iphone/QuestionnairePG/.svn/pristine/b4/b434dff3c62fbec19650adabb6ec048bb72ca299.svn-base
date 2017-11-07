@@ -1,0 +1,416 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2016/09/06
+//  description: 基础组件——dataTable小列表
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    var tpl = require('text!tpl/taskAssignment/addAssignment.html'),
+        template = _.template(tpl), _this;
+    var DataTable = require('plugins/DataTableView/DataTable');
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            //加载datatable中数据
+            this.initDataTableData();
+            backStageUTIL.initMenu("taskAssignment");
+            //初始化时间插件
+            backStageUTIL.initDatePicker();
+
+            //引入问卷弹框的页面
+            require(["pages/showPage/questionnairList"], function (view) {
+                var viewObj = {model: {}};
+                var _view = new view(viewObj);
+                $('#questionChildList').html(_view.$el);
+                //设置中间内容区域屏幕的高度,中间内容区域层的class必须是page-content
+                _view.afterRender();
+                $("#quesNameSearchBtn").on("click",function(){
+                    _view.dataTable.render();
+                })
+            });
+
+        },
+        events: {
+            "click #saveProject": "saveProject",//保存项目信息
+            "click #showTask": "showTask",//追加子任务页面
+            "change .send_method":"changeFuc",//切换下拉框
+            "click #showQuestionnairList":"showQuestionnairList",//显示问卷列表
+            "click #publicProject":"publicProject",//发布项目
+        },
+
+        //发布项目
+        publicProject:function () {
+            //项目状态 - 0：保存;1：发布;2：已删除;
+            var JSONPARAM={project_id:$("#showTask").attr("project_id"),state:1 };
+            //查出所有问卷
+
+            var questionsList = [];//问卷集合
+            for(var j = 0;j<$(".questionSelect").length;j++){
+                var question$ = $(".questionSelect:eq("+j+")");
+                var alength = $(question$).find("ul li").length;
+                for(var i = 0 ;i<alength;i++){
+                    var question_id = $(question$).find("ul li:eq("+i+") a").attr("questionnaire_id");
+                    var question_name = $(question$).find("ul li:eq("+i+") a").attr("questionnaire_name");
+                    questionsList.push({questionnaire_id:question_id,questionnaire_name:question_name});
+                }
+            }
+            JSONPARAM.questionsList = JSON.stringify(questionsList);
+
+
+            console.log(JSONPARAM);
+            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.setProjectState,JSON.stringify(JSONPARAM),function(data){
+                backStageUTIL.toastrAlert("success","项目发布成功");
+                //页面进行跳转
+                location.href="#taskAssignment";
+            });
+        },
+
+
+        //下拉框事件
+        changeFuc:function (e) {
+            console.log($(e.target).parent().parent().parent().find(".send_method_select").val());
+            if($(e.target).parent().parent().parent().find(".send_method_select").val() == 2){
+                $(e.target).parents("form").find(".send_method").show();
+                $(e.target).parents("form").find(".user_role").show();
+                $(e.target).parents("form").find(".xueduan").show();
+                $(e.target).parents("form").find(".grade").show();
+                $(e.target).parents("form").find(".showQuestionnair").show();
+                $(e.target).parents("form").find(".showSchool").show();
+                $(e.target).parents("form").find(".share_method").css("display","none");
+            }else{
+                $(e.target).parents("form").find(".send_method").show();
+                $(e.target).parents("form").find(".user_role").hide();
+                $(e.target).parents("form").find(".xueduan").hide();
+                $(e.target).parents("form").find(".grade").hide();
+                $(e.target).parents("form").find(".showQuestionnair").show();
+                $(e.target).parents("form").find(".showSchool").hide();
+                $(e.target).parents("form").find(".share_method").css("display","block");
+            }
+        },
+
+        //保存项目
+        saveProject: function () {
+            var me=this;
+
+            //保存项目
+            var user_id = "user1";//测试数据
+            var JSONPARAM = {};
+            var project_name = $('#project_name').val();
+            var start_time = $("#start_time").val();
+            var end_time = $("#end_time").val();
+            var descript = $("#descript").val();
+
+            var project_id = $("#showTask").attr("project_id");
+            if(typeof (project_id) == "undefined"){
+                project_id = "";
+            }else {
+                project_id = $("#showTask").attr("project_id");
+            }
+            JSONPARAM.project_id = project_id;
+            JSONPARAM.create_user_id = user_id;
+            JSONPARAM.project_name = project_name == 'undefined'?"":project_name;
+            JSONPARAM.start_time = start_time == 'undefined'?"":start_time;
+            JSONPARAM.end_time = end_time == 'undefined'?"":end_time;
+            JSONPARAM.descript = descript == 'undefined'?"":descript;
+
+
+            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.saveProjectInfo, JSON.stringify(JSONPARAM), function (data) {
+                backStageUTIL.toastrAlert('success', '提示', '保存成功！');
+
+                //隐藏保存项目按钮，显示添加任务按钮
+                $("#showTask").attr("project_id",data.resultdata.project_id);
+            });
+        },
+
+        //添加任务
+        showTask: function () {
+            var muliSchoolFormId = "from_" + backStageUTIL.loadRandom();
+            //添加新校区
+            if ($("#muliSchools").children("div.portlet").length == 0) {
+                var html = $("#moduleContentsDiv").html();
+                $("#muliSchools").append(html);
+            }
+            else {
+                $($("#muliSchools").children("div.portlet").get(0)).before($("#moduleContentsDiv").html());
+            }
+            //给刚刚添加的校区FROM的ID赋值
+            $($("#muliSchools").children("div.portlet").get(0)).find("form").attr("id", muliSchoolFormId);
+
+
+            //初始化下拉框
+            backStageUTIL.initSelect($("#"+muliSchoolFormId+""));
+            //初始化复选框
+            backStageUTIL.initCheck($("#"+muliSchoolFormId+""));
+            //创建校区删除事件
+            var muliSchoolForm;
+
+            $("#muliSchools [action='task_name']").keyup(function (e) {
+                $(e.target).parents("[action='muliSchool']").find("[action='muliSchoolTitle']").text($(e.target).val());
+            });
+
+            //点击保存按钮保存任务信息
+            $("[action='saveMuliSchool']").on("click", function (e) {
+                var me =this;
+
+                var JSONPARAM = {};
+                if($(e.target).parents("form").find(".send_method_select").val() == 2){
+                    //行政下发
+                }else{
+                    //行政分享下发
+                    //取出分享方式的值和问卷的值
+                    var share_method = $(e.target).parents("form").find(".haveEventGroup2 input:checked").val();
+
+                    //获取问卷列表
+                    var question$ = $(e.target).parents("form").find(".questionSelect");
+                    var questionsList = [];//问卷集合
+                    var alength = $(question$).find("ul li").length;
+                    for(var i = 0 ;i<alength;i++){
+                        var question_id = $(question$).find("ul li:eq("+i+") a").attr("questionnaire_id");
+                        var question_name = $(question$).find("ul li:eq("+i+") a").attr("questionnaire_name");
+                        questionsList.push({questionnaire_id:question_id,questionnaire_name:question_name});
+                    }
+                    var project_id = $("#showTask").attr("project_id");//项目id
+                    var task_id = "";
+                    if(typeof ($(e.target).parents("form").find(".saveMuliSchool").attr("task_id")) != 'undefined'){
+                        task_id = $(e.target).parents("form").find(".saveMuliSchool").attr("task_id");
+                    }
+                    var task_name = $(e.target).parents("form").find(".task_name input").val();//任务名称
+                    var description = "";//任务描述
+                    var in_role = "";//任务角色
+                    var task_xueduans = "";//任务学段
+                    var task_grade_items = [];//参与年纪
+                    var task_school_items = [];//参与学校
+
+                    //任务对象
+                    var task_obj = {
+                        task_id:task_id,
+                        task_name:task_name,
+                        description:description,
+                        task_xueduans:task_xueduans,
+                        in_role:in_role,
+                        task_grade_items:task_grade_items,
+                        task_school_items:task_school_items,
+                        task_questionnaire_items:questionsList,
+                        send_method:1,
+                        share_method:share_method
+                    };
+
+                    //问卷集合
+                    JSONPARAM.project_id = project_id;
+                    JSONPARAM.task_item = task_obj;
+
+                    //保存任务
+                    PublicAjax.ajaxGet(PublicAjax.ajaxUrl.saveProjectTaskInfo, JSON.stringify(JSONPARAM), function (data) {
+                        backStageUTIL.toastrAlert('success', '提示', '保存任务成功！');
+                        $(e.target).parents("form").find(".saveMuliSchool").attr("task_id",data.resultdata.task_id);
+                    });
+
+                }
+            })
+
+            //点击删除弹框事件
+            $("[action='removeMuliSchool']").on("click", function (e) {
+                muliSchoolForm = $(e.target).parents("[action='muliSchool']");
+                $('#confirm').modal("show");
+            });
+            //点击删除后，弹出层确定删除数据事件
+            $("#yesCheck").unbind("click").bind("click", function (e) {
+                var task_id = $(e.target).parents("form").find(".saveMuliSchool").attr("task_id")
+                if (task_id != "" && task_id != undefined) {
+                    var JSONPARAM = {task_id:task_id,project_id:$("#showTask").attr("project_id")};
+                    PublicAjax.ajaxGet(PublicAjax.ajaxUrl.deleteTaskInfo, JSON.stringify(JSONPARAM), function (data) {
+                        backStageUTIL.toastrAlert('success', '提示', '删除成功！');
+                    });
+                } else {
+                    $(muliSchoolForm).remove();
+                    backStageUTIL.toastrAlert('success', '提示', '删除成功！');
+                }
+            });
+            //点击删除后，弹出层取消按钮事件
+            $("#noCheck").unbind("click").bind("click", function () {
+
+            });
+
+
+            //删除问卷
+            $(".questionSelect ul").undelegate("a>i","click").delegate("a>i","click",function(e){
+                e.stopPropagation();
+                if($($(e.target)).parents(".questionSelect").find("ul>li").length==1){
+                    $($(e.target)).parents(".questionSelect").hide();
+                }
+                $(e.target).closest("li").remove();
+            });
+        },
+
+        initDataTableData: function (searchTargetName) {
+        var me = this;
+        var options = {
+            // 数据来源方法
+            data: {
+                // 异步数据源
+                sync: function (syncOptions, callback) {
+                    //下面注释的是获取异步数据方法
+                    //var PAGEJSON = {PageIndex: syncOptions.data.page, PageSize: syncOptions.data.rows};
+                    //searchExpertName == undefined ? "" : searchExpertName;
+                    //require(['common/ajax'], function (_ajax) {
+                    //    _ajax.ajaxGetBackAll(_ajax.ajaxUrl.getExpertList, "PAGEJSON=" + JSON.stringify(PAGEJSON) + "&expertName=" + searchExpertName, function (_d) {
+                    //        callback && callback({rows: _d.ResultData, total: _d.PageCount});
+                    //    })
+                    //});
+                    setTimeout(function () {
+                        var dataList = [{ID: '8787367361', XM: '北京评估安全问卷',  ZW: '444528',CW:"256235"},
+                            {ID: '8787367362', XM: '天津评估安全问卷', ZW: '562255',CW:"865447"},
+                            {ID: '8787367363', XM: '上海评估安全问卷',  ZW: '474477',CW:"635525"},
+                            {ID: '8787367364', XM: '河北评估安全问卷',ZW: '4856245',CW:"635241"},
+                            {ID: '8787367364', XM: '河南评估安全问卷',  ZW: '485828',CW:"456789"},
+                            {ID: '8787367364', XM: '山东评估安全问卷',  ZW: '475215',CW:"123456"},
+                            {ID: '8787367361', XM: '北京评估安全问卷',  ZW: '444528',CW:"256235"},
+                            {ID: '8787367362', XM: '天津评估安全问卷', ZW: '562255',CW:"865447"},
+                            {ID: '8787367363', XM: '上海评估安全问卷',  ZW: '474477',CW:"635525"},
+                            {ID: '8787367364', XM: '河北评估安全问卷',ZW: '4856245',CW:"635241"},
+                        ];
+                        var dataCount = 35;
+                        callback && callback({rows: dataList, total: dataCount});
+                    }, 200);
+
+                },
+                // 数据列表的索引
+                dataArrayIndex: 'rows',
+                // 分页参数
+                paging: {
+                    enable: true,
+                    // 每页数据条数
+                    pageSize: 10
+                },
+                collection: Backbone.Collection//DataSourceCollection
+            },
+            //显示序号列
+            displayIndex: true,
+            //列显示循序：
+            columns: [
+                /* {
+                 text: "编号",
+                 dataIndex: "ID"
+                 },*/
+                {
+                    text: "问卷名称",
+                    dataIndex: "XM"
+
+            /*    {
+                    text: "账号",
+                    dataIndex: "ZW"
+                },
+                {
+                    text: "密码",
+                    dataIndex: "CW"
+                },
+                {
+                    text: "操作",
+
+                    render: function (value, row) {
+                        var name = '';
+                        if(row["XM"] == "制度建设"){
+                            name = "zdjs";
+                        }
+                        return "<a data-id='" + row["ID"] + "' data-name='" + row["XM"] + "' class='editData btn btn-outline btn btn-xs green' style='width:50px;'>复制 </a><a data-id='" + row["ID"] + "'href='javascript:;' class='btn btn-outline btn btn-xs red deleteData' style='width:50px;' data-target='#delete' data-toggle='modal'>删除 </a>";
+                    }*/
+                }],
+            // 默认多选模式
+            "selModel": {
+                // single/multi,为空则不显示
+                mode: "multi",
+                // 是否显示行的checkbox
+                checkbox: true,
+
+            },
+            //表头、表数据初始化完成后调用
+            initTableEventsCall: function () {
+                //为table中的删除按钮添加事件：
+                me.$(".deleteData").click(function (_event) {
+                    _event.stopPropagation();
+                    var _event = _event || event;
+                    var row = _event.srcElement ? _event.srcElement : _event.target;
+                    var $this = $(row);
+                    me.needDeleteId = $this.attr("data-id");
+                    _this.$('#delete').modal('show');
+                });
+                //为table中的编辑按钮添加事件：
+                me.$(".editData").click(function (_event) {
+                    _event.stopPropagation();
+                    var _event = _event || event;
+                    var row = _event.srcElement ? _event.srcElement : _event.target;
+                    var $this = $(row);
+                    me.editID = $this.attr("data-id");
+                    /*location.href="#targetInfo_one/1/"+ me.editID;
+                     backStageUTIL.toastrAlert('success', '提示', "可以跳转到编辑页了：" + me.editID);*/
+                });
+                me.$("#dataTableWrapper").find("tbody").find("tr").click(function (_event) {
+                    _event.stopPropagation();
+                    var currentTr = event.target;
+                    while (currentTr.tagName != "TR") {
+                        currentTr = currentTr.parentNode;
+                    }
+                    var $this = $(currentTr);
+
+
+                    if( $this.find('a').attr("targettwo") == 'zdjs'){
+                        me.editID = $this.attr("data-id");
+                        location.href="#targetManageTwo";
+                    }else{
+                        me.editID = $this.attr("data-id");
+                        location.href="#targetManage_last/2/"+ me.editID;
+                    }
+
+
+
+                });
+            }
+        };
+        this.dataTable = new DataTable(options);
+        // 渲染至页面
+        this.$("#dataTableWrapper").html(this.dataTable.$el);
+    },
+
+        showQuestionnairList:function (e) {
+            //var question$ = $(".questionSelect");
+            var question$ = $(e.target).parent().parent().parent().parent().parent().find(".questionSelect");
+            //清除选中
+            $("#dataTableWrapperQ tbody").find('input:checkbox').removeAttr("checked");
+
+            /* 点击弹出层事件显示页面已有的弹出层。*/
+            $('#questionListModel').modal("show");
+
+            //添加学生到该班级
+            $("#questionCheck").unbind("click").bind("click", function (e) {
+                var checkedlast = $("#dataTableWrapperQ tbody").find('input:checked');
+
+                for(var i = 0 ;i<checkedlast.length; i++){
+                    var questionName = $(checkedlast[i]).parent().parent().find("td:eq(2)").find("span").html();
+                    var questionId = $(checkedlast[i]).parent().parent().find("td:eq(2)").find("span").attr("questionnaire_id");
+                    var currLi=$('<li>');
+                    var currA=$('<a>');
+                    currA.attr("questionnaire_id",questionId);
+                    currA.attr("questionnaire_name",questionName);
+                    currA.html(questionName+'<i class="fa fa-times"></i>');
+                    currLi.html(currA);
+                    $(question$).find("ul").append(currLi);
+                    if($(question$).find("ul>li").length==1){
+                        $(question$).show();
+                    }
+                }
+            });
+            //点击删除后，弹出层取消按钮事件
+            $("#noCheck").unbind("click").bind("click", function () {
+            });
+        },
+
+});
+});

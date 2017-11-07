@@ -1,0 +1,189 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2016/09/06
+//  description: 基础组件——dataTable小列表
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    var tpl = require('text!tpl/questionnaireManagement/questionManageList.html'),
+        template = _.template(tpl), _this;
+    var DataTable = require('plugins/DataTableView/DataTable');
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            //加载datatable中数据
+            this.initDataTableData();
+            //初始化删除数据弹层
+            this.initDeleteModal();
+            //待删除的id
+            this.needDeleteId = "";
+            //编辑的主键id,编辑和详情
+            this.editID = "";
+            backStageUTIL.initMenu("routineSupervision");
+        },
+        events: {
+            "click #btnSearch": "searchTask",
+            "click #btnTaskAdd": "addTask",
+        },
+        searchTask: function () {
+            var taskName = $("#taskName").val();
+            this.initDataTableData(taskName);
+        },
+
+        addTask: function(){
+            location.href="#supervisorTaskInfo/1/0";
+        },
+
+        initDataTableData: function (searchTaskName) {
+            var me = this;
+            var options = {
+                // 数据来源方法
+                data: {
+                    // 异步数据源
+                    sync: function (syncOptions, callback) {
+                        //下面注释的是获取异步数据方法
+                        //var PAGEJSON = {PageIndex: syncOptions.data.page, PageSize: syncOptions.data.rows};
+                        //searchExpertName == undefined ? "" : searchExpertName;
+                        //require(['common/ajax'], function (_ajax) {
+                        //    _ajax.ajaxGetBackAll(_ajax.ajaxUrl.getExpertList, "PAGEJSON=" + JSON.stringify(PAGEJSON) + "&expertName=" + searchExpertName, function (_d) {
+                        //        callback && callback({rows: _d.ResultData, total: _d.PageCount});
+                        //    })
+                        //});
+                        setTimeout(function () {
+                            var dataList = [
+                                {TASKNAME: '河北省-承德市', STARTTIME: '承德第一中学', GROUPLEADER: '李国强', PHONE: '2017-08-23', FILE:'2017-05-28河北承德一中督导文档.xls'},
+                                {TASKNAME: '河北省-保定市', STARTTIME: '保定市第一中学', GROUPLEADER: '张志强', PHONE: '2017-05-26', FILE:'2017-05-21河北保定一中督导文档.xls'},
+                            ];
+                            var dataCount = 20;
+                            callback && callback({rows: dataList, total: dataCount});
+                        }, 200);
+
+                    },
+
+                    // 数据列表的索引
+                    dataArrayIndex: 'rows',
+                    // 分页参数
+                    paging: {
+                        enable: true,
+                        // 每页数据条数
+                        pageSize: 10
+                    },
+                    collection: Backbone.Collection//DataSourceCollection
+                },
+                //显示序号列
+                displayIndex: true,
+                //列显示循序：
+                columns: [
+                    {
+                        text: "地区",
+                        dataIndex: "TASKNAME"
+                    },
+                    {
+                        text: "学校名称",
+                        dataIndex: "STARTTIME",
+                        //时间转为日期格式
+                       /* render: function (value, row) {
+                            var issued_time=row["issued_time"];
+                            return issued_time.substring(0,10);
+                        }*/
+                    },
+
+                    {
+                        text: "责任督学",
+                        dataIndex: "GROUPLEADER",
+
+                    },
+
+                    {
+                        text: "上传时间",
+                        dataIndex: "PHONE",
+
+                    },
+                    {
+                        text: "文件",
+                        dataIndex: "FILE",
+
+                    },
+
+
+                ],
+                // 默认多选模式
+                "selModel": {
+                    // single/multi,为空则不显示
+                    mode: "",
+                    // 是否显示行的checkbox
+                    checkbox: false
+                },
+                //表头、表数据初始化完成后调用
+                initTableEventsCall: function () {
+                    //为table中的删除按钮添加事件：
+                    me.$(".deleteData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.needDeleteId = $this.attr("data-id");
+                        _this.$('#confirm').modal('show');
+                    });
+                    //为table中的编辑按钮添加事件：
+                    me.$(".editData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.editID = $this.attr("data-id");
+                        location.href="#supervisorTaskInfo/2/"+ me.editID;
+                    });
+                    me.$("#dataTableWrapper").find("tbody").find("tr").click(function (_event) {
+                        _event.stopPropagation();
+                        var currentTr = event.target;
+                        while (currentTr.tagName != "TR") {
+                            currentTr = currentTr.parentNode;
+                        }
+                        var $this = $(currentTr);
+
+//                      if($this.find(".editData").length>0){
+//                          me.editID=$this.find(".editData").attr("data-id");
+//                      }else{
+//                          me.editID=$this.parents("tr").find(".editTeacher").attr("data-id");
+//                      }
+                        me.editID = $this.attr("data-id");
+                        location.href="#supervisorTaskInfoAll/3/"+ me.editID;
+
+                    });
+                }
+            };            this.dataTable = new DataTable(options);
+            // 渲染至页面
+            this.$("#dataTableWrapper").html(this.dataTable.$el);
+        },
+        initDeleteModal: function () {
+            var me = this;
+            this.$('#confirm').on('shown.bs.modal', function () {
+                //点击确定按钮事件
+                $("#yesCheck").unbind('click').bind("click", function () {
+
+                    backStageUTIL.toastrAlert('success', '提示', "执行删除：成功" );
+                    //执行删除
+//					require(['btcommon/ajax'], function (_ajax) {
+//		                _ajax.ajaxFunc(TeacherUTIL.CONFIG.deleteWorkload, "ID=" + me.needDeleteId, function (_d) {
+//		                    var data = _d;
+//
+//		                    TeacherUTIL.toastrAlert('success', '提示', '信息删除成功！');
+//		                    me.needDeleteId="";
+//		                    me.dataTable.render();
+//		                })
+//		            });
+
+                });
+            })
+        }
+    });
+});

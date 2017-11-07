@@ -1,0 +1,40 @@
+{
+  "_from": "bytes@1.0.0",
+  "_id": "bytes@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-NWnt6Lo0MV+rmcPpLLBMciDeH6g=",
+  "_location": "/bytes",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "bytes@1.0.0",
+    "name": "bytes",
+    "escapedName": "bytes",
+    "rawSpec": "1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0"
+  },
+  "_requiredBy": [
+    "/body-parser"
+  ],
+  "_resolved": "https://registry.npmjs.org/bytes/-/bytes-1.0.0.tgz",
+  "_shasum": "3569ede8ba34315fab99c3e92cb04c7220de1fa8",
+  "_shrinkwrap": null,
+  "_spec": "bytes@1.0.0",
+  "_where": "D:\\axyr\\开发框架\\Node-Demo\\node_modules\\body-parser",
+  "bin": null,
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Byte string parser / formatter.",
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "name": "bytes",
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "scripts": {},
+  "version": "1.0.0"
+}

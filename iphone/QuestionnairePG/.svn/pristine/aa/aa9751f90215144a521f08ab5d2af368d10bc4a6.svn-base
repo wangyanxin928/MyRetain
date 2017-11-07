@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>英语教师自评结果页</div>
+    <div>
+        <div>综合性评语：</div>
+        <div id="comprehensive">经过测评，您的教学能力综合得分为：XX，处于XX阶段。</div>
+        <div id="optionRadar" style="width: 100%;height:500px;"></div>
+        <div>个人教学能力得分情况</div>
+        <div id="eachStandComment"></div>
+        <div>对您的建议</div>
+        <div id="eachStandProposal"></div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/echarts.min.js"></script>
+</body>
+<script>
+    $(window).on("load",function(){
+        //获取用户的分数信息  ：问卷id,任务id，用户id  getStandScore
+        var project_id = getUrlPara("project_id");
+        var task_id = getUrlPara("task_id");
+        var questionnaire_id = getUrlPara("questionnaire_id");
+        var user_id = getUrlPara("user_id");
+        //获取移动端问卷首页的信息
+        var ajaxobj = {
+            itype: "get",
+            iname: "client/questionnaireController/getStandScore"
+        };
+        var actobj = {
+            "task_id": task_id,
+            "questionnaire_id": questionnaire_id,
+            "user_id":user_id
+        };
+        var layerIndex = layer.load(0, {shade: false});
+        getdata(ajaxobj, actobj, function (data) {
+            layer.close(layerIndex);
+            if (data.resultnum != "0000") {
+                layer.msg("获取测评结果信息失败", {
+                    icon: 2,
+                    time: 3000
+                });
+                return;
+            }else{
+                var standScoreList = data.resultdata;
+
+//                var comprehensiveScore =0;//综合得分
+//                var comprehensiveFractionRemark = {};//综合指标的分数段及评语配置对象
+                var eachStandCommentStr = "";//各指标评语
+                var eachStandProposalStr = "";//各指标意见
+                var abilityInfo={//能力简称:分数
+                    LL:0,//学习和学习者  101
+                    LP:0,//语言能力  103
+                    LA:0,//语言知识和意识   104
+                    PV:0,//专业发展和价值观   105
+                    TE:0//教学、学习和测评  102
+                };
+                //循环指标分数信息：计算指标的计算分值，指标的fraction_remark字段处理为对象，计算综合分数，获取综合指标的配置对象；
+                for(var i=0;i<standScoreList.length;i++){
+                    standScoreList[i].fraction_remark = JSON.parse(standScoreList[i].fraction_remark);
+                    if(standScoreList[i].type=="1"){
+//                        var standFullmark = standScoreList[i].fullmark;//指标总分
+//                        var score = standScoreList[i].score;//指标原始得分
+//                        var standCalculationScore = score/standFullmark*100;//指标计算分值
+//                        standCalculationScore = standCalculationScore.toFixed(2);
+//                        standScoreList[i].standCalculationScore = standCalculationScore;
+//                        var weight = standScoreList[i].weight;
+//                        comprehensiveScore = comprehensiveScore+standCalculationScore*Number(weight);
+
+                        var standCountScore = standScoreList[i].count_score;
+                        var fraction_remark = standScoreList[i].fraction_remark;
+                        for(var j= 0;j<fraction_remark.length;j++){
+                            var lowscore = fraction_remark[j].lowscore;
+                            var heightscore = fraction_remark[j].heightscore;
+//                            if(lowscore<=standCalculationScore&&standCalculationScore<=heightscore){
+                            if(lowscore<=standCountScore&&standCountScore<=heightscore){
+                                eachStandCommentStr= eachStandCommentStr+"您在"+standScoreList[i].stand_name+"方面处于："+fraction_remark[j].remark+"阶段<br/>"
+                                +fraction_remark[j].remark+":"+fraction_remark[j].explain+"<br/>";
+                                eachStandProposalStr = eachStandProposalStr+"在"+standScoreList[i].stand_name+"方面<br/>";
+                                if(fraction_remark[j].proposal.length==2){
+                                    eachStandProposalStr =eachStandProposalStr+"(1)."+fraction_remark[j].proposal[0]+"(2)."+fraction_remark[j].proposal[1]+"<br/>";
+                                }else if(fraction_remark[j].proposal.length>2){
+                                    var index = Math.floor((Math.random()*fraction_remark[j].proposal.length-1));
+                                    eachStandProposalStr =eachStandProposalStr+"(1)."+fraction_remark[j].proposal[index]+"(2)."+fraction_remark[j].proposal[index+1]+"<br/>";
+                                }
+                                break;
+                            }
+                        }
+                        switch(standScoreList[i].stand_id){
+                            case "101":
+                                abilityInfo.LL = standCountScore;
+                                break;
+                            case "102":
+                                abilityInfo.TE = standCountScore;
+                                break;
+                            case "103":
+                                abilityInfo.LP = standCountScore;
+                                break;
+                            case "104":
+                                abilityInfo.LA = standCountScore;
+                                break;
+                            case "105":
+                                abilityInfo.PV = standCountScore;
+                                break;
+                        }
+                    }
+                    else{//处理综合评语
+//                        comprehensiveFractionRemark = standScoreList[i].fraction_remark;
+                        var standCountScore = standScoreList[i].count_score;
+                        var fraction_remark = standScoreList[i].fraction_remark;
+                        for(var j=0;j<fraction_remark.length;j++){
+                            var lowscore = fraction_remark[j].lowscore;
+                            var heightscore = fraction_remark[j].heightscore;
+                            if(lowscore<=standCountScore&&standCountScore<=heightscore){
+                                $("#comprehensive").html("经过测评，您的教学能力综合得分为："+standCountScore.toFixed(2)
+                                        +"，处于"+fraction_remark[j].remark+"阶段。");
+                                break;
+                            }
+                        }
+                    }
+                }
+                //处理综合评语
+//                for(var i=0;i<comprehensiveFractionRemark.length;i++){
+//                    var lowscore = comprehensiveFractionRemark[i].lowscore;
+//                    var heightscore = comprehensiveFractionRemark[i].heightscore;
+//                    if(lowscore<=comprehensiveScore&&comprehensiveScore<=heightscore){
+//                        $("#comprehensive").html("经过测评，您的教学能力综合得分为："+comprehensiveScore.toFixed(2)
+//                                +"，处于"+comprehensiveFractionRemark[i].remark+"阶段。");
+//                        break;
+//                    }
+//                }
+                //处理各能力评语
+                $("#eachStandComment").html(eachStandCommentStr);
+                $("#eachStandProposal").html(eachStandProposalStr);
+
+                //还需要显示：测试时间、名次、各能力雷达图
+
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('optionRadar'));
+
+                // 指定图表的配置项和数据
+                var optionRadar = {
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {},
+                    legend: {
+                        // data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+                    },
+                    radar: {
+                        // shape: 'circle',
+                        radius:'85%',
+                        name: {
+                            fontSize:18,
+                            fontWeight:'bolder'
+                        },
+                        indicator: [
+                            { name: 'LL', max: 100},
+                            { name: 'PV', max: 100},
+                            { name: 'LA', max: 100},
+                            { name: 'LP', max: 100},
+                            { name: 'TE', max: 100}
+                        ]
+                    },
+                    series: [{
+                        name: '专业发展 vs 得分',
+                        type: 'radar',
+                        itemStyle: {
+                            normal: {
+                                color: '#2EC7C9'
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                opacity: 0.5
+                            }
+                        },
+                        symbolSize:8,
+                        data : [
+                            {
+                                value : [abilityInfo.LL, abilityInfo.PV, abilityInfo.LA, abilityInfo.LP, abilityInfo.TE],
+                                name : '专业发展'
+                            }
+                        ]
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(optionRadar);
+
+                debugger;
+            }
+        });
+    });
+</script>
+</html>

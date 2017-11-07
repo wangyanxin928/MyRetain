@@ -1,0 +1,107 @@
+/*
+ 2017年5月4日 16:40:50
+ byx
+ 评估管理-问卷模块的dao层,sql语句
+ * */
+
+var importQuestionnair = {
+    //保存问卷信息
+    saveQuestionnaire: function (questionnaireInfo) {
+        var sqls = [];
+        //问卷sql
+        var questionnaireSql = "INSERT INTO questionnaire (questionnaire_id, questionnaire_name, descript, load_user_id,  use_role)   ";
+        questionnaireSql += "values ('" + questionnaireInfo.questionnaire_id + "', '"
+            + questionnaireInfo.questionnaire_name + "', '"
+            + questionnaireInfo.descript + "', '"
+            + questionnaireInfo.load_user_id + "',  '"
+            + questionnaireInfo.use_role + "') ";
+        sqls.push(questionnaireSql);
+        //问卷参与学段sql
+        var arrLength = questionnaireInfo.xueduan_items.length;
+        var sqlXueduan = "INSERT INTO questionnaire_xueduan (q_id, xd_name) "
+            + "VALUES ";
+        questionnaireInfo.xueduan_items.forEach(function (item, index) {
+            sqlXueduan += "('"
+                + questionnaireInfo.questionnaire_id + "', '"
+                + item + "') ";
+            if ((index + 1) < arrLength) {
+                sqlXueduan += ",";
+            }
+        })
+        if(arrLength>0){
+            sqls.push(sqlXueduan);
+        }
+        return sqls;
+    },
+
+    //保存问卷问题信息
+    saveQuestion: function (questionInfo) {
+        //问卷sql
+        var questionSql = "INSERT INTO questionnaire_question (question_id, questionnaire_id, q_order, q_type, content, stand_id, q_logicjson, option_order)   ";
+        questionSql += "values ('" + questionInfo.question_id + "', '"
+            + questionInfo.questionnaire_id + "', '"
+            + questionInfo.q_order + "', '"
+            + questionInfo.q_type + "',  '"
+            + questionInfo.content + "',  '"
+            + questionInfo.stand_id + "',  '"
+            + questionInfo.rule + "',  '"
+            + questionInfo.option_order + "') ";
+
+        return questionSql;
+    },
+
+    //保存问卷选项信息
+    saveOption: function (optionInfo) {
+        //选项sql
+        var optionSql = "INSERT INTO question_options ( option_id, option_content, option_order, option_score, questionnaire_id, question_id)   ";
+        optionSql += "values ('" + optionInfo.option_id + "', '"
+            + optionInfo.option_content + "', '"
+            + optionInfo.option_order + "', '"
+            + optionInfo.option_score + "', '"
+            + optionInfo.questionnaire_id + "', '"
+            + optionInfo.question_id + "') ";
+
+        return optionSql;
+    },
+
+    //获取问卷详情 by  hyq
+    getQuestionnaire: function (getQuestionnaireId) {
+        var sql = "SELECT * FROM questionnaire  where questionnaire_id=" + "'" + getQuestionnaireId + "';";
+        return sql;
+    },
+
+    //获取问卷列表-问卷管理 by byx
+    getQuestionnaireXueduan: function (questionnaireItem) {
+        var q_sql = "SELECT xd_name FROM questionnaire_xueduan WHERE q_id = '" + questionnaireItem.questionnaire_id + "'";
+        return q_sql;
+    },
+
+    /*获取问卷所有问题*/
+    getQuestionnaireQuestion:function(questionnaire_id){
+        var sql = "select * from questionnaire_question " +
+            "where questionnaire_id ='"+questionnaire_id+"'  ORDER BY q_order";
+        return sql;
+    },
+
+    /*获取问卷问题答案选项*/
+    getQuestionOption:function(questoin_id){
+        var sql = "select * from question_options " +
+            "where question_id ='"+questoin_id+"' ";
+        return sql;
+    },
+
+    //删除问卷 by hyq
+    removeQuestionnaire: function (questionnaire_id) {
+        var sqlArr = [];
+        var sql = "DELETE from questionnaire where questionnaire_id = '" + questionnaire_id + "';";
+        sqlArr.push(sql);
+        var sql = "DELETE from questionnaire_xueduan where q_id = '" + questionnaire_id + "';";
+        sqlArr.push(sql);
+        var sql = "DELETE from questionnaire_question where questionnaire_id = '" + questionnaire_id + "';";
+        sqlArr.push(sql);
+        return sqlArr;
+    },
+
+};
+
+module.exports = importQuestionnair;

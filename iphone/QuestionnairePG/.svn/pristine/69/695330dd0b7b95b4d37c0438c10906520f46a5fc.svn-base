@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light  ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold font-grey-gallery uppercase">问卷列表</span>
+                </div>
+                <div class="tools">
+                    <span class="caption-helper"><a>   </a></span>
+                    <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+
+                    <div class="col-md-12 text-right">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input datakey="quesNameSearch" type="text" class="form-control  input-circle" placeholder="问卷名称..." id="quesNameSearch" name="quesNameSearch">
+                            </div>
+                            <a class="btn btn-outline green-haze" id="quesNameSearchBtn">搜索</a>
+                            <a class="btn btn-outline green-haze" id="importQuestionnair">导入</a>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div id="dataTableWrapper" style="margin-top: 16px;"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="confirm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <p>
+            确认删除这条数据?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="noserl">再想想</button>
+        <button type="button" data-dismiss="modal" class="btn blue" id="yesserl">是的</button>
+    </div>
+</div>
+
+<!-- 预览-->
+<div id="showTempleModel" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <div id = "questionContent"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="noser">返回</button>
+    </div>
+</div>
+
+<!--问卷弹出层-->
+<div id="showQuestionModel" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <div class="portlet light  ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold font-grey-gallery uppercase">
+                        导入问卷
+                    </span>
+                </div>
+                <div class="caption"  style="margin-left: 300px">
+                    <a style="color: #4fc3ba;font-size: 14px;" id="papermodel" name="papermodel">问卷模版下载</a>
+                </div>
+                <div class="tools">
+                    <a class="closeLayer "  data-dismiss="modal"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">问卷名称:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control  input-circle" placeholder=""
+                                               action="questionnair_name" name="questionnair_name" id="questionnair_name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">适用对象:</label>
+                                    <div class="col-md-8">
+                                        <select class="bs-select form-control" placeholder="请选择适用对象" id="use_role">
+                                            <option value="">请选择适用对象</option>
+                                            <option value="学生">学生</option>
+                                            <option value="家长">家长</option>
+                                            <option value="教师">教师</option>
+                                            <option value="校长">校长</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">适用学段:</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <div class="icheck-inline" id="xueduan">
+                                                <label><input type="checkbox" class="icheck" data-checkbox="icheckbox_flat-green" value="全选" name="xueduan">全选</label>
+                                                <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学" name="xueduan"> 小学 </label>
+                                                <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学" name="xueduan"> 初中 </label>
+                                                <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学" name="xueduan"> 高中 </label>
+                                                <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学" name="xueduan"> 职高 </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                            <!--/span-->
+                            <!--/span-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">上传文件</label>
+                                    <div class="col-md-8">
+                                        <button type="button" class="btn btn-info"  onclick='javascript:$(this).next("input[type=file]").click();'>选择文件</button>
+                                        <input type="file" style="display:none;" id="fileUpload">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <div class="row" id="fileListWrapper" style="display:none;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">已选择</label>
+                                    <div class="col-md-8">
+                                        <ul class="nav nav-pills">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">问卷描述:</label>
+                                    <div class="col-md-8">
+                                        <textarea  class="form-control" name="descript" id="descript"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <button type="button" data-dismiss="modal" class="btn btn-default " id="noCheck">再想想</button>
+            <button type="button" data-dismiss="modal" class="btn blue" id="yesCheck">是的</button>
+        </div>
+    </div>
+</div>

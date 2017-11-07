@@ -1,0 +1,399 @@
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#taskAssignment"> 项目列表</a>
+        <!--<i class="fa fa-circle"></i>-->
+    </li>
+    <li>
+        <span class="active">项目任务</span>
+    </li>
+</ul>
+
+<style>
+    /* 隐藏作为模板的内容块 */
+    #moduleContent{
+        display: none;
+    }
+    #moduleContent1{
+        display: none;
+    }
+</style>
+<!-- BEGIN ROW -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light  " id="htmlTab">
+            <div class="portlet-title">
+                <div class="caption">
+                    <!--<i class="icon-puzzle font-grey-gallery"></i>-->
+                    <span class="caption-subject bold font-grey-gallery uppercase"> 项目基本信息 </span>
+                </div>
+                <div class="tools">
+                    <span class="caption-helper"><a> </a></span>
+                    <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                </div>
+            </div>
+
+            <div class="portlet-body form">
+
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal" id="myForm1" novalidate="novalidate">
+                    <div class="form-body">
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目名称：</label>
+
+                                    <div class="col-md-8">
+                                        <input datakey="task_name" type="text" class="form-control  input-circle"
+                                               placeholder="如:中小学2017年安全检查（必填项）" id="task_name" name="task_name">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">项目开始时间：</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group input-medium date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input datakey="start_time" id="start_time" name="start_time" type="text"
+                                                   class="form-control">
+					                                <span class="input-group-btn">
+					                                <button class="btn default" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+					                                </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">项目结束时间：</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group input-medium date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input datakey="end_time" id="end_time" name="end_time" type="text"
+                                                   class="form-control">
+					                                <span class="input-group-btn">
+					                                <button class="btn default" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+					                                </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目概述：</label>
+
+                                    <div class="col-md-8">
+                                        <textarea name="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     <!--   <div class="row">
+                            <div class="col-md-7 ">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">指标体系：</label>
+                                    <div class="col-md-5">
+                                        <select class="bs-select form-control">
+                                            <option id="1">选择指标体系</option>
+                                            <option id="2">2017年中小学生安全工作专项督导评估指标体系</option>
+                                            <option id="3">2016年中小学生安全工作专项督导评估指标体系</option>
+                                            <option id="4">2015年中小学生安全工作专项督导评估指标体系</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <div class="row text-center">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-4 col-md-8">
+                                                <a class="btn btn-circle green ww30 " id="btnShareData">分享下发</a>
+                                                <a class="btn btn-circle green ww30 " id="btnAdminiData">行政下发</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+                <div id="moduleListWrapper">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="confirm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <h4 class="modal-title">确认删除此数据?</h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="delnoCheck">取消</button>
+        <button type="button" data-dismiss="modal" class="btn btn-success" id="delyesCheck">确定</button>
+    </div>
+</div>
+
+<div class="portlet light bordered" id="moduleContent">
+    <div class="portlet-title">
+        <div class="caption">
+            <!--<i class="icon-puzzle font-grey-gallery"></i>-->
+            <span class="caption-subject bold font-grey-gallery uppercase"> 行政下发问卷 </span>
+        </div>
+        <div class="tools">
+            <span class="caption-helper"><a> </a></span>
+            <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+        </div>
+      <!--  <div class="actions">
+            <a href="javascript:;" class="btn btn-success btn-sm addModule"> <i class="fa fa-plus"></i> 复制 </a>
+            <a href="javascript:;" class="btn default btn-sm removeModule"> <i class="fa fa-remove"></i> 删除 </a>
+        </div>-->
+    </div>
+    <div class="portlet-body form ">
+        <div class="full-height-content-body">
+            <!-- BEGIN FORM-->
+            <form action="#" class="form-horizontal" id="myForm">
+                <div class="form-body">
+                    <div class="row" id="shiyong">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">适用对象:</label>
+                                <div class="col-md-3">
+                                    <select class="bs-select form-control" placeholder="请选择适用对象">
+                                        <option value="">请选择适用对象</option>
+                                        <option value="学生">学生</option>
+                                        <option value="家长">家长</option>
+                                        <option value="教师">教师</option>
+                                        <option value="校长">校长</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row" id="xueduan">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">适用学段:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="icheck-inline">
+                                            <label><input type="checkbox" class="icheck" data-checkbox="icheckbox_flat-green" value="全选">全选</label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 小学 </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 初中 </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 高中 </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 职高 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <!--/span-->
+                        <!--/span-->
+                    </div>
+                    <div class="row" id="nianji">
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">适用年级:</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <div class="icheck-inline">
+                                            <label><input type="checkbox" class="icheck" data-checkbox="icheckbox_flat-green" value="全选">全选</label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="1"> 一年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="2"> 二年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="3"> 三年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="4"> 四年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="5"> 五年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="6"> 六年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="7"> 七年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="8"> 八年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="9"> 九年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="10"> 高一  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="11"> 高二  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="12"> 高三  </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <!--/span-->
+                        <!--/span-->
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">选择问卷:</label>
+
+                            <div class="col-md-8">
+                                <a class="btn btn-outline green-haze" id="searchStudentName1">选择问卷</a>
+                                <!-- /input-group -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+                    <div class="row" id="school">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">选择学校:</label>
+
+                                <div class="col-md-8">
+                                    <a class="btn btn-outline green-haze" id="searchSchoolName1">选择学校</a>
+                                    <!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row text-center">
+                                    <div class="col-md-12">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <a class="btn btn-success btnSaveData" >保存任务</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+</div>
+<div class="portlet light bordered" id="moduleContent1">
+    <div class="portlet-title">
+        <div class="caption">
+            <!--<i class="icon-puzzle font-grey-gallery"></i>-->
+            <span class="caption-subject bold font-grey-gallery uppercase"> 分享问卷 </span>
+        </div>
+        <div class="tools">
+            <span class="caption-helper"><a> </a></span>
+            <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+        </div>
+        <!--<div class="actions">
+            <a href="javascript:;" class="btn btn-success btn-sm addModule"> <i class="fa fa-plus"></i> 复制 </a>
+            <a href="javascript:;" class="btn default btn-sm removeModule"> <i class="fa fa-remove"></i> 删除 </a>
+        </div>-->
+    </div>
+    <div class="portlet-body form ">
+        <div class="full-height-content-body">
+            <!-- BEGIN FORM-->
+            <form action="#" class="form-horizontal" id="myForm2">
+                <div class="form-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">选择问卷:</label>
+
+                                <div class="col-md-8">
+                                    <a class="btn btn-outline green-haze" id="searchStudentName2">选择问卷</a>
+                                    <!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row" id="fenxiang">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">分享方式:</label>
+
+                                <div class="col-md-8">
+                                    <a class="btn btn-outline green-haze" id="qq">QQ</a>
+                                    <a class="btn btn-outline green-haze" id="weixin">微信</a>
+                                    <!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row text-center">
+                                    <div class="col-md-12">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <a class="btn btn-success btnSaveData" >保存任务</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+</div>
+<!--弹出层-->
+<div id="wenjuan" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">问卷列表</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="col-md-12 text-right">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input datakey="classNameSearch" type="text" class="form-control  input-circle" placeholder="问卷名称..." id="classNameSearch" name="classNameSearch">
+                    </div>
+                    <a class="btn btn-outline green-haze" id="search">搜索</a>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="dataTableWrapper" style="margin-top: 16px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" data-dismiss="modal" class="btn btn-default " id="noCheck">取消</button>
+        <button type="button" data-dismiss="modal" class="btn btn-success" id="yesCheck">确定</button>
+    </div>
+</div>
+<!-- END ROW -->
+

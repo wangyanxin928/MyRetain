@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8"/>
+    <title>问卷管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css">-->
+    <link href="../js/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../js/plugins/font-awesome/css/font-awesome.css">
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="../css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+    <link href="../css/plugins.css" rel="stylesheet" type="text/css"/>
+
+    <link href="../js/plugins/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/layout/css/themes/light.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/layout/css/themes/anxin.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+    <!--时间控件样式-->
+    <link rel="stylesheet" type="text/css" href="../js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+    <!--check控件样式-->
+    <link href="../js/plugins/icheck/skins/all.css" rel="stylesheet"/>
+    <!--下拉控件样式-->
+    <link rel="stylesheet" type="text/css" href="../js/plugins/bootstrap-select/bootstrap-select.min.css"/>
+    <!--提示框控件样式-->
+    <link rel="stylesheet" type="text/css" href="../js/plugins/bootstrap-toastr/toastr.min.css"/>
+    <!--弹出提示框控件样式-->
+    <link href="../js/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+    <link href="../js/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+    <!--进度条控件样式 正常-->
+    <link href="../js/plugins/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" type="text/css"/>
+    <!--大黑条-->
+    <!--<link href="//cdn.bootcss.com/pace/0.7.5/themes/black/pace-theme-center-circle.css" rel="stylesheet">-->
+    <!--右上角百分比-->
+    <!--<link href="//cdn.bootcss.com/pace/0.7.5/themes/black/pace-theme-big-counter.css" rel="stylesheet">-->
+    <!--中间进度条+百分比-->
+    <!--<link href="https://cdn.bootcss.com/pace/0.7.5/themes/blue/pace-theme-loading-bar.css" rel="stylesheet">-->
+    <!--小球在蹦-->
+    <!--<link href="//cdn.bootcss.com/pace/0.7.5/themes/green/pace-theme-bounce.css" rel="stylesheet">-->
+    <!--中间进度条-->
+    <!--<link href="//cdn.bootcss.com/pace/0.7.5/themes/green/pace-theme-center-simple.css" rel="stylesheet">-->
+    <!--搜索列表样式-->
+    <link href="../css/search.css" rel="stylesheet" type="text/css"/>
+    <!--组合切换样式-->
+    <link href="../js/plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
+    <!--图片截取样式-->
+    <link href="../js/plugins/cropper/css/cropper.css" rel="stylesheet">
+    <!-- END THEME STYLES -->
+    <!--<link rel="shortcut icon" href="favicon.ico"/>-->
+
+    <!--ztree-->
+    <link rel="stylesheet" href="../js/plugins/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+    <!--自定义样式-->
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+
+    <!--弹框样式-->
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap-modal-bs3patch.css"/>
+
+    <!--时间轴-->
+    <link rel="stylesheet" type="text/css" href="css/jquery.eeyellow.Timeline.css" />
+
+    <!--问卷调查css-->
+    <link rel="stylesheet" href="css/questionnaire.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="../js/plugins/excanvas.min.js"></script>
+    <script src="../js/plugins/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<!-- END HEAD -->
+
+<body class="page-sidebar-closed-hide-logo page-content-white page-header-fixed  page-sidebar-fixed">
+<!-- 开始  的头 -->
+<div class="   page-header navbar navbar-fixed-top ">
+    <!-- 开始  头内 -->
+    <div class="page-header-inner ">
+        <!-- 开始  logo -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="logo" class="logo-default"/> </a>
+            <div class="menu-toggler sidebar-toggler"></div>
+        </div>
+        <!-- 结束  logo -->
+        <!-- 开始  菜单显示开关响应 -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- 结束  菜单显示开关响应 -->
+
+        <!-- 开始  顶部导航菜单 -->
+        <!--    <div class="page-actions">
+                <div class="btn-group">
+                    <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                            data-hover="dropdown" data-close-others="true">
+                        <span class="hidden-sm hidden-xs">校园督导&nbsp;</span>
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul role="menu" id="getAllList" class="dropdown-menu ">
+                        &lt;!&ndash; <li>
+                             <a href="../carManage/index.html" data-phone="13311382939">
+                                 <img src="../images/schoolCarIcon.png" height="48"
+                                      width="48"/>
+                                 <span data-i18n="common.createApp">校车安全</span>
+                             </a>
+                         </li>&ndash;&gt;
+                        <li>
+                            <a href="../schoolManage/index1.html" data-phone="13311382939">
+                                <img src="../images/educationSafety.png" height="48" width="48"/>
+                                <span data-i18n="common.createApp">校园安全</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../backStageManage/index.html" data-phone="13311382939">
+                                <img src="../images/educationalSupervision.png" height="48" width="48"/>
+                                <span data-i18n="common.createApp">校园督导</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>-->
+        <!-- 结束  顶部导航菜单 -->
+    </div>
+    <!-- 结束  头内 -->
+</div>
+<!-- 结束  的头 -->
+
+<!-- 开始  标题和内容分压器 -->
+<div class="clearfix"></div>
+<!-- 结束  标题和内容分压器 -->
+
+<!-- 开始  内容器 -->
+<div class="page-container ">
+    <!-- 开始  侧边栏 -->
+    <div class="page-sidebar-wrapper ">
+        <!-- 开始  侧边栏 -->
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <div class="page-sidebar navbar-collapse collapse ">
+            <!-- 开始  的侧边栏菜单 -->
+            <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+
+                <li class="nav-item ">
+                    <a href="#questionManageList" class="nav-link nav-toggle ">
+                        <i class="fa fa-send-o"></i>
+                        <span class="title">问卷管理</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#taskAssignment" class="nav-link nav-toggle">
+                        <i class="fa fa-soccer-ball-o"></i>
+                        <span class="title"> 项目下发 </span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="fa fa-folder-open"></i>
+                        <span class="title">数据分析</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="#expertList" class="nav-link nav-toggle ">
+                                <i class="fa fa-server"></i>
+                                <span class="title"> 结果呈现</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#steeringList" class="nav-link nav-toggle ">
+                                <i class="fa fa-send-o"></i>
+                                <span class="title">深度分析</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+               <!-- <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="fa fa-hourglass-start"></i>
+                        <span class="title">督导对象</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="#sMechanism" class="nav-link nav-toggle">
+                                <i class="fa fa-soccer-ball-o"></i>
+                                <span class="title"> 政府 </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sDepartment" class="nav-link nav-toggle ">
+                                <i class="fa fa-server"></i>
+                                <span class="title"> 部门 </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#schoolList" class="nav-link nav-toggle ">
+                                <i class="fa fa-send-o"></i>
+                                <span class="title">学校</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="fa fa-mortar-board"></i>
+                        <span class="title">督导任务</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item ">
+                            <a href="#taskList" class="nav-link nav-toggle ">
+                                <i class="fa fa-send-o"></i>
+                                <span class="title">巡检任务</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#noticeList" class="nav-link nav-toggle ">
+                                <i class="fa fa-server"></i>
+                                <span class="title"> 整改落实 </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="fa fa-pie-chart"></i>
+                        <span class="title">数据统计</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="#taskGroup" class="nav-link nav-toggle">
+                                <i class="fa fa-soccer-ball-o"></i>
+                                <span class="title"> 巡检数据 </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#localSelf" class="nav-link nav-toggle ">
+                                <i class="fa fa-server"></i>
+                                <span class="title"> 自查数据 </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="#routineSupervision" class="nav-link nav-toggle ">
+                                <i class="fa fa-send-o"></i>
+                                <span class="title">日常数据</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="#supervisionNoticeList" class="nav-link nav-toggle ">
+                        <i class="fa fa-send-o"></i>
+                        <span class="title">督导公示</span>
+                    </a>
+                </li>-->
+
+            </ul>
+            <!-- END SIDEBAR MENU -->
+        </div>
+        <!-- END SIDEBAR -->
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content" id="content">
+
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+    <!-- END CONTENT -->
+    <!-- 开始  快速的侧边栏 -->
+    <!-- END QUICK SIDEBAR -->
+</div>
+<!-- END CONTAINER -->
+<!-- 开始  页脚 -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2017 &copy;<!--全国中小学(幼儿园)安全防控评估系统.-->
+        <!-- <a href="http://www.anxinyueren.com" title="北京安鑫育仁网络科技股份有限责任公司" target="_blank">官方网站</a>-->
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+<!--[if lt IE 9]>
+
+<![endif]-->
+
+</body>
+<script data-main="js/main" src="../js/lib/require-2.1.14.min.js" defer async="true"></script>
+<!-- END BODY -->
+</html>

@@ -1,0 +1,37 @@
+{
+  "_from": "merge-descriptors@1.0.0",
+  "_id": "merge-descriptors@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-IWnPdTjhsMyH+4jhUC2EdLv3mGQ=",
+  "_location": "/merge-descriptors",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "merge-descriptors@1.0.0",
+    "name": "merge-descriptors",
+    "escapedName": "merge-descriptors",
+    "rawSpec": "1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0"
+  },
+  "_requiredBy": [
+    "/express"
+  ],
+  "_resolved": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-1.0.0.tgz",
+  "_shasum": "2169cf7538e1b0cc87fb88e1502d8474bbf79864",
+  "_shrinkwrap": null,
+  "_spec": "merge-descriptors@1.0.0",
+  "_where": "D:\\axyr\\开发框架\\Node-Demo\\node_modules\\express",
+  "bin": null,
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Merge objects using descriptors.",
+  "devDependencies": {},
+  "name": "merge-descriptors",
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "scripts": {},
+  "version": "1.0.0"
+}

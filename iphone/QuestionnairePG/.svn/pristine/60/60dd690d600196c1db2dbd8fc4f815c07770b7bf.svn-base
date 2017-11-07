@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/*新调查问卷start*/
+a{ text-decoration:none}
+
+input,textarea{  outline: none;  -webkit-appearance: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+.indent2{text-indent: 2em;}
+/*问卷首页信息简介  start*/
+#homePage{min-height: 100%;  height: auto!important;  height: 100%;  position: relative;  padding-bottom:20px;background-color: #edebec;}
+#homePage .content{max-width: 800px;margin: auto;position: relative;}
+#homePage .survey-img{width: 100%;height: auto;position: static;}
+#homePage .survey-img img{display: block;width: 100%;  height: 180px;}
+#homePage .survey-content{padding: 0 10px 40px 10px;  padding-top: 0px;font-size: 15px;color: #333333;position: static;top: 180px;height: calc(100% - 224px);overflow: auto;}
+#homePage .surveyDepict {background-color: #ffffff;}
+#homePage .surveyDepict table{  border:1px solid #e6e6e6;}
+#homePage .surveyDepict table tbody tr td{border-top: 1px solid #E6E6E6;padding: 10px;}
+#homePage .surveyDepict table tbody tr td:first-child{width: 64px;color: #666666;padding-right: 0px;}
+
+.surveyDepict{margin-top: 20px;}
+.surveyDepict .depictTitle{text-align: center;font-size: 17px;font-weight: 900;color: #333333!important;}
+#homePage .surveySubmitFooter{position: static;width: 9rem;  margin: auto;  border-radius: 20px;  }
+
+
+/*问卷首页信息简介 end*/
+
+#page{min-height: 100%;  height: auto!important;  height: 100%;  position: relative;  padding-bottom:20px;}
+.content{margin: auto;position: relative;max-width: 800px;}
+.survey-img{width: 100%;height: auto;position: fixed;max-width: 820px;}
+.survey-img img{display: block;width: 100%;  height: 4rem;}
+/*.survey-content{height: calc(100% - 144px);} 修改为calc(100% - 200px)   20171031 by 文霞*/
+.survey-content{padding: 0 10px 40px 10px;  padding-top: 0px;font-size: 14px;color: #333333;position: fixed;top: 4rem;height: calc(100% - 200px);overflow: auto;width: calc(100% - 20px);max-width: 800px;}
+
+
+.surveyFooterLink{text-align: center;   width: 9rem;max-width: 820px;margin: auto;background-color:#00d2ae;color: #ffffff; font-size: 18px;line-height: 40px;border-radius: 20px;}
+.surveyFooterLink a{color: #ffffff;}
+/*每一个问题的主体，包括外边距,提示边框颜色，问题标题，答案选项*/
+
+/*.problemList{}*/
+
+.problem{padding-top: 20px;clear: both;}
+/*在点击提交按钮的时候验证如果没有作答则把 problemCenter 换成 problemUnanswered*/
+/*默认样式*/
+.problemCenter{border: 2px solid #ffffff; padding: 5px;}
+.problemCenter .problemCenterText{color: #ffffff;font-size: 11px;}
+/*未作答 start*/
+.problemUnanswered{border: 2px solid rgb(253, 203, 129); padding: 5px;}
+.problemUnanswered .problemCenterText{color: red;font-size: 11px;margin-left: 24px;margin-top: 5px;}
+/*未作答 end*/
+
+.problemTitle{ font-size: 15px;  color: #444444;  font-weight: bold;  height: auto;  line-height: 20px;}
+.problemTitle .problemNum{float: left;width: 24px;}
+.problemTitle .problemWord{float: left;width: calc(100% - 24px);}
+.problemTitle .problemImg{float: left;width: calc(100% - 24px);height:3.5rem;margin-top: 5px;max-width: 10rem;}
+
+.problemAnswer{clear: both;}
+
+.problemAnswer input[type='text']{width: 100%;clear: both;height: 21px;padding: 8px 11px;border: 1px solid #dddddd;border-radius: 3px;box-shadow: none;}
+.problemAnswer input:focus{border-color:#00B7FF; }
+.problemAnswer textarea{width:100%;clear: both;height: 100px;padding: 8px 11px;border: 1px solid #ddd;border-radius: 3px;box-shadow: none;}
+.problemAnswer textarea:focus{border-color:#00B7FF; }
+
+.problemAnswerList{margin-left: 24px;}
+.problemAnswerList li{clear: both;  padding-top: 12px;  color: #444444;font-size: 15px;overflow: hidden;}
+.problemAnswerList li .problemAnswerInfo {width:calc(100% - 24px);float: left;}
+.problemAnswerList li .problemAnswerInfo img{width: 5rem;height:2rem;margin-top: 5px;display: block;}
+
+
+/*问卷提交按钮*/
+.surveySubmitFooterBox{margin: auto;max-width: 800px}
+.surveySubmitFooter{text-align: center;  position: fixed;  bottom: 0px;  width: 100%;max-width: 820px;background-color:#00d0b0;/*background-color:#009d8c;*/color: #ffffff; font-size: 18px;line-height: 40px;}
+.surveySubmitFooter a,.surveySubmitFooter .btnSubmit{display: none;color: #ffffff;text-decoration:none;float: right; padding: 0 20px;}
+
+.surveySubmitFooter .problemProgressBar{width: 65%;height: 4px;background-color: #fff930;position: relative;}
+.surveySubmitFooter .upperProblem{float: left;padding: 0 20px;}
+.surveySubmitFooter .alightProblem{float: right;padding:0 20px;}
+
+
+/*选择，与未选择 start*/
+.radios {  float: left;  width: 16px;height: 16px;  background: url(../images/radioNot.png) no-repeat;  margin-top: 3px;  margin-right: 8px;}
+.radio-pitch .radios {  background: url(../images/radio.png) no-repeat;}
+
+.checkbox {  float: left;  width: 16px;height: 16px; background: url(../images/checkboxNot.png) no-repeat;  margin-top: 3px;  margin-right: 8px;   }
+.checkbox-pitch .checkbox {  background: url(../images/checkbox.png) no-repeat;  }
+/*选择，与未选择 end*/
+
+/*问卷内容居中  by 文霞 20171026*/
+.content-center{display: flex;justify-content: center; align-items: Center;}
+/*新调查问卷end*/

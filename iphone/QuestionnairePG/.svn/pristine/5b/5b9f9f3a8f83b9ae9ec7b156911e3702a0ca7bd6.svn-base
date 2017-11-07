@@ -1,0 +1,229 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2016/09/06
+//  description: 基础组件——dataTable小列表
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    //导入列表模板
+    var tpl = require('text!tpl/questionnaireManagement/foundQuestionnaire.html'),
+        template = _.template(tpl), _this;
+    //引入datatable
+    var DataTable = require('plugins/DataTableView_new/DataTable');
+    var myossupload = require('myossupload');
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            _this.initEvent();//初始化页面事件
+            //绑定页签
+            backStageUTIL.initMenu("questionManageList");
+        },
+        events: {
+            "click #radio":"radioFun",
+            "click #checkbox":"checkboxFun",
+            "click #singleblank":"singleblankFun",
+        },
+        initEvent:function(){
+            //一些页面初始化需要绑定的事件
+            //题目的编辑功能
+            $("#moduleListWrapper").delegate(".btn_update","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                $obj.parents(".questionButtonList").next().show();
+            });
+            //题目的复制功能
+            $("#moduleListWrapper").delegate(".btn_copy","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                var newquestion=$obj.parents(".singlequestiondiv").clone();
+                var newid=newquestion.attr("id")+"n";
+                newquestion.attr("id",newid).attr("name",newid);
+                $("#moduleListWrapper").append(newquestion);
+                _this.updateQuestionnum();
+            });
+            //题目的删除功能
+            $("#moduleListWrapper").delegate(".btn_delete","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                $obj.parents(".singlequestiondiv").remove();
+                _this.updateQuestionnum();
+            });
+            //题目的上移功能
+            $("#moduleListWrapper").delegate(".btn_moveup","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                var $prev=$obj.parents(".singlequestiondiv").prev();
+                var prevqnum=$prev.find(".questionnum").html();
+                var qnum=$obj.parents(".singlequestiondiv").find(".questionnum").html();
+                if($prev!=undefined&&$prev!=null&&$prev.hasClass("singlequestiondiv")){
+                    $obj.parents(".singlequestiondiv").find(".questionnum").html(prevqnum);
+                    $prev.before($obj.parents(".singlequestiondiv")[0].outerHTML);
+                    $prev.find(".questionnum").html(qnum);
+                    $obj.parents(".singlequestiondiv").remove();
+                }
+            });
+            //题目的下移功能
+            $("#moduleListWrapper").delegate(".btn_movedown","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                var $next=$obj.parents(".singlequestiondiv").next();
+                var prevqnum=$next.find(".questionnum").html();
+                var qnum=$obj.parents(".singlequestiondiv").find(".questionnum").html();
+                if($next!=undefined&&$next!=null&&$next.hasClass("singlequestiondiv")){
+                    $obj.parents(".singlequestiondiv").find(".questionnum").html(prevqnum);
+                    $next.after($obj.parents(".singlequestiondiv")[0].outerHTML);
+                    $next.find(".questionnum").html(qnum);
+                    $obj.parents(".singlequestiondiv").remove();
+                }
+            });
+            //题目的移动到最前功能
+            $("#moduleListWrapper").delegate(".btn_movefirst","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                var $questiondiv=$obj.parents(".singlequestiondiv");
+                var qnum=$questiondiv.find(".questionnum").html();
+                if(qnum!="1."){
+                    $("#moduleListWrapper").prepend($questiondiv.clone());
+                    $questiondiv.remove();
+                    _this.updateQuestionnum();
+                }
+            });
+            //题目的移动到最下边功能
+            $("#moduleListWrapper").delegate(".btn_movelast","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                var $questiondiv=$obj.parents(".singlequestiondiv");
+                var $next=$obj.parents(".singlequestiondiv").next();
+                if($next!=undefined&&$next!=null&&$next.hasClass("singlequestiondiv")){
+                    $("#moduleListWrapper").append($questiondiv.clone());
+                    $questiondiv.remove();
+                    _this.updateQuestionnum();
+                }
+            });
+            //单选多选题目，添加选项功能 addQuestionOption
+            $("#moduleListWrapper").delegate(".addQuestionOption","click",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                var $tbody=$obj.parents("table").find("tbody");
+                var $trclone=$tbody.find("tr").last().clone();
+                $trclone.find("td").first().find("input").val("");
+                $trclone.find("td").eq(1).find("input").val("");
+                $tbody.append($trclone);
+            });
+            //问题标题文字修改功能
+            $("#moduleListWrapper").delegate(".questiontitle_textarea","keydown",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                $obj.parents(".singlequestiondiv").find(".questiontitle").html($obj.val());
+            });
+            $("#moduleListWrapper").delegate(".questiontitle_textarea","blur",function(_event){
+                _event.stopPropagation();
+                var _event = _event || event;
+                var eventobj = _event.srcElement ? _event.srcElement : _event.target;
+                var $obj = $(eventobj);
+                $obj.parents(".singlequestiondiv").find(".questiontitle").html($obj.val());
+            });
+        },
+        radioFun:function(){
+            var qnum=$("#moduleListWrapper").find(".full-height-content-body").length+1;
+            _this.returnRadio("add",qnum,null);
+        },
+        checkboxFun:function(){
+            var qnum=$("#moduleListWrapper").find(".full-height-content-body").length+1;
+            _this.returnCheckBox("add",qnum,null);
+        },
+        singleblankFun:function(){
+            var qnum=$("#moduleListWrapper").find(".full-height-content-body").length+1;
+            _this.returnSingleBlank("add",qnum,null);
+        },
+        returnRadio:function(addtype,Questionnum,controlinfo){
+            //单选题
+            var questionControl=$("#radioContent").clone();
+            if(addtype="add"){
+                //新增空问题
+
+            }else{
+                //加载已有正规选项的问题
+            }
+            //重新更改序号,如果是其他数字，说明已经有行号了
+            if(Questionnum==0){
+                _this.updateQuestionnum();
+            }else{
+                questionControl.find(".questionnum").html(Questionnum+".");
+            }
+            var newid=questionControl.attr("id")+questionControl.find(".questionnum").html().replace(".","");
+            questionControl.attr("id",newid).attr("name",newid);
+            $("#moduleListWrapper").append(questionControl);
+        },
+        returnCheckBox:function(addtype,Questionnum,controlinfo){
+            //多选题
+            var questionControl=$("#checkboxContent").clone();
+            if(addtype="add"){
+                //新增空问题
+            }else{
+                //加载已有正规选项的问题
+            }
+            //重新更改序号,如果是其他数字，说明已经有行号了
+            if(Questionnum==0){
+                _this.updateQuestionnum();
+            }else{
+                questionControl.find(".questionnum").html(Questionnum+".");
+            }
+            var newid=questionControl.attr("id")+questionControl.find(".questionnum").html().replace(".","");
+            questionControl.attr("id",newid).attr("name",newid);
+            $("#moduleListWrapper").append(questionControl);
+        },
+        returnSingleBlank:function(addtype,Questionnum,controlinfo){
+            //填空题
+            var questionControl=$("#singleblankContent").clone();
+            if(addtype="add"){
+                //新增空问题
+            }else{
+                //加载已有正规选项的问题
+            }
+            //重新更改序号,如果是其他数字，说明已经有行号了
+            if(Questionnum==0){
+                _this.updateQuestionnum();
+            }else{
+                questionControl.find(".questionnum").html(Questionnum+".");
+            }
+            var newid=questionControl.attr("id")+questionControl.find(".questionnum").html().replace(".","");
+            questionControl.attr("id",newid).attr("name",newid);
+            $("#moduleListWrapper").append(questionControl);
+        },
+        updateQuestionnum:function(){
+            var length=$("#moduleListWrapper").find(".full-height-content-body").length;
+            if(length>0){
+                for(var i=0;i<length;i++){
+                    $("#moduleListWrapper").find(".full-height-content-body").eq(i).find(".questionnum").html((i+1)+".");
+                }
+            }
+        }
+    });
+});

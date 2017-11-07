@@ -1,0 +1,35 @@
+/*
+ 2017年5月4日 16:40:50
+ byx
+ 评估管理-问卷模块的dao层
+ * */
+
+var mysql = require('mysql');
+var $conf = require('../../conf/db');
+var $util = require('../../util/util');
+var $writelog = require('../../libs/logHelper');
+var $mysqlUtil = require('../../util/mysqlUtil');
+var $sql = require('./importQuestionnairSqlMapping');
+
+// 使用连接池，提升性能
+var pool = mysql.createPool($util.extend({}, $conf.mysql));
+
+module.exports = {
+    //保存问卷信息
+    saveQuestionnaire: function (questionnaireInfo, callback) {
+        var sqls = $sql.saveQuestionnaire(questionnaireInfo);
+        $mysqlUtil.queryArrSql(sqls, callback);
+    },
+
+    //保存问卷问题信息
+    saveQuestion: function (questionInfo, callback) {
+        var sql = $sql.saveQuestion(questionInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+
+    //保存问卷选项信息
+    saveOption: function (optionInfo, callback) {
+        var sql = $sql.saveOption(optionInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+};

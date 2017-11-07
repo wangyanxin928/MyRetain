@@ -1,0 +1,31 @@
+
+
+var express = require('express');
+var router = express.Router();
+
+var importQuestionnairService = require('../../service/importQuestionnair/importQuestionnairService');
+
+// 导入问卷
+router.get('/insertQuestionnaire', function (req, res, next) {
+    importQuestionnairService.insertQuestionnaire(req, res, next);
+});
+
+// 删除问卷
+router.get('/deleteQuestoinnaire', function (req, res, next) {
+    importQuestionnairService.deleteQuestoinnaire(req, res, next);
+});
+
+
+// 创建问卷
+router.get('/addQuestionAllInfo', function (req, res, next) {
+    importQuestionnairService.addQuestionAllInfo(req, res, next);
+});
+
+// 修改问卷
+router.get('/updateQuestionnair', function (req, res, next) {
+    importQuestionnairService.updateQuestionnair(req, res, next);
+});
+
+
+module.exports = router;
+

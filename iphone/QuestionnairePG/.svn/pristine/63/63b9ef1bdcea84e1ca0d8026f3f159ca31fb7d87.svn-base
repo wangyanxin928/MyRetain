@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大方县办学水平评估</title>
+    <LINK href="Manage/images/favicon.ico" rel="SHORTCUT ICON">
+    <LINK href="Manage/images/favicon.ico" rel="ICON">
+    <script src="js/lib/jquery.min.js" type="text/javascript"></script>
+    <link href="js/plugins/pace/themes/pace-theme-minimal.css" rel="stylesheet" type="text/css"/>
+    <script src="js/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var baseUrl = "http://192.168.1.60:8081/QHPG-BJDF/bdmanage/userController/";
+        //var baseUrl = "http://192.168.1.73:8081/QHPG-BJDF/bdmanage/userController/";
+        function getdata(iname, param, _callback) {
+            /*Pace.restart();*/
+            $.ajax({
+                type: "get",
+                url: baseUrl + iname + "?JSONPARAM=" + param,
+                data: {},
+                cache: false,
+                dataType: 'json',
+                contentType: "application/x-www-form-urlencoded",
+                success:function(response,status,xhr){
+                    if (response.resultnum === "0000") {
+                        _callback(response); //模板获取后回调方法
+                    }//2000表示数据为空
+                    else {
+                        /*跳转到登陆页*/
+                        //location.href="";
+                    }
+                },
+                error:function(response){
+
+                }
+            });
+        }
+        function setcookie(name, value) {
+            var Days = 1;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+        }
+        function getUrlPara(m) {
+            var sValue = location.search.match(new RegExp("[\?\&]" + m + "=([^\&]*)(\&?)", "i"));
+            return sValue ? sValue[1] : sValue;
+        }
+        function login() {
+            var tkv = getUrlPara("tk");
+            var date=new Date().getTime();
+            if (tkv != undefined && tkv != null && tkv != "") {
+                var param = {
+                    tk: tkv,
+                    num:date
+                };
+                getdata("userLogin", JSON.stringify(param), function (data) {
+                    var datajson = data.resultdata;
+                    if (datajson.ret == "200" && datajson.user != undefined && datajson.user != null) {
+                        var rolename = "学生";
+                        var childid = "";
+                        var childmc = "";
+                        if (datajson.user.userType == "2") {
+                            rolename = "教师";
+                        } else if (datajson.user.userType == "3") {
+                            rolename = "学生";
+                        } else if (datajson.user.userType == "4") {
+                            rolename = "家长";
+                            childid = datajson.user.student_id;
+                            childmc = datajson.user.student_name;
+                        } else if (datajson.user.userType == "5") {
+                            rolename = "超级管理员";
+                        } else if (datajson.user.userType == "6") {
+                            rolename = datajson.user.work_jobs_name;
+                        }
+                        var gradeid = "";
+                        var gradename = "";
+                        var classid = "";
+                        var classname = "";
+                        if (datajson.user.gradeIds != undefined && datajson.user.gradeIds != null) {
+                            var gradejson = JSON.parse(datajson.user.gradeIds);
+                            if (gradejson.length > 0) {
+                                gradeid = gradejson[0].id;
+                                gradename = gradejson[0].name;
+                            }
+                        }
+                        if (datajson.user.classList != undefined && datajson.user.classList != null && datajson.user.classList.length > 0) {
+                            var classjson = JSON.parse(datajson.user.classList);
+                            if (classjson.length > 0) {
+                                classid = classjson[0].number;
+                                classname = classjson[0].className;
+                            }
+                        }
+                        var UserObject = {
+                            user_id: datajson.user.userId,
+                            user_dlm: datajson.user.userAccount,
+                            user_name: datajson.user.userName,
+                            user_role: rolename,
+                            server_id: datajson.user.unit_id,
+                            server_name: datajson.user.unit_name,
+                            user_sex: datajson.user.sex,
+                            grade_id: gradeid,
+                            class_id: classid,
+                            grade_name: gradename,
+                            class_name: classname,
+                            user_img: datajson.user.userHead,
+                            user_age: "",
+                            user_type: datajson.user.userType,
+                            user_phone: "",
+                            user_email: "",
+                            state: 1,
+                            xz: ""
+                        }
+                        setcookie("UserObject", JSON.stringify(UserObject));
+                        /*不同角色跳转到不同的起始页中   */
+                        if (rolename == "学生") {
+                            location.href = "Client/index.html?role=" + encodeURIComponent(rolename) + "&uid=" + datajson.user.userId + "&uname=" + encodeURIComponent(datajson.user.userName) + "" +
+                                    "&xxid=" + datajson.user.unit_id + "&xxmc=" + encodeURIComponent(datajson.user.unit_name) + "&sex=" + datajson.user.sex + "&bjid=" + classid + "&bjmc=" + encodeURIComponent(classname) + "&njid=" + gradeid + "&njmc=" + encodeURIComponent(gradename) + "";
+                        } else if (rolename == "家长") {
+                            location.href = "Client/index.html?role=" + encodeURIComponent(rolename) + "&uid=" + datajson.user.userId + "&uname=" + encodeURIComponent(datajson.user.userName) + "" +
+                                    "&xxid=" + datajson.user.unit_id + "&xxmc=" + encodeURIComponent(datajson.user.unit_name) + "&sex=" + datajson.user.sex + "&bjid=" +
+                                    "" + classid + "&bjmc=" + encodeURIComponent(classname) + "&njid=" + gradeid + "&njmc=" + encodeURIComponent(gradename) + "&childid=" + childid + "&childmc=" + encodeURIComponent(childmc) + "";
+                        } else if (rolename == "教师") {
+                            location.href = "Manage/teacher.html#quesFillIn";
+                        } else if (rolename == "资料管理员") {
+                            location.href = "Manage/resourceManager.html#attachmentList/1";
+                        } else if (rolename == "校长") {
+                            location.href = "Manage/headMaster.html#headOverHomePage";
+                        } else if (rolename == "教管中心人员") {
+                            location.href = "Manage/TeachingCenter.html#overviewEduManagement";
+                        } else if (rolename == "教育局人员") {
+                            location.href = "Manage/BureauEdu.html#overviewHomePage";
+                        } else if (rolename == "超级管理员") {
+                            location.href = "Manage/index.html#HomePage";
+                        } else {
+                            /*跳转到登陆页*/
+                            location.href="http://gzdf.account.aixueyun.cn/other/tologin?gotoUrl=http://112.126.91.234/web/index.html";
+                        }
+                    } else {
+                        /*跳转到登陆页*/
+                        location.href="http://gzdf.account.aixueyun.cn/other/tologin?gotoUrl=http://112.126.91.234/web/index.html";
+                    }
+
+
+                });
+            } else {
+                /*跳转到登陆页*/
+               /* location.href="http://gzdf.account.aixueyun.cn/other/tologin?gotoUrl=http://112.126.91.234/web/index.html";*/
+            }
+
+        }
+        function logintext(){
+            var username=$("#username").val();
+            var date=new Date().getTime();
+            var param = {
+                user_name: username,
+                num:date
+            };
+            getdata("faLogin", JSON.stringify(param), function (data) {
+                var datajson = data.resultdata;
+                if(datajson.length>0){
+                    var rolename=datajson[0].role_name;
+                    var UserObject = {
+                        user_id: datajson[0].user_id,
+                        user_dlm: username,
+                        user_name: datajson[0].true_name,
+                        user_role: rolename,
+                        server_id: datajson[0].server_id,
+                        server_name: datajson[0].server_name,
+                        user_sex: 1,
+                        grade_id: datajson[0].grade_id,
+                        class_id: datajson[0].class_id,
+                        grade_name: datajson[0].grade_name,
+                        class_name: datajson[0].class_name,
+                        user_img:"",
+                        user_age: "",
+                        user_type: "",
+                        user_phone: "",
+                        user_email: "",
+                        state: 1,
+                        xz: ""
+                    }
+                    setcookie("UserObject", JSON.stringify(UserObject));
+                    /*不同角色跳转到不同的起始页中   */
+                    if (rolename == "学生") {
+                        location.href = "Client/index.html?role=" + encodeURIComponent(rolename) + "&uid=" + datajson[0].user_id + "&uname=" + encodeURIComponent(datajson[0].true_name) + "" +
+                                "&xxid=" + datajson[0].server_id + "&xxmc=" + encodeURIComponent( datajson[0].server_name) + "&sex=1&bjid=" + datajson[0].class_id + "&bjmc=" + encodeURIComponent(datajson[0].class_name) + "&njid=" + datajson[0].grade_id + "&njmc=" + encodeURIComponent(datajson[0].grade_name) + "";
+                    } else if (rolename == "家长") {
+                        location.href = "Client/index.html?role=" + encodeURIComponent(rolename) + "&uid=" + datajson[0].user_id + "&uname=" + encodeURIComponent(datajson[0].true_name) + "" +
+                                "&xxid=" + datajson[0].server_id + "&xxmc=" + encodeURIComponent(datajson[0].server_name) + "&sex=1&bjid=" +
+                                "" + datajson[0].class_id + "&bjmc=" + encodeURIComponent(datajson[0].class_name) + "&njid=" + datajson[0].grade_id + "&njmc=" + encodeURIComponent(datajson[0].grade_name) + "&childid=" + datajson[0].child_id + "&childmc=" + encodeURIComponent(datajson[0].child_name) + "";
+                    } else if (rolename == "教师") {
+                        location.href = "Manage/teacher.html#quesFillIn";
+                    } else if (rolename == "资料管理员") {
+                        location.href = "Manage/resourceManager.html#attachmentList/1";
+                    } else if (rolename == "校长") {
+                        location.href = "Manage/headMaster.html#headOverHomePage";
+                    } else if (rolename == "教管中心人员") {
+                        location.href = "Manage/TeachingCenter.html#overviewEduManagement";
+                    } else if (rolename == "教育局人员") {
+                        location.href = "Manage/BureauEdu.html#overviewHomePage";
+                    } else if (rolename == "超级管理员") {
+                        location.href = "Manage/index.html#HomePage";
+                    } else {
+                        /*跳转到登陆页*/
+                        $("#username").val("");
+                        //alert("请输入正确的用户名");
+                    }
+                }else{
+                    $("#username").val("");
+                    //alert("请输入正确的用户名");
+                }
+            });
+        }
+        window.onload = function() {
+            $.getJSON('http://smart-ip.net/geoip-json?callback=？',function(data) {
+                alert('我的IP地址是：' + data.host);
+            });
+            //location.href="index.html?tk="+encodeURI("536316");
+            //location.href="index.html?unit_id="+encodeURI("536316")+"&unit_name="+encodeURI("大方县恒大第二小学")+"&work_jobs_name="+encodeURI("校长");
+            // 判断浏览器
+            /*if (window.applicationCache) {
+                $("#logindiv").show();
+                $("#drowbrowsediv").hide();
+                $("#loginBody").css("background-image","url('img/bj.jpg')")
+            } else {
+                // 浏览器版本低,提示下载浏览器
+                $("#logindiv").hide();
+                $("#drowbrowsediv").show();
+                $("#loginBody").css("background-image","url('')")
+            }*/
+        }
+    </script>
+    <style type="text/css">
+        body{font-size: 12px;
+            color: #666666;
+            height: 100%;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin: 0px!important;
+        }
+        html{height: 100%;}
+        /*layui*/
+        .layui-nav{background-color: rgba(57, 61, 73, 0.42);}
+        .layui-nav .layui-nav-item a{
+            padding: 0 50px;
+        }
+        .layui-input-block {
+            margin-left: 10px;
+        }
+
+        .layui-input {
+            padding-left: 30px;
+        }
+        .layui-form-item .layui-input-inline {
+            width: 260px;
+            float: none;
+        }
+        .layui-form-item .layui-inline {
+            margin-bottom: 5px;
+            margin-right: 0px!important;
+        }
+
+        /*.data-main{width: 1140px;margin: auto;}*/
+        .data-main{width: 100%; margin:auto;}
+        .data-tal{text-align: left;}
+        .data-tac{text-align: center;}
+        .data-tar{text-align: right;}
+        .data-none{display: block}
+        .data-left{float: left}
+        .data-right{float: right}
+        .data-position-r{position: relative;}
+        .data-position-a{position: absolute;}
+        .w50{width: 50px;}
+        .ww50{width: 49.5%}
+        .ww100{width: 100%;}
+        .hh5{height: 5%;}
+        .hh10{height: 10%;}
+        .hh20{height: 20%;}
+        .hh80{height: 80%;}
+        .hh90{height: 90%;}
+        .hh100{height: 100%;}
+        .data-ww50{width: 49%;}
+        .mt30{margin-top: 30px;}
+        .mt150{margin-top: 150px;}
+        .ml10{margin-left: 10px!important;}
+        .ml100{margin-left: 100px!important;}
+        .mmr3{margin-right: 3%;}
+        .data-landing{ width: 300px;height: 100%; float: right; border-radius: 10px; margin-right: 3%;  margin-top: 3%;background-color: rgba(125, 123, 122, 0.65)}
+
+        /*字体*/
+        .data-f2{font-size: 1.7rem; color: #fff}
+        .data-register{
+            color: #01AAED;
+            float: right;
+            margin-top: 8px;
+            font-size: 14px;
+            margin-right: 20px;
+        }
+        /*登陆页面图标*/
+        .data-land-top{height: 30px;}
+        .data-icon-mine{
+            background: url("img/mine.png") no-repeat 100% 100%;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+        }
+        .data-icon-lock{
+            background: url("img/lock.png") no-repeat 100% 100%;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+        }
+        .data-icon-see{
+            background: url("img/see.png") no-repeat 100% 100%;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            position: absolute;
+            top: 7px;
+            right: 7px;
+        }
+        .data_login_tips{
+            color: #fff;
+            font-size: 12px;
+            text-align: left;
+            font-weight: 100;
+
+        }
+        .data_login_tips>h4{
+            text-align: center;
+        }
+        .data-footer{
+            clear: both;
+            margin-left: 40%;
+            bottom: 0px;
+            margin-top:15px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        /*版本过低开始*/
+        .low_version{  text-align: center;  margin-top: 15%;  }
+        .low_version .tips{font-size: 20px;color:#1BBC9B; margin-bottom: 20px;}
+        .low_version .tips2{line-height: 20px;}
+        .browser-link-group a{margin-left: 60px;margin-top: 20px;display: inline-block;}
+        .browser-link-group a p{margin-top: 10px;}
+        /*版本过低结束*/
+
+        @media screen and (max-width: 450px){
+            html{height: 100%;}
+            body{font-size: 12px;  color: #666666;height: 100%; background-image: url("")}
+            .data-landing{margin-right: 0;margin-top: 10%; background-color: #fff; }
+            .data-f2 {  font-size: 1.7rem;  color: #666; }
+            .data-main{width: 100%; min-width: 100%;margin: auto;}
+            .data-none{display: none}
+            .data-land-top{height: 10%;}
+            .data-footer{margin-left: 40%; color: #999;}
+            .data-ww50{width: 100%;}
+            .data-landing{margin-left: 0!important;}
+            .ml100 {margin-left: 10px!important;}
+            .data-register{margin-right: 0px;}
+            .data_login_tips{color: #999;}
+        }
+        @media screen and (max-width: 450px) {
+            .layui-form-item .layui-input-inline {
+                margin: 0 0 10px 10px !important;
+                width: 100%;
+            }
+            .layui-form-item .layui-input-inline + .layui-form-mid {
+                margin-left: 10px !important;
+            }
+            .layui-elem-field {
+                border: 0 !important;
+            }
+            .data-none {
+                display: none;
+            }
+        }
+        @media screen and (min-width: 1300px){
+            .data-landing {margin-right: 10%;margin-top: 10%;}
+
+        }
+        .layui-input {
+            padding-left: 30px;
+        }
+        .layui-input, .layui-textarea {
+            display: block;
+            width: 90%;
+        }
+        .layui-input, .layui-select, .layui-textarea {
+            height: 38px;
+            line-height: 38px;
+            line-height: 36px\9;
+            border: 1px solid #e6e6e6;
+            background-color: #fff;
+            border-radius: 2px;
+        }
+        .layui-form-item .layui-input-inline {
+            width: 260px;
+            float: none;
+        }
+        .layui-form-item .layui-input-inline {
+            margin-right: 10px;
+        }
+        .layui-form-item .layui-input-inline {
+            width: 260px;
+            float: none;
+        }
+        .layui-input-inline {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .layui-input-block, .layui-input-inline {
+            position: relative;
+        }
+        .layui-btn-danger {
+            background-color: #FF5722;
+        }
+        .layui-btn-radius {
+            border-radius: 100px;
+        }
+        .layui-btn {
+            height: 38px;
+            line-height: 38px;
+            padding: 0 18px;
+            color: #fff;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            opacity: .9;
+            filter: alpha(opacity=90);
+        }
+    </style>
+</head>
+<body id="loginBody" style="background-image: url('img/bj.jpg')">
+<div class="data-main">
+    <fieldset class="layui-elem-field data-ww50 data-left data-landing hh100" id="logindiv">
+        <div class="data-land-top"></div>
+        <div class="hh100">
+            <div class="data-f2 data-tac">
+                <div>
+                    <img src="img/land_1_03.png" style="height: 85px" alt="">
+                </div>
+                <div>
+                    教育评估平台
+                </div>
+            </div>
+            <div class="layui-field-box data-tac" style="margin-top: 15px;">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <i class="data-icon-mine"></i>
+                                <input type="tel" id="username" name="username" placeholder="请输入用户名" lay-verify=""
+                                       autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item " style="margin-top: 20px;margin-bottom: 30px;">
+                        <div class="layui-input-block ">
+                            <span id="login_a" name="login_a" onclick="logintext();"  class="layui-btn layui-btn-radius layui-btn-danger layui-input-inline" style="width: 230px;">登&nbsp;&nbsp;&nbsp;&nbsp;陆</span>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div class="data_login_tips">
+                    <h4>隐私保护</h4>
+                    <p>1. 我们向您提的问题是为了学生与学习相关的信息。请您尽量回答全部问题。</p>
+                    <p>2. 您的问卷会和其他几千位学生的问卷合在一起进行计量统计分析， 因此不会从分析结果中识别出您的个人特征。</p>
+                    <p>3. 我们需要知道您的姓名和学号，是为了和学校提供的成绩单数据进行对接。</p>
+                    <p>4. 我们将严格保护您的个人信息隐私权， 不会把您的调查问卷泄漏给课题组研究人员之外的任何人或者机构。</p>
+                </div>
+            </div>
+            <footer>
+                <div class=" data-footer">
+                    &copy;1997-2017
+                </div>
+            </footer>
+        </div>
+    </fieldset>
+    <!--浏览器不兼容提示层开始-->
+    <div id="drowbrowsediv" name="drowbrowsediv" class="low_version" style="display: none;">
+        <p class="tips">
+            很抱歉！您正在使用的浏览器版本过低，无法正常使用我们的网站，请升级后再试！
+        </p>
+        <p class="tips2">
+            为获得最佳的浏览体验，建议您升级或选用其他浏览器，
+        </p>
+        <p class="tips2">
+            我们列出了一些最受欢迎的浏览器供您升级，点击图标跳转到相应下载页：
+        </p>
+        <div class="browser-link-group ">
+            <a class="browser-box" href="http://www.firefox.com.cn/download/">
+                <img src="img/firefox.png" alt="firefox">
+                <p>firefox</p>
+
+            </a>
+            <a class="browser-box" href="http://www.google.cn/chrome/browser/desktop/index.html">
+                <img src="img/chrome.png" alt="chrome">
+                <p>Chrome</p>
+
+            </a>
+
+        </div>
+        <div class="logo-container">
+
+        </div>
+    </div>
+    <!--浏览器不兼容提示层结束-->
+</div>
+</body>
+</html>

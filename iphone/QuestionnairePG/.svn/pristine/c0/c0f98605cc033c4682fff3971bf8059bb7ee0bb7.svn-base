@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--problemResult 分析结果页面-->
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>问卷分析页面</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="page">
+    <div class="content">
+        <div id="result">
+            <div class="section1 ">
+                <div class="taskName">张大北</div>
+                <div class="explanatoryText">您的教学能力综合得分</div>
+                <div class="evaluationScore b">89分</div>
+                <div class="evaluationLevel">
+                    <img src="../images/level1.png" alt="">
+                </div>
+                <div class="dateRankingBox">
+                    <div class="dateBox">
+                        <div class="date">11-28</div>
+                        <div class="dataText">测试日期</div>
+                    </div>
+                    <div class="rankingBox">
+                        <div class="ranking">第&nbsp;<span>888888</span>&nbsp;名</div>
+                        <div class="rankingText">我的排名</div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="section2 ">-->
+            <!--<div class="graphical"></div>-->
+            <!--<div class="remarkTitle">-->
+            <!--<i class="titleIcon"></i><span>综合性评语</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="section3">
+                <div class="dataAnalysis">
+                    <div class="dataAnalysisTitle title">
+                        <i class="icon1"></i><span>您在以下纬度中较为优秀</span>
+                    </div>
+                    <div class="subtitle">学习和学习者 . 专业发展和价值观 . 教学、学习和测评</div>
+
+                    <div class="graphical"></div>
+                </div>
+                <div class="dataProgressBarBox">
+                    <div class="dataAnalysisTitle title">
+                        <i class="icon2"></i><span>您在以下纬度中较为优秀</span>
+                    </div>
+                    <div class="partingLine"></div>
+                    <div class="progressBarBox">
+                        <div class="progressBox">
+                            <div class="progressBarLeft">LL:</div>
+                            <div class="progressBarRight">
+                                <div class="barBox">
+                                    <div class="bar1"></div>
+                                    <span>89</span>
+                                </div>
+                            </div>
+                            <div class="barTitle">学习与学习者</div>
+                        </div>
+                        <div class="progressBox">
+                            <div class="progressBarLeft">LP:</div>
+                            <div class="progressBarRight">
+                                <div class="barBox">
+                                    <div class="bar2"></div>
+                                    <span>43</span>
+                                </div>
+                            </div>
+                            <div class="barTitle">语言能力</div>
+                        </div>
+                        <div class="progressBox">
+                            <div class="progressBarLeft">PV:</div>
+                            <div class="progressBarRight">
+                                <div class="barBox">
+                                    <div class="bar3"></div>
+                                    <span>80</span>
+                                </div>
+                            </div>
+                            <div class="barTitle">专业发展和价值观</div>
+                        </div>
+                        <div class="progressBox">
+                            <div class="progressBarLeft">TE:</div>
+                            <div class="progressBarRight">
+                                <div class="barBox">
+                                    <div class="bar4"></div>
+                                    <span>71</span>
+                                </div>
+                            </div>
+                            <div class="barTitle">教学、学习和测评</div>
+                        </div>
+                        <div class="progressBox">
+                            <div class="progressBarLeft">LA:</div>
+                            <div class="progressBarRight">
+                                <div class="barBox">
+                                    <div class="bar5"></div>
+                                    <span>64</span>
+                                </div>
+                            </div>
+                            <div class="barTitle">语言知识和意识</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section4">
+                <div class="remarkBox">
+                    <div class=" title">
+                        <i class="icon1"></i><span>您在以下纬度中较为优秀</span>
+                    </div>
+                    <div>
+                        <div class="remark1">
+                            ddsafkslja
+                            <div class="remarkContent"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/flexible.debug.js"></script>
+<script src="../js/flexible_css.debug.js"></script>
+<script src="../js/echarts.min.js"></script>
+
+<!--引入对应的模块js-->
+<!--<script src="js/problemAnalysis.js"></script>-->
+
+
+<!--引入layer提示框-->
+<script src="../js/layer/layer.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/question.js"></script>
+</body>
+</html>

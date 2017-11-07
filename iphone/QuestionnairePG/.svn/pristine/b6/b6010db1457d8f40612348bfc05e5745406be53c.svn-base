@@ -1,0 +1,64 @@
+{
+  "_from": "frac@https://registry.npmjs.org/frac/-/frac-1.0.6.tgz",
+  "_id": "frac@1.0.6",
+  "_inBundle": false,
+  "_integrity": "sha1-mg38I5VoUqizIGI7688b6eoEgik=",
+  "_location": "/frac",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "frac@https://registry.npmjs.org/frac/-/frac-1.0.6.tgz",
+    "name": "frac",
+    "escapedName": "frac",
+    "rawSpec": "https://registry.npmjs.org/frac/-/frac-1.0.6.tgz",
+    "saveSpec": "https://registry.npmjs.org/frac/-/frac-1.0.6.tgz",
+    "fetchSpec": "https://registry.npmjs.org/frac/-/frac-1.0.6.tgz"
+  },
+  "_requiredBy": [
+    "/ssf"
+  ],
+  "_resolved": "https://registry.npmjs.org/frac/-/frac-1.0.6.tgz",
+  "_spec": "frac@https://registry.npmjs.org/frac/-/frac-1.0.6.tgz",
+  "_where": "D:\\axyr\\code2017\\QHPG-HN",
+  "author": {
+    "name": "SheetJS"
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/frac/issues"
+  },
+  "bundleDependencies": false,
+  "config": {
+    "blanket": {
+      "pattern": "frac.js"
+    }
+  },
+  "dependencies": {
+    "voc": ""
+  },
+  "deprecated": false,
+  "description": "Rational approximation with bounded denominator",
+  "devDependencies": {
+    "mocha": ""
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "homepage": "http://oss.sheetjs.com/frac",
+  "keywords": [
+    "math",
+    "fraction",
+    "rational",
+    "approximation"
+  ],
+  "license": "Apache-2.0",
+  "main": "frac.js",
+  "name": "frac",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/frac.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "1.0.6"
+}

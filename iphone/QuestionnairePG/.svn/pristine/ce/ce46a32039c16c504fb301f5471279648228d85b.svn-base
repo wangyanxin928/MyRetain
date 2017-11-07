@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.questionButtonList{text-align: right;}
+.questionModify{margin-top: 15px;padding: 10px;background-color: #eff9ff;}
+.questionModify .questionModifyTitle {background-color: #e2e0e1;padding: 5px 10px; color: #333333;}
+.questionModify .questionModifyTitle a{color: #333333;float: right;}
+.questionModify .questionModifyTitle a:hover{color: #3B9C94}
+.questionModify table {text-align: center;width: 100%;}
+.questionModify table tr td,.questionModify table tr th{padding: 5px;line-height: 20px;}
+.questionModify .fileImg{display: inline-block;width: 17px;height: 19px;margin: auto;}
+.questionModify .fileImg .fa{font-size: 20px;color: #999999}
+.questionModify .fileImg .fa:hover{color: #45b6af;}
+.questionModifyHandle .fa{color: #45b6af;display: inline-block;width: 20px;height: 20px;border: 1px solid #45b6af;border-radius: 20px;background-color: #FFFFFF; text-align: center;line-height: 20px;}
+.questionModifyHandle:hover{color: #45b6af;cursor:pointer}
+.questionModify .handleBatchBtn .fa{font-size: 18px;color: #45b6af;}
+.questionModify .handleBatchBtn:hover{color:#45b6af;cursor:pointer }
+.questionModify table tfoot tr td{padding-top: 20px;}
+
+.answerImg{width: 200px;height: 100px;display: inline-block;margin-left: 20px;}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+/**
+ * Created by zyy on 17/6/7.
+ * 基础比例相关操作
+ */
+var express = require('express');
+var router = express.Router();
+var uploadFile = require('../../service/uploadFile/uploadFile');
+
+//上传文件
+router.post('/fileUpload', function (req, res, next) {
+    uploadFile.getExportJsonData(req, res, next);
+});
+
+module.exports = router;

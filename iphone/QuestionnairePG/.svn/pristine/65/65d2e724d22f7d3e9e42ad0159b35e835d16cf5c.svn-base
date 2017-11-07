@@ -1,0 +1,415 @@
+/**
+ * Created by zyy on 17/6/7.
+ *
+ * 基础比例相关操作
+ */
+var $util = require('../../util/util');
+var baseProjectDao = require('../../dao/base_project/baseProjectDao');
+var async = require('async');
+
+module.exports = {
+
+    //保存项目
+    saveProjectInfo: function (req, res, next) {
+        var projectInfo = {
+            project_id: "",
+            project_name: "",
+            descript: "",
+            start_time: "",
+            end_time: "",
+            sync: "",
+            create_user_id: "",
+            state: ""
+        };
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            projectInfo.project_id = param.project_id.length == 0 ? $util.GUID() : param.project_id;
+            projectInfo.project_name = param.project_name;
+            projectInfo.descript = param.descript;
+            projectInfo.start_time = param.start_time;
+            projectInfo.end_time = param.end_time;
+            projectInfo.create_user_id = param.create_user_id;
+            projectInfo.sync = $util.getDateTime();
+            projectInfo.state = param.state?param.state:"0";//20170707修改 by 文霞 状态需要作为参数传过来
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        baseProjectDao.saveProjectInfo(projectInfo, function (err, result) {
+            try {
+                if (err != null) {
+                    $util.resJSONError(err, res);
+                    return;
+                }
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = {project_id: projectInfo.project_id};
+                res.json($util.resJSON);
+            }
+            catch (error) {
+                $util.resJSONError(error, res);
+            }
+        });
+
+    },
+
+
+    //保存项目任务
+    saveProjectTaskInfo: function (req, res, next) {
+        var projectTaskInfo = {};
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            projectTaskInfo = JSON.parse(param.JSONPARAM);
+            projectTaskInfo.task_item.task_id = projectTaskInfo.task_item.task_id.length == 0 ? $util.GUID() : projectTaskInfo.task_item.task_id;
+
+            //处理方便入库的项目任务集合
+            var taskArray = makeTaskArray(projectTaskInfo);
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        // 创建任务一共插入5张数据表【任务、任务年级、任务问卷、任务量表、任务附件】
+        // 回调函数一共3层
+        // 1、第一步：保存任务基本信息，
+        baseProjectDao.saveTaskInfo(projectTaskInfo, function (errTask, resultTask) {
+                try {
+                    if (errTask != null) {
+                        $util.resJSONError(errTask, res);
+                        return;
+                    }
+
+                    // 2、保存任务年级信息[保存之前先删除]
+                    baseProjectDao.saveTaskGrade(taskArray.task_grade_items, function (errTaskGrade, resultTaskGrade) {
+                        if (errTaskGrade != null) {
+                            $util.resJSONError(errTaskGrade, res);
+                            return;
+                        }
+
+                        // 3、保存任务问卷信息[保存之前先删除]
+                        baseProjectDao.saveTaskQuestionnaire(taskArray.task_questionnaire_items, function (errTaskQ, resultTaskQ) {
+                            if (errTaskQ != null) {
+                                $util.resJSONError(errTaskQ, res);
+                                return;
+                            }
+
+                            $util.resJSON.resultnum = $util.resConfig.ok;
+                            $util.resJSON.resultdata = {
+                                project_id: projectTaskInfo.project_id,
+                                task_id: projectTaskInfo.task_item.task_id
+                            };
+                            res.json($util.resJSON);
+                        })
+                    })
+                }
+                catch (error) {
+                    $util.resJSONError(error, res);
+                }
+            }
+        );
+
+    },
+
+
+    //查询出问卷列表
+    getQuestionnaireList: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var use_role = param.use_role;//使用对象，无此条件时传空
+            use_role = $util.isNull(use_role) ? "-1" : use_role;
+            var load_user_id = param.load_user_id;//使用对象，无此条件时传空
+            load_user_id = $util.isNull(load_user_id) ? "-1" : load_user_id;
+            var questionnaire_name = param.questionnaire_name;//使用对象，无此条件时传空
+            questionnaire_name = $util.isNull(questionnaire_name) ? "-1" : questionnaire_name;
+            var use_xueduan_items = param.use_xueduan_items;//使用学段集合
+            use_xueduan_items = use_xueduan_items.length == 0 ? "-1" : $util.strArrayToString(use_xueduan_items);
+            // 分页
+            var pagesize = param.page_size;
+            var pagenum = param.page_num;
+            pagenum = (pagenum - 1) * pagesize;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        baseProjectDao.getQuestionnaireList(use_role, use_xueduan_items, load_user_id,questionnaire_name,pagesize, pagenum, function (err, result) {
+            try {
+                if (err != null) {
+                    $util.resJSONError(err, res);
+                    return;
+                }
+                baseProjectDao.getQuestionnaireListRows(use_role, use_xueduan_items,load_user_id, questionnaire_name,function (errRows, resultRows) {
+                    if (errRows != null) {
+                        $util.resJSONError(errRows, res);
+                        return;
+                    }
+                    $util.resJSON.resultnum = $util.resConfig.ok;
+                    $util.resJSON.resultdata = result;
+                    $util.resJSON.rows = resultRows[0].rows;
+                    res.json($util.resJSON);
+                });
+            }
+            catch (error) {
+                $util.resJSONError(error, res);
+            }
+        });
+    },
+
+
+    //查询发布的任务
+    getProjectList: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var project_name = param.project_name.length == 0 ? "-1" : param.project_name;
+            var create_user_id = param.create_user_id.length == 0 ? "-1" : param.create_user_id;
+            // 分页
+            var pagesize = param.page_size;
+            var pagenum = param.page_num;
+            pagenum = (pagenum - 1) * pagesize;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        var projectList = [];
+        //1、获取项目列表
+        baseProjectDao.getProjectList(project_name, create_user_id,pagesize, pagenum, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            projectList = result;
+            baseProjectDao.getProjectNum(project_name,create_user_id, function (errRows, resultRows) {
+                if (errRows) {
+                    $util.resJSONError(errRows, res);
+                    return;
+                }
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = projectList;
+                $util.resJSON.rows = resultRows[0].project_num;
+                res.json($util.resJSON);
+            })
+
+        });
+    },
+
+
+    //查询发布的任务详情
+    getProjectInfo: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var project_id = param.project_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        var projectInfo = {};
+
+        //1、获取基本信息
+        baseProjectDao.getProjectInfo(project_id, function (errProject, resultProject) {
+            try {
+                if (errProject != null) {
+                    $util.resJSONError(errProject, res);
+                    return;
+                }
+                if (resultProject.length == 0) {
+                    $util.resJSONError(errProject, res, "没有找到该项目");
+                    return;
+                }
+                projectInfo = resultProject[0];
+                //2、获取项目所有任务信息
+                baseProjectDao.getTaskListByProject_id(project_id, function (errTask, resultTask) {
+                    if (errTask != null) {
+                        $util.resJSONError(errTask, res);
+                        return;
+                    }
+                    projectInfo.task_items = resultTask;
+                    //3、循环 获取项目所有任务关联0学校、1年级、2问卷、3量表、4附件列表
+                    var index = 0;
+                    //async.eachSeries保证了的执行顺序，而且当其中一条执行异常，就不会继续执行下一条
+                    async.eachSeries(projectInfo.task_items, function (item, callback) {
+                        baseProjectDao.getTaskRltListByTask_id(item.task_id, function (errTaskRlt, resultTaskRlt) {
+                            if (errTaskRlt != null) {
+                                $util.resJSONError(errTaskRlt, res);
+                                return;
+                            }
+                            //projectInfo.task_items[index].task_school_items = resultTaskRlt[0];
+                            projectInfo.task_items[index].task_grade_items = resultTaskRlt[0];
+                            projectInfo.task_items[index].task_questionnaire_items = resultTaskRlt[1];
+                            index++;
+                            // 执行完成后也要调用callback，不需要参数
+                            callback();
+                        });
+                    }, function (err) {
+                        // 所有执行完成后回调
+                        if (err) {
+                            $util.resJSONError(errTask, res);
+                            return;
+                        } else {
+                            $util.resJSON.resultnum = $util.resConfig.ok;
+                            $util.resJSON.resultdata = projectInfo;
+                            res.json($util.resJSON);
+                        }
+                    });
+
+                });
+            }
+            catch (error) {
+                $util.resJSONError(error, res);
+            }
+        });
+
+    },
+
+    //修改项目状态
+    setProjectState: function (req, res, next) {
+        var projectInfo = {
+            project_id: "",
+            state: ""
+        };
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            projectInfo.project_id = param.project_id;
+            projectInfo.state = param.state;
+            if(param.state == 1){
+                var questionsList = JSON.parse(param.questionsList);
+            }
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        
+        baseProjectDao.setProjectState(projectInfo, function (err, result) {
+            try {
+                if (err != null) {
+                    $util.resJSONError(err, res);
+                    return;
+                }
+                if(param.state == 1){
+                    //设置问卷为使用状态
+                    async.eachSeries(questionsList, function (questions_info, callback) {
+                        baseProjectDao.setQuestionnairState(1,questions_info.questionnaire_id, function (errRows, result) {
+                            if (errRows != null) {
+                                $util.resJSONError(errRows, res);
+                                return;
+                            }
+                            callback();
+                        });
+                    }, function (errPro,result1) {
+                        if (errPro != null) {
+                            $util.resJSONError(errPro, result1);
+                            return;
+                        }
+                    });
+                }
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = result;
+                res.json($util.resJSON);
+            }
+            catch (error) {
+                $util.resJSONError(error, res);
+            }
+        });
+
+    },
+
+    //删除任务
+    deleteTaskInfo: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var project_id = param.project_id;
+            var task_id = param.task_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        baseProjectDao.deleteTaskInfo(project_id, task_id, function (err, result) {
+            try {
+                if (err != null) {
+                    $util.resJSONError(err, res);
+                    return;
+                }
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = result;
+                res.json($util.resJSON);
+            }
+            catch (error) {
+                $util.resJSONError(error, res);
+            }
+        });
+
+    },
+
+
+}
+
+//处理方便入库的项目任务集合
+var makeTaskArray = function (projectTaskInfo) {
+    var result = {
+        task_grade_items: [],
+        task_questionnaire_items: [],
+        task_scale_items: [],
+        task_attachment_items: []
+    };
+    // 处理 任务学校、年级、角色的集合
+    //如果角色是学生/家长的话，为所有选中学校的所有选中年级赋值，否则只保存角色与学校即可
+    if (projectTaskInfo.task_item.in_role == "学生" || projectTaskInfo.task_item.in_role == "家长") {
+        projectTaskInfo.task_item.task_grade_items.forEach(function (itemGrade, indexGrade) {
+            projectTaskInfo.task_item.task_school_items.forEach(function (itemSch, indexSch) {
+                var task_grade_obj = {};
+                task_grade_obj.project_id = projectTaskInfo.project_id;
+                task_grade_obj.task_id = projectTaskInfo.task_item.task_id;
+                task_grade_obj.school_id = itemSch.school_id;
+                task_grade_obj.school_name = itemSch.school_name;
+                task_grade_obj.grade_id = itemGrade.grade_id;
+                task_grade_obj.grade_name = itemGrade.grade_name;
+                task_grade_obj.in_role = projectTaskInfo.task_item.in_role;
+
+                result.task_grade_items.push(task_grade_obj);
+            })
+        })
+    } else {//只保存角色与学校即可
+        projectTaskInfo.task_item.task_school_items.forEach(function (itemSch, indexSch) {
+            var task_grade_obj = {};
+            task_grade_obj.project_id = projectTaskInfo.project_id;
+            task_grade_obj.task_id = projectTaskInfo.task_item.task_id;
+            task_grade_obj.school_id = itemSch.school_id;
+            task_grade_obj.school_name = itemSch.school_name;
+            task_grade_obj.grade_id = "";
+            task_grade_obj.grade_name = "";
+            task_grade_obj.in_role = projectTaskInfo.task_item.in_role;
+
+            result.task_grade_items.push(task_grade_obj);
+        })
+    }
+
+
+    // 处理 任务问卷的集合
+    projectTaskInfo.task_item.task_questionnaire_items.forEach(function (item, index) {
+        var task_questionnaire_obj = {};
+        task_questionnaire_obj.project_id = projectTaskInfo.project_id;
+        task_questionnaire_obj.task_id = projectTaskInfo.task_item.task_id;
+        task_questionnaire_obj.questionnaire_id = item.questionnaire_id;
+        task_questionnaire_obj.questionnaire_name = item.questionnaire_name;
+
+        result.task_questionnaire_items.push(task_questionnaire_obj);
+    })
+
+    return result;
+};

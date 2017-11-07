@@ -1,0 +1,59 @@
+{
+  "_from": "weixin-api@https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz",
+  "_id": "weixin-api@0.1.7",
+  "_inBundle": false,
+  "_integrity": "sha1-4cU4lN7bqwiu3hczqwKwEgJKg8k=",
+  "_location": "/weixin-api",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "weixin-api@https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz",
+    "name": "weixin-api",
+    "escapedName": "weixin-api",
+    "rawSpec": "https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz",
+    "saveSpec": "https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz",
+    "fetchSpec": "https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz",
+  "_spec": "weixin-api@https://registry.npmjs.org/weixin-api/-/weixin-api-0.1.7.tgz",
+  "_where": "D:\\axyr\\code2017\\QHPG-HN",
+  "author": {
+    "name": "JeremyWei",
+    "email": "shuimuqingshu@gmail.com",
+    "url": "http://weizhifeng.net"
+  },
+  "bugs": {
+    "url": "https://github.com/JeremyWei/weixin_api/issues",
+    "email": "shuimuqingshu@gmail.com"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "sha1": "1.0.1",
+    "xml2js": "0.2.6"
+  },
+  "deprecated": false,
+  "description": "微信公众平台API",
+  "devDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "homepage": "https://github.com/JeremyWei/weixin_api",
+  "keywords": [
+    "微信",
+    "API",
+    "weixin",
+    "wechat"
+  ],
+  "license": "MIT",
+  "name": "weixin-api",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JeremyWei/weixin_api.git"
+  },
+  "scripts": {},
+  "version": "0.1.7"
+}

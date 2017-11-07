@@ -1,0 +1,190 @@
+/* here you can put your own css to customize and override the theme */
+::selection {
+    color: #fff;
+    background: #e45000;
+}/*选择背景颜色*/
+body{
+    background-color: #fafafa;
+}
+body, h1, h2, h3, h4, h5, h6, a {
+    font-family: "Microsoft YaHei","Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+em{font-style: normal;}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/*header*/
+.header{margin-bottom: 0;padding:0 40px; position: fixed;top:0;left:0;right:0; border-bottom: 1px solid #ccc; color: #8B8C8A; background-color: #fff; margin-bottom: 6px; box-shadow: 0px 4px 8px #ccc;z-index:9999;}
+.header.header-nopadding{padding:0;}
+.header a{color: #8B8C8A; font-family: "microsoft yahei";}
+.header a:hover,.header a.active{color: #ea9622;}
+.header-left{float: left;width:17%;}
+.header-middle{float: left;width:66%;}
+.header-right{float: right;width:17%;}
+/**/
+.header .mobi-toggler {
+    float: right;
+    color: #D8D8D8;
+    border: 1px solid #D8D8D8;
+    border-radius: 100% !important;
+    width: 32px;
+    height: 32px;
+    display: none;
+    margin: 25px 0 0 30px;
+    position: static;
+    background: #fff url(../images/toggler.png) no-repeat 6px 8px;
+}
+.header .mobi-toggler i {
+    display: none;
+}
+.header .mobi-toggler:hover {
+    background: #e34f00 url(../images/toggler.png) no-repeat 6px -28px;
+    border-color: #e34f00;
+    color: #fff;
+}
+.site-logo{ width:100%; height: 66px; line-height: 66px;padding:0; text-align: center; }
+/**/
+.header-nav { text-align: center;width:100%;}
+.header-nav a{ display: inline-block; height: 66px; line-height: 66px;padding:0 5%; }
+
+.link-group{
+    height: 66px; padding: 0; text-align: right;display: block;
+}
+.header .link-group a, .header .link-group span{
+    height: 66px; line-height: 66px; color: #ababab; display: inline-block; margin: 0;padding:0 5px;
+}
+.header .link-group a:hover{color: #ea9622;}
+/*top-menu*/
+.top-menu{ height: 66px; text-align: right;display: inline-block; margin: 0;padding: 0; float: right;}
+.top-menu li.dropdown{ display:inline-block; height: 66px;}
+.top-menu li.dropdown .dropdown-toggle{ display: inline-block; padding:18px 10px;}
+.top-menu li.dropdown:hover .dropdown-toggle{background-color: #f9fafc;}
+.img-circle{width:30px; height: 30px;margin-right:10px;}
+
+
+/**/
+/*.margin-top-70 {margin-top:70px;}*/
+
+/*分页*/
+.pagination>li>a, .pagination>li>span{ color: #FF9447;}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover,.pagination>li.active>a{
+    background-color: #FF9447;color: #FFFFFF;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+    background-color: #FF9447;color: #FFFFFF;
+}
+.top-header{position: absolute; width: 100%; height: 66px;}
+/**/
+@media (min-width: 768px){
+    .header .header-nav {
+        display: block !important;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .header-left{width:50%;}
+    .header-middle{margin-left:-50%;width:100%;}
+    .header-right{width:100%;}
+
+    .header .mobi-toggler {
+        display: block;
+    }
+    .header .header-nav {
+        display:none; float: none !important;clear: both;background: #F9F9F9;font-size: 16px;
+    }
+    .header .header-nav a {
+        height: 40px; line-height: 40px;text-align: left;border-bottom: 1px solid #efefef;display: block;float: none; clear: both;padding-left:10px;
+    }
+    .header .link-group{text-align: center;}
+
+    .header{padding:0 15px;}
+}
+
+/*导航右侧*/
+
+
+/*admin导航*/
+
+.page-top-nav  >li{float: left;}
+.page-top-nav  >li> a{
+    display: inline-block;padding:24px;color: #000; font-size: 14px;
+}
+.page-top-nav  >li> a:hover,.page-top-nav  >li> a.active,.page-top-nav  >li> a:focus{
+    color: #ea9622;
+}
+/*.page-header.navbar .top-menu .navbar-nav > li.dropdown > .dropdown-toggle{padding:22px 12px;}*/
+/*后台*/
+.form-control:focus{border:1px solid #ea9622;}
+
+
+/*颜色块*/
+.wpicker {width:280px; height: 209px;line-height:20px; position: relative; margin-left: 20%;} /*20160217  高建加margin*/
+.wpicker .colpick {border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0; background: #f2f2f2; border-color: #c4c4c4; width: 242px; height: 174px; overflow: inherit;}
+.wpicker .colpick_color {top:8px; left: 10px; outline:none;}
+.wpicker .colpick_hue {left: 194px; top: 8px; border:0;}
+.wpicker .colpick_hex .colpick_new_color {top:182px; left: -1px;}
+.wpicker .colpick_hex_ns .colpick_new_color {width: 24px; height: 24px; border: 1px solid #c4c4c4;}
+.wpicker .colpick_hex_ns .colpick_hex_field {width: 76px; height: 24px; border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0; border-color:#c4c4c4;}
+.wpicker .colpick_hex .colpick_hex_field {left: 30px; top: 182px; background: #fff;}
+.wpicker .colpick_dark .colpick_field, .colpick_dark .colpick_hex_field {background: #fff;}
+.wpicker .colpick_dark .colpick_field_letter {background: #fff; border: 0; color: #393838;}
+.wpicker .colpick_field_letter {width: 15px; padding-left: 8px;}
+.wpicker .colpick_hex .colpick_hex_field input {text-align: left; right:auto; left: 20px; color: #393838; font-weight: bold;}
+.wpicker .colpick_selector_inner {width: 7px; height: 7px;}
+.wpicker .colpick_selector_outer {width: 9px; height: 9px;}
+
+.wtjcolor {position: absolute; left: 120px; top: 182px; line-height: 26px;width: 200px;}
+.wtjcolor span {width: 14px; height: 14px; border: 1px solid #bbbbbb; display: inline-block; vertical-align: middle; margin-left: 5px; cursor: pointer;}
+.wtjcolor span.colora {background-color: #eeeeee; margin-left: 9px;}
+.wtjcolor span.colorb {background-color: #d8e4f0;}
+.wtjcolor span.colorc {background-color: #d8f0ed;}
+.wtjcolor span.colord {background-color: #f0e2d8;}
+.wtjcolor span.colore {background-color: #f0d7e1;}
+/*.wtjcolor span.active {background-image:url(../images/wicon.png); background-repeat: no-repeat; background-position: -380px -150px;}*/
+#tjcolor1 span.active {border: 2px solid #000;}
+#tjcolor1 span.colora {background-color: #5ca1db;}
+#tjcolor1 span.colorb {background-color: #5cdbcb;}
+#tjcolor1 span.colorc {background-color: #f23a4b;}
+#tjcolor1 span.colord {background-color: #f2d23a;}
+#tjcolor1 span.colore {background-color: #3e3744;}
+/*打包后的二维码*/
+.qrcode{
+	width: 16%;
+    height: 50%;
+    position: absolute;
+    right: 3px;
+    top: 1px;
+    background: url(../../login/images/icon.png)no-repeat;
+}
+.qrcode:hover, .qrcode:focus { background-position: 0px -69px;}
+.hoverCode{
+	background-color: #fff;
+    height: 72px;
+    width: 72px;
+    position: absolute;
+    top: 0;
+    opacity: 0.8;
+    display: none;
+}
+.hoverCode span{
+	width: 45px;
+    height: 59px;
+    position: absolute;
+    right: 3px;
+    background: url(../../login/images/icon.png) 0px -69px;
+}
+
+
+
+
+
+
+
+
+
+
+

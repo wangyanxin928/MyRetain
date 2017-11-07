@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>新问卷首页描述</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        html{background-color: #edebec!important;}
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="homePage">
+    <div class="content">
+        <div class="survey-img"><img src="images/teacher1.jpg"/></div>
+        <div class="survey-content">
+            <div class="surveyDepict">
+               <table>
+                   <tbody>
+                   <tr>
+                       <td colspan="2" class="depictTitle">英语教师教学能力测评问卷</td>
+                   </tr>
+                   <tr>
+                       <td>活动时间:</td>
+                       <td>2017-10-24&nbsp;至&nbsp;2017-11-24</td>
+                   </tr>
+                   <tr>
+                       <td valign="top">活动说明:</td>
+                       <td>尊敬的老师：
+                           您好！本测评问卷的目的在于了解在教学实践中您是如何发展和提高教学能力的,对您的教学能力进行一个综合性的测评，为您制定教师专业发展规划以及学校和相关教育机构提高培养培训质量提供指导。您的回答对于我们的研究有重要价值,答案无对错之分,所有的回答都将被严格保密，非常诚挚地感谢您的支持!
+                       </td>
+                   </tr>
+                   </tbody>
+               </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="surveySubmitFooter">
+        <a href="problemNew.html"> <div>开始答题</div></a>
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/flexible.debug.js"></script>
+<script src="js/flexible_css.debug.js"></script>
+<!--引入layer提示框-->
+<script src="js/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="js/question.js"></script>
+</body>
+</html>

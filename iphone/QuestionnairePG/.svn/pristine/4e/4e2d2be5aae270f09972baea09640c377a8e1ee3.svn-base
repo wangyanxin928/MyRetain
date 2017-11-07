@@ -1,0 +1,310 @@
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#questionManageList"> 问卷列表</a>
+        <!--<i class="fa fa-circle"></i>-->
+    </li>
+    <li>
+        <span class="active">创建问卷</span>
+    </li>
+</ul>
+
+<style>
+    /* 隐藏作为模板的内容块 */
+    #moduleContent {
+        display: none;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light  ">
+            <div>
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject bold font-grey-gallery uppercase">创建问卷</span>
+                    </div>
+                    <div class="tools">
+                        <span class="caption-helper"><a> </a></span>
+                        <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                    </div>
+                    <div class="portlet-body">
+                        <div class=" text-right">
+                            <form class="form-inline">
+                                <a class="btn btn-outline green-haze" id="searcherPosition">选择模板</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-actions">
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true" id="danxuan">
+                            <span class="hidden-sm hidden-xs">单选&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">多选&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">填空&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-docs"></i> 单项填空 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-tag"></i>多项填空 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>矩阵填空 </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">文件&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">分页&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">下拉框&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">排序&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown"
+                                data-hover="dropdown" data-close-others="true">
+                            <span class="hidden-sm hidden-xs">个人信息&nbsp;</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-docs"></i> 姓名 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-tag"></i>性别 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>年龄段 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>省市 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>手机 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>日期 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>Email </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>职业 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-share"></i>行业 </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="portlet light  " id="htmlTab">
+                <div class="portlet-body form">
+
+                    <!-- BEGIN FORM-->
+                    <form class="form-horizontal" id="myForm1" novalidate="novalidate">
+                        <div class="form-body">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input datakey="task_name" type="text" class="form-control  input-circle"
+                                                   placeholder="这里是标题" id="task_name"
+                                                   name="task_name"
+                                                   style="border: 0px;font-size: 25px;color: #333;text-align: center">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input datakey="task_name" type="text" class="form-control  input-circle"
+                                                   placeholder="添加问卷说明" id="wenjuanbiao"
+                                                   name="task_name" style="font-size: 18px;color: #333;border: 0px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                            <hr style="border:1px dashed #ccc"/>
+                            <div class="portlet light bordered" id="moduleContent">
+                                <div class="portlet-title">
+                                    <div class="portlet-body form ">
+                                        <div class="full-height-content-body">
+                                            <!-- BEGIN FORM-->
+                                            <form class="form-horizontal" id="myForm2">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-12"><font class="questionnum">1.</font><font class="questiontitle">请在此输入问题标题</font></label>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <div class="icheck-inline" id="XBM"
+                                                                         style="margin-left: 35px">
+                                                                        <label>
+                                                                            <input type="radio" name="XBM" checked
+                                                                                   class="icheck"
+                                                                                   data-radio="iradio_flat-green"
+                                                                                   value="1" style="font-size: 50px">
+                                                                            选项1</label>
+
+                                                                    </div>
+                                                                    <div class="icheck-inline" id="BM"
+                                                                         style="margin-left: 35px">
+                                                                        <label>
+                                                                            <input type="radio" name="BM" checked
+                                                                                   class="icheck"
+                                                                                   data-radio="iradio_flat-green"
+                                                                                   value="1" style="font-size: 50px">
+                                                                            选项2</label>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!-- END FORM-->
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="javascript:;" class="btn btn-success btn-sm addModule"> <i
+                                                class="fa fa-plus"></i> 复制 </a>
+                                        <a href="javascript:;" class="btn default btn-sm removeModule"> <i
+                                                class="fa fa-remove"></i> 删除 </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                    <div id="moduleListWrapper">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="row text-center">
+                                    <div class="col-md-12">
+                                        <div class="col-md-offset-3 col-md-12">
+                                            <a class="btn btn-success btnSaveData">保存问卷</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="moban" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">模板列表</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+
+            <div class="col-md-12 text-right">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input datakey="classNameSearch" type="text" class="form-control  input-circle"
+                               placeholder="模板名称..." id="classNameSearch" name="classNameSearch">
+                    </div>
+                    <a class="btn btn-outline green-haze" id="search">搜索</a>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div id="dataTableWrapper" style="margin-top: 16px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" data-dismiss="modal" class="btn btn-default " id="">取消</button>
+        <button type="button" data-dismiss="modal" class="btn btn-success" id="">确定</button>
+    </div>
+</div>
+
+<div id="confirm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <h4 class="modal-title">确认删除此数据?</h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="noCheck">取消</button>
+        <button type="button" data-dismiss="modal" class="btn btn-success" id="yesCheck">确定</button>
+    </div>
+</div>
+
+
+
+
+

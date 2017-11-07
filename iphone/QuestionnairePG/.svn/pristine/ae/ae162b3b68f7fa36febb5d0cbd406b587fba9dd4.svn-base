@@ -1,0 +1,491 @@
+/**
+ * Created by zyy on 17/6/7.
+ *
+ * 基础比例相关操作
+ */
+var $util = require('../../util/util');
+var baseQuestionDao = require('../../dao/base_question/baseQuestionDao');
+var async = require('async');
+
+module.exports = {
+
+    /*添加问卷*/
+    insertQuestionnaire: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+
+            var questionnaire_list = param.questionnaire_list;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+
+        async.eachSeries(questionnaire_list, function (questionnaire_info, callback) {
+            var questionnaire_id = $util.GUID();
+            var create_time = $util.getDateTime();
+            baseQuestionDao.insertQuestionnaire(questionnaire_id
+                ,questionnaire_info.questionnaire_name
+                ,questionnaire_info.descript
+                ,questionnaire_info.load_user_id
+                ,create_time
+                ,questionnaire_info.use_role
+                ,questionnaire_info.json
+                ,questionnaire_info.type
+                ,"style_json"
+                ,1
+                ,0
+                ,questionnaire_info.progresstype
+                ,""
+                ,questionnaire_info.pagesize, function (errRows, result) {
+                    if (errRows != null) {
+                        $util.resJSONError(errRows, res);
+                        return;
+                    }
+                    callback();
+                }
+            );
+        }, function (errPro,result2) {
+            if (errPro != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*更新问卷*/
+    updateQuestionnaire: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaire_id = param.questionnaire_id;
+            var questionnaire_infos = param.questionnaire_infos;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //更新课程
+        async.eachSeries(questionnaire_infos, function (course_info, callback) {
+            baseQuestionDao.updateQuestionnaire(questionnaire_id,course_info.commun_name,course_info.commun_value, function (errRows, result) {
+                if (errRows != null) {
+                    $util.resJSONError(errRows, res);
+                    return;
+                }
+                callback();
+            });
+        }, function (errPro,result2) {
+            if (errPro != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*删除问卷*/
+    deleteQuestionnaire: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaire_id = param.questionnaire_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+        baseQuestionDao.deleteQuestionnaire(questionnaire_id, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*回显课程详情*/
+    selectQuestionnaireInfo: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaire_id = param.questionnaire_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        baseQuestionDao.selectQuestionnaireInfo(questionnaire_id, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    },
+
+    /*查询问卷*/
+    selectQuestionnaireList: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var user_id = param.user_id.length == 0 ? "-1" : param.user_id;
+            var questionnaire_name = param.questionnaire_name.length == 0 ? "-1" : param.questionnaire_name;
+
+            // 分页
+            var pagesize = param.page_size;
+            var pagenum = param.page_num;
+            pagenum = (pagenum - 1) * pagesize;
+
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //查询课程
+        baseQuestionDao.selectQuestionnaireList(user_id,questionnaire_name, pagenum, pagesize, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            baseQuestionDao.selectQuestionnaireListRow(user_id, questionnaire_name, function (errRows, resutlRow) {
+                if (errRows != null) {
+                    $util.resJSONError(errRows, res);
+                    return;
+                }
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = result;
+                $util.resJSON.rows = resutlRow[0].num;
+                res.json($util.resJSON);
+
+
+            });
+        });
+    },
+
+
+    /*添加题目*/
+    insertQuestion: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+
+            var question_list = param.question_list;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+
+        async.eachSeries(question_list, function (question_info, callback) {
+            var question_id = $util.GUID();
+            var create_time = $util.getDateTime();
+            baseQuestionDao.insertQuestion(
+                question_id,
+                question_info.questionnaire_id,
+                question_info.q_order,
+                question_info.q_score,
+                question_info.q_type,
+                question_info.content,
+                create_time,
+                question_info.stand_id,
+                question_info.rule,
+                question_info.option_order,
+                question_info.q_imgurl,
+                question_info.q_turn,
+                question_info.q_logicjson,
+                question_info.q_displayset,
+                question_info.isbaseinfo
+                , function (errRows, result) {
+                    if (errRows != null) {
+                        $util.resJSONError(errRows, res);
+                        return;
+                    }
+                    callback();
+                }
+            );
+        }, function (errPro,result2) {
+            if (errPro != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*更新题目*/
+    updateQuestion: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var question_id = param.question_id;
+            var question_infos = param.question_infos;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //更新课程
+        async.eachSeries(question_infos, function (question_info, callback) {
+            baseQuestionDao.updateQuestion(question_id,question_info.commun_name,question_info.commun_value, function (errRows, result) {
+                if (errRows != null) {
+                    $util.resJSONError(errRows, res);
+                    return;
+                }
+                callback();
+            });
+        }, function (errPro,result2) {
+            if (errPro != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*删除题目*/
+    deleteQuestion: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var question_id = param.question_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+        baseQuestionDao.deleteQuestion(question_id, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*题目回显*/
+    selectQuestionInfo: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var question_id = param.question_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        baseQuestionDao.selectQuestionInfo(question_id, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    },
+
+    /*题目列表*/
+    selectQuestionList: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaire_id = param.questionnaire_id;
+            var content = param.content.length == 0 ? "-1" : param.content;
+
+            // 分页
+            var pagesize = param.page_size;
+            var pagenum = param.page_num;
+            pagenum = (pagenum - 1) * pagesize;
+
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //查询课程
+        baseQuestionDao.selectQuestionList(questionnaire_id,content, pagenum, pagesize, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            baseQuestionDao.selectQuestionListRow(questionnaire_id, content, function (errRows, resutlRow) {
+                if (errRows != null) {
+                    $util.resJSONError(errRows, res);
+                    return;
+                }
+                $util.resJSON.resultnum = $util.resConfig.ok;
+                $util.resJSON.resultdata = result;
+                $util.resJSON.rows = resutlRow[0].num;
+                res.json($util.resJSON);
+
+
+            });
+        });
+    },
+
+
+
+    /*添加题目选项*/
+    insertQuestionOption: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+
+            var question_option_list = param.question_option_list;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+
+        async.eachSeries(question_option_list, function (question_option_info, callback) {
+            var option_id = $util.GUID();
+            baseQuestionDao.insertQuestionOption(
+                option_id,
+                question_option_info.option_content,
+                question_option_info.option_order,
+                question_option_info.option_score,
+                question_option_info.questionnaire_id,
+                question_option_info.question_id,
+                question_option_info.option_imgurl,
+                question_option_info.option_toquestnum
+                , function (errRows, result) {
+                    if (errRows != null) {
+                        $util.resJSONError(errRows, res);
+                        return;
+                    }
+                    callback();
+                }
+            );
+        }, function (errPro,result2) {
+            if (errPro != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*更新题目选项*/
+    updateQuestionOption: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var option_id = param.option_id;
+            var question_option_infos = param.question_option_infos;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //更新课程
+        async.eachSeries(question_option_infos, function (question_option_info, callback) {
+            baseQuestionDao.updateQuestionOption(option_id,question_option_info.commun_name,question_option_info.commun_value, function (errRows, result) {
+                if (errRows != null) {
+                    $util.resJSONError(errRows, res);
+                    return;
+                }
+                callback();
+            });
+        }, function (errPro,result2) {
+            if (errPro != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*删除题目选项*/
+    deleteQuestionOption: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var option_id = param.option_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+        baseQuestionDao.deleteQuestionOption(option_id, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = [];
+            res.json($util.resJSON);
+        });
+    },
+
+    /*题目所有选项*/
+    selectQuestionOptionList: function (req, res, next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var question_id = param.question_id.length == 0 ? "-1" : param.question_id;
+            if(typeof (param.questionnaire_id) == "undefined" || param.questionnaire_id.length == 0){
+                var questionnaire_id = -1;
+            }else{
+                var questionnaire_id = param.questionnaire_id;
+            }
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //查询课程
+        baseQuestionDao.selectQuestionOptionList(questionnaire_id,question_id, function (errRows, result) {
+            if (errRows != null) {
+                $util.resJSONError(errRows, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = result;
+            res.json($util.resJSON);
+        });
+    },
+
+
+
+}

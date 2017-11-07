@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/*新调查问卷start*/
+#page{min-height: 100%;  height: auto!important;  height: 100%;  position: relative;}
+.content{max-width: 1100px;margin: auto;}
+.survey-img img{display: block;width: 100%;  height: auto;}
+.survey-content{padding: 0 16px 160px 16px;  padding-top: 0px;font-size: 14px;color: #333333;}
+/*每一个问题的主体，包括外边距,提示边框颜色，问题标题，答案选项*/
+
+/*.problemList{padding-bottom: 20px;}*/
+.problem{padding-top: 20px;clear: both;}
+.problemCenter{border: 2px solid #ffffff;}
+.problemTitle{padding-top: 2px;  font-size: 15px;  color: #444444;  font-weight: bold;  height: auto;  line-height: 20px;}
+.problemTitle .problemNum{float: left;width: 24px;}
+.problemTitle .problemWord{float: left;width: calc(100% - 24px);}
+.problemTitle .problemImg{float: right;width: calc(100% - 24px); margin-top: 5px;}
+
+.problemAnswer{clear: both;}
+
+.problemAnswer input[type='text']{width: 100%;clear: both;height: 21px;padding: 5px 12px;border: 1px solid #00B7FF;border-radius: 3px;}
+.problemAnswer textarea{width:100%;clear: both;height: 100px;padding: 5px 12px;border: 1px solid #00B7FF;border-radius: 3px;}
+
+.problemAnswerList{margin-left: 24px;}
+.problemAnswerList li{clear: both;padding-top: 12px;color: #444444;font-size: 15px;}
+.problemAnswerList li .problemAnswerInfo {width:calc(100% - 24px); float: left;}
+.problemAnswerList li .problemAnswerInfo img{width: 60%;margin-top: 5px;}
+
+
+.survey-footer{position: fixed;bottom: 0px;left: 0px;height: 40px;width: 100%;background-color: #114e53; color: #ffffff;font-size: 18px;}
+.survey-footer .upperProblem{float: left;padding: 0 20px;line-height: 40px;}
+.survey-footer .alightProblem{float: right;padding:0 20px;line-height: 40px;}
+
+/*选择，与未选择 start*/
+.radios {  float: left;  width: 16px;height: 16px;  background: url(../images/radioNot.png) no-repeat;  margin-top: 3px;  margin-right: 8px;}
+.radio-pitch .radios {  background: url(../images/radio.png) no-repeat;}
+
+.checkbox {  float: left;  width: 16px;height: 16px; background: url(../images/checkboxNot.png) no-repeat;  margin-top: 3px;  margin-right: 8px;   }
+.checkbox-pitch .checkbox {  background: url(../images/checkbox.png) no-repeat;  }
+/*选择，与未选择 end*/
+
+/*新调查问卷end*/

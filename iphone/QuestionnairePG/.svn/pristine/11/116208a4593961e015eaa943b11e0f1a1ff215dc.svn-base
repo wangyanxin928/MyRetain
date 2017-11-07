@@ -1,0 +1,160 @@
+/*
+ 2017年5月4日 16:40:50
+ byx
+ 评估管理-问卷模块的dao层
+ * */
+
+var mysql = require('mysql');
+var $conf = require('../../conf/db');
+var $util = require('../../util/util');
+var $writelog = require('../../libs/logHelper');
+var $mysqlUtil = require('../../util/mysqlUtil');
+var $sql = require('./baseProjectSqlMapping');
+
+// 使用连接池，提升性能
+var pool = mysql.createPool($util.extend({}, $conf.mysql));
+
+module.exports = {
+    //保存项目信息
+    saveProjectInfo: function (projectInfo, callback) {
+        var sql = $sql.saveProjectInfo(projectInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    //保存任务基本信息
+    saveTaskInfo: function (projectTaskInfo, callback) {
+        var sql = $sql.saveTaskInfo(projectTaskInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    //保存项目年级信息
+    saveTaskGrade: function (task_grade_item, callback) {
+        //如果集合为空，不执行sql，直接回调
+        if (task_grade_item.length == 0) {
+            callback(null);
+            return;
+        }
+        var sqls = [];
+        sqls.push($sql.deleteTaskGrade(task_grade_item[0].project_id, task_grade_item[0].task_id));
+        sqls.push($sql.saveTaskGrade(task_grade_item));
+        $mysqlUtil.queryArrSql(sqls, callback);
+    },
+    //保存项目问卷信息
+    saveTaskQuestionnaire: function (task_questionnaire_items, callback) {
+        //如果集合为空，不执行sql，直接回调
+        if (task_questionnaire_items.length == 0) {
+            callback(null);
+            return;
+        }
+        var sqls = [];
+        sqls.push($sql.deleteTaskQuestionnaire(task_questionnaire_items[0].project_id, task_questionnaire_items[0].task_id));
+        sqls.push($sql.saveTaskQuestionnaire(task_questionnaire_items));
+        $mysqlUtil.queryArrSql(sqls, callback);
+    },
+
+
+
+    //删除任务信息
+    deleteTaskInfo: function (project_id, task_id, callback) {
+        var sqls = [];
+        sqls.push($sql.deleteTaskInfo(project_id, task_id));
+        sqls.push($sql.deleteTaskGrade(project_id, task_id));
+        sqls.push($sql.deleteTaskQuestionnaire(project_id, task_id));
+        sqls.push($sql.deleteTaskScale(project_id, task_id));
+        sqls.push($sql.deleteTaskAttachment(project_id, task_id));
+        $mysqlUtil.queryArrSql(sqls, callback);
+    },
+
+
+
+    //查询出问卷列表
+    getQuestionnaireList: function (use_role, use_xueduan_items,load_user_id, questionnaire_name,pagesize, pagenum,callback) {
+        var sql = $sql.getQuestionnaireList(use_role, use_xueduan_items,load_user_id, questionnaire_name,pagesize, pagenum);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    //查询出问卷列表行数
+    getQuestionnaireListRows: function (use_role, use_xueduan_items,load_user_id,questionnaire_name,callback) {
+        var sql = $sql.getQuestionnaireListRows(use_role, use_xueduan_items,load_user_id,questionnaire_name);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+
+
+
+    /* 获取项目列表
+    * byx 2017-5-11 14:45:47
+    * params
+    * @project_name
+    *
+    * return projectList;
+    * */
+    getProjectList: function (project_name, create_user_id,pagesize, pagenum, callback) {
+        var sql = $sql.getProjectList(project_name,create_user_id, pagesize, pagenum);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /* 获取项目列表-总数
+     * byx 2017-5-11 14:45:47
+     * params
+     * @project_name
+     *
+     * return projectNum;
+     * */
+    getProjectNum: function (project_name,create_user_id, callback) {
+        var sql = $sql.getProjectNum(project_name,create_user_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+
+
+
+
+    /* 根据项目获取所有项目信息
+        * byx 2017-5-11 14:45:47
+        * params
+        * @project_id
+        *
+        * return projectInfo;
+        * */
+    getProjectInfo: function (project_id, callback) {
+        var sql = $sql.getProjectInfo(project_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /* 根据项目获取所有任务列表
+     * byx 2017-5-11 14:45:47
+     * params
+     * @project_id
+     *
+     * return projectInfo;
+     * */
+    getTaskListByProject_id: function (project_id, callback) {
+        var sql = $sql.getTaskListByProject_id(project_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /* 根据项目获取所有任务关联0学校、1年级、2问卷、3量表、4附件列表
+     * byx 2017-5-11 14:45:47
+     * params
+     * @task_id
+     *
+     * return projectInfo;
+     * */
+    getTaskRltListByTask_id: function (task_id, callback) {
+        var sqls = [];
+        //sqls.push($sql.getTaskSchoolListByTask_id(task_id));
+        sqls.push($sql.getTaskGradeListByTask_id(task_id));
+        sqls.push($sql.getTaskQuestionnaireListByTask_id(task_id));
+        $mysqlUtil.queryArrSql(sqls, callback);
+    },
+
+    //修改项目状态
+    setProjectState: function (projectInfo, callback) {
+        var sql = $sql.setProjectState(projectInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+
+    //修改问卷状态
+    setQuestionnairState:function (p_state,questionnaire_id,callback) {
+        var sql = $sql.setQuestionnairState(p_state,questionnaire_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    }
+
+
+
+
+
+};

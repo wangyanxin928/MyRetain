@@ -1,0 +1,383 @@
+/**
+ * Created by sanghuina on 2017/7/28.
+ */
+var $util = require('../../util/util');
+var fs = require("fs");
+var path = require("path");
+var querystring = require('querystring');
+var importQuestionnairDao = require('../../dao/importQuestionnair/importQuestionnairDao');
+var baseQuestionDao = require('../../dao/base_question/baseQuestionDao');
+var $excelUtil = require('../../util/excelUtil');
+var async = require("async");
+
+
+module.exports = {
+    //插入问卷
+    insertQuestionnaire: function (req, res, next) {
+        var qPath = path.join(__dirname, "../../views/uploadFile/");
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaireInfo = {};
+            questionnaireInfo.questionnaire_name = param.questionnaire_name;
+            questionnaireInfo.descript = param.descript;
+            questionnaireInfo.load_user_id = param.load_user_id;
+            questionnaireInfo.use_role = param.use_role;
+            questionnaireInfo.xueduan_items = param.xueduan_items;
+            //"zhang/zhang/1.png".substring("zhang/zhang/1.png".lastIndexOf("/")+1)
+            var fileName = param.qPath.substring(param.qPath.lastIndexOf("/")+1);
+            //qPath = qPath + file_name;
+            var questionnaire_id = $util.GUID();
+            questionnaireInfo.questionnaire_id = questionnaire_id;
+            //返回问卷JSON数据
+            var excelJson = $excelUtil.parseJsonQuestionnaire(qPath+fileName, questionnaire_id);
+            questionnaireInfo.questionnaire_questoin = excelJson;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //async.eachSeries保证了的执行顺序，而且当其中一条执行异常，就不会继续执行下一条
+        //非异步循环保存问卷问题
+        var count = 1;
+        async.eachSeries(excelJson, function (questionItem, callback) {
+            importQuestionnairDao.saveQuestion(questionItem, function (errQuestion, resultQuestion) {
+                if (errQuestion != null) {
+                    $util.resJSONError(errQuestion, res);
+                    return;
+                }
+                //非异步循环保存答案
+                async.eachSeries(questionItem.question_options, function (optionItem, callback2) {
+                    importQuestionnairDao.saveOption(optionItem, function (errOption, resultOption) {
+                        if (errOption != null) {
+                            $util.resJSONError(errOption, res);
+                            return;
+                        }
+                        //插入当前选项后，插入下一个选项
+                        callback2();
+                    })
+                }, function (err) {
+                    // 所有执行完成后回调
+                    if (err) {
+                        $util.resJSONError(err, res);
+                        return;
+                    }
+                    //当前问题所有选项插入完成，进入下一题的保存
+                    callback();
+                    console.log(count++);
+                })
+            });
+        }, function (err) {
+            // 所有执行完成后回调
+            if (err) {
+                $util.resJSONError(err, res);
+                return;
+            } else {
+                //问卷内容保存成功之后，再保存问卷基本信息和学段
+                importQuestionnairDao.saveQuestionnaire(questionnaireInfo, function (errQuestoinnaire, resultQuestionnaire) {
+                    if (errQuestoinnaire != null) {
+                        $util.resJSONError(errQuestoinnaire, res);
+                        return;
+                    }
+
+                    //保存问卷
+                    //问卷基本信息保存成功后，保存问卷JSON
+                    getQuestoinnaireJSON(questionnaire_id, function (json) {
+                        if (!json) {
+                            $util.resJSONError(null, res, "生成JSON失败");
+                            return;
+                        }
+                        var q_jsonp = {
+                            questionnaire_id: questionnaire_id,
+                            json: JSON.stringify(json)
+                        };
+
+                        //写入json文件
+                        var filePath = path.join(__dirname, "../../views/web/Client/quesData/");
+                        fs.writeFileSync(filePath+questionnaire_id+".json", JSON.stringify(json, null, '\t'));
+
+                        $util.resJSON.resultnum = $util.resConfig.ok;
+                        $util.resJSON.resultdata = {questionnaire_info: questionnaireInfo};
+                        res.json($util.resJSON);
+
+                    });
+
+                });
+            }
+        })
+    },
+
+    //删除问卷 by hyq
+    deleteQuestoinnaire: function (req, res, next) {
+        try {
+            // 获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaire_id = param.questionnaire_id;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        importQuestionnairDao.removeQuestionnaire(questionnaire_id, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = {affectedRows: result.affectedRows};
+            res.json($util.resJSON);
+        });
+    },
+
+
+    /*添加问卷所有信息*/
+    addQuestionAllInfo:function () {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaireInfo = {};
+            questionnaireInfo.questionnaire_name = param.questionnaire_name;
+            questionnaireInfo.descript = param.descript;
+            questionnaireInfo.load_user_id = param.load_user_id;
+            questionnaireInfo.use_role = param.use_role;
+            questionnaireInfo.xueduan_items = param.xueduan_items;
+            var questionnaire_id = $util.GUID();
+            questionnaireInfo.questionnaire_id = questionnaire_id;
+            //问题和选项的信息
+            var questionInfoList = param.questionInfoList;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+        var count = 1;
+        async.eachSeries(questionInfoList, function (questionItem, callback) {
+            //设置问题主键
+            var question_id = $util.GUID();
+            questionItem.question_id = question_id;//问题id
+            questionItem.questionnaire_id = questionnaire_id;//问卷id
+            baseQuestionDao.insertQuestion(questionItem, function (errQuestion, resultQuestion) {
+                if (errQuestion != null) {
+                    $util.resJSONError(errQuestion, res);
+                    return;
+                }
+                //非异步循环保存答案
+                async.eachSeries(questionItem.question_options, function (optionItem, callback2) {
+                    optionItem.question_id = question_id;
+                    optionItem.questionnaire_id = questionnaire_id;
+                    baseQuestionDao.insertQuestionOption(optionItem, function (errOption, resultOption) {
+                        if (errOption != null) {
+                            $util.resJSONError(errOption, res);
+                            return;
+                        }
+                        //插入当前选项后，插入下一个选项
+                        callback2();
+                    })
+                }, function (err) {
+                    // 所有执行完成后回调
+                    if (err) {
+                        $util.resJSONError(err, res);
+                        return;
+                    }
+                    //当前问题所有选项插入完成，进入下一题的保存
+                    callback();
+                    console.log(count++);
+                })
+            });
+        }, function (err) {
+            // 所有执行完成后回调
+            if (err) {
+                $util.resJSONError(err, res);
+                return;
+            } else {
+                //问卷内容保存成功之后，再保存问卷基本信息和学段
+                baseQuestionDao.insertQuestionnaire(questionnaireInfo, function (errQuestoinnaire, resultQuestionnaire) {
+                    if (errQuestoinnaire != null) {
+                        $util.resJSONError(errQuestoinnaire, res);
+                        return;
+                    }
+
+                    //保存问卷
+                    //问卷基本信息保存成功后，保存问卷JSON
+                    getQuestoinnaireJSON(questionnaire_id, function (json) {
+                        if (!json) {
+                            $util.resJSONError(null, res, "生成JSON失败");
+                            return;
+                        }
+                        var q_jsonp = {
+                            questionnaire_id: questionnaire_id,
+                            json: JSON.stringify(json)
+                        };
+
+                        //写入json文件
+                        var filePath = path.join(__dirname, "../../views/web/Client/quesData/");
+                        fs.writeFileSync(filePath+questionnaire_id+".json", JSON.stringify(json, null, '\t'));
+
+                        $util.resJSON.resultnum = $util.resConfig.ok;
+                        $util.resJSON.resultdata = {questionnaire_info: questionnaireInfo};
+                        res.json($util.resJSON);
+
+                    });
+
+                });
+            }
+        })
+
+
+    },
+
+
+    /*修改问卷信息*/
+    updateQuestionnair:function (req,res,next) {
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaireInfo = {};
+            questionnaireInfo.questionnaire_name = param.questionnaire_name;
+            questionnaireInfo.descript = param.descript;
+            questionnaireInfo.load_user_id = param.load_user_id;
+            questionnaireInfo.use_role = param.use_role;
+            questionnaireInfo.xueduan_items = param.xueduan_items;
+            var questionnaire_id = param.questionnaire_id;
+            questionnaireInfo.questionnaire_id = questionnaire_id;
+            //问题和选项的信息
+            var questionInfoList = param.questionInfoList;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+        importQuestionnairDao.removeQuestionnaire(questionnaire_id, function (err, result) {
+            if (err != null) {
+                $util.resJSONError(err, res);
+                return;
+            }
+
+            var count = 1;
+            async.eachSeries(questionInfoList, function (questionItem, callback) {
+                //设置问题主键
+                var question_id = $util.GUID();
+                questionItem.question_id = question_id;//问题id
+                questionItem.questionnaire_id = questionnaire_id;//问卷id
+                baseQuestionDao.insertQuestion(questionItem, function (errQuestion, resultQuestion) {
+                    if (errQuestion != null) {
+                        $util.resJSONError(errQuestion, res);
+                        return;
+                    }
+                    //非异步循环保存答案
+                    async.eachSeries(questionItem.question_options, function (optionItem, callback2) {
+                        optionItem.question_id = question_id;
+                        optionItem.questionnaire_id = questionnaire_id;
+                        baseQuestionDao.insertQuestionOption(optionItem, function (errOption, resultOption) {
+                            if (errOption != null) {
+                                $util.resJSONError(errOption, res);
+                                return;
+                            }
+                            //插入当前选项后，插入下一个选项
+                            callback2();
+                        })
+                    }, function (err) {
+                        // 所有执行完成后回调
+                        if (err) {
+                            $util.resJSONError(err, res);
+                            return;
+                        }
+                        //当前问题所有选项插入完成，进入下一题的保存
+                        callback();
+                        console.log(count++);
+                    })
+                });
+            }, function (err) {
+                // 所有执行完成后回调
+                if (err) {
+                    $util.resJSONError(err, res);
+                    return;
+                } else {
+                    //问卷内容保存成功之后，再保存问卷基本信息和学段
+                    baseQuestionDao.insertQuestionnaire(questionnaireInfo, function (errQuestoinnaire, resultQuestionnaire) {
+                        if (errQuestoinnaire != null) {
+                            $util.resJSONError(errQuestoinnaire, res);
+                            return;
+                        }
+
+                        //保存问卷
+                        //问卷基本信息保存成功后，保存问卷JSON
+                        getQuestoinnaireJSON(questionnaire_id, function (json) {
+                            if (!json) {
+                                $util.resJSONError(null, res, "生成JSON失败");
+                                return;
+                            }
+                            var q_jsonp = {
+                                questionnaire_id: questionnaire_id,
+                                json: JSON.stringify(json)
+                            };
+
+                            //写入json文件
+                            var filePath = path.join(__dirname, "../../views/web/Client/quesData/");
+                            fs.writeFileSync(filePath+questionnaire_id+".json", JSON.stringify(json, null, '\t'));
+
+                            $util.resJSON.resultnum = $util.resConfig.ok;
+                            $util.resJSON.resultdata = {questionnaire_info: questionnaireInfo};
+                            res.json($util.resJSON);
+
+                        });
+
+                    });
+                }
+            });
+        });
+    },
+
+}
+
+
+//获取问卷生成HTMLJSON
+function getQuestoinnaireJSON(questionnaireId, cb) {
+    var questionnaire_info = {};
+    importQuestionnairDao.getQuestionnaire(questionnaireId, function (err, result) {
+        if (err != null) {
+            console.log(false);
+            return false;
+        }
+        if (result.length == 0) {
+            $util.resJSON.resultnum = $util.resConfig.ok;
+            $util.resJSON.resultdata = {};
+            res.json($util.resJSON);
+        }
+        questionnaire_info = result[0];
+        importQuestionnairDao.getQuestionnaireXueduan(questionnaire_info, function (errXueduan, resultXueduan) {
+            if (errXueduan != null) {
+                return false;
+            }
+            questionnaire_info.xueduan_items = resultXueduan;
+            questionnaire_info.questionnaire_questoin = [];
+            //获取问卷所有问题
+            importQuestionnairDao.getQuestionnaireQuestion(questionnaire_info.questionnaire_id, function (errQuestion, resultQuestion) {
+
+                //循环获取所有问题，获取所有问题的答案
+                var arr_question = resultQuestion;
+                async.eachSeries(arr_question, function (question, callback) {
+                    var item_question = question;
+                    importQuestionnairDao.getQuestionOption(question.question_id, function (errOption, resultOption) {
+                        item_question.question_options = resultOption;
+                        questionnaire_info.questionnaire_questoin.push(item_question);
+                        callback();
+                    })
+                }, function (err) {
+                    // 所有SQL执行完成后回调
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        cb(questionnaire_info);
+                    }
+                });
+            })
+        });
+    });
+}

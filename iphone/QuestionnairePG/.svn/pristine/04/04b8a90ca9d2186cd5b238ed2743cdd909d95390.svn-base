@@ -1,0 +1,80 @@
+安装node.js
+1.开始安装Node.js，先进入/usr/src文件夹，这个文件夹通常用来存放软件源代码:
+
+cd /usr/src
+2.从Node.js的站点中获取压缩档源代码, 我选择的版本为v0.10.18：
+
+wget http://nodejs.org/dist/v0.10.18/node-v0.10.18.tar.gz
+3.解压缩源文件，并且进入到压缩后的文件夹中:
+
+tar zxf node-v0.10.18.tar.gz
+cd node-v0.10.18
+4.执行配置脚本来进行编译预处理:
+
+./configure
+5.开始编译源代码，时间比较长
+
+make
+6.当编译完成后，我们需要使之在系统范围内可用, 编译后的二进制文件将被放置到系统路径，默认情况下，Node二进制文件应该放在/user/local/bin/node文件夹下:
+
+make install
+7.现在已经安装了Node.js, 可以开始部署应用程序, 首先要使用Node.js的模块管理器npm安装Express middleware 和forever（一个用来确保应用程序启动并且在需要时重启的非常有用的模块）：[未使用，下文使用的曾经安装过的pm2]
+
+npm -g install express forever
+8.建立超级链接, 不然 sudo node 时会报 "command not found"[未使用，下文使用的曾经安装过的pm2]
+
+sudo ln -s /usr/local/bin/node /usr/bin/node
+sudo ln -s /usr/local/lib/node /usr/lib/node
+sudo ln -s /usr/local/bin/npm /usr/bin/npm
+sudo ln -s /usr/local/bin/node-waf /usr/bin/node-waf
+sudo ln -s /usr/local/bin/forever /usr/bin/forever
+
+
+上传代码
+1.把代码上传到了/home目录文件夹下，不需要拷贝node_modules
+2.进入项目目录，执行 npm install
+
+启动应用
+1.进入存放代码的目录，存放在/home/目录下,demoApp/bin/www为程序入口文件
+
+pm2 start www
+
+2.检视运行中的应用:
+
+pm2 list
+3.如果需要关闭应用，命令如下：
+pm2 kill
+
+自此，没有意外的话，项目部署成功。
+
+
+常用命令总结如下：
+
+安装pm2
+npm install -g pm2
+启动应用
+pm2 start app.js
+列出所有应用
+pm2 list
+查看资源消耗
+pm2 monit
+查看某一个应用状态
+pm2 describe [app id]
+查看所有日志
+pm2 logs
+重启应用
+pm2 restart [app id]
+停止应用
+pm2 stop [app id]
+
+安装：npm install -g pm2
+启动程序：pm2 start <app_name|id|all>
+　　可以指定应用名称 pm2 start app,js --name=test
+
+列举进程：pm2 list
+退出程序：pm2 stop <app_name|id|all>
+重起应用：pm2 restart
+程序信息：pm2 describe id|all
+监控：pm2 monit
+实时集中log处理: pm2 logs
+API:pm2 web (端口：9615 )

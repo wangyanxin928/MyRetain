@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>学生生涯规划结果页</div>
+    <div id="result"></div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <script src="js/common.js"></script>
+</body>
+<script>
+    //后台计算公式
+    var countFormula_desc=[
+        {
+            专业类别:"经济学",
+            常数:-12.779,
+            社交能力:0.005,
+            数字能力:0.758,
+            逻辑推理能力:1.024,
+            言语能力:1.627,
+            空间认知能力:1.672,
+            运动协调能力:2.219
+        },
+        {
+            专业类别:"法学",
+            常数:-13.156,
+            逻辑推理能力:-1.126,
+            社交能力:-0.253,
+            言语能力:1.035,
+            空间认知能力:1.522,
+            运动协调能力:2.386,
+            数字能力:3.001
+        },
+        {
+            专业类别:"教育学",
+            常数:-15.263,
+            逻辑推理能力:-1.256,
+            社交能力:0.091,
+            空间认知能力:1.836,
+            言语能力:1.854,
+            运动协调能力:2.01,
+            数字能力:2.974
+        },
+        {
+            专业类别:"文学",
+            常数:-14.454,
+            言语能力:-0.579,
+            社交能力:-0.134,
+            逻辑推理能力:1.136,
+            空间认知能力:1.641,
+            运动协调能力:2.088,
+            数字能力:2.926
+        },
+        {
+            专业类别:"理学",
+            常数:-10.78,
+            逻辑推理能力:0.534,
+            社交能力:0.709,
+            空间认知能力:0.73,
+            数字能力:1.214,
+            运动协调能力:1.938,
+            言语能力:3.444
+        },
+        {
+            专业类别:"工学",
+            常数:-10.622,
+            空间认知能力:0.067,
+            运动协调能力:0.508,
+            社交能力:0.954,
+            数字能力:1.19,
+            逻辑推理能力:1.322,
+            言语能力:2.83
+        },
+        {
+            专业类别:"农学",
+            常数:-13.32,
+            运动协调能力:0.053,
+            社交能力:0.941,
+            数字能力:1.296,
+            空间认知能力:1.439,
+            逻辑推理能力:1.543,
+            言语能力:2.652
+        },
+        {
+            专业类别:"医学",
+            常数:-12.273,
+            逻辑推理能力:0.354,
+            社交能力:0.693,
+            运动协调能力:0.703,
+            数字能力:1.651,
+            空间认知能力:1.891,
+            言语能力:1.968
+        },
+        {
+            专业类别:"管理学",
+            常数:-12.763,
+            社交能力:-0.26,
+            数字能力:0.404,
+            空间认知能力:1.241,
+            运动协调能力:1.874,
+            逻辑推理能力:2.138,
+            言语能力:2.955
+        }
+    ];
+    //前台计算公式
+    var countFormula_asc =[
+        {
+            专业类别:"经济学",
+            空间认知能力:1.328,
+            逻辑推理能力:1.976,
+            社交能力:2.995,
+            数字能力:2.242,
+            言语能力:1.373,
+            运动协调能力:0.781
+        },
+        {
+            专业类别:"法学",
+            空间认知能力:1.478,
+            逻辑推理能力:4.126,
+            社交能力:3.253,
+            数字能力:0.001,
+            言语能力:1.965,
+            运动协调能力:0.614
+        },
+        {
+            专业类别:"教育学",
+            空间认知能力:1.164,
+            逻辑推理能力:4.256,
+            社交能力:2.909,
+            数字能力:0.026,
+            言语能力:1.146,
+            运动协调能力:0.99
+        },
+        {
+            专业类别:"文学",
+            空间认知能力:1.359,
+            逻辑推理能力:1.864,
+            社交能力:3.134,
+            数字能力:0.074,
+            言语能力:3.579,
+            运动协调能力:0.912
+        },
+        {
+            专业类别:"理学",
+            空间认知能力:2.27,
+            逻辑推理能力:2.466,
+            社交能力:2.291,
+            数字能力:1.786,
+            言语能力:0.444,
+            运动协调能力:1.062
+        },
+        {
+            专业类别:"工学",
+            空间认知能力:2.933,
+            逻辑推理能力:1.678,
+            社交能力:2.046,
+            数字能力:1.81,
+            言语能力:0.17,
+            运动协调能力:2.492
+        },
+        {
+            专业类别:"农学",
+            空间认知能力:1.561,
+            逻辑推理能力:1.457,
+            社交能力:2.059,
+            数字能力:1.704,
+            言语能力:0.348,
+            运动协调能力:2.947
+        },
+        {
+            专业类别:"医学",
+            空间认知能力:1.109,
+            逻辑推理能力:2.646,
+            社交能力:2.307,
+            数字能力:1.349,
+            言语能力:1.032,
+            运动协调能力:2.297
+        },
+        {
+            专业类别:"管理学",
+            空间认知能力:1.759,
+            逻辑推理能力:0.862,
+            社交能力:3.26,
+            数字能力:2.596,
+            言语能力:0.045,
+            运动协调能力:1.126
+        }
+    ];
+    $(window).on("load",function(){
+        //获取用户的分数信息  ：问卷id,任务id，用户id  getStandScore
+        var project_id = "project_id";//getUrlPara("project_id");
+        var task_id = "task_id";//getUrlPara("task_id");
+        var questionnaire_id = "student_questionnaire_id";//getUrlPara("questionnaire_id");
+        var user_id = "uid_test20171031";//getUrlPara("user_id");
+        //获取移动端问卷首页的信息
+        var ajaxobj = {
+            itype: "get",
+            iname: "client/questionnaireController/getStandScore"
+        };
+        var actobj = {
+            "task_id": task_id,
+            "questionnaire_id": questionnaire_id,
+            "user_id":user_id
+        };
+//        var layerIndex = layer.load(0, {shade: false});
+        /*getdata(ajaxobj, actobj, function (data) {
+            layer.close(layerIndex);
+            if (data.resultnum != "0000") {
+                layer.msg("获取测评结果信息失败", {
+                    icon: 2,
+                    time: 3000
+                });
+                return;
+            } else {
+                var standScoreList = data.resultdata;
+            }
+        });*/
+        var standScoreList = [
+            {
+                stand_id:"201",
+                stand_name:"言语能力",
+                score:5,
+                fullmark:6
+            },
+            {
+                stand_id:"202",
+                stand_name:"数学能力",
+                score:4,
+                fullmark:6
+            },
+            {
+                stand_id:"203",
+                stand_name:"空间能力",
+                score:6,
+                fullmark:8
+            },
+            {
+                stand_id:"204",
+                stand_name:"逻辑能力",
+                score:6,
+                fullmark:6
+            },
+            {
+                stand_id:"205",
+                stand_name:"社交能力",
+                score:5,
+                fullmark:6
+            },
+            {
+                stand_id:"206",
+                stand_name:"运动协调能力",
+                score:4,
+                fullmark:6
+            }
+        ];
+        var yanyu={};
+        var shuxue ={};
+        var kongjian = {};
+        var luoji ={};
+        var shejiao = {};
+        var yundong={};
+        for(var i=0;i<standScoreList.length;i++){
+            standScoreList[i].countScore = standScoreList[i].score/standScoreList[i].fullmark*50;
+            switch(standScoreList[i].stand_name){
+                case "言语能力":
+                    yanyu = standScoreList[i];
+                    break;
+                case "数学能力":
+                    shuxue = standScoreList[i];
+                    break;
+                case "空间能力":
+                    kongjian = standScoreList[i];
+                    break;
+                case "逻辑能力":
+                    luoji = standScoreList[i];
+                    break;
+                case "社交能力":
+                    shejiao = standScoreList[i];
+                    break;
+                case "运动协调能力":
+                    yundong = standScoreList[i];
+                    break;
+            }
+        }
+        //用后台系数计算各专业分数
+        for(var i=0;i<countFormula_desc.length;i++){
+            countFormula_desc[i].score =countFormula_desc[i].常数
+                    +yanyu.countScore*countFormula_desc[i].言语能力
+                    +shuxue.countScore*countFormula_desc[i].数字能力
+                    +kongjian.countScore*countFormula_desc[i].空间认知能力
+                    +luoji.countScore*countFormula_desc[i].逻辑推理能力
+                    +shejiao.countScore*countFormula_desc[i].社交能力
+                    +yundong.countScore*countFormula_desc[i].运动协调能力;
+        }
+        //用页面系数计算专业分数
+        for(var i=0;i<countFormula_asc.length;i++){
+            countFormula_asc[i].score =yanyu.countScore*countFormula_asc[i].言语能力
+                    +shuxue.countScore*countFormula_asc[i].数字能力
+                    +kongjian.countScore*countFormula_asc[i].空间认知能力
+                    +luoji.countScore*countFormula_asc[i].逻辑推理能力
+                    +shejiao.countScore*countFormula_asc[i].社交能力
+                    +yundong.countScore*countFormula_asc[i].运动协调能力;
+        }
+        //后台按照升序排列专业，排在最前面的是最符合的
+//        var countFormula_desc_sort =[];
+        for(var i=0;i<countFormula_desc.length;i++){
+            for(var j=0;j<(countFormula_desc.length-i-1);j++){
+                if(countFormula_desc[j].score>countFormula_desc[j+1].score){
+                    var current = countFormula_desc[j];
+                    countFormula_desc[j] = countFormula_desc[j+1];
+                    countFormula_desc[j+1] =current;
+                }
+            }
+        }
+        var tuijian = "";
+        for(var i=0;i<countFormula_desc.length;i++){
+            tuijian =tuijian+"第"+(i+1)+"推荐专业是："+countFormula_desc[i].专业类别+"，得分："+countFormula_desc[i].score+"<br/>";
+        }
+        $("#result").html(tuijian);
+    });
+</script>
+</html>
+<script language="JavaScript">
+
+</script>

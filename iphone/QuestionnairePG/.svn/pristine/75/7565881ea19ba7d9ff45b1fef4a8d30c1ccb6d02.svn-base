@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>新问卷</title>
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="page">
+    <div class="content">
+        <div class="survey-img"><img src="images/header.jpg"/></div>
+        <div class="survey-content content-center">
+            <div class="problemList">
+                <!--单项选择题start-->
+                <!--1.问题为文字，答案为文字-->
+                <div class="problem">
+                    <div class="problemUnanswered">
+                        <div class="problemTitle ">
+                            <span class="problemNum">1.</span>
+                            <span class="problemWord"> 问题为文字，答案为文字（单选）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>男333</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>特使人选熟悉新政府的外交规划特使人选熟悉新政府的外交规划</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女特使人选熟悉新政府的外交规划</span>
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女特使人选熟悉新政府的外交规划</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--2.问题为文字，答案为图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">2.</span>
+                            <span class="problemWord">问题为文字，答案为图片（单选）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/header.jpg" alt="">
+                                    </div>
+
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/bg1.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/logo2.png" alt="">
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/womon.png" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--3.问题为文字，答案为图片，文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">3.</span>
+                            <span class="problemWord">问题为文字，答案为图片，文字（单选）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/bg1.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>较满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/logo2.png" alt="">
+                                    </div>
+
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>不满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/womon.png" alt="">
+                                    </div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很不满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/womon.png" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--4.问题为图片，答案为文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">4.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--5.问题为图片，答案为图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">5.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--6.问题为图片，答案为图片，文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">6.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--7.问题为图片、文字，答案为文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">7.</span>
+                            <span class="problemWord">问题为图片,文字，答案为文字</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--8.问题为图片、文字，答案为图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">8.</span>
+                            <span class="problemWord">问题为图片、文字，答案为图片</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--9.问题为图片、文字，答案为文字、图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">9.</span>
+                            <span class="problemWord">问题为图片、文字，答案为图片</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片/答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片/答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片/答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="singlestli">
+                                    <input type="hidden" name="">
+                                    <span class="radios"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片\答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--单项选择题 end-->
+
+                <!--多选题start-->
+                <!--1.问题为文字，答案为文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">1.</span>
+                            <span class="problemWord"> 问题为文字，答案为文字（多选）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>男333</span>
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女</span>
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>特使人选熟悉新政府的外交规划特使人选熟悉新政府的外交规划</span>
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女特使人选熟悉新政府的外交规划</span>
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>女特使人选熟悉新政府的外交规划</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--2.问题为文字，答案为图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">2.</span>
+                            <span class="problemWord">问题为文字，答案为图片（多选）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/header.jpg" alt="">
+                                    </div>
+
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/bg1.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/logo2.png" alt="">
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span></span>
+                                        <img src="images/womon.png" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--3.问题为文字，答案为图片，文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">3.</span>
+                            <span class="problemWord">问题为文字，答案为图片，文字（多选）</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/bg1.jpg" alt="">
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>较满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/logo2.png" alt="">
+                                    </div>
+
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>不满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/womon.png" alt="">
+                                    </div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很不满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/womon.png" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--4.问题为图片，答案为文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">4.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>问题为图片，答案为文字</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--5.问题为图片，答案为图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">5.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--6.问题为图片，答案为图片，文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">6.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--7.问题为图片、文字，答案为文字-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">7.</span>
+                            <span class="problemWord">问题为图片,文字，答案为文字</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--8.问题为图片、文字，答案为图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">8.</span>
+                            <span class="problemWord">问题为图片、文字，答案为图片</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--9.问题为图片、文字，答案为文字、图片-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">9.</span>
+                            <span class="problemWord">问题为图片、文字，答案为图片</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList radio">
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片/答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片/答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片/答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt=""></div>
+                                </li>
+                                <li class="mutilstli">
+                                    <input type="hidden" name="">
+                                    <span class="checkbox"></span>
+                                    <div class="problemAnswerInfo">
+                                        <span>答案为文字、图片\答案为文字、图片</span>
+                                        <img src="images/header.jpg" alt="">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--多选 end-->
+
+                <!--10.问题为文字，答案为单行输入框-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">10.</span>
+                            <span class="problemWord">问题为文字，答案为单行输入框</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList">
+                                <li>
+                                    <div class="problemAnswerInfo">
+                                        <input type="text" placeholder="请输入正确的答案...">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+                <!--11.问题为文字，答案为多行输入-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">11.</span>
+                            <span class="problemWord">问题为文字，答案为多行输入框</span>
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList">
+                                <li>
+                                    <div class="problemAnswerInfo">
+                                        <textarea name="" cols="30" rows="10 " placeholder="请输入正确的答案..."></textarea>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--12.问题为文字，答案为单行输入框-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">12.</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList">
+                                <li>
+                                    <div class="problemAnswerInfo">
+                                        <input type="text" placeholder="请输入正确的答案...">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+                <!--13.问题为文字，答案为多行输入-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">13.</span>
+                            <img class="problemImg" src="images/header.jpg" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <ul class="problemAnswerList">
+                                <li>
+                                    <div class="problemAnswerInfo">
+                                        <textarea name="" cols="30" rows="10" placeholder="请输入正确的答案..."></textarea>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--14.问题为文字、图片，答案为单行输入框-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">14.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/question2.png" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <div class="problemAnswerInfo">
+                                <ul class="problemAnswerList">
+                                    <li>
+                                        <div class="problemAnswerInfo">
+                                            <input type="text" placeholder="请输入正确的答案...">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+                <!--15.问题为文字、图片，答案为多行输入-->
+                <div class="problem">
+                    <div class="problemCenter">
+                        <div class="problemTitle ">
+                            <span class="problemNum">15.</span>
+                            <span class="problemWord"></span>
+                            <img class="problemImg" src="images/question1.png" alt="">
+                        </div>
+                        <div class="problemAnswer">
+                            <div class="problemAnswerInfo">
+                                <ul class="problemAnswerList">
+                                    <li>
+                                        <div class="problemAnswerInfo">
+                                                <textarea name="" cols="30" rows="10"
+                                                          placeholder="请输入正确的答案..."></textarea>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="problemCenterText">
+                            <span>请回答此题</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="surveySubmitFooter">
+        <div class="problemProgressBar"></div>
+        <div class="upperProblem">上一页</div>
+        <div class="alightProblem">下一页</div>
+        <span class="btnSubmit" >提&nbsp;&nbsp;交</span>
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/flexible.debug.js"></script>
+<script src="js/flexible_css.debug.js"></script>
+<!--引入layer提示框-->
+<script src="js/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="js/questionnaire.js"></script>
+</body>
+</html>

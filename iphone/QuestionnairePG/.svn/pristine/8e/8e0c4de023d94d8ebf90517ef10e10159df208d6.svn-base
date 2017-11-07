@@ -1,0 +1,69 @@
+{
+  "_from": "ssf@https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz",
+  "_id": "ssf@0.9.3",
+  "_inBundle": false,
+  "_integrity": "sha1-Qtor35n8veG2KzyljwCqHwl6dk4=",
+  "_location": "/ssf",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "ssf@https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz",
+    "name": "ssf",
+    "escapedName": "ssf",
+    "rawSpec": "https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz",
+    "saveSpec": "https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz",
+    "fetchSpec": "https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz"
+  },
+  "_requiredBy": [
+    "/xlsx"
+  ],
+  "_resolved": "https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz",
+  "_spec": "ssf@https://registry.npmjs.org/ssf/-/ssf-0.9.3.tgz",
+  "_where": "D:\\axyr\\code2017\\QHPG-HN",
+  "author": {
+    "name": "SheetJS"
+  },
+  "bin": {
+    "ssf": "./bin/ssf.njs"
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/ssf/issues"
+  },
+  "bundleDependencies": false,
+  "config": {
+    "blanket": {
+      "pattern": "ssf.js"
+    }
+  },
+  "dependencies": {
+    "colors": "0.6.2",
+    "frac": "~1.0.6",
+    "voc": ""
+  },
+  "deprecated": false,
+  "description": "Format data using ECMA-376 spreadsheet Format Codes",
+  "devDependencies": {
+    "@sheetjs/uglify-js": "",
+    "mocha": ""
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "homepage": "https://oss.sheetjs.com/ssf",
+  "keywords": [
+    "format",
+    "sprintf",
+    "spreadsheet"
+  ],
+  "license": "Apache-2.0",
+  "main": "./ssf",
+  "name": "ssf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/ssf.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "0.9.3"
+}

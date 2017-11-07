@@ -1,0 +1,41 @@
+<div id="schoolListModel" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light  ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <span class="caption-subject bold font-grey-gallery uppercase">学校列表</span>
+                        </div>
+                        <div class="tools">
+                            <span class="caption-helper"><a>   </a></span>
+                            <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+
+                            <div class="col-md-12 text-right">
+                                <form class="form-inline">
+                                    <div class="form-group">
+                                        <input datakey="schoolNameSearch" type="text" class="form-control  input-circle" placeholder="学校名称..." id="schoolNameSearch" name="schoolNameSearch">
+                                    </div>
+                                    <a class="btn btn-outline green-haze" id="schoolNameSearchBtn">搜索</a>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div id="dataTableWrapperS" style="margin-top: 16px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <button type="button" data-dismiss="modal" class="btn btn-default " id="noCheck">再想想</button>
+            <button type="button" data-dismiss="modal" class="btn blue" id="schoolCheck">是的</button>
+        </div>
+    </div>
+</div>

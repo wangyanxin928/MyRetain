@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>问卷</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/common.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<form class="answerContainer">
+
+    <div class="answerBox">
+        <div class="answerHeader">
+        </div>
+        <div class="answerTitle">
+            <div class="titleCenter">
+                顺义区体育卫生发展情况家长调查
+            </div>
+        </div>
+    </div>
+
+    <div class="answerMain">
+        <p class="answerTxt">
+            据韩联社报道，青瓦台方面表示，本次所拟定的特使人选熟悉新政府的外交规划和理念，在访问期间或向相关国家转交总统文在寅的亲笔信函，传达新政府加强合作的意愿。特使还计划与相关国家高级官员会面，介绍新政府政策，就发展双边关系的方案交换意见。</p>
+        <div class="septalLine"></div>
+        <!--进度条-->
+        <div class="progressBar">
+
+            <div class="div1">
+                <div class="sumNum">99</div>
+                <div class="div2">
+                    <div class="div3">
+                        <div class="reticule">
+                            <div class="thisNum">21</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="baseNum">0</div>
+            </div>
+        </div>
+        <!--问卷-->
+        <div class="problemList">
+            <div class="problem" tmtype="single" tmid="3dc10830-0a2f-1314-0e14-1a40b76ab249" standid="1010001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">1</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的办学宗旨？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="ca3a4c5a-0681-a75d-fac0-758947b57ab7"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="2a7512ca-e0c9-3cc1-fcb3-cfa5a2b57e60"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="967c3b8f-0660-904a-c1e1-cf9e47b46277" standid="1010001002"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">2</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的办学思想？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="94a1da97-34dd-c848-f7fd-586a06c2089e"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="88a12014-b6e2-1e56-fa79-31ae1340d1ca"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="4ed44a4d-9e2a-f604-18c3-09ddac871cd2" standid="1010001003"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">3</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的校训？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="4b5f7d6f-1060-9f40-296f-8769973ba2fb"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="0960e648-4bcf-7ace-fbe5-1d7ed80a34da"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="5dfacd3f-3aee-9406-c385-cfbe7701541e" standid="1010001004"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">4</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的校徽？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="3f83f60a-373d-51a6-d8bd-e7a70cee1bdc"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="ac8004e8-a383-9b54-d092-9b8f283e422e"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="3cbe9e8c-efb6-605d-e1d2-d29c358e1667" standid="1010001005"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">5</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的校歌？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="55e9fdc0-fcbd-42fa-9841-a5a37df5f35a"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="b4958435-9471-88f6-94d3-b8309e22d9d0"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="5392c723-14b7-4679-b60d-3935eb116959" standid="1010001006"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">6</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的校风？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="c2008f92-0301-7f89-6e34-9c8498450eb0"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="b2f99c32-7957-1f65-7cc3-14b175a6faf9"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="f82eb316-aeb2-a891-434d-977357f0d5c1" standid="1010001007"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">7</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的教风？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="4285a581-5237-1d0f-8311-a0f90a65ca7b"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="b8e599ca-449c-9910-a66f-882add11e869"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="5f687bff-ada3-81c3-6f5e-4b3a2cf4dbe1" standid="1010001008"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">8</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你是否清楚的知道学校的学风？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="b9c9956a-f120-2537-9eee-0fb03c86bbd3"
+                                                          score="5"><span class="radios"></span>是
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="cf10b711-e50c-407b-303d-25c1cbf7fd3c"
+                                                          score="0"><span class="radios"></span>否
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="4ee8e7c1-5375-d361-a04e-61296e176431" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">9</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">学校同学们的关系是否友好？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="d8eedddb-b970-9b18-4d29-259e7309d324"
+                                                          score="0"><span class="radios"></span>非常不友好
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="7dca304b-cec0-f12c-f3af-e900801cb4bf"
+                                                          score="1"><span class="radios"></span>比较不友好
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="6808d379-3522-edad-9d54-83012f6dea7e"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="da60b05f-475e-5219-7959-e80a83edbd59"
+                                                          score="3"><span class="radios"></span>比较友好
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="89620c8d-2358-c952-810a-02ef29fcea84"
+                                                          score="4"><span class="radios"></span>非常友好
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="cdf8f7e3-c39e-94c0-2ccb-4a8d2ef1ac83" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">10</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你觉得你所在的教室环境舒服吗？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="5468bc0b-3acf-a9ea-990d-5797f3c2a5d0"
+                                                          score="0"><span class="radios"></span>非常不舒服
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="76caac8d-b56c-e648-f510-df928d0da4f5"
+                                                          score="1"><span class="radios"></span>比较不舒服
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="9253b62d-edb1-4479-81e7-799436ed38cd"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="59bcf623-3d8b-1f33-3a77-67f796deb993"
+                                                          score="3"><span class="radios"></span>比较舒服
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="6c3121d9-5883-eccf-2ca2-79af824db4d6"
+                                                          score="4"><span class="radios"></span>非常舒服
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="1c62b9ca-e656-c671-ff9b-c94df1f45e5b" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">11</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你对校园环境满意吗？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="a1750e24-b178-1a51-2c03-8b6f78895f2e"
+                                                          score="0"><span class="radios"></span>不满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="f959ffe9-7cbf-2ec0-1a83-07bcc71f828f"
+                                                          score="1"><span class="radios"></span>不太满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="e3663808-79fd-6a7a-1b00-d3905e84adf6"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="cdf21fa0-6d67-ed04-8d60-3708fbbc77e0"
+                                                          score="3"><span class="radios"></span>比较满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="68fd0d83-0bcc-08bd-bf9f-cd985d863241"
+                                                          score="4"><span class="radios"></span>满意
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="a34dc3c1-c84d-f190-3089-dc1f2db873d5" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">12</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">学校老师的态度你满意吗？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="3cbccddc-e298-4719-32f4-6aa7556b0def"
+                                                          score="0"><span class="radios"></span>不满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="ecd4502c-d8e4-9a48-4306-275260456227"
+                                                          score="1"><span class="radios"></span>不太满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="52e8e757-6394-afc6-5f9c-4ea55c320a3b"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="79604602-4cbf-7d3e-d102-cde6b996e486"
+                                                          score="3"><span class="radios"></span>比较满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="652eb626-e759-275a-1774-edd3b4b917f2"
+                                                          score="4"><span class="radios"></span>满意
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="70ae6a04-4de8-4b10-d893-bb82c03d6292" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">13</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你对学校的课程安排满意吗？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="620542a7-c71a-9ed7-bb13-de94fe765e9b"
+                                                          score="0"><span class="radios"></span>不满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="82318c15-46a0-1097-2d2d-c70f0a0b25a3"
+                                                          score="1"><span class="radios"></span>不太满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="0899af54-4842-3829-1632-46911882ab84"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="e8f4aee1-bec3-c5fe-106a-9bf7b200e41d"
+                                                          score="3"><span class="radios"></span>比较满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="08653dc5-1f09-feeb-8b44-2791cfc80275"
+                                                          score="4"><span class="radios"></span>满意
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="8eb7d9af-9562-b082-3498-92cb58e925d2" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">14</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你对学校实验室满意吗？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="79eb0677-6dcf-92c2-7297-539d02fbf5db"
+                                                          score="0"><span class="radios"></span>不满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="8a645202-76ed-860e-6856-dc98953e7558"
+                                                          score="1"><span class="radios"></span>不太满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="caad2300-4be6-7419-22e8-b6a576512c0e"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="e325962b-b034-1d72-6126-0985a4ac3818"
+                                                          score="3"><span class="radios"></span>比较满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="4b5efa38-66f4-f532-ecba-fcc576799078"
+                                                          score="4"><span class="radios"></span>满意
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="bbd1f809-8d34-bdf8-58e7-9680e07b9d68" standid="1002001001001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">15</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你对现在的学校满意吗</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="3c938699-b0a1-351c-fce0-27c70f02e860"
+                                                          score="0"><span class="radios"></span>不满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="a63eca66-8f93-59b2-ab65-ffadb9ea4a64"
+                                                          score="1"><span class="radios"></span>不太满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="756f707c-4d51-9445-1d7e-78984534a7bc"
+                                                          score="2"><span class="radios"></span>一般
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="2d084bfa-db2f-5c1a-4aba-49a94a1f72d0"
+                                                          score="3"><span class="radios"></span>比较满意
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="8160d7c4-e2d1-f19d-6d38-39d89462f192"
+                                                          score="4"><span class="radios"></span>满意
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="21cd6f9e-285a-41ba-8351-420ce064d8b7" standid="1002003001"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">16</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你每科平均教辅资料订购了几套？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="078bcdcf-7898-87ce-42d3-0aa47c87f4dc"
+                                                          score="5"><span class="radios"></span>1套
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="ecd2d68f-d998-a000-c592-2ea08ff788ec"
+                                                          score="0"><span class="radios"></span>2套以上
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="6debaf3e-800b-8576-9316-546d1c4b1050" standid="1002003002"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">17</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你每天平均作业时间是多少？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="760cc6a4-334e-ffde-8140-3bf2d7c84e74"
+                                                          score="5"><span class="radios"></span>2-3小时
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="e60d4aff-bbec-31f4-f9bc-fca07edd87fc"
+                                                          score="0"><span class="radios"></span>不到2小时
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="103bfeac-d747-4e12-fc7b-8da63d21a542"
+                                                          score="0"><span class="radios"></span>3小时以上
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="mutil" tmid="c6723fb9-c3a2-b94b-5f69-59d6775b9abd" standid="1005001001002"
+                 valtype="1">
+                <div class="problemBorNOt">
+                    <div class="problemNum">18</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你每天参加以下哪种类型的体育活动？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="mutilstli"><input type="hidden" name="" value=""
+                                                         optionid="f57142d4-66f3-ec96-05f4-4abfcd5a1354" score="1"><span
+                                    class="checkbox"></span>大课间体育活动
+                            </li>
+                            <li class="mutilstli"><input type="hidden" name="" value=""
+                                                         optionid="11d322ef-36a7-5a50-380d-4e7bc045835c" score="1"><span
+                                    class="checkbox"></span>课外体育活动
+                            </li>
+                            <li class="mutilstli"><input type="hidden" name="" value=""
+                                                         optionid="eef507bb-ddaf-1ac0-637e-4b09eeba9404" score="1"><span
+                                    class="checkbox"></span>体育课
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="ae18547e-48f0-2d18-caf6-c4771037146c" standid="1005001001002"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">19</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">你每天参加体育活动的时间是？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="1193bdfa-44fe-e101-ed04-41c6499d2e40"
+                                                          score="5"><span class="radios"></span>60分钟及以上
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="e399e53b-347c-50e4-7dd0-53bea917b729"
+                                                          score="0"><span class="radios"></span>60分钟以下
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="problem" tmtype="single" tmid="16edab35-ce85-8733-c4aa-98b64bcbdbbb" standid="1006002002"
+                 valtype="0">
+                <div class="problemBorNOt">
+                    <div class="problemNum">20</div>
+                </div>
+                <div class="problemTitle">
+                    <div class="problemContent">每周使用多媒体的课堂有多少？</div>
+                    <div class="questionbconc uniformWidth">
+                        <ul class="qula radio ">
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="7867dfc8-b3fc-044c-9407-f63fe72fa6c0"
+                                                          score="5"><span class="radios"></span>5节及以上
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="6cd7c4ce-69e5-803d-1041-5440a87873ae"
+                                                          score="0"><span class="radios"></span>3-4节
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="37fa9ea4-738f-cfde-c4fe-ee3505191780"
+                                                          score="0"><span class="radios"></span>2-3节
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="b27c6ae2-e5c3-69cf-8170-246cfae0117b"
+                                                          score="0"><span class="radios"></span>1-2节
+                            </li>
+                            <li class="singlestli"><input type="hidden" name="" value=""
+                                                          optionid="cf8a6539-c5fd-4ef6-55db-5ff50a8ecc1e"
+                                                          score="0"><span class="radios"></span>0-1节
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="problem" tmtype="blank" valtype="1">
+                <!--未填写状态-->
+                <div class="problemBorNOt">
+                    <div class="problemNum">
+                        21
+                    </div>
+                </div>
+                <div class="problemTitle">常住地距离学校多少公里？
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder=""
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btnBox">
+            <!--<a class="preservedBtn">保存</a>-->
+            <span class="submitBtn" id="submitQuestionnaire">提交</span>
+        </div>
+    </div>
+</form>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/flexible.debug.js"></script>
+<script src="js/flexible_css.debug.js"></script>
+<!--引入layer提示框-->
+<script src="js/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="js/question.js"></script>
+</body>
+</html>

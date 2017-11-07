@@ -1,0 +1,353 @@
+/**
+ * Created by byx on 17/5/16.
+ * 问卷填报sql语句
+ */
+var questionnaire = {
+    //问卷填报
+    saveAnswer: function (answerInfo) {
+        var sql = "INSERT INTO questionnaire_answer (answer_id, user_id, server_id, user_role, project_id, task_id, questionnaire_id, content,  page_num)  "
+            + "VALUES ('"
+            + answerInfo.answer_id + "', '"
+            + answerInfo.user_id + "', '"
+            + answerInfo.server_id + "', '"
+            + answerInfo.user_role + "', '"
+            + answerInfo.project_id + "', '"
+            + answerInfo.task_id + "', '"
+            + answerInfo.questionnaire_id + "', '"
+            + answerInfo.content + "', '"
+            + answerInfo.page_num + "') "
+            + " ON DUPLICATE KEY UPDATE " +
+            "user_id = '" + answerInfo.user_id
+            + "',server_id = '" + answerInfo.server_id
+            + "',user_role = '" + answerInfo.user_role
+            + "',project_id = '" + answerInfo.project_id
+            + "',task_id = '" + answerInfo.task_id
+            + "',questionnaire_id = '" + answerInfo.questionnaire_id
+            + "',content = '" + answerInfo.content
+            + "',page_num = '" + answerInfo.page_num + "';"
+        return sql;
+    },
+    //获取问卷答案
+    getQuestionnaireAnswer: function (answerInfo) {
+        var sql = "select * from questionnaire_answer " +
+            "where project_id = '" + answerInfo.project_id + "' and " +
+            "task_id = '" + answerInfo.task_id + "' and " +
+            "questionnaire_id = '" + answerInfo.questionnaire_id + "'  and " +
+            "user_id = '" + answerInfo.user_id + "'  and " +
+            "server_id = '" + answerInfo.server_id + "'  and " +
+            "page_num = '" + answerInfo.page_num + "';"
+        return sql;
+    },
+    //保存问卷提交记录，提交数据到questionnaire_submit表，并提交原始score_result数据
+    submitQuestionnaire: function (answerInfo) {
+        var sqlArr =[];
+        //添加提交记录
+        var sql = "INSERT INTO questionnaire_submit (user_id, server_id,user_role, project_id, task_id, questionnaire_id,isanonymous,sub_sourcetype)  "
+            + "VALUES ('"
+            + answerInfo.user_id + "', '"
+            + answerInfo.server_id + "', '"
+            + answerInfo.user_role + "', '"
+            + answerInfo.project_id + "', '"
+            + answerInfo.task_id + "', '"
+            + answerInfo.questionnaire_id + "', "
+            + answerInfo.isanonymous + ", '"
+            + answerInfo.sub_sourcetype + "') "
+            + " ON DUPLICATE KEY UPDATE " +
+            "user_id = '" + answerInfo.user_id
+            + "',server_id = '" + answerInfo.server_id
+            + "',user_role = '" + answerInfo.user_role
+            + "',project_id = '" + answerInfo.project_id
+            + "',task_id = '" + answerInfo.task_id
+            + "',questionnaire_id = '" + answerInfo.questionnaire_id
+            + "',isanonymous = " + answerInfo.isanonymous
+            + ",sub_sourcetype = '" + answerInfo.sub_sourcetype + "';"
+        sqlArr.push(sql);
+        //添加问卷指标得分
+        answerInfo.answer_items.forEach(function (item, index) {
+            sql = "";
+            sql += "INSERT INTO score_result ( stand_id,user_id,user_name, school_id,school_name,  score,score_source, project_id, task_id,questionnaire_id,`type`) ";
+            sql += "VALUES ( '" + item.stand_id + "', '" + answerInfo.user_id + "', '"+ answerInfo.user_name + "', '" + answerInfo.server_id + "', '"+ answerInfo.school_name + "', '" + item.score + "', '问卷', '" + answerInfo.project_id + "', '" + answerInfo.task_id +"', '" + answerInfo.questionnaire_id + "',1);";
+            sqlArr.push(sql);
+        });
+        return sqlArr;
+    },
+    /**
+     * SQL计算一级指标分数（未求各级权重，只将分数汇总到一级指标下） 20171107
+     * @param project_id  项目id
+     * @param task_id   任务id
+     * @param questionnaire_id  问卷id
+     * @param user_id   用户id
+     * @returns {string}
+     */
+    calculateScore:function(project_id,task_id,questionnaire_id,user_id){
+        var sql ="SELECT sr.* , CONVERT(score/fullmark*conversion_coefficient,DECIMAL(10,2)) count_score,qr.* FROM questionnaire_resulttype AS qr LEFT JOIN "
+        +" (SELECT getTreeNodes(stand_id) first_levels,SUM(score) score FROM score_result WHERE project_id='"+project_id+"' AND task_id='"+task_id+"'"
+        +" AND questionnaire_id='"+questionnaire_id+"' AND user_id='"+user_id+"'"
+        +" GROUP BY getTreeNodes(stand_id)) AS sr"
+        +" ON qr.stand_id = sr.first_levels WHERE questionnaire_id='"+questionnaire_id+"';";
+        return sql;
+    },
+    /**
+     * 将分数计算结果插入到score_result表中
+     * @param user_id  用户id
+     * @param user_name  用户名
+     * @param server_id  组织结构id
+     * @param school_name  组织机构name
+     * @param project_id  项目id
+     * @param task_id   任务id
+     * @param questionnaire_id  问卷id
+     * @param standScoreList  分数结果list
+     * @returns {string}
+     */
+    calculateResultIntoScoreResult:function(user_id,user_name,server_id,school_name,project_id,task_id,questionnaire_id,standScoreList){
+        //插入分数结果表
+        var sqlArr = ["INSERT INTO score_result ( stand_id,user_id,user_name, school_id,school_name,  score,score_source, project_id, task_id,questionnaire_id,count_score,type) values "];
+        var arrLength = quesAnswerList.length;
+        standScoreList.forEach(function (item, index) {
+            var sql="";
+            if(index!=0){
+                sql+=",";
+            }
+            sql += "('"
+                + item.stand_id + "', '"
+                + user_id + "', '"
+                + user_name + "', '"
+                + server_id + "','"
+                + school_name + "','"
+                + item.score + "','问卷','"
+                + project_id + "','"
+                + task_id + "','"
+                + questionnaire_id + "','"
+                + item.count_score + "',0) ";
+            sqlArr.push(sql);
+        })
+        return sqlArr.join("");
+    },
+
+    /*//学生家长获取问卷列表
+    getQuestoinnaireList_noLeader: function (userInfo) {
+        var sql = "SELECT ";
+        sql += "table_user_wj_task.*, ";
+        sql += "IF(ISNULL(user_answer.answer_count),0,1) AS save, ";
+        sql += "IF(ISNULL(table_user_wj_submit.submit_count),0,1) AS submit  ";
+        sql += "FROM ( ";
+        // --在项目时间范围内，按照对象、年级、学校ID 查询用户问卷任务 start
+        sql += "SELECT ";
+        sql += "project.start_time,project.end_time, ";
+        sql += "task_sch.task_id, ";
+        sql += "task_sch.school_id, ";
+        sql += "task_sch.grade_name, ";
+        sql += "task_sch.in_role  AS user_role, ";
+        sql += "task_sch.project_id, ";
+        sql += "wj.questionnaire_id, ";
+        sql += "wj.questionnaire_name ";
+        sql += "FROM task_grade task_sch ";
+        sql += "JOIN project ";
+        sql += "ON task_sch.project_id = project.project_id ";
+        sql += "JOIN task_questionnaire wj ";
+        sql += "ON task_sch.task_id = wj.task_id ";
+        sql += "WHERE ";
+        //-- 过滤项目时间
+        sql += "project.start_time < NOW() ";
+        sql += "AND project.end_time > NOW() ";
+        sql += "AND project.state = 1 ";
+        sql += "AND task_sch.in_role = '" + userInfo.user_role + "'";
+        //学生和家长需要添加年级条件
+        if (userInfo.user_role == "学生" || userInfo.user_role == "家长") {
+            sql += "AND task_sch.grade_name = '" + userInfo.grade_name + "' ";
+        }
+        sql += "AND task_sch.school_id = '" + userInfo.server_id + "' ";
+        sql += " GROUP BY task_sch.task_id, wj.questionnaire_id ";
+        //-- 在项目时间范围内，按照对象、年级、学校ID 查询用户问卷任务 end
+        sql += ") AS table_user_wj_task ";
+        sql += "LEFT JOIN ( ";
+        //-- 获取用户填报的问卷大题信息
+        sql += " SELECT ";
+        sql += " COUNT(answer.answer_id) AS answer_count, ";
+        sql += " answer.questionnaire_id ,answer.task_id";
+        sql += " FROM questionnaire_answer answer ";
+        sql += " WHERE answer.user_id =  '" + userInfo.user_id + "'";
+        sql += " AND answer.server_id = '" + userInfo.server_id + "'";
+        sql += " AND answer.user_role =  '" + userInfo.user_role + "'";
+        sql += " GROUP BY answer.questionnaire_id) AS user_answer ";
+        sql += " ON table_user_wj_task.questionnaire_id = user_answer.questionnaire_id and table_user_wj_task.task_id = user_answer.task_id ";
+        sql += " LEFT JOIN ( ";
+        //-- 获取用户填报的问卷提交信息
+        sql += " SELECT ";
+        sql += " COUNT(submit_table.questionnaire_id) AS submit_count, ";
+        sql += " submit_table.questionnaire_id AS wjid,submit_table.task_id ";
+        sql += " FROM questionnaire_submit submit_table ";
+        sql += " WHERE submit_table.user_id ='" + userInfo.user_id + "'";
+        sql += " AND submit_table.server_id = '" + userInfo.server_id + "'";
+        sql += " GROUP BY wjid) AS table_user_wj_submit ";
+        sql += " ON table_user_wj_task.questionnaire_id = table_user_wj_submit.wjid and table_user_wj_task.task_id = table_user_wj_submit.task_id order by save,end_time desc";
+
+        return sql;
+    },
+    //校长获取问卷列表
+    getQuestoinnaireList_schoolLeader: function (userInfo) {
+        var sql = "SELECT ";
+        sql += "table_user_wj_task.*, ";
+        sql += "IF(ISNULL(user_answer.answer_count),0,1) AS save , ";
+        sql += "IF(ISNULL(table_user_wj_submit.submit_count),0,1) AS submit ";
+        sql += "FROM ( ";
+        // --在项目时间范围内，按照对象、年级、学校ID 查询用户问卷任务 start
+        sql += "SELECT ";
+        sql += "project.start_time,project.end_time, ";
+        sql += "task_sch.task_id, ";
+        sql += "task_sch.school_id, ";
+        sql += "task_sch.grade_id, ";
+        sql += "task_sch.in_role  AS user_role, ";
+        sql += "task_sch.project_id, ";
+        sql += "wj.questionnaire_id, ";
+        sql += "wj.questionnaire_name ";
+        sql += "FROM task_grade task_sch ";
+        sql += "JOIN project ";
+        sql += "ON task_sch.project_id = project.project_id ";
+        sql += "JOIN task_questionnaire wj ";
+        sql += "ON task_sch.task_id = wj.task_id ";
+        sql += "WHERE ";
+        //-- 过滤项目时间
+        sql += "project.start_time < NOW() ";
+        sql += "AND project.end_time > NOW() ";
+        sql += "AND project.state = 1 ";
+        sql += "AND task_sch.school_id = '" + userInfo.server_id + "' ";
+        sql += "GROUP BY task_sch.task_id, wj.questionnaire_id";
+        //-- 在项目时间范围内，按照对象、年级、学校ID 查询用户问卷任务 end
+        sql += ") AS table_user_wj_task ";
+        sql += "LEFT JOIN ( ";
+        //-- 获取用户填报的问卷大题信息
+        sql += "SELECT ";
+        sql += "COUNT(answer.answer_id) AS answer_count, ";
+        sql += "answer.questionnaire_id ,answer.task_id ";
+        sql += "FROM questionnaire_answer answer ";
+        sql += "WHERE answer.user_id =  '" + userInfo.user_id + "'";
+        sql += "AND answer.server_id = '" + userInfo.server_id + "'";
+        sql += "AND answer.user_role =  '" + userInfo.user_role + "'";
+        sql += "GROUP BY answer.questionnaire_id) AS user_answer ";
+        sql += "ON table_user_wj_task.questionnaire_id = user_answer.questionnaire_id  and table_user_wj_task.task_id = user_answer.task_id  ";
+        sql += "LEFT JOIN ( ";
+        //-- 获取用户填报的问卷提交信息
+        sql += "SELECT ";
+        sql += "COUNT(submit_table.questionnaire_id) AS submit_count, ";
+        sql += "submit_table.questionnaire_id AS wjid ,submit_table.task_id ";
+        sql += "FROM questionnaire_submit submit_table ";
+        sql += "WHERE submit_table.user_id ='" + userInfo.user_id + "'";
+        sql += "AND submit_table.server_id = '" + userInfo.server_id + "'";
+        sql += "GROUP BY wjid) AS table_user_wj_submit ";
+        sql += "ON table_user_wj_task.questionnaire_id = table_user_wj_submit.wjid  and table_user_wj_task.task_id = table_user_wj_submit.task_id order by (case when user_role='校长' then 1 ELSE 4 END),save,end_time desc ";
+
+        return sql;
+    },
+    //教育局、教管中心获取问卷列表
+    getQuestoinnaireList_Leader: function (userInfo) {
+        var sql = "SELECT ";
+        sql += "table_user_wj_task.*, ";
+        //教育局人员、教管中心不填报问卷，不需要获取数量,直接返回0
+        sql += "'0' AS save , ";
+        sql += "'0' AS submit ";
+        sql += "FROM ( ";
+        // --在项目时间范围内，按照对象、年级、学校ID 查询用户问卷任务 start
+        sql += "SELECT ";
+        sql += "project.start_time,project.end_time, ";
+        sql += "task_sch.task_id, ";
+        sql += "task_sch.school_id, ";
+        sql += "task_sch.grade_id, ";
+        sql += "task_sch.in_role      AS user_role, ";
+        sql += "task_sch.project_id, ";
+        sql += "wj.questionnaire_id, ";
+        sql += "wj.questionnaire_name ";
+        sql += "FROM task_grade task_sch ";
+        sql += "JOIN project ";
+        sql += "ON task_sch.project_id = project.project_id ";
+        sql += "JOIN task_questionnaire wj ";
+        sql += "ON task_sch.task_id = wj.task_id ";
+        sql += "WHERE ";
+        //-- 过滤项目时间
+        sql += "project.start_time < NOW() ";
+        sql += "AND project.end_time > NOW() ";
+        sql += "AND project.state = 1 ";
+        sql += "AND task_sch.school_id in (" + userInfo.server_items + ") ";
+        sql += "GROUP BY wj.questionnaire_id";
+        //-- 在项目时间范围内，按照对象、年级、学校ID 查询用户问卷任务 end
+        sql += ") AS table_user_wj_task ";
+
+        return sql;
+    },*/
+    /**
+     * 删除提交分数表submit_stand_score_result中的项目相关数据
+     * by wenxia 20170711
+     * @param project_id
+     */
+    /*deleteScoreFromProject:function(project_id){
+        var sql="DELETE FROM submit_stand_score_result WHERE project_id='"+project_id+"'";
+        return sql;
+    },*/
+    //数据插入到questionnaire_single_answer表中 by 文霞（20170621）
+    insertQuesSingleAnswer:function(quesAnswerList){
+        //插入分数结果表
+        var sqlArr = ["INSERT INTO questionnaire_single_answer(user_id,server_id,user_role,project_id,task_id,questionnaire_id,tmid,create_time,page_num,tmdan,answer_id) values "];
+        var arrLength = quesAnswerList.length;
+        quesAnswerList.forEach(function (item, index) {
+            var sql="";
+            if(index!=0){
+                sql+=",";
+            }
+            sql += "('"
+                + item.user_id + "', '"
+                + item.server_id + "', '"
+                + item.user_role + "', '"
+                + item.project_id + "','"
+                + item.task_id + "','"
+                + item.questionnaire_id + "','"
+                + item.tmid + "','"
+                + item.create_time + "','"
+                + item.page_num + "','"
+                + item.tmdan + "','"
+                + item.answer_id + "') ";
+            sqlArr.push(sql);
+        })
+        return sqlArr.join("");
+    },
+    /**
+     * 根据任务id获取任务下的问卷列表 by 文霞 20171103(显示的信息还不确定先查询task_questionnaire表)
+     * @param task_id 任务id
+     */
+    getQuesByTask:function(task_id){
+        var sql="SELECT * FROM task_questionnaire WHERE task_id = '"+task_id+"';";
+        return sql;
+    },
+    /**
+     * 获取移动端问卷首页的信息，无通用性 by 文霞 20171103
+     * @param task_id 任务id
+     * @param questionnaire_id 问卷id
+     * @param user_id 用户id
+     */
+    getQuestionnaireHomePageData:function(task_id,questionnaire_id,user_id){
+        //需要返回的信息：问卷名，问卷描述，项目开始时间，项目结束时间，当前用户是否已经提交过答案
+        var sql="SELECT q.questionnaire_name,q.descript,p.start_time,p.end_time,submitRecord.authority FROM questionnaire AS q "
+        +" JOIN task_questionnaire AS tq ON q.questionnaire_id = tq.questionnaire_id "
+        +" JOIN task AS t ON tq.task_id = t.task_id "
+        +" JOIN project AS p ON t.project_id = p.project_id "
+        +" JOIN (SELECT COUNT(sub_id) authority FROM questionnaire_submit WHERE user_id='"+user_id+"' "
+        +" AND task_id = '"+task_id+"' AND questionnaire_id = '"+questionnaire_id+"') AS submitRecord "
+        +" WHERE q.questionnaire_id = '"+questionnaire_id+"' "
+        +" AND tq.task_id = '"+task_id+"'; "
+        return sql;
+    },
+    /**
+     * 获取指标分数信息 by 文霞 20171103
+     * @param task_id 任务id
+     * @param questionnaire_id 问卷id
+     * @param user_id 用户id
+     */
+    getStandScore:function(task_id,questionnaire_id,user_id){
+        var sql="SELECT qrt.*,sr.score,sr.count_score FROM questionnaire_resulttype AS qrt LEFT JOIN"
+        +" (SELECT * FROM score_result WHERE user_id ='"+user_id+"' AND task_id='"+task_id+"' AND questionnaire_id='"+questionnaire_id+"')"
+        +" AS sr ON sr.stand_id=qrt.stand_id"
+        +" WHERE qrt.questionnaire_id='"+questionnaire_id+"';";
+        return sql;
+    }
+};
+
+module.exports = questionnaire;

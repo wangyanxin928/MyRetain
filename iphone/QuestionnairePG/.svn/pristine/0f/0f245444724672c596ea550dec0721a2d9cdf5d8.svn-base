@@ -1,0 +1,69 @@
+var express = require('express');
+var router = express.Router();
+var path = require('path');
+var fs = require('fs');
+
+var sendMail = require('../libs/sendMail');
+
+/* GET home page. */
+router.get('/', function (req, res, next) {
+    res.redirect('/web/login.html')
+});
+
+//文件下载
+router.get('/file', function (req, res, next) {
+    // 实现文件下载
+    var fileName = req.query.fileName;
+    var paramFilePath = req.query.filePath;
+    var filePath = path.join(__dirname, "../resource/" + paramFilePath + fileName);
+    var stats = fs.statSync(filePath);
+    if (stats.isFile()) {
+        var userAgent = (req.headers['user-agent'] || '').toLowerCase();
+
+        if (userAgent.indexOf('msie') >= 0 || userAgent.indexOf('chrome') >= 0) {
+            res.setHeader('Content-Disposition', 'attachment; filename=' + encodeURIComponent(fileName));
+        } else if (userAgent.indexOf('firefox') >= 0) {
+            res.setHeader('Content-Disposition', 'attachment; filename*="utf8\'\'' + encodeURIComponent(fileName) + '"');
+        } else {
+            /* safari等其他非主流浏览器只能自求多福了 */
+            res.setHeader('Content-Disposition', 'attachment; filename=' + new Buffer(fileName).toString('binary'));
+        }
+        //res.set({
+        //    'Content-Type': 'application/octet-stream',
+        //    'Content-Disposition': 'attachment; filename=' + fileName,
+        //    'Content-Length': stats.size
+        //});
+        fs.createReadStream(filePath).pipe(res);
+    } else {
+        res.end(404);
+    }
+});
+
+
+/* 测试*/
+router.get('/test', function (req, res, next) {
+    var mailOptions = {
+        from: 'baiyuxistudy@163.com', // 发送者
+        to: '405531481@qq.com', // 接受者,可以同时发送多个,以逗号隔开
+        subject: 'nodemailer2.5.0邮件发送', // 标题
+        //text: 'Hello world', // 文本
+        html: '<h2>nodemailer基本使用:</h2>' +
+        '<h3><a href="http://blog.csdn.net/zzwwjjdj1/article/details/51878392">' +
+        'http://blog.csdn.net/zzwwjjdj1/article/details/51878392</a></h3>',
+        attachments: [
+            {
+                filename: '07.xlsx',
+                path: '../resource/import_file/07.xlsx'
+            },
+            {
+                filename: '48.xlsx',
+                path: '../resource/import_file/51.xlsx'
+            }
+        ]
+    };
+    sendMail.sendMail(mailOptions, function (info) {
+
+        console.log(info);
+    })
+});
+module.exports = router;

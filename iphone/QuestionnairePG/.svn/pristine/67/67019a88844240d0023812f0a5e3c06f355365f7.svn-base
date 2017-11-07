@@ -1,0 +1,199 @@
+/**
+ * Created by wyx on 2017/6/21.
+ */
+//var verUserRole,verSchoolName,verUserName,verPhoneNumber,verCode;
+var VerificationCode="";
+/*获取手机验证码倒计时  star*/
+var wait = 60;
+function time(o) {
+    if (wait == 0) {
+        o.removeAttribute("disabled");
+        o.value = "重新发送";
+        wait = 60;
+        $(".setVerificationCodeBtn").css({"background-color": "#e8e8e8", "color": "#666", "cursor": "pointer"});
+    } else {
+        o.setAttribute("disabled", true);
+        o.value =  "重新发送"+ wait + "s" ;
+        wait--;
+        setTimeout(function () {
+            time(o)
+        }, 1000);
+        $(".setVerificationCodeBtn").css({"background-color": "#f1f1f1", "color": "#666", "cursor": "not-allowed"});
+    }
+}
+//验证手机号是否正确并且发送验证码
+$("#sendCheckCode").click(function () {
+    var el=document.getElementById("phoneNumber");
+    var verificationResylt=verification(el);
+    if(verificationResylt==false){
+        return;
+    }
+    var ajaxobj = {
+        itype: "get",
+        iname: "sentMsg"
+    };
+    var actobj = {
+        "phone": $("#phoneNumber").val()
+    };
+    var layerIndex = layer.load(0, {shade: false});
+    getdata(ajaxobj, actobj, function (data) {
+        layer.close(layerIndex);
+        if (data.resultnum != "0000") {
+            layer.msg("获取验证码失败", {
+                icon: 2,
+                time: 3000
+            });
+            return;
+        }else{
+            VerificationCode=data.resultdata.yzm;
+            time(document.getElementById("sendCheckCode"));
+            console.log(VerificationCode);
+        }
+    });
+});
+/*获取手机验证码倒计时  end*/
+
+// 登陆
+
+//用户点击了登陆
+$('#loginFormBox input').keypress(function (e) {
+    if (e.which == 13) {
+        userLogin();
+    }
+});
+$("#loginFormBox").click(function () {
+    if (($('#loginFormBox').is('.data-btn-star'))){
+        userLogin();
+    }
+});
+
+function userLogin() {
+    var selectUserRole,schoolName,userName,phoneNumber;
+    var verificationResylt;
+    //表单验证--1.验证角色
+  /*  selectUserRole = $("#selectUserRole").val();
+    var el=document.getElementById("selectUserRole");
+    if (selectUserRole == "" || selectUserRole == null) {
+        layer.tips('此项为必填项', el, {
+            tips: 3
+        });
+        $("#selectUserRole").focus();
+        return;
+    }
+    //表单验证--2.验证其他input
+    $(".verify-input").each(function(){
+        var el=this;
+        verificationResylt=verification(el);
+        if(verificationResylt==false){
+            return false;
+        }
+    });
+    if(verificationResylt==false){
+        return;
+    }
+    //表单验证--3.验证验证码
+    schoolName=$("#schoolName").val();
+    userName = $("#userName").val();
+    phoneNumber = $("#phoneNumber").val();
+
+    var ajaxobj = {
+        itype: "get",
+        iname: "userLogin"
+    };
+    var actobj = {
+        "role_name": selectUserRole,
+        "organ_name":schoolName,
+        "user_name":userName,
+        "phone":phoneNumber
+    };
+    var layerIndex = layer.load(0, {shade: false});
+    getdata(ajaxobj, actobj, function (data) {*/
+     /*   layer.close(layerIndex);
+        if (data.resultnum != "0000") {
+            layer.msg("登录失败", {
+                icon: 2,
+                time: 3000
+            });
+            return;
+        }else{*/
+            location.href="index1.html";
+         /*   var hasSubmit=data.resultdata.has_submit;
+            var questionnaire_id=data.resultdata.questionnaire_id;
+            var user_id=data.resultdata.user_id;
+            location.href=questionnaire_id+".html?authority="+hasSubmit+"&user_id="+user_id+"&user_role="+selectUserRole+"&questionnaire_id="+questionnaire_id;*/
+   /*     }
+     });*/
+}
+
+window.onload = function () {
+    //验证输框的文本
+    $(".verify-input").blur(function () {
+        var el=$(this);
+        var me=this;
+        var verResult=verification(el,me);
+    });
+};
+//定义了myVerify的一般验证方法
+var verification=function(el){
+    // 必填项
+    var required = /[\S]+/;
+    // 手机正则
+    var phone = /^1\d{10}$/;
+    // 获取页面当前input 自定义属性的值；
+    var attrVal = $(el).attr("myVerify");
+    // 获取页面当前input的值；
+    var inputVal = $(el).val();
+    // 验证必填项
+    if (attrVal === "required") {
+        if (inputVal == "" || inputVal == null) {
+            layer.tips("此项为必填项", el, {
+                tips: 3
+            });
+            //$(el).focus();
+            return false;
+        }else{
+            return true;
+        }
+    }
+    //验证手机号是否存在完成密码找回
+    if (attrVal === "phone") {
+        if (inputVal == "" || inputVal == null) {
+            layer.tips('此项为必填项', el, {
+                tips: 3
+            });
+            //$(el).focus();
+            return false;
+        } else if (!phone.test(inputVal)) {
+            layer.tips("输入的手机号有误请重新输入", el, {
+                tips: 3
+            });
+            //$(el).focus();
+            return false;
+        }else{
+            return true;
+        }
+    }
+    //验证验证码
+    if (attrVal === "verificationCode") {
+        if (inputVal == "" || inputVal == null) {
+            layer.tips('此项为必填项', el, {
+                tips: 3
+            });
+            //$(el).focus();
+            return false;
+        } else if (inputVal!=VerificationCode) {
+            layer.tips("验证码错误", el, {
+                tips: 3
+            });
+            //$(el).focus();
+            return false;
+        }else{
+            return true;
+        }
+    }
+};
+
+
+
+
+

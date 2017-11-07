@@ -1,0 +1,84 @@
+/**
+ * Created by sanghuina on 2017/7/28.
+ */
+var $util = require('../../util/util');
+var fs = require("fs");
+var path = require("path");
+var querystring = require('querystring');
+var importQuestionnairDao = require('../../dao/importQuestionnair/importQuestionnairDao');
+
+
+module.exports = {
+    //插入问卷
+    insertQuestionnaire: function (req, res, next) {
+        var qPath = path.join(__dirname, "../../views/uploadFile/");
+        try {
+            //获取前台页面传过来的参数
+            var param = req.query || req.params;
+            param = JSON.parse(param.JSONPARAM);
+            var questionnaireInfo = {};
+            questionnaireInfo.questionnaire_name = param.questionnaire_name;
+            questionnaireInfo.descript = param.descript;
+            questionnaireInfo.load_user_id = param.load_user_id;
+            questionnaireInfo.use_role = param.use_role;
+            questionnaireInfo.xueduan_items = param.xueduan_items;
+            var file_name = param.file_name;
+            qPath = qPath + file_name;
+            var questionnaire_id = $util.GUID();
+            questionnaireInfo.questionnaire_id = questionnaire_id;
+            //返回问卷JSON数据
+            var excelJson = $excelUtil.parseJsonQuestionnaire(qPath, questionnaire_id);
+            questionnaireInfo.questionnaire_questoin = excelJson;
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+        //async.eachSeries保证了的执行顺序，而且当其中一条执行异常，就不会继续执行下一条
+        //非异步循环保存问卷问题
+        async.eachSeries(excelJson, function (questionItem, callback) {
+            importQuestionnairDao.saveQuestion(questionItem, function (errQuestion, resultQuestion) {
+                if (errQuestion != null) {
+                    $util.resJSONError(errQuestion, res);
+                    return;
+                }
+                //非异步循环保存答案
+                async.eachSeries(questionItem.question_options, function (optionItem, callback2) {
+                    importQuestionnairDao.saveOption(optionItem, function (errOption, resultOption) {
+                        if (errOption != null) {
+                            $util.resJSONError(errOption, res);
+                            return;
+                        }
+                        //插入当前选项后，插入下一个选项
+                        callback2();
+                    })
+                }, function (err) {
+                    // 所有执行完成后回调
+                    if (err) {
+                        $util.resJSONError(err, res);
+                        return;
+                    }
+                    //当前问题所有选项插入完成，进入下一题的保存
+                    callback();
+                })
+            });
+        }, function (err) {
+            // 所有执行完成后回调
+            if (err) {
+                $util.resJSONError(err, res);
+                return;
+            } else {
+                //问卷内容保存成功之后，再保存问卷基本信息和学段
+                importQuestionnairDao.saveQuestionnaire(questionnaireInfo, function (errQuestoinnaire, resultQuestionnaire) {
+                    if (errQuestoinnaire != null) {
+                        $util.resJSONError(errQuestoinnaire, res);
+                        return;
+                    }
+                    $util.resJSON.resultnum = $util.resConfig.ok;
+                    $util.resJSON.resultdata = {questionnaire_info: questionnaireInfo};
+                    res.json($util.resJSON);
+                });
+            }
+        })
+    },
+}

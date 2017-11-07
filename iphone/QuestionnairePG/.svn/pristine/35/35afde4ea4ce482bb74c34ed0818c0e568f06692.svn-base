@@ -1,0 +1,62 @@
+{
+  "_from": "exit-on-epipe@https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz",
+  "_id": "exit-on-epipe@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-9uBXnIIU0zoIEJ/W4uXB28cEY/w=",
+  "_location": "/exit-on-epipe",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "exit-on-epipe@https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz",
+    "name": "exit-on-epipe",
+    "escapedName": "exit-on-epipe",
+    "rawSpec": "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz",
+    "saveSpec": "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz",
+    "fetchSpec": "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz"
+  },
+  "_requiredBy": [
+    "/xlsx"
+  ],
+  "_resolved": "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz",
+  "_spec": "exit-on-epipe@https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.0.tgz",
+  "_where": "D:\\axyr\\code2017\\QHPG-HN",
+  "author": {
+    "name": "sheetjs"
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/node-exit-on-epipe/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Cleanly exit process on EPIPE",
+  "devDependencies": {
+    "mocha": ""
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "files": [
+    "exit-on-epipe.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "https://github.com/SheetJS/node-exit-on-epipe#readme",
+  "keywords": [
+    "epipe",
+    "pipe",
+    "error",
+    "exit"
+  ],
+  "license": "Apache-2.0",
+  "main": "./exit-on-epipe",
+  "name": "exit-on-epipe",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/node-exit-on-epipe.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,17 @@
+/*
+ 2017年5月17日
+ hyq
+ 用户管理模块route层
+ * */
+var express = require('express');
+var router = express.Router();
+var userLoginService = require('../../service/bdmanage_service/userLoginService');
+//添加用户
+router.get("/userLogin", function (req, res, next) {
+    userLoginService.userLogin(req, res, next);
+});
+//发送短息
+router.get("/sentMsg", function (req, res, next) {
+    userLoginService.sentMsg(req, res, next);
+});
+module.exports = router;

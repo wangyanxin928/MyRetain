@@ -1,0 +1,928 @@
+/**
+ * Created by bainiu on 2017-03-28 16:58:00.
+ * excel操作工具类
+ */
+
+var fs = require('fs');
+var xlsx = require('node-xlsx');
+var $util = require('../util/util');
+module.exports = {
+    /** 解析问卷excel 变成json
+     *
+     * @param {String} input - 要处理的 excel 源文件地址
+     * @return {Object} 返回
+     */
+    parseJsonQuestionnaire: function (path, questionnaire_id) {
+        var result = [];
+        var questionnaire_question = {
+            question_id: "",//问题ID
+            questionnaire_id: questionnaire_id,//问卷ID
+            q_order: "",//问题顺序
+            q_score: "",//分值
+            q_type: "",//题型:单选/多选/填空/其它
+            content: "",//问题内容
+            option_id: "",//问题选项组ID
+            stand_id: "",//所属指标ID
+            rule: "",//问题规则：填空题{1=整型/2=小数保留一位/3=小数保留两位/4=日期};多选题{1=选一项给分/2=选多项给分}
+            option_direction: "",//选项正负方向：正=分值越高越好;负=分值越低越好;
+            option_order: "",//选项排列：1=横向;2=纵向;
+            question_options: [{
+                option_id: "",
+                option_content: "",
+                option_order: "",
+                option_score: "",
+                questionnaire_id: "",
+                question_id: ""
+            }]
+        };
+
+        var book = xlsx.parse(path);
+        if (book[0].data.length != 0) {
+            book = book[0].data;
+        } else {
+            return null;
+        }
+        //循环工作表中的每行
+        book.forEach(function (item, index) {
+            questionnaire_question = {};
+            //过滤第一行头
+            if (index != 0) {
+                var question_id = $util.GUID();
+                questionnaire_question.question_id = question_id;
+                questionnaire_question.questionnaire_id = questionnaire_id;
+                var options = [];
+                //循环每行的所有列
+                item.map(function (col, col_index) {
+                    var option = {};
+                    switch (col_index) {
+                        case 0:
+                            questionnaire_question.option_direction = col;
+                            break;
+                        case 1:
+                            questionnaire_question.stand_id = col;
+                            break;
+                        case 2:
+                            questionnaire_question.q_order = col;
+                            break;
+                        case 3:
+                            questionnaire_question.option_order = col;
+                            break;
+                        case 4:
+                            questionnaire_question.rule = col;
+                            break;
+                        case 5:
+                            questionnaire_question.q_type = col;
+                            break;
+                        case 6:
+                            questionnaire_question.content = col;
+                            break;
+                        default:
+                            option.option_id = $util.GUID();
+                            option.questionnaire_id = questionnaire_id;
+                            option.question_id = question_id;
+                            option.option_content = col.split('.')[1];
+                            option.option_order = col_index + 1;
+                            option.option_score = col.split('.')[0];
+                            options.push(option);
+                            break;
+                    }
+                })
+                questionnaire_question.question_options = options;
+                result.push(questionnaire_question);
+            }
+        });
+
+        return result;
+    },
+    parseJsonSubjectScore: function (path, gradename, learnyear, exam_type) {
+        var stuSubjectScoreArr = [];
+        var book = xlsx.parse(path);
+        if (book[0].data.length != 0) {
+            book = book[0].data;
+        } else {
+            return null;
+        }
+        var num = 0;
+        //循环工作表中的每行
+        if (gradename == "四年级" || gradename == "五年级" || gradename == "六年级") {
+            /*book.forEach(function (item, index) {*/
+            for (var index = 0; index < book.length; index++) {
+                var item = book[index];
+                if (item.length < 5 || num > 5) {
+                    /*每行开始判断为空的列的个数，有多于5列能为空时跳出不走下面的*/
+                    return stuSubjectScoreArr;
+                } else {
+                    /*每行开始先初始化为0*/
+                    num = 0;
+                }
+                //验证列名
+                var error=[];
+                if(index==0){
+                    if(item[1]!="乡镇"){
+                        var erroetext="第2列的列头名应该为：乡镇";
+                        error.push(erroetext);
+                    }
+                    if(item[2]!="学校"){
+                        var erroetext="第3列的列头名应该为：学校";
+                        error.push(erroetext);
+                    }
+                    if(item[3]!="年级"){
+                        var erroetext="第4列的列头名应该为：年级";
+                        error.push(erroetext);
+                    }
+                    if(item[4]!="班级"){
+                        var erroetext="第5列的列头名应该为：班级";
+                        error.push(erroetext);
+                    }
+                    if(item[5]!="姓名"){
+                        var erroetext="第6列的列头名应该为：姓名";
+                        error.push(erroetext);
+                    }
+                    if(item[6]!="身份证号"){
+                        var erroetext="第7列的列头名应该为：身份证号";
+                        error.push(erroetext);
+                    }if(item[7]!="学籍号"){
+                        var erroetext="第8列的列头名应该为：学籍号";
+                        error.push(erroetext);
+                    }if(item[8]!="人文综合素养"){
+                        var erroetext="第9列的列头名应该为：人文综合素养";
+                        error.push(erroetext);
+                    }if(item[9]!="数理自然科学"){
+                        var erroetext="第10列的列头名应该为：数理自然科学";
+                        error.push(erroetext);
+                    }if(item[10]!="总分"){
+                        var erroetext="第11列的列头名应该为：总分";
+                        error.push(erroetext);
+                    }
+                }
+                if(error.length>0){
+                    return {errorStr:error.toString()};
+                }
+                var stuSubjectScoreJson = {
+                    p_organ_id: "",
+                    p_organ_name: "",
+                    school_id: "",
+                    school_name: "",
+                    grade_name: "",
+                    class_name: "",
+                    user_name: "",
+                    card_number: "",
+                    stu_num: "",
+                    learn_year: learnyear,
+                    chinese: 0,
+                    math: 0,
+                    english: 0,
+                    heddle: 0,
+                    daniel: 0,
+                    physics: 0,
+                    chemistry: 0,
+                    biology: 0,
+                    politics: 0,
+                    history: 0,
+                    geography: 0,
+                    total_score: 0,
+                    exam_type: exam_type
+                };
+                //过滤第一行头
+                if (index != 0) {
+                    //循环每行的所有列
+                   /* item.map(function (col, col_index) {
+                        switch (col_index) {
+                            case 1:
+                                stuSubjectScoreJson.p_organ_name = col;
+                                break;
+                            case 2:
+                                stuSubjectScoreJson.school_name = col;
+                                break;
+                            case 3:
+                                stuSubjectScoreJson.grade_name = col;
+                                break;
+                            case 4:
+                                stuSubjectScoreJson.class_name = col;
+                                break;
+                            case 5:
+                                stuSubjectScoreJson.user_name = col;
+                                break;
+                            case 6:
+                                stuSubjectScoreJson.card_number = col;
+                                break;
+                            case 7:
+                                stuSubjectScoreJson.stu_num = col;
+                                break;
+                            case 8:
+                                stuSubjectScoreJson.heddle = col;
+                                break;
+                            case 9:
+                                stuSubjectScoreJson.daniel = col;
+                                break;
+                            case 10:
+                                stuSubjectScoreJson.total_score = col;
+                                break;
+                            default:
+                                break;
+                        }
+                    });*/
+                    if ($util.isNull(item[1])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.p_organ_name = item[1];
+                    }
+                    if ($util.isNull(item[2])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.school_name = item[2];
+                    }
+                    if ($util.isNull(item[3])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.grade_name = item[3];
+                    }
+                    if ($util.isNull(item[4])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.class_name = item[4];
+                    }
+                    if ($util.isNull(item[5])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.user_name = item[5];
+                    }
+                    if ($util.isNull(item[6])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.card_number = item[6];
+                    }
+                    if ($util.isNull(item[7])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.stu_num = item[7];
+                    }
+                    if ($util.isNull(item[8])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.heddle = item[8];
+                    }
+                    if ($util.isNull(item[9])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.daniel = item[9];
+                    }
+                    if ($util.isNull(item[10])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.total_score = item[10];
+                    }
+
+                    stuSubjectScoreArr.push(stuSubjectScoreJson);
+                }
+            }
+            /* });*/
+        }
+        else {
+            /*book.forEach(function (item, index) {*/
+            for (var index = 0; index < book.length; index++) {
+                var item = book[index];
+                if (item.length < 5 || num > 11) {
+                    /*每行开始判断为空的列的个数，有多于11列能为空时则怎么是空行就跳出*/
+                    return stuSubjectScoreArr;
+                } else {
+                    /*每行开始先初始化为0*/
+                    num = 0;
+                }
+                //验证列名
+                var error=[];
+                if(index==0){
+                    if(item[1]!="乡镇"){
+                        var erroetext="第2列的列头名应该为：乡镇";
+                        error.push(erroetext);
+                    }
+                    if(item[2]!="学校"){
+                        var erroetext="第3列的列头名应该为：学校";
+                        error.push(erroetext);
+                    }
+                    if(item[3]!="年级"){
+                        var erroetext="第4列的列头名应该为：年级";
+                        error.push(erroetext);
+                    }
+                    if(item[4]!="班级"){
+                        var erroetext="第5列的列头名应该为：班级";
+                        error.push(erroetext);
+                    }
+                    if(item[5]!="姓名"){
+                        var erroetext="第6列的列头名应该为：姓名";
+                        error.push(erroetext);
+                    }
+                    if(item[6]!="身份证号"){
+                        var erroetext="第7列的列头名应该为：身份证号";
+                        error.push(erroetext);
+                    }if(item[7]!="学籍号"){
+                        var erroetext="第8列的列头名应该为：学籍号";
+                        error.push(erroetext);
+                    }if(item[8]!="语文"){
+                        var erroetext="第9列的列头名应该为：语文";
+                        error.push(erroetext);
+                    }if(item[9]!="数学"){
+                        var erroetext="第10列的列头名应该为：数学";
+                        error.push(erroetext);
+                    }if(item[10]!="英语"){
+                        var erroetext="第11列的列头名应该为：英语";
+                        error.push(erroetext);
+                    }if(item[11]!="文综"){
+                        var erroetext="第12列的列头名应该为：文综";
+                        error.push(erroetext);
+                    }if(item[12]!="理综"){
+                        var erroetext="第13列的列头名应该为：理综";
+                        error.push(erroetext);
+                    }if(item[13]!="物理"){
+                        var erroetext="第14列的列头名应该为：物理";
+                        error.push(erroetext);
+                    }if(item[14]!="化学"){
+                        var erroetext="第15列的列头名应该为：化学";
+                        error.push(erroetext);
+                    }if(item[15]!="生物"){
+                        var erroetext="第16列的列头名应该为：生物";
+                        error.push(erroetext);
+                    }
+                    if(item[16]!="政治"){
+                        var erroetext="第17列的列头名应该为：政治";
+                        error.push(erroetext);
+                    }
+                    if(item[17]!="历史"){
+                        var erroetext="第18列的列头名应该为：历史";
+                        error.push(erroetext);
+                    }
+                    if(item[18]!="地理"){
+                        var erroetext="第19列的列头名应该为：地理";
+                        error.push(erroetext);
+                    }
+                    if(item[19]!="总分"){
+                        var erroetext="第20列的列头名应该为：总分";
+                        error.push(erroetext);
+                    }
+                }
+                if(error.length>0){
+                    return {errorStr:error.toString()};
+                }
+                //过滤第一行头
+                if (index != 0) {
+                    var stuSubjectScoreJson = {
+                        p_organ_id: "",
+                        p_organ_name: "",
+                        school_id: "",
+                        school_name: "",
+                        grade_name: "",
+                        class_name: "",
+                        user_name: "",
+                        card_number: "",
+                        stu_num: "",
+                        learn_year: learnyear,
+                        chinese: 0,
+                        math: 0,
+                        english: 0,
+                        heddle: 0,
+                        daniel: 0,
+                        physics: 0,
+                        chemistry: 0,
+                        biology: 0,
+                        politics: 0,
+                        history: 0,
+                        geography: 0,
+                        total_score: 0,
+                        exam_type: exam_type
+                    };
+                    //循环每行的所有列
+                   /* item.map(function (col, col_index) {
+                        switch (col_index) {
+                            case 1:
+                                stuSubjectScoreJson.p_organ_name = col;
+                                break;
+                            case 2:
+                                stuSubjectScoreJson.school_name = col;
+                                break;
+                            case 3:
+                                stuSubjectScoreJson.grade_name = col;
+                                break;
+                            case 4:
+                                stuSubjectScoreJson.class_name = col;
+                                break;
+                            case 5:
+                                stuSubjectScoreJson.user_name = col;
+                                break;
+                            case 6:
+                                stuSubjectScoreJson.card_number = col;
+                                break;
+                            case 7:
+                                stuSubjectScoreJson.stu_num = col;
+                                break;
+                            case 8:
+                                stuSubjectScoreJson.chinese = col;
+                                break;
+                            case 9:
+                                stuSubjectScoreJson.math = col;
+                                break;
+                            case 10:
+                                stuSubjectScoreJson.english = col;
+                                break;
+                            case 11:
+                                stuSubjectScoreJson.heddle = col;
+                                break;
+                            case 12:
+                                stuSubjectScoreJson.daniel = col;
+                                break;
+                            case 13:
+                                stuSubjectScoreJson.physics = col;
+                                break;
+                            case 14:
+                                stuSubjectScoreJson.chemistry = col;
+                                break;
+                            case 15:
+                                stuSubjectScoreJson.biology = col;
+                                break;
+                            case 16:
+                                stuSubjectScoreJson.politics = col;
+                                break;
+                            case 17:
+                                stuSubjectScoreJson.history = col;
+                                break;
+                            case 18:
+                                stuSubjectScoreJson.geography = col;
+                                break;
+                            case 19:
+                                stuSubjectScoreJson.total_score = col;
+                                break;
+                            default:
+                                break;
+                        }
+                    });*/
+                    if ($util.isNull(item[1])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.p_organ_name = item[1];
+                    }
+                    if ($util.isNull(item[2])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.school_name = item[2];
+                    }
+                    if ($util.isNull(item[3])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.grade_name = item[3];
+                    }
+                    if ($util.isNull(item[4])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.class_name = item[4];
+                    }
+                    if ($util.isNull(item[5])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.user_name = item[5];
+                    }
+                    if ($util.isNull(item[6])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.card_number = item[6];
+                    }
+                    if ($util.isNull(item[7])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.stu_num = item[7];
+                    }
+                    if ($util.isNull(item[8])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.chinese = item[8];
+                    }
+                    if ($util.isNull(item[9])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.math = item[9];
+                    }
+                    if ($util.isNull(item[10])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.english = item[10];
+                    }
+                    if ($util.isNull(item[11])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.heddle = item[11];
+                    }
+                    if ($util.isNull(item[12])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.daniel = item[12];
+                    }
+                    if ($util.isNull(item[13])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.physics = item[13];
+                    }
+                    if ($util.isNull(item[14])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.chemistry = item[14];
+                    }
+                    if ($util.isNull(item[15])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.biology = item[15];
+                    }
+                    if ($util.isNull(item[16])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.politics = item[16];
+                    }
+                    if ($util.isNull(item[17])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.history = item[17];
+                    }
+                    if ($util.isNull(item[18])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.geography = item[18];
+                    }
+                    if ($util.isNull(item[19])) {
+                        num += 1;
+                    } else {
+                        stuSubjectScoreJson.total_score = item[19];
+                    }
+                    stuSubjectScoreArr.push(stuSubjectScoreJson);
+                }
+            }
+            /* });*/
+        }
+
+        return stuSubjectScoreArr;
+
+
+    },
+    /*数据导出,数据为现成的datatable,execl的表头就是datatable的列名,path是导出路径,相对路径,filename是文件名,不用带.xlsx会自动补充xlsx*/
+    importExeclByData: function (datas, path, filename) {
+        var path = path;
+        var filename = filename;
+        if ($util.isNull(filename)) {
+            filename = $util.getDateTime();
+        }
+        if ($util.isNull(path)) {
+            path = "../resource/import_file/";
+        }
+        var myDatas = [];
+        var datas = datas;
+        var count = 0;
+        for (var index in datas) {
+            var account = datas[index];
+            var colum = [];
+            var names;
+            if (index == 0) {
+                names = [];
+            }
+            for (var index2 in account) {
+                if (index == 0)
+                    names.push(index2);
+                var value = account[index2];
+                if (value == null) {
+                    value = "";
+                }
+                colum.push(value);
+            }
+            if (index == 0) {
+                myDatas.push(names);
+            }
+            myDatas.push(colum);
+            if (index == datas.length - 1) {
+                var buffer = xlsx.build([
+                    {
+                        name: 'sheet1',
+                        data: myDatas
+                    }
+                ]);
+                var newpath = path + filename + ".xlsx";
+                fs.writeFileSync(newpath, buffer, 'binary');
+                return newpath;
+            }
+        }
+
+    },
+    parseJsonTeacherScore: function (path, learnyear, exam_type) {
+        var TeacherScoreArr = [];
+        var book = xlsx.parse(path);
+        if (book[0].data.length != 0) {
+            book = book[0].data;
+        } else {
+            return null;
+        }
+        var num = 0;
+        /* book.every(function (item, index) {*/
+        for (var index = 0; index < book.length; index++) {
+            var item = book[index];
+            if (item.length < 5 || num > 9) {
+                /*每行开始判断为空的列的个数，至少有5列不能为空时才进行下步操作*/
+                return TeacherScoreArr;
+            } else {
+                /*每行开始先初始化为0*/
+                num = 0;
+            }
+            var TeacherScoreJson = {
+                exam_number: "",
+                organ_name: "",
+                school_name: "",
+                true_name: "",
+                sex: "",
+                card_number: "",
+                study_section: "",
+                subject: "",
+                score: "",
+                phone: ""
+            };
+            //验证列名
+            var error=[];
+            if(index==0){
+                if(item[0]!="准考证号"){
+                    var erroetext="第2列的列头名应该为：准考证号";
+                    error.push(erroetext);
+                }
+                if(item[1]!="乡镇"){
+                    var erroetext="第3列的列头名应该为：乡镇";
+                    error.push(erroetext);
+                }
+                if(item[2]!="学校"){
+                    var erroetext="第4列的列头名应该为：学校";
+                    error.push(erroetext);
+                }
+                if(item[3]!="姓名"){
+                    var erroetext="第5列的列头名应该为：姓名";
+                    error.push(erroetext);
+                }
+                if(item[4]!="性别"){
+                    var erroetext="第6列的列头名应该为：性别";
+                    error.push(erroetext);
+                }
+                if(item[5]!="身份证号"){
+                    var erroetext="第7列的列头名应该为：身份证号";
+                    error.push(erroetext);
+                }if(item[6]!="学段"){
+                    var erroetext="第8列的列头名应该为：学段";
+                    error.push(erroetext);
+                }if(item[7]!="学科"){
+                    var erroetext="第9列的列头名应该为：学科";
+                    error.push(erroetext);
+                }if(item[8]!="成绩"){
+                    var erroetext="第10列的列头名应该为：成绩";
+                    error.push(erroetext);
+                }if(item[9]!="电话"){
+                    var erroetext="第11列的列头名应该为：电话";
+                    error.push(erroetext);
+                }
+            }
+            if(error.length>0){
+                return {errorStr:error.toString()};
+            }
+            //过滤第一行头
+            if (index != 0) {
+                //循环每行的所有列
+                /* item.map(function (col, col_index) {
+                 switch (col_index) {
+                 case 0:
+                 TeacherScoreJson.exam_number = col;
+                 break;
+                 case 1:
+                 TeacherScoreJson.organ_name = col;
+
+                 break;
+                 case 2:
+                 TeacherScoreJson.school_name = col;
+                 break;
+                 case 3:
+                 TeacherScoreJson.true_name = col;
+                 break;
+                 case 4:
+                 TeacherScoreJson.sex = col;
+                 break;
+                 case 5:
+                 TeacherScoreJson.card_number = col;
+                 break;
+                 case 6:
+                 TeacherScoreJson.study_section = col;
+                 break;
+                 case 7:
+                 TeacherScoreJson.subject = col;
+                 break;
+                 case 8:
+                 TeacherScoreJson.score = col;
+                 break;
+                 case 9:
+                 TeacherScoreJson.phone = col;
+                 break;
+                 default:
+                 break;
+                 }
+                 });*/
+                if ($util.isNull(item[0])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.exam_number = item[0];
+                }
+                if ($util.isNull(item[1])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.organ_name = item[1];
+                }
+                if ($util.isNull(item[2])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.school_name = item[2];
+                }
+                if ($util.isNull(item[3])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.true_name = item[3];
+                }
+                if ($util.isNull(item[4])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.sex = item[4];
+                }
+                if ($util.isNull(item[5])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.card_number = item[5];
+                }
+                if ($util.isNull(item[6])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.study_section = item[6];
+                }
+                if ($util.isNull(item[7])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.subject = item[7];
+                }
+                if ($util.isNull(item[8])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.score = item[8];
+                }
+                if ($util.isNull(item[9])) {
+                    num += 1;
+                } else {
+                    TeacherScoreJson.phone = item[9];
+                }
+                TeacherScoreArr.push(TeacherScoreJson);
+            }
+        }
+        /*);*/
+        return TeacherScoreArr;
+    },
+    importExeclByDataExpent:function(datas, path, filename,sourcepath){
+        var path = path;
+        var filename = filename;
+        if ($util.isNull(filename)) {
+            filename = $util.getDateTime();
+        }
+        if ($util.isNull(path)) {
+            path = "../resource/import_file/";
+        }
+        var newpath = path + filename + ".xlsx";
+        //读取文件内容
+        var obj = xlsx.parse('../resource/subject_score/学生出入口成绩统计结果.xlsx');
+        var excelObj=obj[0].data;
+        console.log(excelObj);
+        var data = [];
+        for(var i in excelObj){
+            var arr=[];
+            var value=excelObj[i];
+            for(var j in value){
+                arr.push(value[j]);
+            }
+            data.push(arr);
+        }
+        for(var j in datas){
+            data.push(datas[j]);
+        }
+        var buffer = xlsx.build([
+            {
+                name:'sheet1',
+                data:data
+            }
+        ]);
+        //将文件内容插入新的文件中
+        fs.writeFileSync(newpath,buffer,{'flag':'w'});
+       /* var path = path;
+        var filename = filename;
+        if ($util.isNull(filename)) {
+            filename = $util.getDateTime();
+        }
+        if ($util.isNull(path)) {
+            path = "../resource/import_file/";
+        }
+        var path = path + filename + ".xlsx";
+        var options = { encoding: 'ignored', mode: 438, flag: 'a' };
+        assertEncoding(options.encoding);
+        var flag = options.flag || 'w';
+        var fd = fs.openSync(path, flag, options.mode);
+        if (!util.isBuffer(data)) {
+            data = new Buffer('' + data, options.encoding || 'utf8');
+        }
+        var written = 0;
+        var length = data.length;
+        var position = /a/.test(flag) ? null : 0;
+        try {
+            while (written < length) {
+                written += fs.writeSync(fd, data, written, length - written, position);
+                position += written;
+            }
+        } finally {
+            fs.closeSync(fd);
+        }*/
+       /* var options = { encoding: 'ignored', mode: 438, flag: 'a' };*/
+       /* var options = { encoding: 'binary', mode: 438, flag: 'a' };*/
+      /*  var options = { encoding: 'utf8', mode: 438, flag: 'a' };*/
+       /* var options=['binary',438,'a'];*/
+      /*
+      var newpath = path + "学生成绩排名信息2017-07-18.xlsx";
+       /!* assertEncoding(options.encoding);*!/
+        var flag = options.flag || 'w';
+        var fd = fs.openSync(newpath, flag, options.mode);
+        //if (!util.isBuffer(datas)) {
+        datas = new Buffer('' + datas, options.encoding || 'utf8');
+        //}
+        var written = 0;
+        var length = datas.length;
+        var position =3;
+        try {
+            while (written < length) {
+                written += fs.writeSync(fd, datas, written, length - written, position);
+                position += written;
+            }
+        } finally {
+            fs.closeSync(fd);
+        }*/
+        /* var options=['binary',438,'a'];
+         var myDatas = [];
+         var datas = datas;
+         var count = 0;
+         for (var index in datas) {
+         var account = datas[index];
+         var colum = [];
+         var names;
+         if (index == 0) {
+         names = [];
+         }
+         for (var index2 in account) {
+         if (index == 0)
+         names.push(index2);
+         var value = account[index2];
+         if (value == null) {
+         value = "";
+         }
+         colum.push(value);
+         }
+         if (index == 0) {
+         myDatas.push(names);
+         }
+         myDatas.push(colum);
+         if (index == datas.length - 1) {
+         var buffer = xlsx.build([
+         {
+         name: 'sheet1',
+         data: myDatas
+         }
+         ]);
+         var newpath = path + "456.xlsx";
+         /!*fs.writeFileSync(newpath, buffer, options);*!/
+         fs.appendFile(newpath, datas,options, function (err) {
+         if (err) throw err;
+         console.log('The "data to append" was appended to file!');
+         });
+         return newpath;
+         }
+         }*/
+       /* var myDatas = [];
+        var data = datas;
+        var newpath = path + filename + ".xlsx";
+        var flag = options.flag || 'w';
+        var fd = fs.openSync(newpath, flag, options.mode);
+        var written = 0;
+        var length = data.length;
+        var position = /a/.test(flag) ? null : 0;
+        try {
+            while (written < length) {
+                written += fs.writeSync(fd, data, written, length - written, position);
+                position += written;
+            }
+        } finally {
+            fs.closeSync(fd);
+        }*/
+       /* var newpath = path + "123.xlsx";
+        var options = { encoding: 'binary', mode: 438, flag: 'a' };
+        fs.appendFile(newpath, datas,options, function (err) {
+            if (err) throw err;
+            console.log('The "data to append" was appended to file!');
+        });
+*/
+    }
+
+}

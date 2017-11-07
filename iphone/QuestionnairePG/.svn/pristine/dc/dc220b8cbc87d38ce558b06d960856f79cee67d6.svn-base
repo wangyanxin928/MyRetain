@@ -1,0 +1,303 @@
+{
+  "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+  "questionnaire_name": "20170928培训中问卷样卷",
+  "descript": "",
+  "load_user_id": "user3",
+  "create_time": "2017-09-28 18:15:57",
+  "use_role": "学生",
+  "json": null,
+  "type": null,
+  "style_json": null,
+  "endingmode":"{\"typekey\":1,\"typevalue\":\"\"}",
+  "progresstype":0,
+  "pagesize":1,
+  "xueduan_items": [
+    {
+      "xd_name": "小学"
+    },
+    {
+      "xd_name": "初中"
+    },
+    {
+      "xd_name": "高中"
+    },
+    {
+      "xd_name": "职高"
+    }
+  ],
+  "questionnaire_questoin": [
+    {
+      "question_id": "d3ef1339-9ae4-6dde-0506-b6233a69a8b4",
+      "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+      "q_order": 1,
+      "q_score": null,
+      "q_type": "单选题",
+      "content": "本节课教师讲授表述简洁、清楚，使学员很容易理解",
+      "create_time": "2017-09-28 18:15:57",
+      "stand_id": "201",
+      "rule": 0,
+      "option_order": 1,
+      "q_imgurl":"",
+      "q_turn":1,
+      "q_logicjson":"{\"required\":0,\"rule\":0}",
+      "q_displayset":null,
+      "isbaseinfo":0,
+      "question_options": [
+        {
+          "option_id": "24133fd5-b377-31e0-9d36-2de0013255d7",
+          "option_content": "非常同意",
+          "option_order": 8,
+          "option_score": "5",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "d3ef1339-9ae4-6dde-0506-b6233a69a8b4",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "c10e94f2-9006-a457-fbec-98d89c0f8509",
+          "option_content": "比较同意",
+          "option_order": 9,
+          "option_score": "4",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "d3ef1339-9ae4-6dde-0506-b6233a69a8b4",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "d8796c43-4c92-ae11-2c7c-590b2f629796",
+          "option_content": "一般同意",
+          "option_order": 10,
+          "option_score": "3",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "d3ef1339-9ae4-6dde-0506-b6233a69a8b4",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "26205d53-5b30-22ec-f53f-06745c248c6d",
+          "option_content": "不太同意",
+          "option_order": 11,
+          "option_score": "2",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "d3ef1339-9ae4-6dde-0506-b6233a69a8b4",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "95b03c18-315b-4e31-7954-7ab309cbb4c2",
+          "option_content": "很不同意",
+          "option_order": 12,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "d3ef1339-9ae4-6dde-0506-b6233a69a8b4",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        }
+      ]
+    },
+    {
+      "question_id": "6ce6669b-9af8-15b8-67f6-375c0f29eb0f",
+      "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+      "q_order": 2,
+      "q_score": null,
+      "q_type": "单选题",
+      "content": "您认为本节课讲师对于整体目标的把握非常清晰",
+      "create_time": "2017-09-28 18:15:57",
+      "stand_id": "202",
+      "rule": 0,
+      "option_direction": "正",
+      "option_order": 1,
+      "q_imgurl":"",
+      "q_turn":2,
+      "q_logicjson":"{\"required\":1,\"rule\":0}",
+      "q_displayset":null,
+      "question_options": [
+        {
+          "option_id": "47a7f66f-c2df-d0bc-4cfb-b8928e71a86a",
+          "option_content": "非常同意",
+          "option_order": 8,
+          "option_score": "5",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "6ce6669b-9af8-15b8-67f6-375c0f29eb0f",
+          "option_imgurl":"images/header.jpg",
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "bc0ddf96-67e7-1447-15f2-e93b0a3e2ef0",
+          "option_content": "比较同意",
+          "option_order": 9,
+          "option_score": "4",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "6ce6669b-9af8-15b8-67f6-375c0f29eb0f",
+          "option_imgurl":"images/header.jpg",
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "10f2558a-cf0a-6be8-6e32-9d939e76493e",
+          "option_content": "一般同意",
+          "option_order": 10,
+          "option_score": "3",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "6ce6669b-9af8-15b8-67f6-375c0f29eb0f",
+          "option_imgurl":"images/header.jpg",
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "7498b18f-ee35-15e3-6bf2-6cccf5b31be9",
+          "option_content": "不太同意",
+          "option_order": 11,
+          "option_score": "2",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "6ce6669b-9af8-15b8-67f6-375c0f29eb0f",
+          "option_imgurl":"images/header.jpg",
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "8790e063-f473-39d2-5973-bd73b5d02390",
+          "option_content": "很不同意",
+          "option_order": 12,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "6ce6669b-9af8-15b8-67f6-375c0f29eb0f",
+          "option_imgurl":"images/header.jpg",
+          "option_toquestnum":null
+        }
+      ]
+    },
+    {
+      "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+      "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+      "q_order": 3,
+      "q_score": null,
+      "q_type": "多选题",
+      "content": "未来您对本节课主题内容培训期望的教学方式是",
+      "create_time": "2017-09-28 18:15:57",
+      "stand_id": "203",
+      "rule": 2,
+      "option_direction": "正",
+      "option_order": 2,
+      "q_imgurl":"",
+      "q_turn":3,
+      "q_logicjson":"{\"required\":1,\"rule\":0}",
+      "q_displayset":null,
+      "question_options": [
+        {
+          "option_id": "8e8e0e09-a839-3e80-74ae-f267ebadeef4",
+          "option_content": "",
+          "option_order": 8,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":"images/header.jpg",
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "1e5a6d08-a32d-e3a8-d024-04b267f2dd47",
+          "option_content": "体验式",
+          "option_order": 9,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "d61b1770-e74e-afae-b41e-b9c6d0de13c4",
+          "option_content": "研讨式",
+          "option_order": 10,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "531d7d83-67ee-12b6-3d32-d46657611d35",
+          "option_content": "讲授式",
+          "option_order": 11,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "96cc4f7f-1eac-6333-e46f-66977abac71f",
+          "option_content": "模拟式",
+          "option_order": 12,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "ba44941a-e3c2-2aa3-e1b0-4f3fb4a2f8c2",
+          "option_content": "网络式",
+          "option_order": 13,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "2937c27e-78c0-ecbe-1e31-65109515d193",
+          "option_content": "启发式",
+          "option_order": 14,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        },
+        {
+          "option_id": "653cbfd2-ecf3-1493-e917-c2f3152dc3ef",
+          "option_content": "互动式",
+          "option_order": 15,
+          "option_score": "1",
+          "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+          "question_id": "5213a50e-b6f7-3d15-a204-75f7986ddffb",
+          "option_imgurl":null,
+          "option_toquestnum":null
+        }
+      ]
+    },
+    {
+      "question_id": "3729b865-5918-d487-197c-897aa6f9feca",
+      "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef756",
+      "q_order": 4,
+      "q_score": null,
+      "q_type": "填空题",
+      "content": "",
+      "create_time": "2017-09-28 18:15:57",
+      "stand_id": "204",
+      "rule": 1,
+      "option_direction": "正",
+      "option_order": 1,
+      "q_imgurl":"images/header.jpg",
+      "q_turn":4,
+      "q_logicjson":"{\"required\":1,\"rule\":1}",
+      "q_displayset":null,
+      "question_options": []
+    },
+    {
+      "question_id": "3729b865-5918-d487-197c-897aa6f9feca11112333",
+      "questionnaire_id": "565b514e-6bdd-7df8-64f0-cca5dbfef7561112333",
+      "q_order": 5,
+      "q_score": null,
+      "q_type": "填空题",
+      "content": "我是一个填空题，我是一个填空题，我是一个填空题，我是一个填空题，我是一个填空题",
+      "create_time": "2017-09-28 18:15:57",
+      "stand_id": "205",
+      "rule": null,
+      "option_direction": null,
+      "option_order":null,
+      "q_imgurl":"",
+      "q_turn":5,
+      "q_logicjson":"{\"required\":1,\"rule\":0}",
+      "q_displayset":null,
+      "question_options": []
+    }
+  ]
+}

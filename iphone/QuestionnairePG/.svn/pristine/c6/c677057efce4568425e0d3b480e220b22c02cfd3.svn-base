@@ -1,0 +1,59 @@
+{
+  "_from": "file-stream-rotator@https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz",
+  "_id": "file-stream-rotator@0.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-KGaXkODKJw/m6K14uGVGcdyQNys=",
+  "_location": "/file-stream-rotator",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "file-stream-rotator@https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz",
+    "name": "file-stream-rotator",
+    "escapedName": "file-stream-rotator",
+    "rawSpec": "https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz",
+    "saveSpec": "https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz",
+    "fetchSpec": "https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz",
+  "_spec": "file-stream-rotator@https://registry.npmjs.org/file-stream-rotator/-/file-stream-rotator-0.1.0.tgz",
+  "_where": "D:\\axyr\\code2017\\QHPG-HN",
+  "author": {
+    "name": "Roger Castells"
+  },
+  "bugs": {
+    "url": "https://github.com/holidayextras/file-stream-rotator/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "moment": "^2.11.2"
+  },
+  "deprecated": false,
+  "description": "Automated stream rotation",
+  "homepage": "https://github.com/holidayextras/file-stream-rotator#readme",
+  "keywords": [
+    "stream",
+    "express",
+    "restify",
+    "connect",
+    "rotate",
+    "file",
+    "minute",
+    "hourly",
+    "daily",
+    "logrotate"
+  ],
+  "license": "MIT",
+  "main": "FileStreamRotator.js",
+  "name": "file-stream-rotator",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/holidayextras/file-stream-rotator.git"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "version": "0.1.0"
+}

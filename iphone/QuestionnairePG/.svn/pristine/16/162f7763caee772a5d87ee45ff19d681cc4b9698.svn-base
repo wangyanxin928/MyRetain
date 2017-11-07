@@ -1,0 +1,10 @@
+<!--<div class="col-md-5 col-sm-12">
+	<div class="dataTables_info"></div>
+</div>
+<div class="col-md-7 col-sm-12">
+	<div class="dataTables_paginate paging_simple_numbers" style="text-align: right;">
+		<ul class="pagination"></ul>
+	</div>
+</div>-->
+
+<ul class="pagination"></ul>

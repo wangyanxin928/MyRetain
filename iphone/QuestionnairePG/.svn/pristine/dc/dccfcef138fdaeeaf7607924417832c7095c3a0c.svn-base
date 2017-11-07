@@ -1,0 +1,48 @@
+/**
+ * Created by sanghuina on 2017/7/28.
+ */
+var $util = require('../../util/util');
+var fs = require("fs");
+var path = require("path");
+var querystring = require('querystring');
+
+
+module.exports = {
+    /*公共导出功能，前台获取数据，文件名，后台负责导出*/
+    getExportJsonData: function (req, res, next) {
+        try {
+            var filePath = path.join(__dirname, "../../views/uploadFile/");
+            var fileData = "";
+
+            req.addListener('data', function (chunk) {
+                fileData += chunk;
+            }).addListener('end', function () {
+                try {
+                    var param = querystring.parse(fileData);
+                    param = JSON.parse(param.JSONPARAM);
+                    var file_name =  param.filename;
+                    var suff = file_name.substr(file_name.lastIndexOf('.'))//.png
+                    //filePath = filePath + file_name;
+                    var fileNameOther = $util.GUID()+suff;
+                    filePath = filePath + fileNameOther;
+                    fileData = param.datajson;
+                    var base64Data = JSON.stringify(fileData).split("base64,")[1];
+                    var dataBuffer = new Buffer(base64Data, 'base64');
+                    fs.writeFileSync(filePath, dataBuffer);
+                    $util.resJSON.resultnum = $util.resConfig.ok;
+                    $util.resJSON.resultdata = {filePath: $util.axtUrl.fileUrl+fileNameOther,fileName:file_name};
+                    res.json($util.resJSON);
+                }
+                catch (error) {
+                    $util.resJSONError(error, res);
+                    return;
+                }
+            })
+        }
+        catch (error) {
+            $util.resJSONError(error, res);
+            return;
+        }
+
+    }
+}

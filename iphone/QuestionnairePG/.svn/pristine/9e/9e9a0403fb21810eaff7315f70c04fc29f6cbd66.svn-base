@@ -1,0 +1,169 @@
+/**
+ * Created by byx on 17/5/16.
+ * 问卷填报模块
+ */
+
+var $sql = require('./questionnaireSqlMapping');
+var $mysqlUtil = require('../../util/mysqlUtil');
+
+module.exports = {
+    /* 问卷填报--客户端 保存用户填报答案
+     * byx 2017年5月16日 14:10:57
+     * params
+     * @user_id
+     * @server_id
+     * @user_role
+     * @project_id
+     * @questionnaire_id
+     * @content
+     * @page_num
+     *
+     * return answer_id;
+     * */
+    saveAnswer: function (answerInfo, callback) {
+        var sql = $sql.saveAnswer(answerInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /* 获取问卷答案--客户端
+     * byx 2017年5月16日 14:10:57
+     * params
+     * @user_id
+     * @server_id
+     * @user_role
+     * @project_id
+     * @questionnaire_id
+     * @content
+     * @page_num
+     *
+     * return answer_id;
+     * */
+    getQuestionnaireAnswer: function (answerInfo, callback) {
+        var sql = $sql.getQuestionnaireAnswer(answerInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /* 保存问卷提交记录，提交数据到questionnaire_submit表
+     * hyq 2017年5月16日 14:10:57
+     * params
+     * @user_id
+     * @server_id
+     * @project_id
+     * @task_id
+     * @questionnaire_id
+     *
+     * return sub_id;
+     * */
+    submitQuestionnaire: function (answerInfo, callback) {
+        var sqlArr = $sql.submitQuestionnaire(answerInfo);
+        $mysqlUtil.queryArrSql(sqlArr, callback);
+    },
+    /**
+     * SQL计算一级指标分数（未求各级权重，只将分数汇总到一级指标下） 20171107
+     * @param project_id  项目id
+     * @param task_id   任务id
+     * @param questionnaire_id  问卷id
+     * @param user_id   用户id
+     * @param callback
+     */
+    calculateScore: function (project_id,task_id,questionnaire_id,user_id, callback) {
+        var sqlStr = $sql.calculateScore(project_id,task_id,questionnaire_id,user_id);
+        $mysqlUtil.queryStrSql(sqlStr, callback);
+    },
+    /**
+     * 将分数计算结果插入到score_result表中
+     * @param user_id  用户id
+     * @param user_name  用户名
+     * @param server_id  组织结构id
+     * @param school_name  组织机构name
+     * @param project_id  项目id
+     * @param task_id   任务id
+     * @param questionnaire_id  问卷id
+     * @param standScoreList  分数结果list
+     * @param callback
+     */
+    calculateResultIntoScoreResult: function (user_id,user_name,server_id,school_name,project_id,task_id,questionnaire_id,standScoreList, callback) {
+        var sqlArr = $sql.calculateResultIntoScoreResult(user_id,user_name,server_id,school_name,project_id,task_id,questionnaire_id,standScoreList);
+        $mysqlUtil.queryArrSql(sqlArr, callback);
+    },
+    /**
+     * 根据任务id获取任务下的问卷列表 by 文霞 20171103(显示的信息还不确定先查询task_questionnaire表)
+     * @param task_id 任务id
+     * @param callback
+     */
+    getQuesByTask:function(task_id,callback){
+        var sql = $sql.getQuesByTask(task_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /**
+     * 获取移动端问卷首页的信息，无通用性 by 文霞 20171103
+     * @param task_id 任务id
+     * @param questionnaire_id 问卷id
+     * @param user_id 用户id
+     * @param callback
+     */
+    getQuestionnaireHomePageData:function(task_id,questionnaire_id,user_id,callback){
+        var sql = $sql.getQuestionnaireHomePageData(task_id,questionnaire_id,user_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /**
+     * 获取指标分数信息 by 文霞 20171103
+     * @param task_id
+     * @param questionnaire_id
+     * @param user_id
+     * @param callback
+     */
+    getStandScore:function(task_id,questionnaire_id,user_id,callback){
+        var sql = $sql.getStandScore(task_id,questionnaire_id,user_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+
+    /* //学生家长获取问卷列表
+     * hyq 2017年5月16日 14:10:57
+     * params
+     * @user_id
+     *
+     * return list;
+     * */
+    /*getQuestoinnaireList_noLeader: function (userInfo, callback) {
+        var sql = $sql.getQuestoinnaireList_noLeader(userInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },*/
+
+    /* //校长获取问卷列表
+     * hyq 2017年5月16日 14:10:57
+     * params
+     * @user_id
+     *
+     * return list;
+     * */
+    /*getQuestoinnaireList_schoolLeader: function (userInfo, callback) {
+        var sql = $sql.getQuestoinnaireList_schoolLeader(userInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },*/
+
+    /* //教育局、教管中心获取问卷列表
+     * hyq 2017年5月16日 14:10:57
+     * params
+     * @user_id
+     *
+     * return list;
+     * */
+    /*getQuestoinnaireList_Leader: function (userInfo, callback) {
+        var sql = $sql.getQuestoinnaireList_Leader(userInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },*/
+    /**
+     * 删除提交分数表submit_stand_score_result中的项目相关数据
+     * by wenxia 20170711
+     * @param project_id
+     * @param callback
+     */
+    /*deleteScoreFromProject:function(project_id,callback){
+        var sql = $sql.deleteScoreFromProject(project_id);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },*/
+    //数据插入到questionnaire_single_answer表中 by 文霞（20170621）
+    insertQuesSingleAnswer:function(quesAnswerList, callback){
+        var sqlArr = $sql.insertQuesSingleAnswer(quesAnswerList);
+        $mysqlUtil.queryStrSql(sqlArr, callback);
+    }
+};

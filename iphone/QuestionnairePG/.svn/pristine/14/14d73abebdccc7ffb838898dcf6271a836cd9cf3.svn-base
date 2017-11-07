@@ -1,0 +1,83 @@
+/**
+ * Created by sanghuina on 2017/10/20.
+ */
+// ================================================================
+//  author:zzy
+//  createDate: 2017/07/13
+//  description: 专家管理-路由
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    return Backbone.Router.extend({
+        routes: {
+            "": "index",
+            //问卷列表
+            "questionManageList":"questionManageList",
+            //添加问卷页面
+           "foundQuestion": "foundQuestion",
+            //编辑问卷页面
+            "foundQuestion/:action/:id":"foundQuestio",
+            //任务的首页
+            "taskAssignment":"taskAssignment",
+            //创建任务
+            "addAssignment":"addAssignment",//创建项目
+            "statisticsSet":"statisticsSet",
+            "taskAssignmentInfo/:action/:type/:obj": "taskAssignmentInfo",//项目详情
+
+
+
+        },
+        goIndex: function (requirePath, operationType, currentId, jsonObject) {
+            //菜单栏选中事件
+            backStageUTIL.initMenu();
+            Pace.restart();
+            if (location.href.split("#")[1] && location.href.split("#")[1] != "index") {
+                $('body').removeClass("page-full-width");
+
+            } else {
+                $('body').addClass("page-full-width");
+            }
+            require([requirePath], function (view) {
+//      		var viewObj=(!currentId)?{model: {_opType:operationType}}:{model: {_opType:operationType,_currentId:currentId}};
+
+                var viewObj = {model: {_opType: operationType, _currentId: currentId, _jsonObject: jsonObject}};
+                var _view = new view(viewObj);
+                $('.page-content-wrapper').html(_view.$el);
+                //设置中间内容区域屏幕的高度,中间内容区域层的class必须是page-content
+                _view.afterRender();
+
+            });
+        },
+
+        //问卷列表
+        questionManageList: function () {
+            this.goIndex("pages/questionnaireManagement/questionManageList");
+        },
+        //添加问卷页面
+        foundQuestion: function () {
+            this.goIndex("pages/questionnaireManagement/foundQuestionnaire");
+        },
+        //编辑问卷页面id
+        foundQuestio: function (action,id ) {
+            this.goIndex("pages/questionnaireManagement/foundQuestionnaire",action,id);
+        },
+        //任务首页
+        taskAssignment: function () {
+            this.goIndex("pages/taskAssignment/taskAssignment");
+        },
+        //创建任务
+        addAssignment: function () {
+            this.goIndex("pages/taskAssignment/addAssignment");
+        },
+
+        //设置统计
+        statisticsSet: function () {
+            this.goIndex("pages/statistics/statisticsSet");
+        },
+
+        taskAssignmentInfo:function (action, type, obj) {
+            this.goIndex("pages/taskAssignment/taskAssignmentInfo",action, type, obj);
+        },
+
+    })
+})

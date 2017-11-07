@@ -1,0 +1,344 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2016/09/06
+//  description: 基础组件——dataTable小列表
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    //导入列表模板
+    var tpl = require('text!tpl/questionnaireManagement/foundQuestionnaire.html'),
+        template = _.template(tpl), _this;
+    //引入datatable
+    var DataTable = require('plugins/DataTableView_new/DataTable');
+    var myossupload = require('myossupload');
+
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            //加载datatable中数据
+           this.initDataTableData();
+            //待删除的id
+            this.needDeleteId = "";
+            //编辑的主键id,编辑和详情
+            this.editID = "";
+            //初始化多选按钮事件，先绑定事件再初始化插件
+            this.initCheckEvent();
+            var me=this;
+            me._needDelModule = undefined;//定义待删除的内容块变量
+            me.initEvent();//初始化页面事件
+            //绑定页签
+            backStageUTIL.initMenu("questionManageList");
+        },
+        events: {
+            "click #searchBook": "searchBook",
+            "click #addClass":"addClass",
+            "click #daoruQuession": "daoruQuession",
+            "click #addQuession": "addQuession",
+            "click #searcherPosition": "searcherPosition",
+            "click #danxuan": "btnShareData",
+
+        },
+        searchBook: function () {
+            var book_name = $("#book_name").val();
+            var book = $("#book_name").val();
+            this.initDataTableData(book_name);
+        },
+
+        daoruQuession: function () {
+            /* 点击弹出层事件显示页面已有的弹出层。*/
+            $('#wenjuan').show();
+            $('#ejectForm').modal("show");
+        },
+        addQuession: function () {
+           //问卷添加页面
+          location.href = "#foundQuestion";
+
+        },
+        searcherPosition: function () {
+            $('#moban').modal("show");
+        },
+        //添加班级
+        addClass:function () {
+            location.href = "#trainClassInfoAdd";
+        },
+        initCheckEvent: function () {
+            var me = this;
+            //绑定选中事件
+          /*  me.$('#form2 .icheck').off('ifChecked').on('ifChecked', function (event) { //ifCreated 事件应该在插件初始化之前绑定
+                var selectText = $(event.target).val();//attr("dataKey");
+                backStageUTIL.toastrAlert('success', '提示', "已选中'" + selectText + "'");
+            });*/
+            //绑定取消选中事件
+           /* me.$('#form2 .icheck').off('ifUnchecked').on('ifUnchecked', function (event) { //ifCreated 事件应该在插件初始化之前绑定
+                var selectText = $(event.target).val();//attr("dataKey");
+                backStageUTIL.toastrAlert('success', '提示', "已取消选中'" + selectText + "'");
+            });
+*/
+            backStageUTIL.initCheck(me.$("#myForm2"));//初始化单选/复选控件
+        },
+        btnShareData: function () {
+            var me=this;
+
+            /*  //方法一：从html获取块内容，也可以直接写在js代码中；【！！！勿删！！！】
+             var moduleContent=require('text!tpl/taskAssignment/addAssignment.html');
+             moduleContent = $(moduleContent).find(".portlet").removeClass("full-height-content").removeClass("full-height-content-scrollable").addClass("bordered");
+             //内容块工具栏添加删除、复制按钮
+             //moduleContent.find(".portlet-title>.tools").append('<a href="javascript:;" class="remove"> </a>');
+             moduleContent.find(".portlet-title>.tools").after('<div class="actions"><a href="javascript:;" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> 复制 </a>'
+             +'<a href="javascript:;" class="btn default btn-sm"> <i class="fa fa-remove"></i> 删除 </a></div>');*/
+            //方法二：从页面元素获取块内容
+             var moduleContent1=$("#moduleContent").clone();
+             me.handleAddModule(moduleContent1);
+        },
+        initEvent:function(){
+            var me=this;
+
+            //【复制内容块】当内容块有icheck时，需要先将原内容块的icheck销毁，复制内容之后，在重新初始化icheck
+            $("#moduleListWrapper").delegate(".portlet>.portlet-title>.actions>.addModule","click",function(){
+
+                //从页面元素获取块内容
+                var  moduleContent=$(this).closest(".portlet");
+                moduleContent.find('input.icheck').iCheck('destroy');//销毁内容块中的icheck
+
+                var moduleContentClone=moduleContent.clone();
+                me.handleAddModule(moduleContentClone);
+
+                backStageUTIL.initCheck(moduleContent);//原内容块的icheck再次初始化
+            });
+            //【删除内容块】
+            $("#moduleListWrapper").delegate(".portlet>.portlet-title>.actions>.removeModule","click",function(){
+                var  moduleContent=$(this).closest(".portlet");
+                me._needDelModule=moduleContent;
+                $('#confirm').modal("show");//删除数据的业务逻辑在弹层的点击事件中实现
+            });
+            //【数据提交】根据是否存在id,做添加或修改操作
+            $("#moduleListWrapper").delegate(".btnSaveData","click",function(){
+                var  moduleContent=$(this).closest(".portlet");
+                //是否存在data-id作为这条数据是否在数据库中存在的依据；data-id的值就是这条数据的id
+                if(moduleContent.attr("data-id")){
+                    //若存在id，则调添加接口，ajax添加数据（下面的提示信息写在回调里）
+                    backStageUTIL.toastrAlert("success",'提示',"数据添加成功");
+                }else{
+                    //没有id，说明这条数据还没有存储到数据库，则调修改接口，ajax修改数据（下面的提示信息写在回调里）
+                    backStageUTIL.toastrAlert("success",'提示',"数据修改成功");
+                }
+            });
+            //弹出层的确定事件：定义内容块删除方法
+            $("#yesCheck").unbind("click").bind("click", me.handleDelModule);
+        },
+        //添加内容块
+        handleAddModule:function(moduleContent){
+            var me=this;
+            moduleContent.removeAttr("id");
+            var moduleFormId = "from_" + backStageUTIL.loadRandom();
+            moduleContent.find("form").attr("id",moduleFormId);
+
+            //【展开当前内容块，折叠其他】1.展开当前内容块
+            var moduleCopyExpand =moduleContent.find(".portlet-title>.tools>.expand");
+            if(moduleCopyExpand.length!=0){
+                moduleCopyExpand.removeClass("expand").addClass("collapse");
+                moduleContent.children(".portlet-body").show();
+            }
+            //【展开当前内容块，折叠其他】2.将其他内容块折叠起来
+            var collapses=$("#moduleListWrapper>.portlet>.portlet-title>.tools>.collapse");
+            var el=collapses.closest(".portlet").children(".portlet-body");
+            collapses.removeClass("collapse").addClass("expand");
+            el.slideUp(200);
+
+            //将内容块添加到内容块的容器中，实例中的容器id为moduleListWrapper
+            $("#moduleListWrapper").append(moduleContent);//将内容块添加到容器结尾处
+            //$("moduleListWrapper").prepend(moduleContent);//将内容块添加到容器开头处
+
+            //初始化内容块中的控件
+            backStageUTIL.initCheck(me.$("#"+moduleFormId));
+            backStageUTIL.initDatePicker(me.$("#"+moduleFormId));
+        },
+        //删除内容块
+        handleDelModule:function(){
+            Pace.restart();
+            var moduleContent=_this._needDelModule;
+            if(!moduleContent){
+                return;
+            }
+            //是否存在data-id作为这条数据是否在数据库中存在的依据；data-id的值就是这条数据的id
+            if(moduleContent.attr("data-id")){
+                //若存在id，则ajax删除数据，回调时删除当前内容块
+                moduleContent.remove();
+                backStageUTIL.toastrAlert("success",'提示',"数据删除成功");
+                _this._needDelModule=undefined;
+            }else{
+                //没有id，说明这条数据还没有存储到数据库，则直接删除dom节点
+                moduleContent.remove();
+                backStageUTIL.toastrAlert("success",'提示',"数据删除成功");
+                _this._needDelModule=undefined;
+            }
+        },
+        addDiqu: function () {
+            /* 点击弹出层事件显示页面已有的弹出层。*/
+            $('#confirm').modal("show");
+            //点击删除后，弹出层删除按钮事件
+            $("#yesCheck").unbind("click").bind("click", function (e) {
+            });
+            //点击删除后，弹出层取消按钮事件
+            $("#noCheck").unbind("click").bind("click", function () {
+            });
+        },
+        //初始化列表
+        initDataTableData: function (class_name) {
+            var me = this;
+            var options = {
+                // 数据来源方法
+                data: {
+                    // 异步数据源
+                    sync: function (syncOptions, callback) {
+                        //下面注释的是获取异步数据方法
+                     /*   var JSONPARAM = {page_num: syncOptions.data.page, page_size: syncOptions.data.rows};
+                        class_name = class_name == undefined ? "" : class_name;
+                        JSONPARAM.class_name = class_name;
+                        JSONPARAM.server_id = "school1";
+                        require(['btcommon/ajax'], function () {
+                            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.selectAllClass, JSON.stringify(JSONPARAM), function (_d) {
+                                callback && callback({rows: _d.resultdata, total: _d.rows});
+                            })
+                        });*/
+                        /*setTimeout(function () {
+                         var dataList = [
+                         {class_name: '第三十四期全国县市教育局长培训班', class_stu_total: '50', course_total: '5', create_time: '2017-09-01'}
+                         ];
+                         var dataCount = 1;
+                         callback && callback({rows: dataList, total: dataCount});
+                         }, 200);*/
+                        setTimeout(function(){
+                            var dataList=[{question_number:'14252525',question_name:'大方县教育评估问卷',create_time:'2017-10-25',STATE:'进行中',ZW:'2017年9月10日--2017年10月10日'},
+                                {question_number:'14141414',question_name:'大方县教育评估问卷',create_time:'2017-10-25',STATE:'进行中',ZW:'2016年9月10日--2016年10月10日'},
+                                {question_number:'65464646',question_name:'大方县教育评估问卷',create_time:'2017-10-25',STATE:'已完成',ZW:'2015年9月10日--2015年10月10日'},
+                                {question_number:'64564646',question_name:'大方县教育评估问卷',create_time:'2017-10-25',STATE:'进行中',ZW:'2014年9月10日--2014年10月10日'},
+                                {question_number:'65464654',question_name:'大方县教育评估问卷',create_time:'2017-10-25',STATE:'已完成',ZW:'2013年9月10日--2013年10月10日'}
+                            ];
+                            var dataCount=2;
+                            callback && callback({rows:dataList,total:dataCount});
+                        },200);
+
+
+                    },
+                    // 数据列表的索引
+                    dataArrayIndex: 'rows',
+                    // 分页参数
+                    paging: {
+                        enable: true,
+                        // 每页数据条数
+                        pageSize: 10
+                    },
+                    collection: Backbone.Collection//DataSourceCollection
+                },
+                //显示序号列
+                displayIndex: true,
+                //列显示循序：
+                columns: [
+                    {
+                        text: "模板编号",
+                        dataIndex: "question_number",
+                    },
+                    {
+                        text: "模板名称",
+                        dataIndex: "question_name",
+                      /*  render:function(value,row){
+                            if(row["totalstudent"] == null ||typeof (row["totalstudent"]) == "undefined"){
+                                return 0;
+                            }else{
+                                return value;
+                            }
+                        }*/
+                    },
+
+                  /*  {
+                        text: "问卷名称",
+                        dataIndex: "totalcourse",
+                        render:function(value,row){
+                            if(row["totalcourse"] == null ||typeof (row["totalcourse"]) == "undefined"){
+                                return 0;
+                            }else{
+                                return value;
+                            }
+                        }
+                    },*/
+
+                  /*  {
+                        text: "创建时间",
+                        dataIndex: "create_time",
+
+                    },*/
+
+                   /* {
+                        text: "操作",
+                        render: function (value, row) {
+                            return "<a data-id='" + row["question_number"] + "' data-name='" + row["XM"] + "' id='editData' class='editData btn btn-outline btn btn-xs green' style='width:50px;'>编辑 </a> <a data-id='" + row["question_number"] + "'href='javascript:;' class='btn btn-outline btn btn-xs red deleteData' style='width:50px;' data-target='#delete' data-toggle='modal'>删除 </a><a data-id='" + row["question_number"] + "' data-name='" + row["XM"] + "' class='checkData btn btn-outline btn btn-xs green' style='width:50px;'>查看 </a>";
+                        }
+                    }*/
+                ],
+                // 默认多选模式
+                "selModel" : {
+                    // single/multi,为空则不显示
+                    mode :  "multi",
+                    // 是否显示行的checkbox
+                    checkbox : true,
+                    //定义选中的数据列表
+                   /* selectData:{
+                        keyword:"XM",
+                        selectDataValue:["张月月","白宇熙"]//["1","232423","232424","232432","232435"]
+                    },*/
+                    keepCheckState:{//保持勾选状态才能获取全部的勾选数据
+                        keepCheck:true,
+                        keepStateKeyword:"XM"
+                    }
+                },
+                //表头、表数据初始化完成后调用
+                initTableEventsCall: function () {
+                    //为table中的删除按钮添加事件：
+                    me.$(".deleteData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.needDeleteId = $this.attr("data-id");
+                        _this.$('#confirm').modal('show');
+                    });
+                    //为table中的编辑按钮添加事件：
+                    me.$(".editData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.editID = $this.attr("data-id");
+                        /* 点击弹出层事件显示页面已有的弹出层。*/
+                        $('#wenjuan').hide();
+                        $('#ejectForm').modal("show");
+                       /* location.href = "#editQuestion/2/" + me.editID;*/
+                       // bookUtil.toastrAlert('success', '提示', "可以跳转到编辑页了：" + me.editID);
+                    });
+
+                    me.$(".checkData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.class_id = $this.attr("data-id");
+                        location.href = "#lookQuestion/0/"+me.class_id;
+                    });
+                }
+            };
+            this.dataTable = new DataTable(options);
+            // 渲染至页面
+            this.$("#dataTableWrapper").html(this.dataTable.$el);
+        },
+
+    });
+});

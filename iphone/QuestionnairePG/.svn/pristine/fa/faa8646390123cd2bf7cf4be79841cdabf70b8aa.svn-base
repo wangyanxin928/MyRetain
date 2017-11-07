@@ -1,0 +1,61 @@
+{
+  "_from": "node-excel@https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz",
+  "_id": "node-excel@0.5.0",
+  "_inBundle": false,
+  "_integrity": "sha1-hloxcoy1/Xw1uWvxPQwTzIMhAsc=",
+  "_location": "/node-excel",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "node-excel@https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz",
+    "name": "node-excel",
+    "escapedName": "node-excel",
+    "rawSpec": "https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz",
+    "saveSpec": "https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz",
+    "fetchSpec": "https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz",
+  "_spec": "node-excel@https://registry.npmjs.org/node-excel/-/node-excel-0.5.0.tgz",
+  "_where": "D:\\axyr\\code2017\\QHPG-HN",
+  "author": {
+    "name": "Rafael de Brito Fischer",
+    "email": "rafaelfischer@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/e-Construmarket/Node-Excel/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "collections": "^1.2.1",
+    "node-zip": "1.x"
+  },
+  "deprecated": false,
+  "description": "Simple data set export to Excel xlsx file",
+  "devDependencies": {
+    "mocha": "",
+    "should": ""
+  },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "homepage": "https://github.com/e-Construmarket/Node-Excel#readme",
+  "keywords": [
+    "Excel",
+    "xlsx"
+  ],
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "name": "node-excel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-Construmarket/Node-Excel.git"
+  },
+  "scripts": {
+    "test": "mocha test/main"
+  },
+  "version": "0.5.0"
+}

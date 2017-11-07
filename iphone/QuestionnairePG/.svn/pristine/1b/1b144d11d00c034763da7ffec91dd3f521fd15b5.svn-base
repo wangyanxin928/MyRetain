@@ -1,0 +1,21 @@
+<!-- 数据表开始 -->
+<div class="search-table table-responsive">
+    <table class="table table-bordered table-striped table-condensed table-hover">
+
+        <!-- 表头列布局开始 -->
+        <thead class="bg-green ">
+        </thead>
+        <!-- 表头列布局结束 -->
+        <!-- 表数据布局开始 -->
+        <tbody style="color: #8b96a4;text-align: center;">
+        </tbody>
+        <!-- 表数据布局结束 -->
+    </table>
+</div>
+        <!-- 数据表结束 -->
+        <!-- 分页条开始 -->
+<div class="datelist_page">
+
+</div>
+        <!-- 分页条结束 -->
+                    

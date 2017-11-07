@@ -1,0 +1,161 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light  ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold font-grey-gallery uppercase">项目数据</span>
+                </div>
+                <div class="tools">
+                    <span class="caption-helper"><a>   </a></span>
+                    <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+
+                    <div class="col-md-12 text-right">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input datakey="classNameSearch" type="text" class="form-control  input-circle" placeholder="请输入项目名称..." id="classNameSearch" name="classNameSearch">
+                            </div>
+                            <a class="btn btn-outline green-haze" id="searcherPosition">搜索</a>
+                            <a class="btn btn-outline green-haze" id="addTask">创建</a>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div id="dataTableWrapper" style="margin-top: 16px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="confirm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <p>
+            确认删除这条数据?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="noserl">再想想</button>
+        <button type="button" data-dismiss="modal" class="btn blue" id="yesserl">是的</button>
+    </div>
+</div>
+
+<!--弹出层-->
+<div id="ejectForm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">修改项目</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 ">
+                <form action="#" class="form-horizontal" id="form2">
+                    <div class="form-body">
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目名称：</label>
+
+                                    <div class="col-md-8">
+                                        <input datakey="task_name" type="text" class="form-control  input-circle"
+                                               placeholder="如:中小学2017年安全检查（必填项）" id="task_name1" name="task_name">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">项目开始时间：</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group input-medium date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input datakey="start_time" id="start_time1" name="start_time" type="text"
+                                                   class="form-control">
+					                                <span class="input-group-btn">
+					                                <button class="btn default" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+					                                </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">项目结束时间：</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group input-medium date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input datakey="end_time" id="end_time1" name="end_time" type="text"
+                                                   class="form-control">
+					                                <span class="input-group-btn">
+					                                <button class="btn default" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+					                                </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目概述：</label>
+
+                                    <div class="col-md-8">
+                                        <textarea name="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--   <div class="row">
+                               <div class="col-md-7 ">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-4">指标体系：</label>
+                                       <div class="col-md-5">
+                                           <select class="bs-select form-control">
+                                               <option id="1">选择指标体系</option>
+                                               <option id="2">2017年中小学生安全工作专项督导评估指标体系</option>
+                                               <option id="3">2016年中小学生安全工作专项督导评估指标体系</option>
+                                               <option id="4">2015年中小学生安全工作专项督导评估指标体系</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>-->
+                        <div class="row">
+                            <div class="col-md-10 ">
+                                <div class="form-group">
+                                    <div class="row text-center">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-3 col-md-8">
+                                                <button type="button" data-dismiss="modal" class="btn blue" id="">保存</button>
+                                                <button type="button" data-dismiss="modal" class="btn btn-default" id="">返回</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

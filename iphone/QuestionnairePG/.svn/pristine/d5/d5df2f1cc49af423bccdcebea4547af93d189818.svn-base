@@ -1,0 +1,42 @@
+/*
+ 2017年6月26日 09:02:08
+ zzy
+ 登录的个人信息返回
+ * */
+var mysql = require('mysql');
+var $conf = require('../../conf/db');
+var $util = require('../../util/util');
+var $writelog = require('../../libs/logHelper');
+var $sql = require('./userLoginSqlMapping');
+var $mysqlUtil = require('../../util/mysqlUtil');
+
+module.exports = {
+
+    //获取登录人的角色类型
+    userLogin: function (userInfo, callback) {
+        var sql = $sql.userLogin(userInfo);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /**
+     * 验证用户信息  by 文霞 20171103
+     * @param validateValue  //待验证的字段值
+     * @param validateKey  //验证的字段key
+     * @param callback
+     */
+    validateUser:function(validateValue,validateKey,callback){
+        var sql = $sql.validateUser(validateValue,validateKey);
+        $mysqlUtil.queryStrSql(sql, callback);
+    },
+    /**
+     * 添加用户信息  by 文霞 20171103
+     * @param userId  用户id
+     * @param validateValue   //待验证的字段值
+     * @param validateKey  //验证的字段key
+     * @param callback
+     */
+    addUser:function(userId,validateValue,validateKey,callback){
+        var sql = $sql.addUser(userId,validateValue,validateKey);
+        $mysqlUtil.queryStrSql(sql, callback);
+    }
+
+};

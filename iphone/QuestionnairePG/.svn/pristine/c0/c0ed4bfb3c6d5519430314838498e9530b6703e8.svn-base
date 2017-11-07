@@ -1,0 +1,150 @@
+<style>
+    @media (min-width: 768px) {
+        .form-horizontal .control-label {
+            padding-top: 3px;
+            margin-bottom: 0;
+            text-align: right;
+        }
+    }
+
+    ul{
+        padding: 0;
+    }
+    ul li{
+        list-style-type:none;
+    }
+</style>
+
+<div class="portlet light  ">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject bold font-grey-gallery uppercase">统计基本设置</span>
+        </div>
+        <div class="tools">
+            <span class="caption-helper"><a></a></span>
+            <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form action="#" class="form-horizontal" id="myForm0" novalidate="novalidate">
+            <div class="form-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">选择任务名</label>
+                            <div class="col-md-9">
+                                <select id="task_select" class="bs-select">
+                                    <option value="">其他</option>
+                                    <option value="1">英语老师自评</option>
+                                    <option value="2">学生生涯规划</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">选择问卷</label>
+                            <div class="col-md-9">
+                                <select id="question_select" class="bs-select">
+                                    <option value="">其他</option>
+                                    <option value="1">思维风格测试</option>
+                                    <option value="2">你所适合的专业</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">选择展示图形</label>
+                            <div class="col-md-9">
+                                <select id="echar_select" class="bs-select">
+                                    <option value="">柱状图</option>
+                                    <option value="1">饼状图</option>
+                                    <option value="2">折线图</option>
+                                    <option value="3">雷达图</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">X坐标</label>
+                            <div class="col-md-9">
+                                <button type="button" class="btn default green-stripe" id="addCol"><i class="fa fa-plus"></i> 添加数据列 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-9">
+                                <ul>
+                                    <li style="margin-bottom: 5px">
+                                        <div style="border: 1px solid green;padding: 5px">
+                                            <div>
+                                                <span style="height: 34px;line-height: 34px;font-size: 14px">请输入显示项：</span>
+                                                <input type="text" class="form-control input-circle input-xsmall " style="display: inline">
+                                            </div>
+                                            <div style="margin-top: 10px">
+                                                <span style="height: 34px;line-height: 34px;font-size: 14px">请输入分值域：</span>
+                                                <input type="text" class="form-control input-circle input-xsmall " style="display: inline">：
+                                                <input type="text" class="form-control input-circle input-xsmall " style="display: inline">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <a class="btn btn-circle green ww30 saveMuliSchool" id="saveClass">保存</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="section " id="echar_demo" style="height: 400px;">
+
+    </div>
+</div>

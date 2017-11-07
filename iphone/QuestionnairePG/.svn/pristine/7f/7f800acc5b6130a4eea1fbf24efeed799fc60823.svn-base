@@ -1,0 +1,36 @@
+/**
+ * Created by baiyuxi on 2017/3/29.
+ */
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: '163',
+    auth: {
+        user: 'baiyuxistudy@163.com',
+        pass: 'bainiu1103' //授权码,通过QQ获取
+
+    }
+});
+var mailOptions = {
+    from: 'baiyuxistudy@163.com', // 发送者
+    to: '405531481@qq.com', // 接受者,可以同时发送多个,以逗号隔开
+    subject: 'nodemailer2.5.0邮件发送', // 标题
+    //text: 'Hello world', // 文本
+    html: '<h2>nodemailer基本使用:</h2>' +
+    '<h3><a href="http://blog.csdn.net/zzwwjjdj1/article/details/51878392">' +
+    'http://blog.csdn.net/zzwwjjdj1/article/details/51878392</a></h3>'
+};
+var mail = {
+    sendMail: function (mailOptions, callback) {
+        transporter.sendMail(mailOptions, function (err, info) {
+            if (err) {
+                console.log(err);
+                callback(err);
+                return;
+            }
+            console.log('发送成功');
+
+            callback(info);
+        });
+    }
+};
+module.exports = mail;

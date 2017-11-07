@@ -1,0 +1,365 @@
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+        <a href="#taskAssignment"> 项目列表</a>
+        <!--<i class="fa fa-circle"></i>-->
+    </li>
+    <li>
+        <span class="active">项目任务</span>
+    </li>
+</ul>
+
+<style>
+    /* 隐藏作为模板的内容块 */
+    #moduleContent{
+        display: none;
+    }
+    #moduleContent1{
+        display: none;
+    }
+</style>
+<!-- BEGIN ROW -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light  " id="htmlTab">
+            <div class="portlet-title">
+                <div class="caption">
+                    <!--<i class="icon-puzzle font-grey-gallery"></i>-->
+                    <span class="caption-subject bold font-grey-gallery uppercase"> 项目基本信息 </span>
+                </div>
+                <div class="tools">
+                    <span class="caption-helper"><a> </a></span>
+                    <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+                </div>
+            </div>
+
+            <div class="portlet-body form">
+
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal" id="myForm1" novalidate="novalidate">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目名称：</label>
+
+                                    <div class="col-md-8">
+                                        <input datakey="project_name" type="text" class="form-control  input-circle"
+                                               placeholder="如:中小学2017年安全检查（必填项）" id="project_name" name="project_name">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">项目开始时间：</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group input-medium date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input datakey="start_time" id="start_time" name="start_time" type="text"
+                                                   class="form-control">
+                                            <span class="input-group-btn">
+					                                <button class="btn default" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+					                                </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">项目结束时间：</label>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group input-medium date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input datakey="end_time" id="end_time" name="end_time" type="text"
+                                                   class="form-control">
+                                            <span class="input-group-btn">
+					                                <button class="btn default" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+					                                </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">项目概述：</label>
+
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" name="" cols="30" rows="10" id="descript"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <div class="row text-center">
+                                        <div class="col-md-12">
+                                            <div class="col-md-offset-4 col-md-8">
+                                                <a class="btn btn-circle green ww30 " id="updateProject">保存修改</a>
+                                                <a class="btn btn-circle green ww30 " id="showTask" >添加任务</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+
+                <!--追加任务-->
+                <div id="muliSchools">
+
+                </div>
+
+                <!-- 发布项目-->
+                <div class="row text-center">
+                    <a class="btn btn-outline green-haze" id="publicProject">发布项目</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 任务子信息-->
+<div id = "moduleContentsDiv" style="display: none">
+    <div class="portlet light bordered  " action="muliSchool">
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject bold font-grey-gallery uppercase" action="muliSchoolTitle"> 任务信息 </span>
+            </div>
+            <div class="tools">
+                <span class="caption-helper"><a>  </a></span>
+                <a href="" class="collapse" data-original-title=" 收起/展开" title="收起/展开"> </a>
+            </div>
+        </div>
+
+        <div class="portlet-body form">
+
+            <!-- BEGIN FORM-->
+            <form action="#" class="form-horizontal">
+                <div class="form-body">
+
+                    <div class="row task_name">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">任务名称:</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control  input-circle" placeholder=""
+                                           action="task_name" name="task_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+
+                    <div class="row send_method">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">下发方式:</label>
+                                <div class="col-md-4">
+                                    <select class="bs-select form-control send_method_select" placeholder="请选择适用对象">
+                                        <option value="2">行政下发</option>
+                                        <option value="1">分享下发</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row user_role">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">适用对象:</label>
+                                <div class="col-md-4">
+                                    <select class="bs-select form-control" placeholder="请选择适用对象">
+                                        <option value="">请选择适用对象</option>
+                                        <option value="学生">学生</option>
+                                        <option value="家长">家长</option>
+                                        <option value="教师">教师</option>
+                                        <option value="校长">校长</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row xueduan">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">适用学段:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="icheck-inline">
+                                            <label><input type="checkbox" class="icheck" data-checkbox="icheckbox_flat-green" value="全选">全选</label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 小学 </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 初中 </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 高中 </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="小学"> 职高 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <!--/span-->
+                        <!--/span-->
+                    </div>
+                    <div class="row grade">
+                        <div class="col-md-12 ">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">适用年级:</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <div class="icheck-inline">
+                                            <label><input type="checkbox" class="icheck" data-checkbox="icheckbox_flat-green" value="全选">全选</label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="1"> 一年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="2"> 二年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="3"> 三年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="4"> 四年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="5"> 五年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="6"> 六年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="7"> 七年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="8"> 八年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="9"> 九年级  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="10"> 高一  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="11"> 高二  </label>
+                                            <label><input type="checkbox"  class="icheck" data-checkbox="icheckbox_flat-green" value="12"> 高三  </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <!--/span-->
+                        <!--/span-->
+                    </div>
+                    <div class="row showQuestionnair">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">选择问卷:</label>
+                                <div class="col-md-8">
+                                    <a class="btn btn-outline green-haze" id="showQuestionnairList">选择问卷</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row questionSelect"  style="display:none;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">已选择</label>
+                                <div class="col-md-8">
+                                    <ul class="nav nav-pills">
+                                        <!--<li >-->
+                                        <!--<a >-->
+                                        <!--当前项目删除操作的...<i class="fa fa-times"></i></a>-->
+                                        <!--</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                    <div class="row showSchool">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">选择学校:</label>
+
+                                <div class="col-md-8">
+                                    <a class="btn btn-outline green-haze" id="searchSchoolName1">选择学校</a>
+                                    <!-- /input-group -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row share_method" style="display: none">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">分享方式</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="icheck-inline haveEventGroup2" >
+                                            <label>
+                                                <input type="radio" name="radio4" class="icheck" data-radio="iradio_flat-green" value="0"> QQ</label>
+                                            <label>
+                                                <input type="radio" name="radio4" checked class="icheck" data-radio="iradio_flat-green" value="1">微信</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9">
+                                    <div class="col-md-4">
+                                        <a class="btn btn-circle blue btn-block btn-sm saveMuliSchool" action="saveMuliSchool">保存</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-circle red btn-block btn-sm removeMuliSchool" action="removeMuliSchool">删除</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+</div>
+
+<!-- 删除任务-->
+<div id="confirm" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+    <div class="modal-body">
+        <div class="portlet light  ">
+            <div class="portlet-body">
+                <p>
+                    确认删除此任务?
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default" id="noCheck">再想想</button>
+        <button type="button" data-dismiss="modal" class="btn blue" id="yesCheck">是的</button>
+    </div>
+</div>
+
+<!--问卷显示-->
+<div id="questionChildList"></div>

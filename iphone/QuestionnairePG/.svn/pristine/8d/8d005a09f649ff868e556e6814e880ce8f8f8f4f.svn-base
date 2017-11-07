@@ -1,0 +1,64 @@
+/*
+ 2017年5月4日 15:57:41
+ byx
+ 评估管理-问卷模块route层
+ * */
+
+var express = require('express');
+var router = express.Router();
+
+var questionnaireService = require('../../service/pgmanage_service/questionnaireService');
+
+// 获取问卷列表
+router.get('/getQuestionnaireList', function (req, res, next) {
+    questionnaireService.getQuestionnaireList(req, res, next);
+});
+// 获取问卷列表
+router.get('/getQuestionnaireList2', function (req, res, next) {
+    questionnaireService.getQuestionnaireList2(req, res, next);
+});
+// 导入问卷
+router.post('/importQuestionnaire', function (req, res, next) {
+    questionnaireService.importQuestionnaire(req, res, next);
+});
+//jQuery file upload 20170726 by 文霞
+router.post('/importQuestionnaire1', function (req, res, next) {
+    questionnaireService.importQuestionnaire1(req, res, next);
+});
+// 插入问卷
+router.get('/insertQuestionnaire', function (req, res, next) {
+    questionnaireService.insertQuestionnaire(req, res, next);
+});
+// 生成问卷html
+router.post('/buildQuestionnaireHtml', function (req, res, next) {
+    questionnaireService.buildQuestionnaireHtml(req, res, next);
+});
+//删除问卷
+router.get("/deleteQuestoinnaire", function (req, res, next) {
+    questionnaireService.deleteQuestoinnaire(req, res, next);
+});
+//修改问卷
+router.get("/updateQuestoinnaire",function (req,res,next) {
+    questionnaireService.updateQuestoinnaire(req, res, next);
+});
+//获取问卷详情
+router.get("/getQuestoinnaireInfo",function (req,res,next) {
+    questionnaireService.getQuestoinnaireInfo(req, res, next);
+});
+/*获取特定问卷下的单选题和多选题*/
+router.get("/getQuestionList",function (req,res,next) {
+    questionnaireService.getQuestionList(req, res, next);
+});
+/*获取问卷列表(统计交叉对比时用)*/
+router.get("/getQuestionnaireList3",function (req,res,next) {
+    questionnaireService.getQuestionnaireList3(req, res, next);
+});
+
+
+
+/*获取问卷生成HTMLJSON*/
+router.get("/getQuestoinnaireJSON",function (req,res,next) {
+    questionnaireService.getQuestoinnaireJSON(req, res, next);
+});
+module.exports = router;
+

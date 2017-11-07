@@ -1,0 +1,194 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2016/09/06
+//  description: 基础组件——dataTable小列表
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    //导入列表模板
+    var tpl = require('text!tpl/taskAssignment/taskAssignment.html'),
+        template = _.template(tpl), _this;
+    //引入datatable
+    var DataTable = require('plugins/DataTableView_new/DataTable');
+    var myossupload = require('myossupload');
+
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            //加载datatable中数据
+            this.initDataTableData("");
+            //待删除的id
+            this.needDeleteId = "";
+            //编辑的主键id,编辑和详情
+            this.editID = "";
+            //初始化多选按钮事件，先绑定事件再初始化插件
+            this.initCheckEvent();
+
+            //初始化删除事件
+            this.initDeleteModal1();
+        },
+        events: {
+            "click #searcherProject": "searcherProject",
+            "click #addTask":"addTask",
+        },
+        searcherProject: function () {
+            this.initDataTableData();
+        },
+
+        //添加任务
+        addTask:function () {
+            location.href = "#addAssignment";
+        },
+        initCheckEvent: function () {
+            var me = this;
+            backStageUTIL.initCheck(me.$("#form2"));//初始化单选/复选控件
+        },
+
+        //初始化列表
+        initDataTableData: function () {
+            var me = this;
+            var options = {
+                // 数据来源方法
+                data : {
+                    // 异步数据源
+                    sync : function(syncOptions, callback) {
+                        //下面注释的是获取异步数据方法
+                        var projectName=me.$("#project_name_search").val();
+                        var create_user_id = 'user1'//测试数据
+                        var JSONPARAM={project_name:projectName,create_user_id:create_user_id,page_num: syncOptions.data.page, page_size: syncOptions.data.rows};
+
+                        PublicAjax.ajaxGet(PublicAjax.ajaxUrl.getProjectList,JSON.stringify(JSONPARAM),function(data){
+                            callback && callback({rows:data.resultdata,total:data.rows});
+                        });
+                    },
+                    // 数据列表的索引
+                    dataArrayIndex : 'rows',
+                    // 分页参数
+                    paging : {
+                        enable : true,
+                        // 每页数据条数
+                        pageSize : 10
+                    },
+                    collection : Backbone.Collection//DataSourceCollection
+                },
+                //显示序号列
+                displayIndex: true,
+                //列显示循序：
+                columns: [
+                    {
+                        text: "任务名称",
+                        dataIndex: "project_name",
+                    },
+
+                    {
+                        text: "任务期限",
+                        dataIndex: "start_time",
+                        render: function (value, row) {
+                           return row["start_time"].substr(0,10) + '至' + row["end_time"].substr(0,10)
+                        }
+                    },
+                    {
+                        text: "任务状态",
+                        dataIndex: "state",
+                        render: function (value, row) {
+                            if(value == 0){
+                                return "未发布"
+                            }else if(value == 1){
+                                return "已发布"
+                            }
+                        }
+                    },
+
+                    {
+                        text: "操作",
+                        render: function (value, row) {
+                            if(row["state"] =="0"){
+                                return "<a data-id='" + row["project_id"] + "' data-state='" + row["state"] + "' id='editData' class='editData btn btn-outline btn btn-xs green' style='width:50px;'>编辑 </a> <a data-id='" + row["project_id"] +"' data-state='" + row["state"] + " 'href='javascript:;' class='btn btn-outline btn btn-xs red deleteData' style='width:50px;' data-target='#delete' data-toggle='modal'>删除 </a><a data-id='" + row["project_id"] + "' data-state='" + row["state"] + "' class='checkData btn btn-outline btn btn-xs green' style='width:50px;'>查看 </a>";
+                            }else{
+                                return "<a data-id='" + row["project_id"] + "' data-state='" + row["state"] + "' id='editData' class='editData btn btn-outline btn btn-xs green' style='width:50px;'>编辑 </a><a data-id='" + row["project_id"] + "' data-state='" + row["state"] + "' class='checkData btn btn-outline btn btn-xs green' style='width:50px;'>查看 </a>";
+                            }
+
+                        }
+                    }
+                ],
+                // 默认多选模式
+                "selModel": {
+                    mode: "",
+                    // 是否显示行的checkbox
+                    checkbox: false,
+                },
+                //表头、表数据初始化完成后调用
+                initTableEventsCall: function () {
+                    //为table中的删除按钮添加事件：
+                    me.$(".deleteData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.needDeleteId = $this.attr("data-id");
+                        _this.$('#confirm').modal('show');
+                    });
+                    //为table中的编辑按钮添加事件：
+                    me.$(".editData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.editID = $this.attr("data-id");
+                        location.href = "#taskAssignmentInfo/2/" + me.editID+"/"+JSON.stringify({state:$this.attr("data-state")});
+                    });
+
+                    me.$(".checkData").click(function (_event) {
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var row = _event.srcElement ? _event.srcElement : _event.target;
+                        var $this = $(row);
+                        me.editID = $this.attr("data-id");
+                        me.state = $this.attr("data-state");
+                        location.href = "#taskAssignmentInfo/3/" + me.editID+"/"+JSON.stringify({state:$this.attr("data-state")});
+                    });
+                }
+            };
+            this.dataTable = new DataTable(options);
+            // 渲染至页面
+            this.$("#dataTableWrapper").html(this.dataTable.$el);
+        },
+
+        //删除项目
+        initDeleteModal1: function () {
+            var me = this;
+            this.$('#confirm').on('shown.bs.modal', function () {
+                //点击确定按钮事件
+                $("#yesserl").unbind('click').bind("click", function () {
+                    require(['btcommon/ajax'], function () {
+                        var JSONPARAM={project_id:me.needDeleteId,state:2 };
+
+                        var currType=me.state;//项目状态 - 0：保存;1：发布;2：已删除;
+                        PublicAjax.ajaxGet(PublicAjax.ajaxUrl.setProjectState,JSON.stringify(JSONPARAM),function(data){
+                            if(currType==1){//如果是发布状态，需要从分数中间表中删除数据
+                                //删除分数表里面的项目相关的数据：submit_stand_score_result表中的
+                                PublicAjax.ajaxGet(PublicAjax.ajaxUrl.deleteScoreFromProject,JSON.stringify({project_id:me.needDeleteId}),function(data){
+                                    backStageUTIL.toastrAlert("success","项目数据删除成功");
+                                    me.initDataTableData();
+                                });
+                            }else{
+                                backStageUTIL.toastrAlert("success","项目数据删除成功");
+                                me.initDataTableData();
+                            }
+                        });
+                    });
+
+                });
+            })
+        },
+
+    });
+});

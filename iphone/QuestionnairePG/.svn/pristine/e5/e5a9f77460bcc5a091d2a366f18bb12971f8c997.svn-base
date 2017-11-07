@@ -1,0 +1,29 @@
+<!-- <div class="tablefy">
+	<数据描述>
+	<em id="dt_page_data_description"></em>
+	<span class="fy_first"></span>
+	<span class="fy_left"></span>
+	<页数>
+	<ul>
+	</ul>
+	<span class="fy_right"></span>
+	<span class="fy_last"></span>
+</div>
+
+<div class="dataTables_paginate paging_simple_numbers" id="sample_1_paginate" style="text-align: right;">
+<ul class="pagination">
+<li class="paginate_button previous disabled" aria-controls="sample_1" tabindex="0" id="sample_1_previous">
+<a href="#"><i class="fa fa-angle-left"></i></a></li>
+<li class="paginate_button active" aria-controls="sample_1" tabindex="0"><a href="#">1</a></li>
+<li class="paginate_button " aria-controls="sample_1" tabindex="0"><a href="#">2</a></li>
+<li class="paginate_button " aria-controls="sample_1" tabindex="0"><a href="#">3</a></li>
+<li class="paginate_button next" aria-controls="sample_1" tabindex="0" id="sample_1_next"><a href="#"><i class="fa fa-angle-right"></i></a>
+</li></ul></div>-->
+<div class="col-md-5 col-sm-12">
+	<div class="dataTables_info"></div>
+</div>
+<div class="col-md-7 col-sm-12">
+	<div class="dataTables_paginate paging_simple_numbers" style="text-align: right;">
+		<ul class="pagination"></ul>
+	</div>
+</div>

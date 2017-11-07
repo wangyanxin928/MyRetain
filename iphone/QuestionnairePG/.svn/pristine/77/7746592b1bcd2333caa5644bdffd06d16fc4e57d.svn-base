@@ -1,0 +1,40 @@
+
+<!--问题模板-->
+<div class="problem" id="problemTpl"  tmtype="single" tmid="7665" standid="17652" hasAnswer="0" isbaseinfo="" displayset="" valtype="" isrequired="" tmorder="">
+    <div class="problemCenter">
+        <div class="problemTitle ">
+            <span class="problemNum">7.</span>
+            <span class="problemWord">问题为图片,文字，答案为文字</span>
+            <img class="problemImg" src="images/header.jpg" alt="">
+        </div>
+        <div class="problemAnswer">
+            <ul class="problemAnswerList radio">
+
+            </ul>
+        </div>
+        <div class="problemCenterText">
+            <span>请回答此题</span>
+        </div>
+    </div>
+</div>
+<!--选项模板-->
+<li class="singlestli" id="radioOptionTpl">
+    <input type="hidden" name="" optionid="hdhgsg" score="1" toquestnum="">
+    <span class="radios"></span>
+    <div class="problemAnswerInfo">
+        <span>答案为文字、图片/答案为文字、图片</span>
+        <img src="images/header.jpg" alt=""></div>
+</li>
+<li class="mutilstli" id="checkboxOptionTpl">
+    <input type="hidden" name="" optionid="hdhgsg" score="1" toquestnum="">
+    <span class="checkbox"></span>
+    <div class="problemAnswerInfo">
+        <span>很满意问题为文字，答案为图片，文字问题为文字，答案为图片，文字</span>
+        <img src="images/header.jpg" alt="">
+    </div>
+</li>
+<li id="blankTpl">
+    <div class="problemAnswerInfo">
+        <input type="text" placeholder="请输入正确的答案...">
+    </div>
+</li>

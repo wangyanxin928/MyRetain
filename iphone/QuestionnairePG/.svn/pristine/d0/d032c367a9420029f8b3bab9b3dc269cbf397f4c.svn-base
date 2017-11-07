@@ -1,0 +1,427 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2017/07/19
+//  description: 图表工具v1.0（框架无关的）
+//  ===============================================================
+"use strict";
+var FairmindChart = function (define) {
+    var _chartOption={};
+    var _chartOptionDefault={//绘制echart时使用的直接option;
+        legend:{
+            data:[]//图例，需要配置
+        },
+        tooltip : {
+            /*trigger: 'axis',
+             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+             }*/
+        },
+        /*grid: {//指教坐标系，只有柱状图，折线图时使用
+         left: '3%',
+         right: '4%',
+         bottom: '3%',
+         containLabel: true
+         },*/
+        toolbox:{
+            show:true,
+            itemSize:25,
+            right:12,
+            feature:{
+                saveAsImage : {show: true}
+            }
+        },
+        /*xAxis : [//x轴只有在柱图、折线图时配置；
+         {
+         type : 'category',
+         data : []//x轴数据，需要配置
+         }
+         ],
+         yAxis : [//y轴只有在柱图、折线图时配置；
+         {
+         type : 'value'
+         }
+         ],*/
+        series : []//数据系列配置
+    };
+    var getData = function (_cp_option,callback) {
+        var dataList = [];
+        if (_cp_option.dataOption.ajaxOption&&_cp_option.dataOption.ajaxOption.use && _cp_option.dataOption.ajaxOption.url) {//调接口获取数据
+            var ajaxUrl = _cp_option.dataOption.ajaxOption.url;
+            var param = _cp_option.dataOption.ajaxOption.param;
+            PublicAjax.ajaxGet(ajaxUrl, JSON.stringify(param), function (data) {
+                dataList = data.resultdata;
+                callback && callback( dataList);
+            });
+        } else if (_cp_option.dataOption.dataList.length != 0) {//直接从dataList中获取数据
+            dataList = _cp_option.dataOption.dataList;
+            callback && callback( dataList);
+        } else {
+            callback && callback(dataList);
+        }
+    };
+    //填充数据表、配置图表option
+    var drawChart = function(_cp_option,dataList){
+        var chartType=_cp_option.chartBaseOption.chartType;
+        var xName=_cp_option.chartBaseOption.c_xKey;
+        var seriesNameList=_cp_option.chartBaseOption.c_gKey;
+        var dataFormat=dataList;
+
+        var legendData=[],seriesList=[],xAxisList=[];
+
+        if(chartType=="bar"||chartType=="line"){
+            _chartOption.tooltip={
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            };
+            _chartOption.xAxis = [//x轴只有在柱图、折线图时配置；
+                {
+                    type : 'category',
+                    data : []//x轴数据，需要配置
+                }
+            ];
+            _chartOption.yAxis = [//y轴只有在柱图、折线图时配置；
+                {
+                    type : 'value'
+                }
+            ];
+
+            //组织数据：legendData，xAxisList，seriesList
+            legendData=seriesNameList;
+            for(var i=0;i<seriesNameList.length;i++){
+                var serieDataList=[];//存储一个系列的数据
+                for(var j=0;j<dataFormat.length;j++){
+                    if(xAxisList.indexOf(dataFormat[j][xName])==-1){
+                        xAxisList.push(dataFormat[j][xName]);
+                    }
+
+                    var seriesDataItem=[];
+                    seriesDataItem.push(dataFormat[j][xName]);
+                    seriesDataItem.push(dataFormat[j][seriesNameList[i]]);
+
+                    serieDataList.push(dataFormat[j][seriesNameList[i]]);
+                }
+                var serie={
+                    name:seriesNameList[i],//'数值',//value,//系列名称
+                    type:chartType,//'bar',//'line',
+                    data:serieDataList
+                };
+                //图表类型是line  添加折线类型设置
+                if(chartType=="line"){
+                    serie.smooth=false;
+                }
+
+                //彩虹图的处理：seriesEl中添加配色部分
+                if(chartType=='bar'&&_cp_option.chartBaseOption.otherOption.showRainbow){
+                    $.extend(serie, {
+                        itemStyle: {
+                            normal: {
+                                color: function(params) {
+                                    var colorList = [
+                                        '#2EC7C9','#B6A2DE','#5AB1EF','#FFB980','#D87A80','#8D98B3','#E5CF0D','#97B552','#95706D','#DC69AA',
+                                        '#07A2A4','#9A7FD1','#588DD5','#FFA855','#C05050','#59678C','#C9AB00','#7EB00A','#6F5553','#C14089'
+                                    ];
+                                    return colorList[params.dataIndex%20]
+                                }
+                            }
+                        }
+                    });
+                }
+                //区域图的处理：
+                if(chartType=='line'&&_cp_option.chartBaseOption.otherOption.areaStyle){
+                    $.extend(serie, {
+                        areaStyle: {
+                            normal: {}
+                        }
+                    });
+                }
+                //显示数据值的处理：
+                if(_cp_option.chartBaseOption.otherOption.showDataItem!==false){
+                    //交换坐标轴的时候，数据显示在右边，否则显示在上边
+                    /*var posi='';
+
+                     if(_cp_option.chartBaseOption.otherOption.showBarHor){
+                     posi='right';
+                     }else{
+                     posi='top';
+                     }
+                     var stack=_cp_option.chartBaseOption.otherOption.dataStack;
+                     if(stack&&chartType=="bar"){
+                     posi='inside';
+                     }*/
+                    serie.label={
+                        normal:{
+                            show:true,
+                            position:_cp_option.chartBaseOption.otherOption.showDataItem
+                        }
+                    };
+                }
+                //是否堆叠数据
+                if(_cp_option.chartBaseOption.otherOption.dataStack){
+                    serie.stack =1;
+                }
+
+                seriesList.push(serie);
+            }
+            //彩虹图的处理：不显示图例
+            //if(_cp_option.chartBaseOption.otherOption.showRainbow){
+            //    _chartOption.legend.show=false;
+            //}
+            //如果是折线图，则修改X坐标轴的左右留白策略
+            //if(chartType=="line"){
+            //    _chartOption.xAxis[0].boundaryGap = false;
+            //}
+
+            _chartOption.legend.data=legendData;
+            _chartOption.xAxis[0].data=xAxisList;
+            _chartOption.series=seriesList;
+            //X轴,Y轴名称
+            if(_cp_option.chartBaseOption.otherOption.xAxisName){
+                _chartOption.xAxis[0].name=_cp_option.chartBaseOption.otherOption.xAxisName;
+            }
+            if(_cp_option.chartBaseOption.otherOption.yAxisName){
+                _chartOption.yAxis[0].name=_cp_option.chartBaseOption.otherOption.yAxisName;
+            }
+            //X轴标签倾斜角度  2017-08-24 修改
+            if(_cp_option.chartBaseOption.otherOption.xLabelRotate){
+                _chartOption.xAxis[0].axisLabel={rotate:_cp_option.chartBaseOption.otherOption.xLabelRotate};
+            }
+            /*if(_cp_option.chartBaseOption.otherOption.xLabelRotate){
+             _chartOption.xAxis[0].axisLabel={rotate:15};
+             }*/
+            //Y轴最大、最小值
+            if(_cp_option.chartBaseOption.otherOption.yAxisMax){
+                _chartOption.yAxis[0].max=_cp_option.chartBaseOption.otherOption.yAxisMax;
+            }
+            if(_cp_option.chartBaseOption.otherOption.yAxisMin){
+                _chartOption.yAxis[0].min=_cp_option.chartBaseOption.otherOption.yAxisMin;
+            }
+
+            //是否交换坐标轴
+            if(_cp_option.chartBaseOption.otherOption.showBarHor){
+                var o_xAxis=_chartOption.xAxis;
+                var o_yAxis=_chartOption.yAxis;
+                _chartOption.xAxis=o_yAxis;
+                _chartOption.yAxis=o_xAxis;
+            }
+        }else if(chartType=="pie"){
+            //显示策略：只显示一个饼图seriesNameList的长度是1
+            var serieDataList=[];//存储一个系列的数据
+            for(var j=0;j<dataFormat.length;j++){
+                if(legendData.indexOf(dataFormat[j][xName])==-1){
+                    legendData.push(dataFormat[j][xName]);
+                }
+
+                if(dataFormat[j][seriesNameList[0]]){
+                    var seriesDataItem={
+                        name:dataFormat[j][xName],
+                        value:dataFormat[j][seriesNameList[0]]
+                    };
+                    serieDataList.push(seriesDataItem);
+                }
+            }
+            var serie={
+                name:seriesNameList[0],
+                type:chartType,
+                roseType:_cp_option.chartBaseOption.otherOption.roseType,
+                animationType:_cp_option.chartBaseOption.otherOption.animationType,
+                //label:{
+                //    normal: {
+                //        show: true,
+                //        position: _cp_option.chartBaseOption.otherOption.labelPosition
+                //    }
+                //},
+                tooltip : {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'//{a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+                },
+                data:serieDataList
+            };
+            if(_cp_option.chartBaseOption.otherOption.labelPosition==false){
+                serie.label={
+                    normal:{
+                        show:false
+                    }
+                }
+            }else{
+                serie.label={
+                    normal:{
+                        show:true,
+                        position: _cp_option.chartBaseOption.otherOption.labelPosition
+                    }
+                }
+            }
+            if(_cp_option.chartBaseOption.otherOption.radius){
+                serie.radius = _cp_option.chartBaseOption.otherOption.radius;
+            }
+            if(_cp_option.chartBaseOption.otherOption.center){
+                serie.center = _cp_option.chartBaseOption.otherOption.center;
+            }
+            seriesList.push(serie);
+            _chartOption.legend.data=legendData;
+            _chartOption.series=seriesList;
+        }else if(chartType=="radar"){
+            //坐标系配置：维度及最大值\坐标系形状\显示刻度标线\显示刻度值
+            var indicatorList=_cp_option.chartBaseOption.indicatorList;
+            _chartOption.radar={
+                indicator:indicatorList,
+                shape:_cp_option.chartBaseOption.otherOption.shape,
+                axisTick:{
+                    show:_cp_option.chartBaseOption.otherOption.axisTickShow
+                },
+                axisLabel:{
+                    show:_cp_option.chartBaseOption.otherOption.axisLabelShow
+                }
+            };
+            //组织数据：legendData，seriesList
+            _chartOption.legend.data= seriesNameList;//['预算分配（Allocated Budget）', '实际开销（Actual Spending）'];//legendData;
+            //第一种数据格式：
+            var seriesData=[];
+            for(var i=0;i<dataFormat.length;i++){
+                var serieDataList=[];
+                for(var j=0;j<indicatorList.length;j++){
+                    var dimensionName=indicatorList[j].name;
+                    var currentVal=dataFormat[i][dimensionName]==undefined?0:dataFormat[i][dimensionName];
+                    serieDataList.push(currentVal);
+                }
+                var serie={
+                    name:dataFormat[i].seriesName,//'数值',//value,//系列名称
+                    value:serieDataList
+                };
+                seriesData.push(serie);
+            }
+            _chartOption.series=[{
+                //name: '预算 vs 开销（Budget vs spending）',
+                type: 'radar',
+                data : seriesData
+            }];
+            //数据标记图形\数据标记大小\是否填充图
+            _chartOption.series[0].symbol=_cp_option.chartBaseOption.otherOption.symbol;
+            if(_cp_option.chartBaseOption.otherOption.symbolSize){
+                _chartOption.series[0].symbolSize=_cp_option.chartBaseOption.otherOption.symbolSize;
+            }
+            if(_cp_option.chartBaseOption.otherOption.areaStyleOpacity){
+                _chartOption.series[0].areaStyle={
+                    normal: {
+                        opacity: 0.1
+                    }
+                }
+            }
+            /*[{
+             name: '预算 vs 开销（Budget vs spending）',
+             type: 'radar',
+             data : [
+             {
+             value : [4300, 10000, 28000, 35000, 50000, 19000],
+             name : '预算分配（Allocated Budget）'
+             },
+             {
+             value : [5000, 14000, 28000, 31000, 42000, 21000],
+             name : '实际开销（Actual Spending）'
+             }
+             ]
+             }];*/
+            //第二种数据格式：
+            /*this._chartOption.series=[
+             {
+             name : '预算分配（Allocated Budget）',
+             type: 'radar',
+             data:[[4300, 10000, 28000, 35000, 50000, 19000]]
+             },
+             {
+             name : '实际开销（Actual Spending）',
+             type: 'radar',
+             data:[[5000, 14000, 28000, 31000, 42000, 21000]]
+             }
+             ];*/
+        }
+    };
+    return {
+        init:function(echarts,_cp_option1,callback){
+            _chartOption=clone(_chartOptionDefault);
+            var _cp_option=clone(_cp_option1);//避免污染业务页中的参数，需要复制参数
+            //1. 获取数据
+            getData(_cp_option,function(dataList){
+                if(dataList.length==0){
+                    var message={
+                        resultnum:'0000',
+                        resultMessage:"没有数据！"};
+                    //callback&&callback(message);
+                    return message;
+                }
+
+                //2.填充数据表、配置图表option
+                drawChart(_cp_option,dataList);
+
+                //继承_cp_option中chartOption的配置
+                //$.extend(_chartOption, _cp_option.chartBaseOption.chartOption);
+                /*_chartOption.title=_cp_option.chartBaseOption.chartOption.title;
+                 _chartOption.legend=_cp_option.chartBaseOption.chartOption.legend;
+                 _chartOption.toolbox=_cp_option.chartBaseOption.chartOption.toolbox;*/
+
+                //标题设置
+                _chartOption.title=_cp_option.chartBaseOption.chartOption.title;
+                //图例设置
+                $.extend(_chartOption.legend, _cp_option.chartBaseOption.chartOption.legend);
+                //工具箱设置
+                $.extend(_chartOption.toolbox, _cp_option.chartBaseOption.chartOption.toolbox);
+                //文字大小设置
+                if(_cp_option.chartBaseOption.chartOption.textStyle){
+                    _chartOption.textStyle=_cp_option.chartBaseOption.chartOption.textStyle;
+                }
+
+                //4.显示统计图
+                var myChart = echarts.getInstanceByDom(document.getElementById(_cp_option.chartBaseOption.chartWrapperId));
+                if(myChart){
+                    myChart.dispose();
+                    myChart = echarts.init(document.getElementById(_cp_option.chartBaseOption.chartWrapperId), 'macarons');
+                }else{
+                    myChart = echarts.init(document.getElementById(_cp_option.chartBaseOption.chartWrapperId), 'macarons');
+                }
+                myChart.setOption(_chartOption);
+
+                callback&&callback(myChart);
+                //return myChart;
+            });
+        }
+    }
+}(typeof define === 'function' && define.amd ? define : function (deps, factory) {
+    if (typeof module !== 'undefined' && module.exports) { //Node
+        module.exports = factory(require('jquery'));
+    } else {
+        window['FairmindChart'] = factory(window['jQuery']);
+    }
+});
+function clone(obj) {
+    // Handle the 3 simple types, and null or undefined
+    if (null == obj || "object" != typeof obj) return obj;
+
+    // Handle Date
+    if (obj instanceof Date) {
+        var copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+    }
+
+    // Handle Array
+    if (obj instanceof Array) {
+        var copy = [];
+        for (var i = 0,len = obj.length; i < len; ++i) {
+            copy[i] = clone(obj[i]);
+        }
+        return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+        var copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+        }
+        return copy;
+    }
+    throw new Error("Unable to copy obj! Its type isn't supported.");
+}
+
+

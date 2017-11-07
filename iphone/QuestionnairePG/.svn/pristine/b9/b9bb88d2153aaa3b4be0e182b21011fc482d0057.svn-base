@@ -1,0 +1,17 @@
+??????????????(??¡ã¨¹?¡§????¡Á???)?????????¨¦???¡ã?????¡§????key??time,apply_id ???????????¡À???¨¢??¡À¨º¡Á????????????¡§?????¡Â¡¤???
+
+
+????????
+http://113.208.118.178:58080/df/api/teacherList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A
+¡Á¨¦???¨²??
+http://113.208.118.178:58080/df/api/orgList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A
+?¡ì????¡À¨ª
+http://113.208.118.178:58080/df/api/schoolList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A
+?¡ì?¨²??¡À¨ª
+http://113.208.118.178:58080/df/api/studentList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A
+???¡è
+http://113.208.118.178:58080/df/api/parentList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A
+¡ã¨¤??
+http://113.208.118.178:58080/df/api/classList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A
+?¨º??
+http://113.208.118.178:58080/df/api/gradeList.html?key=0ed32fb9d6e73feab7fd5233a345f741&time=1496285871494&apply_id=6FA61BC952D14EEF99AAD8C4FC9A917A

@@ -1,0 +1,48 @@
+
+/*
+ 2017年10月13日
+ zzy
+ 后台楼宇信息和房间信息
+ * */
+var express = require('express');
+var router = express.Router();
+var baseProjectService = require('../../service/base_project/baseProjectService');
+
+
+// 添加项目
+router.get('/saveProjectInfo', function (req, res, next) {
+    baseProjectService.saveProjectInfo(req, res, next);
+});
+// 保存项目任务
+router.get('/saveProjectTaskInfo', function (req, res, next) {
+    baseProjectService.saveProjectTaskInfo(req, res, next);
+});
+
+//查询问卷列表
+router.get('/getQuestionnaireList', function (req, res, next) {
+    baseProjectService.getQuestionnaireList(req, res, next);
+});
+
+//查询项目列表
+router.get('/getProjectList', function (req, res, next) {
+    baseProjectService.getProjectList(req, res, next);
+});
+
+
+//查询项目详情
+router.get('/getProjectInfo', function (req, res, next) {
+    baseProjectService.getProjectInfo(req, res, next);
+});
+
+//修改项目状态
+router.get('/setProjectState', function (req, res, next) {
+    baseProjectService.setProjectState(req, res, next);
+});
+
+//删除任务
+router.get('/deleteTaskInfo', function (req, res, next) {
+    baseProjectService.deleteTaskInfo(req, res, next);
+});
+
+module.exports = router;
+

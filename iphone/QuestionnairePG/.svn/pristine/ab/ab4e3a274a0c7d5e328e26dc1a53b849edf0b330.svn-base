@@ -1,0 +1,45 @@
+/**
+ * Created by sanghuina on 2017/10/20.
+ */
+// ================================================================
+//  author:zzy
+//  createDate: 2017/07/13
+//  description: 专家管理-路由
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    return Backbone.Router.extend({
+        routes: {
+            "": "index",
+            "questionManageList":"questionManageList",
+
+        },
+        goIndex: function (requirePath, operationType, currentId, jsonObject) {
+            //菜单栏选中事件
+            backStageUTIL.initMenu();
+            Pace.restart();
+            if (location.href.split("#")[1] && location.href.split("#")[1] != "index") {
+                $('body').removeClass("page-full-width");
+
+            } else {
+                $('body').addClass("page-full-width");
+            }
+            require([requirePath], function (view) {
+//      		var viewObj=(!currentId)?{model: {_opType:operationType}}:{model: {_opType:operationType,_currentId:currentId}};
+
+                var viewObj = {model: {_opType: operationType, _currentId: currentId, _jsonObject: jsonObject}};
+                var _view = new view(viewObj);
+                $('.page-content-wrapper').html(_view.$el);
+                //设置中间内容区域屏幕的高度,中间内容区域层的class必须是page-content
+                _view.afterRender();
+
+            });
+        },
+
+        //问卷列表
+        questionManageList: function () {
+            this.goIndex("pages/questionnaireManagement/questionManageList");
+        },
+
+    })
+})

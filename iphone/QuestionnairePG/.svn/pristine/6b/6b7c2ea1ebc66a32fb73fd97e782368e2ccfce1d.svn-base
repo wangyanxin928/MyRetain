@@ -1,0 +1,661 @@
+// ================================================================
+//  author:文霞
+//  createDate: 2016/09/06
+//  description: 基础组件——dataTable小列表
+//  ===============================================================
+define(function (require) {
+    "use strict";
+    //导入列表模板
+    var tpl = require('text!tpl/questionnaireManagement/questionManageList.html'),
+        template = _.template(tpl), _this;
+    //引入datatable
+    var DataTable = require('plugins/DataTableView_new/DataTable');
+    var myossupload = require('myossupload');
+
+    return Backbone.View.extend({
+        className: "page-content",//如果不添加会document中多一级div
+        initialize: function () {
+            _this = this;
+            this.render();
+        },
+        render: function () {
+            this.$el.html(template(this.model));
+            return this;
+        },
+        afterRender: function () {
+            var form=backStageUTIL.layForm;
+            form.render();
+            //加载datatable中数据
+            //this.initDataTableData();//【教育培训项目临时注释  20170922】
+            //初始化页面弹层及事件
+            this.initModal();
+            /*给模版下载加载东西*/
+            $("#papermodel").attr("href","http://"+location.host+"/file?filePath=subject_score/&fileName="+encodeURI("调查问卷导入模板.rar"));
+        },
+        events: {
+            "click #import":"importQuestionnaire",
+            "click #addQuession":"addQuessionFun",
+            "click #select":"selectQuestionnaire"//,
+        },
+        addQuessionFun:function(){
+            location.href="#foundQuestion";
+        },
+        initModal:function(){
+            var me=this;
+
+            if($(document.body).children("#quesManageModal").length!=0){
+                $(document.body).children("#quesManageModal").remove();
+            }
+            //将弹层节点移动到body节点下；
+            var modal=$('#quesManageModal');
+            $('#quesManageModal').remove();
+            $(document.body).append(modal);
+            //适用学段的全选事件初始化
+            backStageUTIL.initLayuiCheckAll('gradeCheckAll','quesGrade');
+            var form=backStageUTIL.layForm;
+            //监听问卷表单提交
+            form.on('submit(quesSave)', function(data){
+                //验证是否勾选了适用学段
+                var gradeChecked=$('input[lay-filter="quesGrade"]:checked');
+                if(gradeChecked.length==0){
+                    backStageUTIL.message("alert","请勾选适用学段");
+                    return false;
+                }
+                //获取问卷id,如果没有id就是添加，需要判断是否上传了文件
+                var quesId=$("#quesManageModal").attr("data-quesid");
+                if(!quesId){
+                    me.quesSave();
+                }else{
+                    me.quesUpdate();
+                }
+                return false;
+            });
+
+            //引入弹层需要的layui模块
+//            layui.use(['upload' ], function(){
+//                layui.upload({
+//                    url: '' ,//上传接口
+//                    success: function(res){
+//                        //上传成功后的回调
+//                        console.log(res)
+//                    }
+//                });
+//            });
+
+            //上传文件20170726
+            //$('#fileupload').attr("data-url",PublicAjax.ajaxUrl.importQuestionnaire1);
+
+            //【教育培训项目】   20170926
+            var fileuploadUrl = "http://192.168.1.69/QHPG-Train/pgmanage/questionnaireRoute/importQuestionnaire1";//"https://www.axyredu.com/QHPG-Train/pgmanage/questionnaireRoute/importQuestionnaire1";
+            $('#fileupload').attr("data-url",fileuploadUrl);
+
+            var fileNameNew = "";
+            require(['jiframe','fileupload' ], function () {
+                $('#fileupload').fileupload({
+                    dataType: 'json',
+                    //iframe: true,
+                    //dataType :'iframe json',
+                    //forceIframeTransport: true,
+                    add: function (e, data) {
+                        //data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+                        fileNameNew = Math.random() + "-" + data.files[0].name;
+                        data.formData={fileNameNew:fileNameNew};
+                        data.submit();
+                    },
+                    done: function (e, data) {
+                        //data.context.text('Upload finished.');
+                        //console.log(data.result.resultdata.excel_name);
+                        var filename=data.files[0].name;
+                        var fileNameSave=fileNameNew;//data.result.resultdata.excel_name;
+                        $("#fileNameWrapper").html(filename).attr("fileNameSave",fileNameNew);
+                    }
+                }).on('fileuploaddone', function(e, data){
+                    debugger;
+                });
+            });
+        },
+
+        //保存问卷
+        quesSave:function(){
+            var me=this;
+            //判断是否有文件上传
+            if(!$("#fileNameWrapper").html().trim()){
+                backStageUTIL.message("alert","请上传问卷Excel");
+                return false;
+            }
+            var quesGradeList=[];
+            var quesGradeCheck = $("#quesManageModal").find('input[name="quesGrade"]:checked');
+            for(var i=0;i<quesGradeCheck.length;i++){
+                quesGradeList.push($(quesGradeCheck[i]).val());
+            }
+            var JSONPARAM={
+                "file_name": $("#fileNameWrapper").attr("fileNameSave"),
+                "questionnaire_name": $("#quesName").val(),
+                "descript": $("#quesRemark").val(),
+                "load_user_id": backStageUTIL.UserObject.user_id,
+                "use_role": $("#quesTarget").val(),
+                "xueduan_items": quesGradeList
+            };
+
+            //【教育培训项目】   20170926
+            var ajaxUrl = "https://192.168.1.69/QHPG-Train/pgmanage/questionnaireRoute/insertQuestionnaire";//"https://www.axyredu.com/QHPG-Train/pgmanage/questionnaireRoute/insertQuestionnaire";
+            PublicAjax.ajaxGetBackAll(ajaxUrl,JSON.stringify(JSONPARAM),function(data){
+                //PublicAjax.ajaxGetBackAll(PublicAjax.ajaxUrl.insertQuestionnaire,JSON.stringify(JSONPARAM),function(data){
+                if(data.resultnum === "0000"){
+                    layer.close(me.layerIndex);
+                    //me.dataTable.render();//【教育培训项目临时注释  20170922】
+                    debugger;
+                    //生成问卷html
+                    /*var JSONPARAM = me.createHtml(data);
+                     PublicAjax.ajaxPost(PublicAjax.ajaxUrl.buildQuestionnaireHtml,JSON.stringify(JSONPARAM),function(data){
+                     backStageUTIL.message("success","问卷数据生成成功");
+                     });*/
+                }else{
+                    backStageUTIL.message("fail","问卷数据生成失败，请检查Excel中问卷数据");
+                }
+            });
+        },
+        //修改问卷
+        quesUpdate:function(){
+            var me=this;
+            var quesId=$("#quesManageModal").attr("data-quesid");
+            var quesGradeList=[];
+            var quesGradeCheck = $("#quesManageModal").find('input[lay-filter="quesGrade"]:checked');
+            for(var i=0;i<quesGradeCheck.length;i++){
+                quesGradeList.push($(quesGradeCheck[i]).val());
+            }
+            var JSONPARAM={
+                "questionnaire_id": quesId,
+                "questionnaire_name": $("#quesName").val(),
+                "descript": $("#quesRemark").val(),
+                "load_user_id": backStageUTIL.UserObject.user_id,
+                "use_role": $("#quesTarget").val(),
+                "xueduan_items": quesGradeList
+            };
+            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.updateQuestoinnaire,JSON.stringify(JSONPARAM),function(data){
+                layer.close(me.layerIndex);
+                me.dataTable.render();
+                backStageUTIL.message("success","问卷数据修改成功");
+            });
+        },
+        //查询问卷列表
+        selectQuestionnaire:function(){
+            this.dataTable.render();
+        },
+        //上传问卷（问卷新增，显示弹层）
+        importQuestionnaire:function(){
+            var me=this;
+            backStageUTIL.layerOpen({
+                title:'问卷上传'
+                ,content: $('#quesManageModal')
+                ,btn: ['保存','返回']//['按钮一', '按钮二', '按钮三']
+                ,yes: function(index, layero){//确定按钮回调方法，默认不关闭？！
+                    //获取弹层中表单数据
+                    $('button[lay-filter="quesSave"]').click();
+                },end:function(){
+//                    $("#modal").removeAttribute("data-quesid");
+                    $("#quesManageModal").attr("data-quesid","");
+                    //关闭弹层时清空文件
+                    $("#uploadFile").val("");
+                },success:function(layero, index){
+                    //上传文件change事件
+                    $("#uploadFile").on("change",function(event){
+                        me.uploadExcelTpl(event);
+                        //me.submitFile();
+                    });
+                    me.layerIndex=index;
+                    //清空弹层上的数据显示
+                    $("#fileNameWrapper").html("").attr("fileNameSave","");
+                    $("#fileNameWrapper").parent().show();
+                    $("#fileNameWrapper").parent().prev().show();
+
+                    $("#quesName").val("");
+                    $("#quesTarget").val("");
+                    $("#quesRemark").val("");
+
+                    $("#quesManageModal").find('input[lay-filter="quesGrade"]').prop("checked",true);
+                    $("#gradeCheckAll").prop("checked",true);
+                    var form=backStageUTIL.layForm;
+                    form.render('checkbox');
+                }
+            });
+        },
+        //初始化dataTable的配置
+        initDataTableData:function(){
+            var me=this;
+            var options = {
+                // 数据来源方法
+                data : {
+                    // 异步数据源
+                    sync : function(syncOptions, callback) {
+                        //下面注释的是获取异步数据方法
+                        var quesName=me.$("#quesNameSelect").val();
+                        var quesRole=me.$("#quesRoleSelect").val();//=="-1"?"":me.$("#quesRoleSelect").val();
+                        var JSONPARAM={
+                            questionnaire_name:quesName,
+                            use_role:quesRole,//"",
+                            use_xueduan_items:[],
+                            page_size:syncOptions.data.rows,
+                            page_num:syncOptions.data.page
+                        };
+
+                        PublicAjax.ajaxGet(PublicAjax.ajaxUrl.getQuestionnaireList2,JSON.stringify(JSONPARAM),function(data){
+                            callback && callback({rows:data.resultdata,total:data.rows});
+                        });
+
+                        //模拟问卷数据
+                        /*setTimeout(function(){
+                         var dataList=[{questionnaire_id:'8787367361',questionnaire_name:'学生问卷1',descript:"问卷描述，学生问卷1",create_time:'2017-05-14T16:00:00.000Z',use_role:'学生',use_xueduan_items:'小学，初中，高中',is_use:0},
+                         {questionnaire_id:'8787367362',questionnaire_name:'学生问卷1',descript:"问卷描述，学生问卷1",create_time:'2017-05-14T16:00:00.000Z',use_role:'学生',use_xueduan_items:'小学，初中，高中',is_use:1},
+                         {questionnaire_id:'8787367363',questionnaire_name:'学生问卷1',descript:"问卷描述，学生问卷1",create_time:'2017-05-14T16:00:00.000Z',use_role:'学生',use_xueduan_items:'小学，初中，高中',is_use:1},
+                         {questionnaire_id:'8787367364',questionnaire_name:'学生问卷1',descript:"问卷描述，学生问卷1",create_time:'2017-05-14T16:00:00.000Z',use_role:'学生',use_xueduan_items:'小学，初中，高中',is_use:0},
+                         {questionnaire_id:'8787367365',questionnaire_name:'学生问卷1',descript:"问卷描述，学生问卷1",create_time:'2017-05-14T16:00:00.000Z',use_role:'学生',use_xueduan_items:'小学，初中，高中',is_use:0}
+                         ];
+                         var dataCount=11;
+                         callback && callback({rows:dataList,total:dataCount});
+                         },200);*/
+                    },
+                    // 数据列表的索引
+                    dataArrayIndex : 'rows',
+                    // 分页参数
+                    paging : {
+                        enable : true,
+                        // 每页数据条数
+                        pageSize : 10
+                    },
+                    collection : Backbone.Collection//DataSourceCollection
+                },
+                //显示序号列
+                displayIndex:true,
+                //列显示循序：
+                columns : [
+                    {
+                        text : "名称",
+                        dataIndex : "questionnaire_name"
+                    },
+                    {
+                        text : "适用对象",
+                        dataIndex : "use_role"
+                    },
+                    {
+                        text : "适用学段",
+                        dataIndex : "use_xueduan_items",
+                        render:function(value, row){
+                            var xdSt="";
+                            if(!value){
+                                return "";
+                            }
+                            for(var i=0;i<value.length;i++){
+                                if(xdSt){
+                                    xdSt+=",";
+                                }
+                                xdSt+=value[i].xd_name;
+                            }
+                            return xdSt;
+                        }
+                    },
+                    {
+                        text : "上传日期",
+                        dataIndex : "create_time",
+                        render:function(value, row){
+                            return value.substring(0,10);
+                        }
+                    },
+                    {
+                        text : "<span style='margin-right: 10px'>操作<span>",
+                        dataIndex : "is_use",//问卷是否被使用，0=未被使用；1=使用中；
+                        render:function(value, row){//预览、删除、修改
+                            var result=value==0?'<a class="greenBtnTxt editData" style="margin-right: 10px;" data-id="'+row["questionnaire_id"]+'">修改</a><a class="redBtnTxt deleteData" data-id="'+row["questionnaire_id"]+'">删除</a>':'';
+                            result+='<a class="greenBtnTxt previewQues" data-id="'+row["questionnaire_id"]+'" data-name="'+row["questionnaire_name"]+'">预览</a>';
+                            return result;
+                        }
+                    }],
+                // 默认多选模式
+                "selModel" : {
+                    // single/multi,为空则不显示
+                    mode :  "",
+                    // 是否显示行的checkbox
+                    checkbox : false,
+                    //定义选中的数据列表
+                    selectData:{
+                        keyword:"XM",
+                        selectDataValue:["张月月","白宇熙"]//["1","232423","232424","232432","232435"]
+                    },
+                    keepCheckState:{//保持勾选状态才能获取全部的勾选数据
+                        keepCheck:true,
+                        keepStateKeyword:"XM"
+                    }
+                },
+                //表头、表数据初始化完成后调用
+                initTableEventsCall : function(){
+                    //为table中的删除按钮添加事件：
+                    me.$(".deleteData").click(function(_event){
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var eventobj = _event.srcElement?_event.srcElement:_event.target;
+                        var $this=$(eventobj);
+
+                        var needDelId=$this.attr("data-id");
+                        //console.log(needDelId);
+
+                        backStageUTIL.message("confirm","确认删除该问卷？",function(){
+                            var JSONPARAM={questionnaire_id:needDelId};
+                            PublicAjax.ajaxGet(PublicAjax.ajaxUrl.deleteQuestoinnaire,JSON.stringify(JSONPARAM),function(data){
+                                backStageUTIL.message("success","问卷数据删除成功");
+                                //me.dataTable.render();
+                                $this.parents("tr").remove();
+                            });
+                        });
+                    });
+                    //为table中的编辑按钮添加事件：
+                    me.$(".editData").click(function(_event){
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var eventobj = _event.srcElement?_event.srcElement:_event.target;
+                        var $this=$(eventobj);
+
+                        var needEditId=$this.attr("data-id");
+                        //弹层显示数据；只显示基本数据，只能修改基本数据
+                        backStageUTIL.layerOpen({
+                            title:'问卷上传'
+                            ,content: $('#quesManageModal')
+                            ,btn: ['保存','返回']//['按钮一', '按钮二', '按钮三']
+                            ,yes: function(index, layero){//确定按钮回调方法，默认不关闭？！
+                                //获取弹层中表单数据
+                                $('button[lay-filter="quesSave"]').click();
+                            }
+                            ,success: function(layero, index){
+                                $("#quesManageModal").attr("data-quesid",needEditId);
+                                //回显数据
+                                var JSONPARAM={questionnaire_id:needEditId};
+                                PublicAjax.ajaxGet(PublicAjax.ajaxUrl.getQuestoinnaireInfo,JSON.stringify(JSONPARAM),function(data){
+                                    //数据回显
+                                    var quesObject=data.resultdata;
+
+                                    $("#fileNameWrapper").parent().hide();
+                                    $("#fileNameWrapper").parent().prev().hide();
+
+                                    $("#quesName").val(quesObject.questionnaire_name);
+                                    $("#quesTarget").val(quesObject.use_role);
+                                    $("#quesRemark").val(quesObject.descript);
+                                    var quesGradeCheck=quesObject.xueduan_items;
+                                    $("#quesManageModal").find('input[lay-filter="quesGrade"]').prop("checked",false);
+                                    $("#gradeCheckAll").prop("checked",false);
+                                    for(var i=0;i<quesGradeCheck.length;i++){
+                                        $("#quesManageModal").find('input[value="'+quesGradeCheck[i].xd_name+'"]').prop("checked",true);
+                                    }
+                                    //判断是否勾选全选
+                                    if($('input[lay-filter="quesGrade"]').length==$('input[lay-filter="quesGrade"]:checked').length){
+                                        $("#gradeCheckAll").prop("checked",true);
+                                    }
+                                    var form=backStageUTIL.layForm;
+                                    form.render();
+                                });
+                                me.layerIndex=index;
+                            }
+                            ,end:function(){
+//                                $("#modal").removeAttribute("data-quesid");
+                                $("#quesManageModal").attr("data-quesid","");
+                            }
+                        });
+                    });
+                    //为table中的预览按钮添加事件：
+                    me.$(".previewQues").click(function(_event){
+                        _event.stopPropagation();
+                        var _event = _event || event;
+                        var eventobj = _event.srcElement?_event.srcElement:_event.target;
+                        var $this=$(eventobj);
+
+                        var needEditId=$this.attr("data-id");
+                        var quesName=$this.attr("data-name");
+
+                        //获取屏幕宽高，为弹层大小赋值
+                        var layerH=0;//window.innerHeight*0.8;
+                        var layerW=0;//window.innerWidth*0.7;
+                        if(window.innerHeight!= undefined){
+                            layerH= window.innerHeight*0.8;
+                            layerW= window.innerWidth*0.7;
+                        }
+                        else{
+                            var B= document.body, D= document.documentElement;
+                            layerH= Math.max(D.clientHeight, B.clientHeight)*0.8;
+                            layerW= Math.max(D.clientWidth, B.clientWidth)*0.7;
+                        }
+                        //弹层预览页面
+                        layer.open({
+                            type: 2,
+                            title: quesName,
+                            shadeClose: true,
+                            shade: false,
+                            maxmin: true, //开启最大化最小化按钮
+                            area: [layerW+'px',layerH+'px'],
+//                            content: '../Client/questionhtml/'+needEditId+'.html'
+                            content: location.protocol+"//"+location.host+'/web/Client/questionhtml/'+needEditId+'.html'//location.origin+'/web/Client/questionhtml/'+needEditId+'.html'
+//                            content: '../Client/questionhtml/answerList20170517.html'
+                        });
+                    });
+                }
+            };
+            this.dataTable = new DataTable(options);
+            // 渲染至页面
+            this.$("#dataTableWrapper").html(this.dataTable.$el);
+        },
+        //上传Excel问卷模板
+        uploadExcelTpl:function(event){
+            var me=this;
+            //每次change文件之后，需要清空文件回显
+            $("#fileNameWrapper").html("").attr("fileNameSave","");
+            var eventObj=document.getElementById("uploadFile");//event.target;//event.srcElement?event.srcElement:event.target;
+            if(eventObj.files&&eventObj.files[0]){
+                var filename=eventObj.files[0].name;
+                var uploadInputId=eventObj.id;
+                //验证文件类型，页面元素上已限制，这里再次验证
+                var fileType=eventObj.files[0].type;
+                if(fileType!="application/vnd.ms-excel"){
+                    if(fileType!=""){
+                        backStageUTIL.message("alert","只能上传.xls文件");
+                        return;
+                    }else{
+                        var strIntercept = filename.split(".");
+                        var strEnding = strIntercept[strIntercept.length-1];
+                        if(strEnding!="xls"){
+                            backStageUTIL.message("alert","只能上传.xls文件");
+                            return;
+                        }
+                    }
+                }
+                backStageUTIL.UploadFile(event, function(file,fileinfo) {
+                    //调上传文件接口
+                    var ajaxUrl=PublicAjax.ajaxUrl.importQuestionnaire;
+
+                    var params={
+                        file_name:filename,
+                        fileData:file
+                    };
+                    PublicAjax.ajaxPost(ajaxUrl, JSON.stringify(params), function(d){
+                        var fileNameSave=d.resultdata.excel_name;
+                        $("#fileNameWrapper").html(filename).attr("fileNameSave",fileNameSave);
+                    });
+                });
+            }else{
+                eventObj.select();
+                var testX=document.selection;
+                var testY=testX.createRange();
+                return document.selection.createRange().text;
+            }
+        },
+        //根据返回数据生成问卷html
+       /* createHtml:function(data){
+            //获取测试数据
+            data=data.resultdata.questionnaire_info;
+            var quesTpl = require('text!tpl/quesManage/questionnaireTpl.html');
+            quesTpl=quesTpl.trim();
+//            quesTpl=quesTpl.replace(/[\r\n]/g, "");
+            var quesHtml=$("<div>");quesHtml.html(quesTpl);
+            /!*"questionnaire_id": "beee0646-8c9c-bfc4-83fc-2f2d03b83aa5",//问卷id
+             "questionnaire_name": "这是一个问卷",//问卷名称
+             "descript": "1111111",//问卷描述
+             "load_user_id": "1",//上传问卷的用户
+             "use_role": "学生",//问卷适用对象
+             "xueduan_items": [],//问卷适用学段
+             "questionnaire_questoin:[]"*!///问题列表
+            //缺少问卷id,
+            //获取数据=========================
+            var questionnaire_id = data.questionnaire_id,//问卷id
+                questionnaire_name = data.questionnaire_name,//问卷名称
+                descript = data.descript,//问卷描述
+                load_user_id = data.load_user_id,//问卷上传人
+                use_role = data.use_role,//问卷适用对象
+                xueduan_items = data.xueduan_items,//问卷适用学段
+                questionnaire_questoin = data.questionnaire_questoin;//问题列表
+            //数据渲染=========================
+            quesHtml.find("#quesName").html(questionnaire_name).attr("data-quesid",questionnaire_id);
+            quesHtml.find("#quesRemake").html(descript);
+            if(descript==""){
+                quesHtml.find("#quesRemake").hide();
+                quesHtml.find("#quesRemake").next().hide();
+            }
+            quesHtml.find(".progressBar .sumNum").html(questionnaire_questoin.length);
+
+            for(var i=0;i<questionnaire_questoin.length;i++){
+                /!*"question_id": "6f40cc4d-14d6-e3d9-14f1-d55e324f6a19",//问题id
+                 "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",//问卷id
+                 "option_direction": "负",//[选项正负方向：正=分值越高越好;负=分值越低越好;]
+                 "stand_id": 1010001001,//指标id
+                 "q_order": 1,//题号，题目序号
+                 "option_order": "1",//[选项排列：1=横向;2=纵向;]
+                 "rule": "0",//[ 问题规则： 默认=0;填空题{1=整型/2=小数保留一位/3=小数保留两位/4=日期};多选题{1=选一项给分/2=选多项给分}]
+                 "q_type": "单选题",//[题型:单选/多选/填空/其它]
+                 "content": "您是否清楚的了解本校的办学宗旨？",//题目
+                 "question_options:[]"*!///选项列表
+                //获取数据=========================
+                var question_id = questionnaire_questoin[i].question_id;//问题id
+                var stand_id = questionnaire_questoin[i].stand_id;//指标id
+                var q_order = questionnaire_questoin[i].q_order;//题号，题目序号
+                var option_order = questionnaire_questoin[i].option_order;//[选项排列：1=横向;2=纵向;]
+                var rule = questionnaire_questoin[i].rule;//[ 问题规则： 默认=0;填空题{1=整型/2=小数保留一位/3=小数保留两位/4=日期};多选题{1=选一项给分/2=选多项给分}]
+                var q_type = questionnaire_questoin[i].q_type;//[题型:单选题/多选题/填空题/其它]
+                var content = questionnaire_questoin[i].content;//题目
+                var question_options = questionnaire_questoin[i].question_options;//选项列表
+                //数据渲染=========================
+                var quesClone=quesHtml.find("#problemTpl").clone();
+                quesClone.removeAttr("id");
+                var tmtype="";//single = "单选题", mutil = "多选题",right_wrong = "是非题", blank = "填空题"
+                switch(q_type){
+                    case "单选题":
+                        tmtype="single";
+                        break;
+                    case "多选题":
+                        tmtype="mutil";
+                        break;
+                    case "填空题":
+                        tmtype="blank";
+                        break;
+                }
+                quesClone.attr("tmtype",tmtype);
+                quesClone.attr("tmid",question_id);
+                quesClone.attr("standid",stand_id);
+                quesClone.attr("valtype",rule);
+
+                quesClone.find(".problemNum").html(q_order);
+                quesClone.find(".problemContent").html(content);
+
+                if(tmtype=="blank"){
+                    var blankClone = quesHtml.find("#blankTpl").clone();
+                    blankClone.removeAttr("id");
+                    blankClone.find("input").attr("score","0");//////////////填空题的分数无法获取
+
+                    quesClone.find(".problemContent").after(blankClone);
+                }else if(tmtype=="single"||tmtype=="mutil"){
+                    var optionClone = quesHtml.find("#optionTpl").clone();
+                    optionClone.removeAttr("id");
+                    if(option_order=="1"){//[选项排列：1=横向;2=纵向;]
+                        optionClone.removeClass("noUniformWidth").addClass("uniformWidth");
+                    }else if(option_order=="2"){
+                        optionClone.removeClass("uniformWidth").addClass("noUniformWidth");
+                    }
+                    for(var j=0;j<question_options.length;j++){
+                        /!* "option_id": "d800a583-6be7-26e7-35fa-753932978d67",//选项id
+                         "questionnaire_id": "3f9a29d1-500f-89e9-891b-1615ead92511",//问卷id
+                         "question_id": "6f40cc4d-14d6-e3d9-14f1-d55e324f6a19",//问题id
+                         "option_content": "是",//选项内容
+                         "option_order": 8,//选项序号？
+                         "option_score": "5" *!///选项分数
+                        var option_id = question_options[j].option_id;//选项id
+                        var option_content = question_options[j].option_content;//选项内容
+                        var option_score = question_options[j].option_score;//选项分数
+
+                        var buttonType="";
+                        var liClassName="";
+                        if(tmtype=="single"){
+                            buttonType="radios";
+                            liClassName="singlestli";
+                        }else{
+                            buttonType="checkbox";
+                            liClassName="mutilstli";
+                        }
+                        var optionItemStr='<li class="'+liClassName+'"><input type="hidden" name="" value="" optionid="'+option_id+'" score="'+option_score+'"><span class="'+buttonType+'"></span>'+option_content+'</li>';
+                        var optionItem=$(optionItemStr);
+
+                        optionClone.find("ul").append(optionItem);
+                    }
+                    quesClone.find(".problemContent").after(optionClone);
+                }
+                quesHtml.find(".problemList").append(quesClone);
+            }
+
+            quesHtml.find("#problemTpl").remove();
+            quesHtml.find("#blankTpl").remove();
+            quesHtml.find("#optionTpl").remove();
+
+            var htmlStr1=['<!DOCTYPE html>',
+                '<html lang="en">',
+                '<head>',
+                '<style media="screen"></style>',
+                '<meta charset="UTF-8">',
+                '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">',
+                '<title>问卷</title>',
+                '<link href="../css/comon.css" rel="stylesheet" type="text/css"/>',
+                '<link href="../css/index.css" rel="stylesheet" type="text/css"/>',
+                '<style>',
+                'body {  min-width: 750px;  overflow: auto;  max-width: 1150px;  margin: auto;  font-size: 12px;  color: #646464;  letter-spacing: 1px;  word-spacing: 8px;  font-family: "Microsoft YaHei";  }',
+                '</style>',
+                '<script type="text/javascript" src="../js/excanvas.js"></script>',
+                '</head>',
+                '<body>'].join("\r\n");
+
+            var htmlStr2=['<script type="text/javascript" src="../js/jquery-1.8.1.min.js"></script>',
+                '<script type="text/javascript" src="../js/ajax.js"></script>',
+                '<script type="text/javascript" src="../js/common.js"></script>',
+                '<script type="text/javascript" src="../questionnaire/question.js"></script>',
+                '</body>',
+                '</html>'].join("\r\n");
+//            return '<!DOCTYPE html>\r\n<html lang="en">'+quesHtml.html()+'\r\n</html>';
+//            return htmlStr1 + quesHtml.html() + htmlStr2;
+
+            var JSONPARAM={
+                "html_data": encodeURIComponent(htmlStr1 + quesHtml.html() + htmlStr2),
+                "questionnaire_id": questionnaire_id
+            };
+            return JSONPARAM;
+        },*/
+        //测试文件上传
+        submitFile:function(){
+            var oData = new FormData(document.forms.namedItem("fileinfo"));
+
+            //userName不在表单中
+            oData.append("file_name", "filename");
+            var oReq = new XMLHttpRequest();
+            oReq.open("POST", PublicAjax.ajaxUrl.importQuestionnaire, true);
+            oReq.onload = function(oEvent) {
+                if (oReq.status == 200) {
+                    console.log("Uploaded!");
+                } else {
+                    console.log("Error " + oReq.status + " occurred uploading your file.");
+                }
+            };
+
+            oReq.send(oData);
+        }
+    });
+});
